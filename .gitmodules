@@ -1,0 +1,3 @@
+[submodule "AppDtos"]
+	path = AppDtos
+	url = git@github.com:Diplom-2024-step/AppDtos.git
