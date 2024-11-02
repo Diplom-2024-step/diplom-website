@@ -2,9 +2,9 @@ import "@/styles/globals.css";
 import { Metadata, Viewport } from "next";
 import { Link } from "@nextui-org/link";
 import clsx from "clsx";
-
+import Header from "../components/shared/Header";
+import Footer from "../components/shared/Footer";
 import { Providers } from "./providers";
-
 import { siteConfig } from "@/config/site";
 import { fontSans } from "@/config/fonts";
 
@@ -37,14 +37,16 @@ export default function RootLayout({
       <body
         className={clsx(
           "min-h-screen bg-[#edebeb] font-sans antialiased",
-          fontSans.variable,
+          fontSans.variable
         )}
       >
         <Providers themeProps={{ attribute: "class", defaultTheme: "dark" }}>
           <div className="relative flex flex-col">
+            <Header />
             <main className="container mx-auto max-w-7xl px-5 flex-grow">
               {children}
             </main>
+            <Footer />
           </div>
         </Providers>
       </body>
