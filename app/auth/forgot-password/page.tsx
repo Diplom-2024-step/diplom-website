@@ -12,6 +12,12 @@ const ForgotPassword = () => {
     const [emailError, setEmailError] = useState("");
     const [message, setMessage] = useState('');
 
+    const handleButtonClick = () => {
+        if (validateEmail(email)) {
+            route.push(`/auth/recovery-password?email=${encodeURIComponent(email)}`);
+        }
+    }
+
     const validateEmail = (email: string): boolean => {
         // regex для проверки формата email
         const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -79,7 +85,10 @@ const ForgotPassword = () => {
                         <Spacer />
 
                         <div className="flex justify-center text-center mt-5 mb-2">
-                            <Button className="w-1/2 rounded-full text-white bg-[#5DB3C1] font-light" type="submit">Надіслати</Button>
+                            <Button 
+                                onClick={handleButtonClick}
+                                className="w-1/2 rounded-full text-white bg-[#5DB3C1] font-light" 
+                                type="button">Надіслати</Button>
                         </div>
                     </form>
                  </div>

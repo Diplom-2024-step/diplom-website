@@ -169,6 +169,8 @@ const RegisterPage = () => {
       return;
     }
 
+    const username = `${firstName} ${lastName}`.trim();
+
     try {
       const result = await axios.post("/api/registrate", {
         email,
@@ -201,10 +203,10 @@ const RegisterPage = () => {
   const providers: Provider[] = ['google', 'apple', 'facebook'];
 
   return (
-      <div className="flex justify-center items-center bg-[#edebeb] min-h-screen relative p-4 md:p-0">
+      <div className="flex justify-center items-center min-h-screen relative p-4 md:p-0">
         
-      <button className="absolute top-5 left-1 flex items-center justify-center w-10 h-10 bg-white rounded-full shadow-lg mb-3
-        transition-all duration-300 hover:shadow-xl transform hover:scale-105">
+      <button onClick={() => history.back()} className="absolute top-7 left-1 flex items-center justify-center w-10 h-10 bg-white rounded-full shadow-lg mb-1
+        hover:shadow-xl transform hover:scale-105">
         <div className="flex items-center justify-center">
           <img 
             src="https://img.icons8.com/?size=100&id=39776&format=png&color=1A1A1A" 
@@ -312,7 +314,6 @@ const RegisterPage = () => {
                     variant="bordered"
                     type="text"
                     onChange={handleLastNameChange}
-                    style={{fontFamily: 'Nunito, sans-serif', fontWeight: 600}}
                     classNames={{
                       inputWrapper: "border-2 border-[#424242] hover:border-[#424242] focus:border-[#424242] border-opacity-100",
                       input: "text-[#171717]"
