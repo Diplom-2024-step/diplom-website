@@ -26,7 +26,7 @@ const RegisterPage = () => {
   const [email, setEmail] = useState("");
   const [emailError, setEmailError] = useState("");
 
-  const [username, setUsername] = useState("");
+  const [userName, setUsername] = useState("test212");
 
   const [password, setPassword] = useState("");
   const [passwordError, setPasswordError] = useState("");
@@ -59,7 +59,7 @@ const RegisterPage = () => {
   const validateAllFields = (): boolean => {
     return (
       email.trim() !== '' &&
-      username.trim() !== '' &&
+      userName.trim() !== '' &&
       password.trim() !== '' &&
       confirmPassword.trim() !== '' &&
       firstName.trim() !== '' &&
@@ -152,7 +152,7 @@ const RegisterPage = () => {
   };
 
 
-  const handleSubmit = async (e: any) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     setIsLoading(true);
     e.preventDefault();
 
@@ -175,8 +175,8 @@ const RegisterPage = () => {
       const result = await axios.post("/api/registrate", {
         email,
         password,
-        username,
-        role: "Admin"
+        userName: userName,
+        role: "User"
       });
       if (result.status !== 200) {
         setError("Failed to register");
@@ -208,8 +208,8 @@ const RegisterPage = () => {
       <button onClick={() => history.back()} className="absolute top-7 left-1 flex items-center justify-center w-10 h-10 bg-white rounded-full shadow-lg mb-1
         hover:shadow-xl transform hover:scale-105">
         <div className="flex items-center justify-center">
-          <img 
-            src="https://img.icons8.com/?size=100&id=39776&format=png&color=1A1A1A" 
+          <img
+            src="https://img.icons8.com/?size=100&id=39776&format=png&color=1A1A1A"
             alt="left-arrow"
             className="w-7 h-7"
           />
@@ -217,11 +217,11 @@ const RegisterPage = () => {
       </button>
 
       <div className="flex flex-col md:flex-row w-full md:w-[1000px] bg-white rounded-[20px] shadow-lg p-4 md:p-4 mt-6">
-        
+
         {/* Левый блок с формой */}
         <div className="w-full md:w-2/5 p-3 flex flex-col">
-          <h2 
-            style={{fontFamily: 'Unbounded, sans-serif' }}
+          <h2
+            style={{ fontFamily: 'Unbounded, sans-serif' }}
             className="text-center text-[#0F171B] text-xl md:text-2xl mb-4 font-bold">Персональні дані</h2>
           <Spacer />
 
@@ -232,38 +232,39 @@ const RegisterPage = () => {
                 className="bg-gradient-to-r from-[#5DB3C1] to-[#99D8DE] rounded-full transition duration-300 mx-1 w-[40px] text-white"
                 onClick={() => signIn(provider)}
               >
-                <img 
-                  className={`w-7 h-7  ${provider.charAt(0)}-icon`} 
-                  src={`https://img.icons8.com/?size=100&id=${getProviderIconId(provider)}&format=png&color=FFFFFF`} 
-                  alt={`${provider}-icon`} 
+                <img
+                  className={`w-7 h-7  ${provider.charAt(0)}-icon`}
+                  src={`https://img.icons8.com/?size=100&id=${getProviderIconId(provider)}&format=png&color=FFFFFF`}
+                  alt={`${provider}-icon`}
                 />
               </Button>
             ))}
           </div>
 
           <Spacer />
-          
+
           <form onSubmit={handleSubmit}>
             <div className="flex flex-col pl-4 max-w-xs space-y-2">
               <Input
                 radius="full"
                 type="email"
                 variant="bordered"
-                placeholder="Електронна адреса" 
-                value={email} 
+                placeholder="Електронна адреса"
+                value={email}
                 onChange={handleEmailChange}
                 classNames={{
                   inputWrapper: "border-2 border-[#424242] hover:border-[#424242] focus:border-[#424242] border-opacity-100",
                   input: "text-[#171717]"
                 }}
-                className="bg-transparent" 
+                className="bg-transparent"
                 isInvalid={!!emailError}  // true, если есть ошибка
                 errorMessage={emailError} // Отображаем сообщение об ошибке
               />
               <Spacer />
               <Input
                 radius="full"
-                placeholder="Пароль" 
+                placeholder="Пароль"
+                type="password"
                 variant="bordered"
                 value={password}
                 classNames={{
@@ -278,9 +279,10 @@ const RegisterPage = () => {
               <Spacer />
               <Input
                 radius="full"
-                placeholder="Підтвердження пароля" 
+                placeholder="Підтвердження пароля"
                 variant="bordered"
                 value={confirmPassword}
+                type="password"
                 classNames={{
                   inputWrapper: "border-2 border-[#424242] hover:border-[#424242] focus:border-[#424242] border-opacity-100",
                   input: "text-[#171717]"
@@ -324,31 +326,32 @@ const RegisterPage = () => {
                   />
                 </div>
               </div>
+            </div>
             <Spacer />
-            
+
             <Checkbox className="mt-1 ml-auto" radius="sm" color="default">
-              <p className="text-[#303030] font-medium text-xs">Я прочитав(-ла) та приймаю<br/>
+              <p className="text-[#303030] font-medium text-xs">Я прочитав(-ла) та приймаю<br />
                 <span className="text-[#303030] font-bold">Політику конфіденційності</span>
               </p>
             </Checkbox>
 
             <Spacer />
             <div className="flex justify-center text-center mt-5 mb-2">
-              <Button className="w-1/2 rounded-full text-white bg-[#5DB3C1] font-light" type="submit" disabled={isLoading}>
+              <Button className="w-1/2 rounded-full text-white bg-[#5DB3C1] font-light" type="submit" disabled={isLoading} onClick={handleSubmit}>
                 {isLoading ? 'Завантаження...' : 'Створити'}
               </Button>
             </div>
-          {errorMessage && <p className="text-red-500">{errorMessage}</p>}
-        </form>
+            {errorMessage && <p className="text-red-500">{errorMessage}</p>}
+          </form>
 
         </div>
 
-      {/* Правый блок с изображением */}
-      <div className="relative flex-1 overflow-hidden md:ml-8">
-        <Image src={loginFormImage} alt="Login Image" layout="fill" objectFit="cover" className="rounded-[20px]" />
+        {/* Правый блок с изображением */}
+        <div className="relative flex-1 overflow-hidden md:ml-8">
+          <Image src={loginFormImage} alt="Login Image" layout="fill" objectFit="cover" className="rounded-[20px]" />
+        </div>
       </div>
     </div>
-  </div>
   );
 };
 
