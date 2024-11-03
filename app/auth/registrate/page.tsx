@@ -158,8 +158,6 @@ const RegisterPage = () => {
 
     if (!validateAllFields()) {
       setError("Пожалуйста, заполните все поля");
-
-      console.debug("test reg")
       setIsLoading(false);
       return;
     }
