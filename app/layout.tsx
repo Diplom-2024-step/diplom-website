@@ -2,11 +2,12 @@ import "@/styles/globals.css";
 import { Metadata, Viewport } from "next";
 import { Link } from "@nextui-org/link";
 import clsx from "clsx";
-import Header from "../components/shared/Header";
+import Header from "../components/shared/Navbar";
 import Footer from "../components/shared/Footer";
 import { Providers } from "./providers";
 import { siteConfig } from "@/config/site";
 import { fontSans } from "@/config/fonts";
+import Navbar from "../components/shared/Navbar";
 
 export const metadata: Metadata = {
   title: {
@@ -37,13 +38,13 @@ export default function RootLayout({
       <body
         className={clsx(
           "h-full bg-[#edebeb] font-sans antialiased",
-          fontSans.variable,
+          fontSans.variable
         )}
       >
         <Providers themeProps={{ attribute: "class", defaultTheme: "dark" }}>
           <div className="relative flex flex-col mb-0 bg-gray-200 h-full">
+            <Navbar />
             <main className="container mx-auto mb-0 max-w-7xl px-5 flex-grow">
-
               {children}
             </main>
             <Footer />
