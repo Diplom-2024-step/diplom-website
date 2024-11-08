@@ -16,7 +16,7 @@ const Footer = () => {
           <Image
             alt="contacts"
             src={footerContactsImage}
-            className="text-[25px] font-bold mb-12 mt-5"
+            className="mb-12 mt-5"
           />
           <div className="flex w-[calc(100%+30px)]">
             <div>
