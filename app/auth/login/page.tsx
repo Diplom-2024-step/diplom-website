@@ -47,9 +47,9 @@ const LoginPage = () => {
     setEmail(value);
 
     if (!value) {
-      setEmailError('Email не может быть пустым');
+      setEmailError('Email не може бути пустим');
     } else if (!validateEmail(value)) {
-      setEmailError('Введите корректный email');
+      setEmailError('Введіть корректний email');
     } else {
       setEmailError('');
     }
@@ -102,8 +102,8 @@ const LoginPage = () => {
   return (
     <div className="flex justify-center items-center min-h-screen relative p-4 md:p-0">
       
-      <button className="absolute top-5 left-1 flex items-center justify-center w-10 h-10 bg-white rounded-full shadow-lg mb-3
-        transition-all duration-300 hover:shadow-xl transform hover:scale-105">
+      <button onClick={() => history.back()} className="absolute top-8 left-1 flex items-center justify-center w-10 h-10 bg-white rounded-full shadow-lg mb-1
+        transition-all duration-300 hover:shadow-xl transform hover:scale-105" >
         <div className="flex items-center justify-center">
           <img 
             src="https://img.icons8.com/?size=100&id=39776&format=png&color=1A1A1A" 
