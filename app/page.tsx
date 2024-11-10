@@ -1,4 +1,5 @@
 "use client"
+import Services from "@/components/shared/Services";
 import { Button } from "@nextui-org/button";
 import { signIn, signOut } from "next-auth/react";
 
@@ -20,6 +21,8 @@ export default function Home() {
 
           signIn
         </Button>
+
+            <Services />
     </section>
   );
 }

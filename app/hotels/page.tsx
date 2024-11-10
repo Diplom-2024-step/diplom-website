@@ -29,7 +29,7 @@ const page = () => {
 
   const service = new HotelService();
 
-   const loadItems = useGetPageOfItems<
+  const loadItems = useGetPageOfItems<
     GetHotelDto,
     typeof service
   >(
@@ -50,28 +50,28 @@ const page = () => {
 
 
   return (
-  <>
-    {loadingState === 'idle' ?
-    <>
-    <HotelCarousel hotels={items?.models as any} />
+    <section className='container mx-auto mb-0 max-w-7xl px-5 flex-grow'>
+      {loadingState === 'idle' ?
+        <>
+          <HotelCarousel hotels={items?.models as any} />
 
-    <HotelGrid hotels={items?.models as any}    
-    />
+          <HotelGrid hotels={items?.models as any}
+          />
 
-    <div className='flex justify-center items-center mb-10'>
-        <MyPagination 
-            total={items?.howManyPages as any} 
-            page={page ? parseInt(page) : 1}
-            onchange={(page:number) => setPage(page.toString())}    
-        />
-    </div>
+          <div className='flex justify-center items-center mb-10'>
+            <MyPagination
+              total={items?.howManyPages as any}
+              page={page ? parseInt(page) : 1}
+              onchange={(page: number) => setPage(page.toString())}
+            />
+          </div>
 
 
-</>
-    :
-    <Loading/>
-}
-  </>
+        </>
+        :
+        <Loading />
+      }
+    </section>
   )
 }
 
