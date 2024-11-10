@@ -1,6 +1,7 @@
 import { GetHotelDto } from '@/AppDtos/Dto/Models/Hotels/get-hotel-dto';
-import { Calendar, Card, CardBody, CardFooter, Image } from '@nextui-org/react';
-import { ArrowRight, MapPin, Star } from 'lucide-react';
+import { Calendar, Card, CardBody, CardFooter, CardHeader, Image } from '@nextui-org/react';
+import { ArrowRight, BookmarkIcon, MapPin, Star } from 'lucide-react';
+import { Icon } from '@iconify/react';
 import React from 'react'
 
 interface HotelCardProps {
@@ -12,10 +13,11 @@ interface HotelCardProps {
 
 const HotelCard = ({ hotel, isHovered, onHover, onLeave }:HotelCardProps ) => (
   <Card 
-    className="relative overflow-hidden hover:cursor-pointer"
+    className={`relative overflow-hidden hover:cursor-pointer ${isHovered ? "scale-105" : ''}`}
     shadow='none'
     onMouseEnter={onHover}
     onMouseLeave={onLeave}
+    isHoverable
   
   >
     <Image
@@ -25,10 +27,15 @@ const HotelCard = ({ hotel, isHovered, onHover, onLeave }:HotelCardProps ) => (
       isZoomed
       radius='none'
     />
-    
-    <CardBody className="p-4 bg-white text-black">
-      <h3 className="text-xl font-bold mb-2">{hotel.name}</h3>
-      <div className="flex items-center gap-2 text-gray-600 mb-4">
+      <div className="absolute top-4 right-4 z-10">
+        <button className="p-2  rounded-lg">
+          <BookmarkIcon className="w-4 text-white h-4" />
+        </button>
+      </div>
+    <CardBody className="p-4 bg-white text-black ">
+
+      <h3 className="text-xl font-bold ">{hotel.name}</h3>
+      <div className="flex items-center gap-2 text-gray-600 ">
         <MapPin className="w-4 h-4" />
         <span className="text-sm">{hotel.city.country.name}, {hotel.city.name}</span>
       </div>
@@ -38,17 +45,16 @@ const HotelCard = ({ hotel, isHovered, onHover, onLeave }:HotelCardProps ) => (
         ))}
         <span className="text-sm ml-2">{hotel.stars}/5</span>
       </div>
-    </CardBody>
-    
-    <CardFooter className="flex items-center justify-between p-4 border-t   bg-white">
-      <div className='bg-gradient-to-b from-[#ECB003] to-[#AF3F2B]  text-transparent bg-clip-text'>
-        <span className="text-lg font-bold">{hotel.additionCostPerPerson}</span>
-        <span className="text-sm "> / Персона</span>
+      <div className='flex items-center justify-between  bg-white'>
+        <div className='bg-gradient-to-b from-[#ECB003] to-[#AF3F2B]  text-transparent bg-clip-text'>
+          <span className="text-lg font-bold">{hotel.additionCostPerPerson}</span>
+          <span className="text-sm "> / Персона</span>
+        </div>
+        <Icon icon="ei:arrow-up" className={`w-10 h-10 transition-transform rotate-45 text-black ${isHovered ? '-translate-y-6' : ''
+          }`} />
       </div>
-      <ArrowRight className={`w-5 h-5 transition-transform text-black ${
-        isHovered ? 'translate-x-1' : ''
-      }`} />
-    </CardFooter>
+    </CardBody>
+
   </Card>
 );
 

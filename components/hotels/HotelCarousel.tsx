@@ -36,7 +36,7 @@ export const HotelCarousel = (
     <div className="w-full max-w-6xl mx-auto px-4 text-black">
       <h2 className="text-2xl font-bold mb-6">Рекомендуємо відвідати</h2>
       
-      <div className="relative">
+      <div className="relative ">
         <div className="overflow-hidden">
           <div 
             className="flex transition-transform duration-300 ease-in-out"
@@ -47,7 +47,7 @@ export const HotelCarousel = (
             {hotels.map((hotel, index) => (
               <div
                 key={hotel.id}
-                className="w-1/3 flex-shrink-0 px-2"
+                className="w-1/3 mt-6 mb-6 flex-shrink-0 px-2"
               >
                 <HotelCard
                   hotel={hotel}
@@ -62,7 +62,7 @@ export const HotelCarousel = (
         
         <button
           onClick={handlePrev}
-          className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 bg-white p-2 rounded-full shadow-lg hover:bg-gray-100 z-10"
+          className="absolute left-0 top-1/3 -translate-y-1/2 -translate-x-4 bg-white p-2 rounded-full shadow-lg hover:bg-gray-100 z-10"
           type="button"
           aria-label="Previous slide"
         >
@@ -71,7 +71,7 @@ export const HotelCarousel = (
         
         <button
           onClick={handleNext}
-          className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 bg-white p-2 rounded-full shadow-lg hover:bg-gray-100 z-10"
+          className="absolute right-0 top-1/3 -translate-y-1/2 translate-x-4 bg-white p-2 rounded-full shadow-lg hover:bg-gray-100 z-10"
           type="button"
           aria-label="Next slide"
         >
@@ -84,8 +84,8 @@ export const HotelCarousel = (
               key={index}
               type="button"
               aria-label={`Go to slide ${index + 1}`}
-              className={`w-2 h-2 rounded-full transition-colors ${
-                index === currentIndex ? 'bg-blue-600' : 'bg-gray-300'
+              className={`w-6 h-1 transition-colors ${
+                index === currentIndex ? 'bg-black' : 'bg-gray-300'
               }`}
               onClick={() => handleDotClick(index)}
             />
