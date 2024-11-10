@@ -1,4 +1,5 @@
 import { nextui } from '@nextui-org/theme'
+import { Weight } from 'lucide-react';
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
@@ -9,6 +10,24 @@ module.exports = {
   ],
   theme: {
     extend: {
+      typography: {
+        DEFAULT: {
+          css: {
+            h1: {
+              fontSize: '50px',
+              lineHeight: '40px',
+            },
+            h2: {
+              fontSize: '24px',
+              lineHeight: '32px',
+            },
+            h3: {
+              fontSize: '22px',
+              lineHeight: '32px',
+            },
+          },
+        },
+      },
       fontFamily: {
         sans: ["var(--font-sans)", "Poppins", "sans-serif"],
         nunito_font_family: ['Nunito', 'sans-serif'],
@@ -19,10 +38,12 @@ module.exports = {
         customGreen: '#5DB3C1',
         customBlack: '#0F171B',
       },
+
     },
   },
   darkMode: "class",
   plugins: [
+        require('@tailwindcss/typography'),
     nextui({
       themes: {
         light: {
