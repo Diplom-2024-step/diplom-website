@@ -2,13 +2,13 @@ import "@/styles/globals.css";
 import { Metadata, Viewport } from "next";
 import { Link } from "@nextui-org/link";
 import clsx from "clsx";
-import Header from "../components/shared/Navbar";
 import Footer from "../components/shared/Footer";
 import Services from "../components/shared/Services";
 import { Providers } from "./providers";
 import { siteConfig } from "@/config/site";
 import { fontSans } from "@/config/fonts";
 import Navbar from "../components/shared/Navbar";
+import HotOffers from "../components/shared/HotOffers";
 
 export const metadata: Metadata = {
   title: {
@@ -49,6 +49,7 @@ export default function RootLayout({
             <main className="container mx-auto mb-0 max-w-7xl px-5 flex-grow">
               {children}
             </main>
+            <HotOffers />
             <Services />
             <Footer />
           </div>
