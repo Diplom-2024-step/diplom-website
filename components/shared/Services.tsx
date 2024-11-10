@@ -30,16 +30,72 @@ const Services = () => {
         </p>
         <div className="flex flex-col space-y-7">
           <div className="flex space-x-[120px]">
-            <Image alt="documents" src={servicesDocumentsImage} />
-            <Image alt="flight_tickets" src={servicesFlightTicketImage} />
-            <Image alt="insurance" src={servicesInsuranceImage} />
-            <Image alt="transfer" src={servicesTransferImage} />
+            <div className="flex flex-col w-[194px] h-[192px] bg-transparent border-2 border-customAqua rounded-full justify-center items-center text-center hover:border-gradientCustom group">
+              <div className="flex flex-col w-[170px] h-[168px] bg-white rounded-full justify-center items-center text-center">
+                <Image alt="documents" src={servicesDocumentsImage} />
+                <p className="text-servicesTextColor mt-[5px] font-bold">
+                  Документи
+                </p>
+              </div>
+            </div>
+            <div className="flex flex-col w-[194px] h-[192px] bg-transparent border-2 border-customAqua rounded-full justify-center items-center text-center">
+              <div className="flex flex-col w-[170px] h-[168px] bg-white rounded-full justify-center items-center text-center">
+                <Image alt="documents" src={servicesFlightTicketImage} />
+                <p className="text-servicesTextColor mt-[5px] font-bold">
+                  Авіа квитки
+                </p>
+              </div>
+            </div>
+            <div className="flex flex-col w-[194px] h-[192px] bg-transparent border-2 border-customAqua rounded-full justify-center items-center text-center">
+              <div className="flex flex-col w-[170px] h-[168px] bg-white rounded-full justify-center items-center text-center">
+                <Image alt="documents" src={servicesInsuranceImage} />
+                <p className="text-servicesTextColor mt-[5px] font-bold">
+                  Страхування
+                </p>
+              </div>
+            </div>
+            <div className="flex flex-col w-[194px] h-[192px] bg-transparent border-2 border-customAqua rounded-full justify-center items-center text-center">
+              <div className="flex flex-col w-[170px] h-[168px] bg-white rounded-full justify-center items-center text-center">
+                <Image alt="documents" src={servicesTransferImage} />
+                <p className="text-servicesTextColor mt-[5px] font-bold">
+                  Трансфер
+                </p>
+              </div>
+            </div>
           </div>
           <div className="flex space-x-[120px]">
-            <Image alt="cruises" src={servicesCruisesImage} />
-            <Image alt="dwelling" src={servicesDwellingImage} />
-            <Image alt="consultations" src={servicesConsultationsImage} />
-            <Image alt="leisure" src={servicesLeisureImage} />
+            <div className="flex flex-col w-[194px] h-[192px] bg-transparent border-2 border-customAqua rounded-full justify-center items-center text-center">
+              <div className="flex flex-col w-[170px] h-[168px] bg-white rounded-full justify-center items-center text-center">
+                <Image alt="documents" src={servicesCruisesImage} />
+                <p className="text-servicesTextColor mt-[5px] font-bold">
+                  Трансфер
+                </p>
+              </div>
+            </div>
+            <div className="flex flex-col w-[194px] h-[192px] bg-transparent border-2 border-customAqua rounded-full justify-center items-center text-center">
+              <div className="flex flex-col w-[170px] h-[168px] bg-white rounded-full justify-center items-center text-center">
+                <Image alt="documents" src={servicesDwellingImage} />
+                <p className="text-servicesTextColor mt-[5px] font-bold">
+                  Житло
+                </p>
+              </div>
+            </div>
+            <div className="flex flex-col w-[194px] h-[192px] bg-transparent border-2 border-customAqua rounded-full justify-center items-center text-center">
+              <div className="flex flex-col w-[170px] h-[168px] bg-white rounded-full justify-center items-center text-center">
+                <Image alt="documents" src={servicesConsultationsImage} />
+                <p className="text-servicesTextColor mt-[5px] font-bold">
+                  Консультації
+                </p>
+              </div>
+            </div>
+            <div className="flex flex-col w-[194px] h-[192px] bg-transparent border-2 border-customAqua rounded-full justify-center items-center text-center hover:border-gradientCustom hover:border-gradientCustomGreen">
+              <div className="flex flex-col w-[170px] h-[168px] bg-white rounded-full justify-center items-center text-center">
+                <Image alt="documents" src={servicesLeisureImage} />
+                <p className="text-servicesTextColor mt-[5px] font-bold group-hover:text-black">
+                  Дозвілля
+                </p>
+              </div>
+            </div>
           </div>
         </div>
       </div>
