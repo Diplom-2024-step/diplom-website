@@ -37,6 +37,11 @@ module.exports = {
       colors: {
         customGreen: '#5DB3C1',
         customBlack: '#0F171B',
+        customAqua: '#99D8DE',
+        servicesTextColor: '#5DB3C1',
+      },
+      backgroundImage: {
+        'gradientCustomGreen': 'linear-gradient(to bottom, #F2BA00, #AB362E)',
       },
 
     },
