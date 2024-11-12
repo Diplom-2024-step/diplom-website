@@ -1,7 +1,58 @@
+"use client";
 import React from "react";
 import Image from "next/image";
+import Select from "react-select";
 import headerLogoImage from "../../assets/images/header/Expedia_Logo_2023.png";
 import SignInButton from "./SignInButton";
+import { Icon } from "@iconify/react";
+
+const countryOptions = [
+  {
+    value: "spain",
+    label: (
+      <div className="flex items-center gap-2">
+        <Icon icon="openmoji:flag-spain" />
+        Іспанія
+      </div>
+    ),
+  },
+  {
+    value: "egypt",
+    label: (
+      <div className="flex items-center gap-2">
+        <Icon icon="openmoji:flag-egypt" />
+        Єгипт
+      </div>
+    ),
+  },
+  {
+    value: "italy",
+    label: (
+      <div className="flex items-center gap-2">
+        <Icon icon="openmoji:flag-italy" />
+        Італія
+      </div>
+    ),
+  },
+  {
+    value: "turkey",
+    label: (
+      <div className="flex items-center gap-2">
+        <Icon icon="openmoji:flag-turkey" />
+        Туреччина
+      </div>
+    ),
+  },
+  {
+    value: "maldives",
+    label: (
+      <div className="flex items-center gap-2">
+        <Icon icon="openmoji:flag-maldives" />
+        Мальдіви
+      </div>
+    ),
+  },
+];
 
 const Navbar = () => {
   return (
@@ -9,16 +60,14 @@ const Navbar = () => {
       <div className="container mx-auto flex items-center justify-between px-4">
         <Image alt="logo" src={headerLogoImage}></Image>
 
-        <nav className="hidden md:flex items-center space-x-6 text-[15px]">
+        <nav className="hidden md:flex items-center justify-center space-x-6 text-[15px]">
           <div className="relative">
-            <select className="bg-white text-gray-600 rounded-md py-2 px-3 focus:outline-none focus:ring focus:ring-blue-500 hover:bg-gray-100">
-              <option value="" disabled selected>
-                Країни
-              </option>
-              <option value="country1">Країна 1</option>
-              <option value="country2">Країна 2</option>
-              <option value="country3">Країна 3</option>
-            </select>
+            <Select
+              options={countryOptions}
+              placeholder="Країни"
+              className="bg-white text-gray-600 rounded-md pt-2 pb-2 px-3 focus:outline-none focus:ring focus:ring-blue-500 hover:bg-gray-100 mt-[20px]"
+            />
+            ;
           </div>
 
           <a href="#" className="text-gray-600 hover:text-gray-900">
