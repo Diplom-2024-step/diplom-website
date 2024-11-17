@@ -3,7 +3,7 @@ import Image from "next/image";
 import headerLogoImage from "../../assets/images/header/Expedia_Logo_2023.png";
 import SignInButton from "./SignInButton";
 
-const Header = () => {
+const Navbar = () => {
   return (
     <header className="bg-white shadow-md py-4">
       <div className="container mx-auto flex items-center justify-between px-4">
@@ -67,4 +67,4 @@ const Header = () => {
   );
 };
 
-export default Header;
+export default Navbar;

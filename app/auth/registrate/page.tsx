@@ -216,6 +216,7 @@ const RegisterPage = () => {
           </div>
         </button>
 
+
       <div className="flex flex-col md:flex-row w-full md:w-[1000px] bg-white rounded-[20px] shadow-lg p-4 md:p-4 mt-6">
 
         {/* Левый блок с формой */}
