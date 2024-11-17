@@ -7,7 +7,7 @@ import { useAuth } from "@/hooks/auth";
 import { Checkbox, Button, Input, Spacer } from "@nextui-org/react"; 
 import Image from 'next/image';
 import loginFormImage from '../../../assets/images/loginForm/image-1.png';
-import '../fonts-styles/font.css'
+import '../../../assets/fonts-styles/font.css';
 
 type Provider = 'google' | 'apple' | 'facebook';
 
@@ -203,17 +203,19 @@ const RegisterPage = () => {
   const providers: Provider[] = ['google', 'apple', 'facebook'];
 
   return (
-  <div className="flex justify-center items-center min-h-screen relative p-4 md:p-0">
-      <button onClick={() => history.back()} className="absolute top-7 left-1 flex items-center justify-center w-10 h-10 bg-white rounded-full shadow-lg mb-1
-        hover:shadow-xl transform hover:scale-105">
-        <div className="flex items-center justify-center">
-          <img
-            src="https://img.icons8.com/?size=100&id=39776&format=png&color=1A1A1A"
-            alt="left-arrow"
-            className="w-7 h-7"
-          />
-        </div>
-      </button>
+      <div className="flex justify-center items-center min-h-screen relative p-4 md:p-0">
+        
+        <button onClick={() => history.back()} className="absolute top-7 left-1 flex items-center justify-center w-10 h-10 bg-white rounded-full shadow-lg mb-1
+          hover:shadow-xl transform hover:scale-105">
+          <div className="flex items-center justify-center">
+            <img
+              src="https://img.icons8.com/?size=100&id=39776&format=png&color=1A1A1A"
+              alt="left-arrow"
+              className="w-7 h-7"
+            />
+          </div>
+        </button>
+
 
       <div className="flex flex-col md:flex-row w-full md:w-[1000px] bg-white rounded-[20px] shadow-lg p-4 md:p-4 mt-6">
 
@@ -242,7 +244,7 @@ const RegisterPage = () => {
 
           <Spacer />
 
-          <form onSubmit={handleSubmit}>
+
             <div className="flex flex-col pl-4 max-w-xs space-y-2">
               <Input
                 radius="full"
@@ -325,10 +327,10 @@ const RegisterPage = () => {
                   />
                 </div>
               </div>
-            </div>
+
             <Spacer />
 
-            <Checkbox className="mt-1 ml-auto" radius="sm" color="default">
+            <Checkbox className="mt-1 ml-1" radius="sm" color="default">
               <p className="text-[#303030] font-medium text-xs">Я прочитав(-ла) та приймаю<br />
                 <span className="text-[#303030] font-bold">Політику конфіденційності</span>
               </p>
@@ -341,10 +343,8 @@ const RegisterPage = () => {
               </Button>
             </div>
             {errorMessage && <p className="text-red-500">{errorMessage}</p>}
-          </form>
-
-        </div>
-
+          </div>
+        
         {/* Правый блок с изображением */}
         <div className="relative flex-1 overflow-hidden md:ml-8">
           <Image src={loginFormImage} alt="Login Image" layout="fill" objectFit="cover" className="rounded-[20px]" />

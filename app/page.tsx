@@ -1,4 +1,6 @@
 "use client"
+import Block1 from "@/components/shared/Block-1";
+import WorkWithUs from "@/components/shared/WorkWithUs";
 import Services from "@/components/shared/Services";
 import { Button } from "@nextui-org/button";
 import { signIn, signOut } from "next-auth/react";
@@ -6,21 +8,9 @@ import { signIn, signOut } from "next-auth/react";
 export default function Home() {
   return (
     <section>
-      <Button
-      className="light:text-white dark:text-white
-      rounded-full"
+      <Block1/>
+      <WorkWithUs/>
 
-      onClick={() => signOut()}
-      >
-
-        signOut
-      </Button >
-      <p>Home</p>
-        <Button onClick={() => signIn()}
-        >
-
-          signIn
-        </Button>
 
             <Services />
     </section>
