@@ -19,7 +19,7 @@ import TravelerCard from './TravelerCard';
 
 const images = [ image1, image2, image3, image4, image5, image6, image7, image8, image9, image10 ];
 
-const Block1 = () => {
+const Header = () => {
   const [currentImage, setCurrentImage] = useState(0);
 
   const [isOpen, setIsOpen] = useState<boolean>(false);
@@ -202,5 +202,5 @@ const Block1 = () => {
 
 
 
-export default Block1;
+export default Header;
 
