@@ -1,6 +1,8 @@
+"use client"
 import "@/styles/globals.css";
 import { Metadata, Viewport } from "next";
 import { Link } from "@nextui-org/link";
+import { usePathname } from 'next/navigation';
 import clsx from "clsx";
 import Footer from "../components/shared/Footer";
 import Services from "../components/shared/Services";
@@ -10,29 +12,14 @@ import { fontSans } from "@/config/fonts";
 import Navbar from "../components/shared/Navbar";
 import HotOffers from "../components/shared/HotOffers";
 
-export const metadata: Metadata = {
-  title: {
-    default: siteConfig.name,
-    template: `%s - ${siteConfig.name}`,
-  },
-  description: siteConfig.description,
-  icons: {
-    icon: "/favicon.ico",
-  },
-};
 
-export const viewport: Viewport = {
-  themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "white" },
-    { media: "(prefers-color-scheme: dark)", color: "black" },
-  ],
-};
 
 export default function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+    const pathname = usePathname();
   return (
     <html suppressHydrationWarning lang="en">
       <head />
@@ -44,12 +31,13 @@ export default function RootLayout({
       >
         <Providers themeProps={{ attribute: "class", defaultTheme: "dark" }}>
           <div className="relative flex flex-col mb-0 bg-gray-200 h-full">
-            <Navbar />
-
+            {!pathname.includes('auth') && <Navbar />}
+            
             <main className="">
               {children}
             </main>
-            <Footer />
+            
+            {!pathname.includes('auth') && <Footer />}
           </div>
         </Providers>
       </body>

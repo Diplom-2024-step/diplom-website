@@ -1,19 +1,24 @@
 "use client"
+import { ModelDto } from '@/AppDtos/Shared/model-dto';
+import { SharedCarouselProps } from '@/types/components/SharedCarouselProps'
+import { ChevronLeft, ChevronRight } from 'lucide-react';
+import React, { useState } from 'react'
 
-import { useState } from "react";
-import HotelCard from "./HotelCard";
-import { GetHotelDto } from "@/AppDtos/Dto/Models/Hotels/get-hotel-dto";
-import { ChevronLeft, ChevronRight } from "lucide-react";
 
+function SharedCarousel<T extends ModelDto>(
+  {
+    drawCard,
+    items,
+    title
+  }: SharedCarouselProps<T>
 
-export const HotelCarousel = (
-    {hotels}:{hotels:GetHotelDto[]}
-) => {
-  const [currentIndex, setCurrentIndex] = useState<number>(0);
+){
+
+   const [currentIndex, setCurrentIndex] = useState<number>(0);
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
   const handleNext = (): void => {
-    setCurrentIndex(prev => (prev + 1) % (hotels.length-2));
+    setCurrentIndex(prev => (prev + 1) % (items.length-2));
   };
 
   const handlePrev = (): void => {
@@ -21,7 +26,7 @@ export const HotelCarousel = (
     setCurrentIndex(prev =>
     {
       if (prev === 0){
-        return hotels.length-3;
+        return items.length-3;
       }
       else {
         return prev-1;
@@ -43,8 +48,8 @@ export const HotelCarousel = (
   };
 
   return (
-    <div className="w-full max-w-6xl mx-auto px-4 text-black">
-      <h2 className="text-2xl font-bold mb-6">Рекомендуємо відвідати</h2>
+    <div className="w-full max-w-6xl mx-auto px-4 mt-4 text-black">
+      <h2 className="text-2xl font-bold mb-6">{title}</h2>
       
       <div className="relative ">
         <div className="overflow-hidden">
@@ -54,17 +59,21 @@ export const HotelCarousel = (
               transform: `translateX(-${currentIndex * 33.333}%)`,
             }}
           >
-            {hotels.map((hotel, index) => (
+            {items.map((cardItem, index) => (
               <div
-                key={hotel.id}
+                key={cardItem.id}
                 className="w-1/3 mt-6 mb-6 flex-shrink-0 px-2"
               >
-                <HotelCard
-                  cardItem={hotel}
-                  isHovered={hoveredIndex === index}
-                  onHover={() => handleHover(index)}
-                  onLeave={handleLeave}
-                />
+                {
+                  drawCard(
+                    {
+                  cardItem: cardItem,
+                  isHovered: hoveredIndex === index,
+                  onHover:() => handleHover(index),
+                  onLeave: handleLeave,
+                  }
+                  )
+                }
               </div>
             ))}
           </div>
@@ -89,7 +98,7 @@ export const HotelCarousel = (
         </button>
         
         <div className="flex justify-center gap-2 mt-4">
-          {[...Array(hotels.length-2)].map((_, index) => (
+          {[...Array(items.length-2)].map((_, index) => (
             <button
               key={index}
               type="button"
@@ -104,4 +113,8 @@ export const HotelCarousel = (
       </div>
     </div>
   );
-};
+
+}
+
+
+export default SharedCarousel
