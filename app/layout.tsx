@@ -31,8 +31,9 @@ export default function RootLayout({
       >
         <Providers themeProps={{ attribute: "class", defaultTheme: "dark" }}>
           <div className="relative flex flex-col mb-0 bg-gray-200 h-full">
+
             {!pathname.includes('auth') && <Navbar />}
-            
+    
             <main className="">
               {children}
             </main>
