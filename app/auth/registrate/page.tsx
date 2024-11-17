@@ -203,8 +203,7 @@ const RegisterPage = () => {
   const providers: Provider[] = ['google', 'apple', 'facebook'];
 
   return (
-      <div className="flex justify-center items-center min-h-screen relative p-4 md:p-0">
-        
+  <div className="flex justify-center items-center min-h-screen relative p-4 md:p-0">
       <button onClick={() => history.back()} className="absolute top-7 left-1 flex items-center justify-center w-10 h-10 bg-white rounded-full shadow-lg mb-1
         hover:shadow-xl transform hover:scale-105">
         <div className="flex items-center justify-center">

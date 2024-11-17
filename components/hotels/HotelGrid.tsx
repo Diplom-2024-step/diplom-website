@@ -13,7 +13,7 @@ const HotelGrid = ({ hotels } : {hotels:GetHotelDto[]}) => {
         {hotels?.map((hotel, index) => (
           <HotelCard
             key={index}
-            hotel={hotel}
+            cardItem={hotel}
             isHovered={hoveredId === index}
             onHover={() => setHoveredId(index)}
             onLeave={() => setHoveredId(null)}
