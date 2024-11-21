@@ -1,5 +1,9 @@
 import { Button } from "@nextui-org/button";
 import Image from "next/image";
+import mexicoPng from "../../assets/images/hotoffers/mexico.png";
+import testicon1 from "../../assets/images/hotoffers/testicon1.png";
+import testicon2 from "../../assets/images/hotoffers/testicon2.png";
+import testicon3 from "../../assets/images/hotoffers/testicon3.png";
 import { Card, CardHeader, CardBody, CardFooter } from "@nextui-org/card";
 import { Flame, ArrowRight } from "lucide-react";
 import { Icon } from "@iconify/react";
@@ -50,20 +54,19 @@ const HotDestinations = () => {
         Гарячі пропозиції
       </p>
       <div className="flex  w-4/7 h-full">
-        <Card className="flex flex-col justify-between col-span-12 sm:col-span-4 min-h-[520px] min-w-[400px]">
+        <Card
+          className="flex flex-col justify-between col-span-12 sm:col-span-4 min-h-[520px] min-w-[400px] bg-cover bg-center cursor-pointer"
+          style={{
+            backgroundImage: `linear-gradient(to top, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0)), url(${mexicoPng.src})`,
+          }}
+        >
           <CardHeader className="absolute z-10 top-1 flex-col !items-end">
-            <div className="bg-customBlack bg-opacity-50 h-[25px] rounded-xl mt-[10px]">
-              <p className="text-tiny text-white/60 uppercase font-bold">
+            <div className="flex flex-col justify-center bg-customBlack bg-opacity-50 h-[30px] p-3 rounded-xl mt-[10px]">
+              <p className="text-[15px] text-white/60 uppercase font-bold">
                 30 000 ₴ / Персона
               </p>
             </div>
           </CardHeader>
-          <Image
-            removeWrapper
-            alt="Card background"
-            className="z-0 w-full h-full object-cover"
-            src=""
-          />
           <CardFooter className="absolute bottom-3 z-10">
             <div className="flex flex-grow gap-2 items-center">
               <div className="flex flex-col">
@@ -92,24 +95,23 @@ const HotDestinations = () => {
         </Card>
         <div className="flex flex-col h-full w-3/5 ml-[60px]">
           <div className="flex justify-between">
-            <Card className="flex flex-col justify-between col-span-12 sm:col-span-4 min-h-[240px] min-w-[280px] mr-[35px]">
+            <Card
+              className="flex flex-col justify-between col-span-12 sm:col-span-4 min-h-[240px] min-w-[280px] mr-[35px] bg-cover bg-center cursor-pointer"
+              style={{
+                backgroundImage: `linear-gradient(to top, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0)), url(${testicon1.src})`,
+              }}
+            >
               <CardHeader className="flex absolute z-10 top-1 justify-between !items-end">
                 <Icon
                   icon="mdi:flame"
                   className="w-[35px] h-[35px] ml-[15px]"
                 />
-                <div className="bg-customBlack bg-opacity-50 h-[25px] rounded-xl">
-                  <p className="text-tiny text-white/60 uppercase font-bold">
+                <div className="flex flex-col justify-center bg-customBlack bg-opacity-50 h-[30px] p-3 rounded-xl mt-[10px]">
+                  <p className="text-[15px] text-white/60 uppercase font-bold">
                     30 000 ₴ / Персона
                   </p>
                 </div>
               </CardHeader>
-              <Image
-                removeWrapper
-                alt="Card background"
-                className="z-0 w-full h-full object-cover"
-                src=""
-              />
               <CardFooter className="absolute bottom-3 z-10">
                 <div className="flex flex-grow gap-2 items-center">
                   <div className="flex flex-col">
@@ -132,24 +134,23 @@ const HotDestinations = () => {
                 </button>
               </CardFooter>
             </Card>
-            <Card className="flex flex-col justify-between col-span-12 sm:col-span-4 min-h-[240px] min-w-[280px]">
+            <Card
+              className="flex flex-col justify-between col-span-12 sm:col-span-4 min-h-[240px] min-w-[280px] bg-cover bg-center cursor-pointer"
+              style={{
+                backgroundImage: `linear-gradient(to top, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0)), url(${testicon2.src})`,
+              }}
+            >
               <CardHeader className="flex absolute z-10 top-1 justify-between !items-end">
                 <Icon
                   icon="mdi:flame"
                   className="w-[35px] h-[35px] ml-[15px]"
                 />
-                <div className="bg-customBlack bg-opacity-50 h-[25px] rounded-xl">
-                  <p className="text-tiny text-white/60 uppercase font-bold">
+                <div className="flex flex-col justify-center bg-customBlack bg-opacity-50 h-[30px] p-3 rounded-xl mt-[10px]">
+                  <p className="text-[15px] text-white/60 uppercase font-bold">
                     30 000 ₴ / Персона
                   </p>
                 </div>
               </CardHeader>
-              <Image
-                removeWrapper
-                alt="Card background"
-                className="z-0 w-full h-full object-cover"
-                src=""
-              />
               <CardFooter className="absolute bottom-3 z-10">
                 <div className="flex flex-grow gap-2 items-center">
                   <div className="flex flex-col">
@@ -174,24 +175,23 @@ const HotDestinations = () => {
             </Card>
           </div>
           <div>
-            <Card className="flex flex-col justify-between col-span-12 sm:col-span-4 min-h-[240px] w-full mt-[40px]">
+            <Card
+              className="flex flex-col justify-between col-span-12 sm:col-span-4 min-h-[240px] w-full mt-[40px] bg-cover bg-center cursor-pointer"
+              style={{
+                backgroundImage: `linear-gradient(to top, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0)), url(${testicon3.src})`,
+              }}
+            >
               <CardHeader className="flex absolute z-10 top-1 justify-between !items-end">
                 <Icon
                   icon="mdi:flame"
                   className="w-[35px] h-[35px] ml-[15px]"
                 />
-                <div className="bg-customBlack bg-opacity-50 h-[25px] rounded-xl">
-                  <p className="text-tiny text-white/60 uppercase font-bold">
+                <div className="flex flex-col justify-center bg-customBlack bg-opacity-50 h-[30px] p-3 rounded-xl mt-[10px]">
+                  <p className="text-[15px] text-white/60 uppercase font-bold">
                     30 000 ₴ / Персона
                   </p>
                 </div>
               </CardHeader>
-              <Image
-                removeWrapper
-                alt="Card background"
-                className="z-0 w-full h-full object-cover"
-                src=""
-              />
               <CardFooter className="absolute bottom-3 z-10">
                 <div className="flex flex-grow gap-2 items-center">
                   <div className="flex flex-col">
