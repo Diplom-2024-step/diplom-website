@@ -10,7 +10,7 @@ export default function Home() {
     <section>
       <Header/>
       <WorkWithUs/>
-            <Services />
+      <Services />
     </section>
   );
 }
