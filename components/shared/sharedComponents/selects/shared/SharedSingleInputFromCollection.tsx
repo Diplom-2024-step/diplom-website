@@ -40,6 +40,7 @@ const SharedSingleInputFromCollection =  <
           <Select
             required={true}
             items={items}
+            disallowEmptySelection
             defaultSelectedKeys={[currectValue]}
             label={placeholder}
             placeholder={placeholder}

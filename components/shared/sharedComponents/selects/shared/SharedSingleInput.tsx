@@ -86,6 +86,7 @@ const SharedSingleInput = <
         loadingState === "loading" ? <LoadingCircle /> :
           <Select
             required={true}
+            disallowEmptySelection
             items={items?.models}
             defaultSelectedKeys={[(currectValue ? currectValue.id : "")]}
             label={placeholder}

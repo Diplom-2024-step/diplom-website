@@ -2,18 +2,19 @@
 import { GetHotelDto } from '@/AppDtos/Dto/Models/Hotels/get-hotel-dto'
 import { Icon } from '@iconify/react'
 import { Button, DateValue, RangeValue, Spacer } from '@nextui-org/react'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import ChoosingHowManyPeopleButton from './choosingHowManyPeopleButton/ChoosingHowManyPeopleButton'
 import { setConfig } from 'next/config'
 import ChoosingDietTypeRoomTypeButton from './choosingDietTypeRoomTypeButton/ChoosingDietTypeRoomTypeButton'
 import { GetDietTypeDto } from '@/AppDtos/Dto/Models/DietTypes/get-diet-type-dto'
 import { GetRoomTypeDto } from '@/AppDtos/Dto/Models/RoomTypes/get-room-type-dto'
 import ChoosingDateAndCityButton from './ChoosingDateAndCityButton/ChoosingDateAndCityButton'
-import {parseDate} from "@internationalized/date";
+import { parseDate } from "@internationalized/date";
 import { addDays, differenceInDays, formatISO } from 'date-fns'
 import { GetCityDto } from '@/AppDtos/Dto/Models/Hotels/get-city-dto'
 import { GetTransportationTypeDto } from '@/AppDtos/Dto/Models/TransportationTypes/get-transportation-type-dto'
 import BuyButtonActive from './BuyTravel/BuyButtonActive'
+import { useTravelBookingContext } from '@/components/providers/TravelBookingProvider'
 
 const TravelBooking = (
   { hotel }
@@ -24,29 +25,31 @@ const TravelBooking = (
 
 ) => {
 
-  
 
-    const [adults, setAdults] = useState(1)
-    const [children, setChildren] = useState(0)
+  const { adults, kids, dietType, roomType, city, transportationType, date, setAdults, setKids, setDietType, setRoomType, setCity, setTransportationType, setDate } = useTravelBookingContext(hotel);
 
-    const [dietType, setDietType] = useState<GetDietTypeDto>(hotel.dietTypes[0]);
+  // const [adults, setAdults] = useState(1)
+  // const [children, setChildren] = useState(0)
 
-    const [roomType, setRoomType] = useState<GetRoomTypeDto>(hotel.roomTypes[0]);
+  // const [dietType, setDietType] = useState<GetDietTypeDto>(hotel.dietTypes[0]);
 
-    const [city, setCity] = useState<GetCityDto>();
+  // const [roomType, setRoomType] = useState<GetRoomTypeDto>(hotel.roomTypes[0]);
 
-    const [transportationType, setTransportationType] = useState<GetTransportationTypeDto>();
+  // const [city, setCity] = useState<GetCityDto>();
 
-  const currentDate = addDays(new Date(), 5);
-const endDate = addDays(currentDate, 10);
+  // const [transportationType, setTransportationType] = useState<GetTransportationTypeDto>();
 
-let [date, setDate] = React.useState<RangeValue<DateValue>>({
-  start: parseDate(formatISO(currentDate, { representation: 'date' })),
-  end: parseDate(formatISO(endDate, { representation: 'date' })),
-});
+  // const currentDate = addDays(new Date(), 5);
+  // const endDate = addDays(currentDate, 10);
 
-const calculateCost = () => {
-    return  (hotel.additionCostPerPerson * (adults+children) + hotel.pricePerNight) * (differenceInDays(date.end.toString(), date.start.toString()) - 1) + dietType.price+ roomType.price
+  // let [date, setDate] = React.useState<RangeValue<DateValue>>({
+  //   start: parseDate(formatISO(currentDate, { representation: 'date' })),
+  //   end: parseDate(formatISO(endDate, { representation: 'date' })),
+  // });
+
+
+  const calculateCost = () => {
+    return (hotel.additionCostPerPerson * (adults + kids) + hotel.pricePerNight) * (differenceInDays(date.end.toString(), date.start.toString()) - 1) + (dietType?.price ? dietType.price * 44 : 1)  + (roomType?.price ? roomType.price*44 : 1)
   }
 
 
@@ -66,22 +69,22 @@ const calculateCost = () => {
             <div className='w-full flex items-center justify-start p-2'>
               <div className='w-[80%] p-5'>
                 <span>
-                {
-                  adults === 1 ? "1 дорослий " : `${adults} дорослих `
-                }
+                  {
+                    adults === 1 ? "1 дорослий " : `${adults} дорослих `
+                  }
 
-                {
-                  children === 0 ? "" :
-                  (children === 1 ? "1 дитина " : `${children} дитин `)
-                }
+                  {
+                    kids === 0 ? "" :
+                      (kids === 1 ? "1 дитина " : `${kids} дитин `)
+                  }
                 </span>
               </div>
               <div className='w-[20%] h-full'>
                 <ChoosingHowManyPeopleButton
-                adults={adults}
-                children={children}
-                setAdluts={setAdults}
-                setChildren={setChildren}
+                  adults={adults}
+                  children={kids}
+                  setAdluts={setAdults}
+                  setChildren={setKids}
                 />
               </div>
             </div>
@@ -91,7 +94,7 @@ const calculateCost = () => {
 
           <div className='w-full flex bg-white shadow-md mt-5'>
 
-             <div className='w-[40%] bg-primary text-white flex items-center justify-start p-5 rounded-r-lg'>
+            <div className='w-[40%] bg-primary text-white flex items-center justify-start p-5 rounded-r-lg'>
               <Icon
                 icon="lsicon:calendar-outline"
                 className="mr-3 text-5xl"
@@ -153,16 +156,16 @@ const calculateCost = () => {
 
             <div className='w-full flex items-center justify-start p-2'>
               <div className='w-[80%] p-5 grid grid-cols-1 gap-2'>
-                <span>{"Кімната: " + roomType.name} - {roomType.price * 44 + " грн."}</span>
-                <span>{"Харчування: " + dietType.name} - {dietType.price * 44 + " грн."}</span>
+                <span>{"Кімната: " + roomType?.name} - {(roomType?.price ? roomType.price : 0) * 44 + " грн."}</span>
+                <span>{"Харчування: " + dietType?.name} - {(dietType?.price ? dietType.price : 0) * 44 + " грн."}</span>
               </div>
 
               <div className='w-[20%] h-full'>
                 <ChoosingDietTypeRoomTypeButton
                   availableDietTypes={hotel.dietTypes}
                   availableRoomTypes={hotel.roomTypes}
-                  dietType={dietType}
-                  roomType={roomType}
+                  dietType={dietType ? dietType : hotel.dietTypes[0]}
+                  roomType={roomType ? roomType : hotel.roomTypes[0]}
                   setDietType={setDietType}
                   setRoomType={setRoomType}
                 />
@@ -179,8 +182,8 @@ const calculateCost = () => {
             </div>
           </div>
 
-          <BuyButtonActive howManyAdults={adults} howManyChildren={children} dietType={dietType} roomType={roomType} city={city} date={date}
-          transporationType={transportationType}          
+          <BuyButtonActive howManyAdults={adults} howManyChildren={kids} dietType={dietType!} roomType={roomType!} city={city} date={date}
+            transporationType={transportationType}
           />
         </div>
       </div>
