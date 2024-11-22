@@ -4,7 +4,7 @@ import { useRouter } from "next/navigation";
 import { Button, Input, Spacer } from "@nextui-org/react"; 
 import Image from 'next/image';
 import loginFormImage from '../../../assets/images/loginForm/image-1.png';
-import '../fonts-styles/font.css'
+import '../../../assets/fonts-styles/font.css';
 
 const ForgotPassword = () => {
     const route = useRouter();

@@ -7,7 +7,7 @@ import Image from 'next/image';
 import loginFormImage from '../../../assets/images/loginForm/image-1.png';
 import {EyeFilledIcon} from "./EyeFilledIcon";
 import {EyeSlashFilledIcon} from "./EyeSlashFilledIcon";
-import '../fonts-styles/font.css'
+import '../../../assets/fonts-styles/font.css';
 
 type Provider = 'google' | 'apple' | 'facebook';
 

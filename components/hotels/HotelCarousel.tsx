@@ -13,11 +13,21 @@ export const HotelCarousel = (
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
   const handleNext = (): void => {
-    setCurrentIndex(prev => (prev + 1) % hotels.length);
+    setCurrentIndex(prev => (prev + 1) % (hotels.length-2));
   };
 
   const handlePrev = (): void => {
-    setCurrentIndex(prev => (prev - 1 + hotels.length) % hotels.length);
+
+    setCurrentIndex(prev =>
+    {
+      if (prev === 0){
+        return hotels.length-3;
+      }
+      else {
+        return prev-1;
+      }
+    
+  });
   };
 
   const handleDotClick = (index: number): void => {
@@ -50,7 +60,7 @@ export const HotelCarousel = (
                 className="w-1/3 mt-6 mb-6 flex-shrink-0 px-2"
               >
                 <HotelCard
-                  hotel={hotel}
+                  cardItem={hotel}
                   isHovered={hoveredIndex === index}
                   onHover={() => handleHover(index)}
                   onLeave={handleLeave}
@@ -79,7 +89,7 @@ export const HotelCarousel = (
         </button>
         
         <div className="flex justify-center gap-2 mt-4">
-          {hotels.map((_, index) => (
+          {[...Array(hotels.length-2)].map((_, index) => (
             <button
               key={index}
               type="button"

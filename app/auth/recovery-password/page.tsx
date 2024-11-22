@@ -3,7 +3,7 @@ import { signIn } from "next-auth/react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { Button, Spacer } from "@nextui-org/react";
 import React, { useState } from "react";
-import '../fonts-styles/font.css'
+import '../../../assets/fonts-styles/font.css';
 
 const RecoveryPassword = () => {
   const router = useRouter();
