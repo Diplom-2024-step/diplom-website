@@ -1,6 +1,7 @@
 "use client"
 import HotelDescription from '@/components/hotels/hotelDetails/HotelDescription'
 import HotelDetailHeader from '@/components/hotels/hotelDetails/HotelDetailHeader'
+import ImageGallery from '@/components/hotels/hotelDetails/imageGallery/ImageGallery'
 import TravelBooking from '@/components/hotels/hotelDetails/travelBooking/TravelBooking'
 import PaymentGuaranteeSection from '@/components/hotels/layout/PaymentGuaranteeSection'
 import RecomendedToursCarouselForHotel from '@/components/tours/Carsousels/RecomendedToursCarouselForHotel'
@@ -32,7 +33,7 @@ const page = async ({ params }: { params: { id: string } }) => {
     }
     else if (value === "photos") {
 
-      return <></>
+      return <ImageGallery urls={hotel.urls}/>
     }
     else if (value === "reviews") {
       return <></>
