@@ -37,16 +37,13 @@ const SharedSingleInput = <
 
   const [perPage, setPerPage] = useState("50");
   const page = "1";
-
   const [value, setValue] = useState<string>("");
-
   const [perPageState, setPerPageState] = useDebounceState(perPage, setPerPage, 500);
   const [items, setItems] = useState<ReturnPageDto<TGetModel>>();
   const [loadingState, setLoadingState] = useState<LoadingState>("loading");
   const [sortDescriptor, setSortDescriptor] = useState<SortDescriptor>();
   const [error, setError] = useState<string>();
   const [perPageError, setPerPageError] = useState<string>();
-
 
   const loadItems = useGetPageOfItems<
     TGetModel,

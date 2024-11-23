@@ -65,8 +65,8 @@ const page = async (
 
     return (
         <div className='container mx-auto mb-0 max-w-7xl px-5 flex-grow'>
-            <h2 className="text-2xl font-bold mb-6 text-black">Активний відпочинок</h2>
-            <p className='text-color-[#686868]'>Обирай види активного відпочинку та насолоджуйся поїздкою</p>
+            <h2 className="text-2xl font-bold  text-black">Активний відпочинок</h2>
+            <p className='text-color-[#686868] mb-6'>Обирай види активного відпочинку та насолоджуйся поїздкою</p>
             {loadingState === 'idle' ?
                 <>
                     <ActivityGrid activities={items?.models as GetActivityDto[]}
