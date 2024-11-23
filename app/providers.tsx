@@ -18,7 +18,7 @@ export function Providers({ children, themeProps }: ProvidersProps) {
 
   return (
      <NextUIProvider navigate={router.push}>
-      <NextThemesProvider {...themeProps}>
+      <NextThemesProvider {...themeProps} forcedTheme="light" attribute="class">
         <SessionProvider>
           <ProtectedLayout>
             {children}

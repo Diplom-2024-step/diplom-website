@@ -19,13 +19,13 @@ const HotelCard = ({ cardItem, isHovered, onHover, onLeave }: SharedCardProps<Ge
       isPressable
 
       onClick={() => {
-        router.push(`/hotels/${cardItem.id}`);
+        router.push(`/${cardItem.city.country.icon}/hotels/${cardItem.id}`);
       }}
 
     >
       <Image
         src={cardItem.urls[0]}
-        loading='lazy'
+        loading='eager'
         alt={cardItem.name}
         className="h-[317px] w-[476px] object-cover"
         isZoomed
