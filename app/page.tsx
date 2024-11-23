@@ -9,10 +9,8 @@ export default function Home() {
   return (
     <section>
       <Block1/>
+      <Services />
       <WorkWithUs/>
-
-
-            <Services />
     </section>
   );
 }
