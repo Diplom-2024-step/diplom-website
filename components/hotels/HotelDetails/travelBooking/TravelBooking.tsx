@@ -15,6 +15,7 @@ import { GetCityDto } from '@/AppDtos/Dto/Models/Hotels/get-city-dto'
 import { GetTransportationTypeDto } from '@/AppDtos/Dto/Models/TransportationTypes/get-transportation-type-dto'
 import BuyButtonActive from './BuyTravel/BuyButtonActive'
 import { useTravelBookingContext } from '@/components/providers/TravelBookingProvider'
+import PickActivitiesForTour from '@/components/activities/PickActivitiesForTour'
 
 const TravelBooking = (
   { hotel }
@@ -28,28 +29,9 @@ const TravelBooking = (
 
   const { adults, kids, dietType, roomType, city, transportationType, date, setAdults, setKids, setDietType, setRoomType, setCity, setTransportationType, setDate } = useTravelBookingContext(hotel);
 
-  // const [adults, setAdults] = useState(1)
-  // const [children, setChildren] = useState(0)
-
-  // const [dietType, setDietType] = useState<GetDietTypeDto>(hotel.dietTypes[0]);
-
-  // const [roomType, setRoomType] = useState<GetRoomTypeDto>(hotel.roomTypes[0]);
-
-  // const [city, setCity] = useState<GetCityDto>();
-
-  // const [transportationType, setTransportationType] = useState<GetTransportationTypeDto>();
-
-  // const currentDate = addDays(new Date(), 5);
-  // const endDate = addDays(currentDate, 10);
-
-  // let [date, setDate] = React.useState<RangeValue<DateValue>>({
-  //   start: parseDate(formatISO(currentDate, { representation: 'date' })),
-  //   end: parseDate(formatISO(endDate, { representation: 'date' })),
-  // });
-
 
   const calculateCost = () => {
-    return (hotel.additionCostPerPerson * (adults + kids) + hotel.pricePerNight) * (differenceInDays(date.end.toString(), date.start.toString()) - 1) + (dietType?.price ? dietType.price * 44 : 1)  + (roomType?.price ? roomType.price*44 : 1)
+    return (hotel.additionCostPerPerson * (adults + kids) + hotel.pricePerNight) * (differenceInDays(date.end.toString(), date.start.toString()) - 1) + (dietType?.price ? dietType.price * 44 : 1) + (roomType?.price ? roomType.price * 44 : 1)
   }
 
 
@@ -187,6 +169,8 @@ const TravelBooking = (
           />
         </div>
       </div>
+
+      <PickActivitiesForTour/>
     </>
   )
 }
