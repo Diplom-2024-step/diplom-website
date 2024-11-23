@@ -1,6 +1,7 @@
 import { GetHotelDto } from '@/AppDtos/Dto/Models/Hotels/get-hotel-dto'
 import { Card, CardBody, CardHeader } from '@nextui-org/card';
 import { Divider } from '@nextui-org/react';
+import Link from 'next/link';
 import React from 'react'
 
 const HotelDescription = (
@@ -113,27 +114,24 @@ const HotelDescription = (
                 </div>
             </div>
 
-            {/* Contact Information */}
-            <Divider className="my-6" />
-            <div className=" flex flex-col md:flex-row gap-0 text-white align-bottom  ">
+            <div className=" mt-12 flex flex-col md:flex-row gap-0 text-white align-bottom  ">
                 <div className="bg-primary p-4 md:rounded-tr-lg flex-1 md:w-1/4 mt-auto h-40 md:shadow-lg">
                     <h3 className="font-semibold mb-2">Адреса</h3>
                     <p className="text-sm text-wrap">
-                        193/949 Moo 3 Pattaya South Sai 3, T. Nongprue, A. Banglamung, South Pattaya,
-                        Pattaya, Chonburi 20150, Тайланд
+                        {hotel.adress}
                     </p>
                 </div>
                 <div className="bg-primary p-4 md:rounded-tr-lg  md:mt-auto flex-1 md:w-1/4 my-0   h-36 md:-ml-4 md:shadow-lg">
                     <h3 className="font-semibold mb-2">E-mail</h3>
-                    <p className="text-sm">rsvn.pattaya@glowhotels.com</p>
+                    <p className="text-sm">{hotel.email}</p>
                 </div>
                 <div className="bg-primary p-4 md:rounded-tr-lg  md:mt-auto flex-1 md:w-1/4 h-32 mt-auto md:-ml-4 md:shadow-lg">
                     <h3 className="font-semibold mb-2">Телефон</h3>
-                    <p className="text-sm">+66 (0) 38 410 022</p>
+                    <p className="text-sm">{hotel.telephoneNumber}</p>
                 </div>
                 <div className="bg-primary p-4  md:mt-auto flex-1 md:w-1/4 h-28 mt-auto  md:-ml-4 md:rounded-r-lg md:shadow-lg">
                     <h3 className="font-semibold mb-2">Сайт готелю</h3>
-                    <p className="text-sm">Glow Pattaya 4</p>
+                    <Link className="text-sm" href={hotel.webSiteUrl}>{hotel.name}</Link>
                 </div>
             </div>
         </div>

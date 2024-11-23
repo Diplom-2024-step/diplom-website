@@ -1,3 +1,52 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+@layer base {
+  .font-unbounded {
+    @apply font-sans;
+    --tw-font-family: 'Unbounded', var(--font-sans);
+  }
+}
+layer base {
+  .font-unbounded {
+    @apply font-sans;
+    --tw-font-family: 'Unbounded', var(--font-sans);
+  }
+
+  .font-unbounded-light {
+    @apply font-thin;
+  }
+
+  .font-unbounded-normal {
+    @apply font-light;
+  }
+
+  .font-unbounded-medium {
+    @apply font-medium;
+  }
+
+  .font-unbounded-semibold {
+    @apply font-semibold;
+  }
+
+  .font-unbounded-bold {
+    @apply font-bold;
+  }
+
+  .font-unbounded-extrabold {
+    @apply font-extrabold;
+  }
+}
+
+@layer base {
+  .font-unbounded {
+    @apply font-sans text-base leading-normal tracking-wide;
+    --tw-font-family: 'Unbounded', var(--font-sans);
+    font-smooth: antialiased;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+}

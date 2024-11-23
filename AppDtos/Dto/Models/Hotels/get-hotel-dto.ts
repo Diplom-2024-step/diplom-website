@@ -40,6 +40,9 @@ export const getHotelDtoSchema = z.object({
     id: z.string().uuid(),
     pricePerNight: z.number(),
     additionCostPerPerson: z.number(),
+    email: z.string(),
+    telephoneNumber: z.string(),
+    webSiteUrl: z.string()
 });
 
 export type GetHotelDto = z.infer<typeof getHotelDtoSchema>;
