@@ -50,12 +50,12 @@ const destinations = [
 const HotDestinations = () => {
   return (
     <div className="flex flex-col items-center  w-full h-full mt-10 mb-10">
-      <p className="text-[43px] font-bold mb-[35px] text-customBlack">
+      <p className="text-[43px] font-bold mb-[65px] text-customBlack">
         Гарячі пропозиції
       </p>
       <div className="flex  w-4/7 h-full">
         <Card
-          className="flex flex-col justify-between col-span-12 sm:col-span-4 min-h-[520px] min-w-[400px] bg-cover bg-center cursor-pointer"
+          className="flex flex-col justify-between col-span-12 sm:col-span-4 min-h-[520px] min-w-[398px] bg-cover bg-center cursor-pointer"
           style={{
             backgroundImage: `linear-gradient(to top, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0)), url(${mexicoPng.src})`,
           }}

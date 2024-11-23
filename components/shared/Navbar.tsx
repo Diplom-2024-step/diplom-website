@@ -56,7 +56,7 @@ const countryOptions = [
 
 const Navbar = () => {
   return (
-    <header className="bg-white shadow-md py-4">
+    <header className="bg-white shadow-md py-2">
       <div className="container mx-auto flex items-center justify-between px-4">
         <Image alt="logo" src={headerLogoImage}></Image>
 

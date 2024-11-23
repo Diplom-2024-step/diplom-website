@@ -1,5 +1,6 @@
 import React from "react";
 import Image from "next/image";
+import { Icon } from "@iconify/react";
 import photo1 from "../../assets/images/reviews/character3.png";
 import photo2 from "../../assets/images/reviews/character5.png";
 import photo3 from "../../assets/images/reviews/character2.png";
@@ -133,6 +134,16 @@ const RatingAndReviews = () => {
             </div>
           ))}
         </div>
+        <button
+          className="flex items-center m-[45px] p-2 bg-white/20 backdrop-blur-sm rounded-full 
+              transition-all duration-300 hover:bg-white/30"
+        >
+          <p className="text-black text-[20px]">Переглянути більше</p>
+          <Icon
+            icon="ei:arrow-up"
+            className={`w-10 h-10 transition-transform rotate-45 text-black ml-[12px]`}
+          />
+        </button>
       </div>
     </div>
   );
