@@ -1,8 +1,8 @@
-"use client"
+"use client";
 import "@/styles/globals.css";
 import { Metadata, Viewport } from "next";
 import { Link } from "@nextui-org/link";
-import { usePathname } from 'next/navigation';
+import { usePathname } from "next/navigation";
 import clsx from "clsx";
 import Footer from "../components/shared/Footer";
 import Services from "../components/shared/Services";
@@ -18,6 +18,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   const pathname = usePathname();
+
 
   // Список страниц, где нужно скрыть Navbar и Footer
   const hideLayoutFor = [""];
