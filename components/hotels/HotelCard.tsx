@@ -19,7 +19,7 @@ const HotelCard = ({ cardItem, isHovered, onHover, onLeave }: SharedCardProps<Ge
       isPressable
       disableRipple
       onClick={() => {
-        router.push(`/${cardItem.city.country.icon}/hotels/${cardItem.id}`);
+        router.push(`/${cardItem.city.country.id}/hotels/${cardItem.id}`);
       }}
 
     >

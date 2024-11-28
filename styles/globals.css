@@ -9,7 +9,7 @@
     --tw-font-family: 'Unbounded', var(--font-sans);
   }
 }
-layer base {
+@layer base {
   .font-unbounded {
     @apply font-sans;
     --tw-font-family: 'Unbounded', var(--font-sans);

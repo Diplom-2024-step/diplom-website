@@ -5,9 +5,9 @@ import ActivityCard from './shared/ActivityCard'
 
 const ActivityGrid = (
   {
-    activities
+    activities,
   }:{
-    activities: GetActivityDto[]
+    activities: GetActivityDto[],
   }
 ) => {
 

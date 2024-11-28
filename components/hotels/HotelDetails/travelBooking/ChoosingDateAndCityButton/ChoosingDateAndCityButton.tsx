@@ -86,12 +86,12 @@ const ChoosingDateAndCityButton = (
                 
               </ModalBody>
               <ModalFooter>
-                <Button color="danger" variant="light" onPress={onClose}>
-                  Скасувати
-                </Button>
-                <Button color="primary" onPress={onClose}>
-                  Застосувати
-                </Button>
+                <Button  variant="light" className='bg-transparent text-black  rounded-full   border-1 border-black' onPress={onClose}>
+                    Скасувати
+                  </Button>
+                  <Button color="primary" className='text-white rounded-full' onPress={onClose}>
+                    Застосувати
+                  </Button>
               </ModalFooter>
             </>
           )}

@@ -9,7 +9,6 @@
 		"lint": "eslint . --ext .ts,.tsx -c .eslintrc.json --fix"
 	},
 	"dependencies": {
-		"@headlessui/react": "^2.2.0",
 		"@nextui-org/button": "2.0.38",
 		"@nextui-org/card": "^2.0.34",
 		"@nextui-org/checkbox": "^2.1.5",
@@ -38,13 +37,12 @@
 		"intl-messageformat": "^10.5.0",
 		"jsonwebtoken": "^9.0.2",
 		"lucide-react": "^0.454.0",
-		"next": "14.2.4",
+		"next": "^14.2.4",
 		"next-app-template": "file:",
 		"next-auth": "^4.24.8",
 		"next-themes": "^0.2.1",
 		"react": "18.3.1",
 		"react-dom": "18.3.1",
-		"react-select": "^5.8.3",
 		"zod": "^3.23.8"
 	},
 	"devDependencies": {

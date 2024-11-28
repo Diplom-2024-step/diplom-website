@@ -61,6 +61,7 @@ export const MyPagination = (
   };
 
   return (
+    total > 1 ?
     <Pagination
       disableCursorAnimation
       showControls
@@ -71,7 +72,7 @@ export const MyPagination = (
       renderItem={renderItem}
       variant="light"
       onChange={onchange}
-    />
+    />:<></>
   );
 }
 

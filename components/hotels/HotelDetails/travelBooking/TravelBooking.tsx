@@ -14,7 +14,7 @@ import { addDays, differenceInDays, formatISO } from 'date-fns'
 import { GetCityDto } from '@/AppDtos/Dto/Models/Hotels/get-city-dto'
 import { GetTransportationTypeDto } from '@/AppDtos/Dto/Models/TransportationTypes/get-transportation-type-dto'
 import BuyButtonActive from './BuyTravel/BuyButtonActive'
-import { useTravelBookingContext } from '@/components/providers/TravelBookingProvider'
+import { useTravelBookingContextInjectedHotel } from '@/components/providers/TravelBookingProvider'
 import PickActivitiesForTour from '@/components/activities/PickActivitiesForTour'
 
 const TravelBooking = (
@@ -27,7 +27,7 @@ const TravelBooking = (
 ) => {
 
 
-  const { adults, kids, dietType, roomType, city, transportationType, date, setAdults, setKids, setDietType, setRoomType, setCity, setTransportationType, setDate } = useTravelBookingContext(hotel);
+  const { adults, kids, dietType, roomType, city, transportationType, date, setAdults, setKids, setDietType, setRoomType, setCity, setTransportationType, setDate } = useTravelBookingContextInjectedHotel(hotel);
 
 
   const calculateCost = () => {
@@ -164,7 +164,7 @@ const TravelBooking = (
             </div>
           </div>
 
-          <BuyButtonActive howManyAdults={adults} howManyChildren={kids} dietType={dietType!} roomType={roomType!} city={city} date={date}
+          <BuyButtonActive     city={city!} 
             transporationType={transportationType}
           />
         </div>

@@ -11,9 +11,10 @@ import { getTransportationTypeDtoSchema } from "../TransportationTypes/get-trans
 import { getRoomTypeDtoSchema } from "../RoomTypes/get-room-type-dto";
 import { getDietTypeDtoSchema } from "../DietTypes/get-diet-type-dto";
 import { getCityDtoSchema } from "../Hotels/get-city-dto";
+import { getHotelDtoSchema } from "../Hotels/get-hotel-dto";
 
 export const getOrderDtoSchema = z.object({
-    tour: getTourDtoSchema,
+    hotel: getHotelDtoSchema,
     priceUSD: z.number().int(),
     startDate: z.date(),
     endDate: z.date(),
@@ -21,7 +22,7 @@ export const getOrderDtoSchema = z.object({
     fullName: z.string(),
     user: getUserDtoSchema.nullish(),
     admin: getUserDtoSchema.nullish(),
-    orderStatus: getOrderStatusDtoSchema,
+    orderStatus: z.string(),
     id: z.string().uuid(),
     duration: z.number().int().min(3).max(90),
     transportationType: getTransportationTypeDtoSchema,

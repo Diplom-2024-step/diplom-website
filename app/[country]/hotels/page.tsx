@@ -13,10 +13,16 @@ import LoadingScreen from '@/components/shared/LoadingScreen';
 import HotelGrid from '@/components/hotels/HotelGrid';
 import MyPagination from '@/components/shared/MyPagination';
 import Loading from './loading';
+import HotelCarouselRecommendation from '@/components/hotels/HotelCarouselRecommendation';
+import { FilterDto } from '@/AppDtos/Shared/filter-dto';
 
 
 
-const page = () => {
+const page = (
+  {params}:{ params:{  country:string}}
+) => {
+
+
 
   const [page, setPage] = useSearchParam("page");
   const [perPage, setPerPage] = useState("9");
@@ -26,6 +32,17 @@ const page = () => {
   const [sortDescriptor, setSortDescriptor] = useState<SortDescriptor>();
   const [error, setError] = useState<string>();
   const [perPageError, setPerPageError] = useState<string>();
+   const [filters, setFilters] = useState<FilterDto[][]>([
+        [
+            {
+                column: "City.Country.Id",
+                searchTerm: params.country,
+                filterType: "Strict",
+                negate: false
+            }
+        ]
+    ]
+    );
 
   const service = new HotelService();
 
@@ -41,7 +58,8 @@ const page = () => {
     setError,
     setPerPage,
     setItems,
-    "success"
+    "success",
+    filters
   );
 
   useEffect(() => {
@@ -51,9 +69,9 @@ const page = () => {
 
   return (
     <section className='container mx-auto mb-0 max-w-7xl px-5 flex-grow'>
+      <HotelCarouselRecommendation/>
       {loadingState === 'idle' ?
         <>
-          <HotelCarousel hotels={items?.models as any} />
 
           <HotelGrid hotels={items?.models as any}
           />

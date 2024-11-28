@@ -5,19 +5,19 @@ import { Button, Modal, ModalBody, ModalContent, ModalFooter, ModalHeader } from
 import React, { useState } from 'react'
 
 const ChoosingHowManyPeopleButton = (
-{
-    adults,
-    children,
-    setAdluts,
-    setChildren
-}:
-{
+    {
+        adults,
+        children,
+        setAdluts,
+        setChildren
+    }:
+        {
 
-    adults:number,
-    children:number,
-    setAdluts:(value:number) => void,
-    setChildren :(value:number) => void
-}
+            adults: number,
+            children: number,
+            setAdluts: (value: number) => void,
+            setChildren: (value: number) => void
+        }
 
 ) => {
 
@@ -26,7 +26,7 @@ const ChoosingHowManyPeopleButton = (
     const [innerChildren, setInnerChildren] = useState(children)
 
 
-    const OpenChange = (value:boolean) => {
+    const OpenChange = (value: boolean) => {
         setAdluts(innerAdults);
         setChildren(innerChildren);
         setIsOpen(value)
@@ -41,7 +41,7 @@ const ChoosingHowManyPeopleButton = (
                cursor-pointer
                hover:bg-gray-100
               '
-              onClick={() => setIsOpen(true)}
+                onClick={() => setIsOpen(true)}
             >
                 <div className='absolute w-[2px] bg-gray-400 h-full top-0 bottom-0 left-0 z-10'></div>
                 <Icon
@@ -59,31 +59,31 @@ const ChoosingHowManyPeopleButton = (
                             </ModalHeader>
                             <ModalBody>
                                 <div className='flex flex-col items-center justify-center w-full'>
-                                <NumberInput
-                                    setValue={setInnerAdults}
-                                    value={innerAdults}
-                                    helperText=''
-                                    label='Кількість дорослих:'
-                                    max={6}
-                                    min={1}
+                                    <NumberInput
+                                        setValue={setInnerAdults}
+                                        value={innerAdults}
+                                        helperText=''
+                                        label='Кількість дорослих:'
+                                        max={6}
+                                        min={1}
 
-                                />
-                                <NumberInput
-                                    setValue={setInnerChildren}
-                                    value={innerChildren}
-                                    helperText=''
-                                    label='Кількість дітей:'
-                                    max={6}
-                                    min={0}
+                                    />
+                                    <NumberInput
+                                        setValue={setInnerChildren}
+                                        value={innerChildren}
+                                        helperText=''
+                                        label='Кількість дітей:'
+                                        max={6}
+                                        min={0}
 
-                                />
-</div>
+                                    />
+                                </div>
                             </ModalBody>
                             <ModalFooter>
-                                <Button color="danger" variant="light" onPress={onClose}>
+                                <Button variant="light" className='bg-transparent text-black  rounded-full   border-1 border-black' onPress={onClose}>
                                     Скасувати
                                 </Button>
-                                <Button color="primary" onPress={onClose}>
+                                <Button color="primary" className='text-white rounded-full' onPress={onClose}>
                                     Застосувати
                                 </Button>
                             </ModalFooter>
