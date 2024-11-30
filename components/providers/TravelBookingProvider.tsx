@@ -36,17 +36,23 @@ const TravelBookingContext = createContext<TravelBookingContextProps | undefined
 
 
 export const useTravelBookingContextInjectedHotel = (
-        hotel: GetHotelDto
+        innerHotel: GetHotelDto
 ) => {
     const context = useContext(TravelBookingContext);
     if (!context) throw new Error('Component must be wrapped with TravelBookingProvider');
-    const { setDietType, setRoomType, dietType, roomType } = context;
+    const { setDietType, setRoomType, dietType, roomType, hotel, setHotel } = context;
     if (dietType === undefined) {
-        setDietType(hotel.dietTypes[0])
+        setDietType(innerHotel.dietTypes[0])
     }
     if (roomType === undefined) {
-        setRoomType(hotel.roomTypes[0])
+        setRoomType(innerHotel.roomTypes[0])
     }
+
+    if (hotel === undefined)
+        {
+            setHotel(innerHotel);
+        }
+
     return context;
 };
 

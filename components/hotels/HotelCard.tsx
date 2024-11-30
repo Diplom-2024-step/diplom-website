@@ -34,16 +34,24 @@ const HotelCard = ({ cardItem, isHovered, onHover, onLeave }: SharedCardProps<Ge
         />
 
         {/* Bookmark button (positioned absolutely) */}
-        <div className="absolute top-4 right-4 z-10">
-          <button className="p-2 rounded-lg bg-gray-800 hover:bg-gray-700 transition-colors duration-300">
-            <BookmarkIcon className="w-4 text-white h-4" />
+        <div
+          className="absolute top-4 right-4 z-10"
+          onClick={(e) => {
+            // Stop the event from bubbling up to the card
+            e.stopPropagation();
+            console.debug("2121");
+          }}
+        >
+          <button
+            className="p-2 rounded-lg hover:bg-gray-700 transition-colors duration-300"
+          >
+            <BookmarkIcon className="w-8 text-white h-8" />
           </button>
         </div>
-
         {/* Bottom overlay (positioned relatively) */}
         <div className='absolute bottom-0 left-1/3 rounded-tr-full transform -translate-x-1/2 z-10 bg-white h-5 w-3/4'>
           <div className='absolute -bottom-[10px] -right-1 bg-white z-10 h-5 w-5 rounded-none rotate-45'>
-        </div>
+          </div>
 
         </div>
       </div>

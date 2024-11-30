@@ -19,12 +19,16 @@ import { FilterDto } from '@/AppDtos/Shared/filter-dto';
 
 
 const page = (
-  {params}:{ params:{  country:string}}
+  { params }: { params: { country: string } }
 ) => {
 
 
 
   const [page, setPage] = useSearchParam("page");
+  const [lowestPrice, setLowestPrice] = useSearchParam("lp");
+  const [heightPrice, setHeightPrice] = useSearchParam("lh");
+  const [kids, setKids] = useSearchParam("kids");
+  const [adults, setAdluts] = useSearchParam("kids");
   const [perPage, setPerPage] = useState("9");
   const [perPageState, setPerPageState] = useDebounceState(perPage, setPerPage, 500);
   const [items, setItems] = useState<ReturnPageDto<GetHotelDto>>();
@@ -32,17 +36,17 @@ const page = (
   const [sortDescriptor, setSortDescriptor] = useState<SortDescriptor>();
   const [error, setError] = useState<string>();
   const [perPageError, setPerPageError] = useState<string>();
-   const [filters, setFilters] = useState<FilterDto[][]>([
-        [
-            {
-                column: "City.Country.Id",
-                searchTerm: params.country,
-                filterType: "Strict",
-                negate: false
-            }
-        ]
+  const [filters, setFilters] = useState<FilterDto[][]>([
+    [
+      {
+        column: "City.Country.Id",
+        searchTerm: params.country,
+        filterType: "Strict",
+        negate: false
+      }
     ]
-    );
+  ]
+  );
 
   const service = new HotelService();
 
@@ -69,7 +73,10 @@ const page = (
 
   return (
     <section className='container mx-auto mb-0 max-w-7xl px-5 flex-grow'>
-      <HotelCarouselRecommendation/>
+      <HotelCarouselRecommendation />
+      <div className="w-full max-w-6xl mx-auto px-4 mt-20">
+        <span><h2 className="text-2xl font-bold mb-6 text-black">Доступні готелі {lowestPrice ? lowestPrice : 12}</h2></span>
+      </div>
       {loadingState === 'idle' ?
         <>
 

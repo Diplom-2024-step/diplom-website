@@ -166,6 +166,7 @@ const TravelBooking = (
 
           <BuyButtonActive     city={city!} 
             transporationType={transportationType}
+            cost={calculateCost()}
           />
         </div>
       </div>

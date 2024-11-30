@@ -12,6 +12,7 @@ import { getRoomTypeDtoSchema } from "../RoomTypes/get-room-type-dto";
 import { getDietTypeDtoSchema } from "../DietTypes/get-diet-type-dto";
 import { getCityDtoSchema } from "../Hotels/get-city-dto";
 import { getHotelDtoSchema } from "../Hotels/get-hotel-dto";
+import { getActivityDtoSchema } from "../Activities/get-activity-dto";
 
 export const getOrderDtoSchema = z.object({
     hotel: getHotelDtoSchema,
@@ -32,6 +33,8 @@ export const getOrderDtoSchema = z.object({
     howManyKids: z.number().int().min(0).max(10),
     fromCity: getCityDtoSchema,
     toCityId: getCityDtoSchema,
+    activities: z.array(getActivityDtoSchema),
+
 });
 
 export type GetOrderDto = z.infer<typeof getOrderDtoSchema>;

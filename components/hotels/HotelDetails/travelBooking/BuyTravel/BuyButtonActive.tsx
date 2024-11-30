@@ -6,6 +6,7 @@ import { GetTransportationTypeDto } from '@/AppDtos/Dto/Models/TransportationTyp
 import { useTravelBookingContext } from '@/components/providers/TravelBookingProvider'
 import { OrderService } from '@/service/crudServices/OrderService'
 import { Button, DateValue, Input, Modal, ModalBody, ModalContent, ModalFooter, ModalHeader, RangeValue, useDisclosure } from '@nextui-org/react'
+import { AxiosError } from 'axios'
 import { differenceInDays } from 'date-fns'
 import React, { useState } from 'react'
 
@@ -13,17 +14,27 @@ const BuyButtonActive = (
   {
     transporationType,
     city,
+    cost
   }
     :
     {
       transporationType?: GetTransportationTypeDto,
       city?: GetCityDto,
+      cost:number
     }
 ) => {
 
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
 
+
+  const [loadingState, setLoadingState] = useState("none");
+  const [error, setError] = useState("");
+
   const [phoneNumber, setPhoneNumber] = useState("");
+
+  const [isOpenSuccessWindow, setIsOpenSuccessWindow ] = useState(false);
+
+  const [isOpenErrorWindow, setIsOpenErrorWindow ] = useState(false);
 
   const [fullName, setFullName] = useState("");
 
@@ -45,32 +56,48 @@ const BuyButtonActive = (
 
     const cityId:string = city?.id!; 
 
+    const startDate = new Date(date.start.toString()).toISOString();
+    const endDate = new Date(date.end.toString()).toISOString();
+
+    const activitiesIds = activities.map(e => e.id);
+
 
     const order:CreateOrderDto = {
         dietTypeId: dietType!.id,
         fromCityId: cityId,
         duration: differenceInDays(date.end.toString(), date.start.toString()),
-        endDate: date.end.toDate("s"),
+        endDate: endDate,
         fullName: fullName,
         howManyAdults: adults,
         howManyKids: kids,
         mobilePhoneNumber: phoneNumber,
         orderStatus: "Очікування",
-        priceUSD: 132,
+        priceUSD: cost,
         roomTypeId: roomType!.id,
-        startDate: date.start.toDate(),
+        startDate: startDate,
         toCityId: hotel?.city.id!,
-
-
+        hotelId: hotel?.id!,
+        transportationTypeId: transporationType?.id!,
+        activityIds: activitiesIds,
+        adminId: null,
+        userId: null
     }
 
+    console.debug(order);
 
-    service.create(
-      {
-       
+    try {
+      setLoadingState("loading");
+      const response = await service.create(
+        order
+      );
+      setLoadingState("success");
+      setIsOpenSuccessWindow(true);
 
-      }
-    );
+    } catch (error ) {
+      setError((error as AxiosError).response?.statusText!);
+      setLoadingState("error");
+      setIsOpenErrorWindow(true);
+    }
 
 
   }
@@ -96,6 +123,7 @@ const BuyButtonActive = (
                     color={isInvalidPhoneNumber ? "danger" : "default"}
                     errorMessage="Введіть дійсний номер телефону"
                     label="Телефон"
+                    placeholder='+380501234567'
                   />
 
                   <Input
@@ -106,11 +134,67 @@ const BuyButtonActive = (
                   />
                 </ModalBody>
                 <ModalFooter>
-                  <Button  variant="light" className='bg-transparent text-black  rounded-full   border-1 border-black' onPress={onClose}>
+                  <Button variant="light" className='bg-transparent text-black  rounded-full   border-1 border-black' onPress={onClose}>
                     Скасувати
                   </Button>
-                  <Button color="primary" className='text-white rounded-full' onPress={onClose}>
+                  <Button color="primary" className='text-white rounded-full' onPress={
+                    () => {
+                      createOrdere();
+                      onClose();
+                    }
+
+                  }>
                     Замовити
+                  </Button>
+                </ModalFooter>
+              </>
+            )}
+          </ModalContent>
+        </Modal>
+        <Modal
+         isOpen={isOpenSuccessWindow}
+         onOpenChange={(e:boolean) => setIsOpenSuccessWindow(!isOpenSuccessWindow)}
+        >
+          <ModalContent>
+            {(onClose) => (
+              <>
+                <ModalHeader className="flex flex-col gap-1">Тур замовлено</ModalHeader>
+                <ModalBody>
+                  Все прошло вдало, чекайте поки ми з вами зв'яжемося.
+                </ModalBody>
+                <ModalFooter>
+                  <Button color="primary" className='text-white rounded-full' onPress={
+                    () => {
+                      onClose();
+                    }
+
+                  }>
+                    зрозуміло
+                  </Button>
+                </ModalFooter>
+              </>
+            )}
+          </ModalContent>
+        </Modal>
+          <Modal
+         isOpen={isOpenErrorWindow}
+         onOpenChange={(e:boolean) => setIsOpenErrorWindow(!isOpenSuccessWindow)}
+        >
+          <ModalContent>
+            {(onClose) => (
+              <>
+                <ModalHeader className="flex flex-col gap-1">Error</ModalHeader>
+                <ModalBody>
+                  {error}
+                </ModalBody>
+                <ModalFooter>
+                  <Button color="primary" className='text-white rounded-full' onPress={
+                    () => {
+                      onClose();
+                    }
+
+                  }>
+                    зрозуміло
                   </Button>
                 </ModalFooter>
               </>

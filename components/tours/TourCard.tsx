@@ -39,11 +39,22 @@ const TourCard = ({ tour, isHovered, onHover, onLeave }: TourCardProps) => {
         isZoomed
         radius='none'
       />
-      <div className="absolute top-4 right-4 z-10">
-        <button className="p-2  rounded-lg">
-          <BookmarkIcon className="w-4 text-white h-4" />
-        </button>
-      </div>
+       {/* Bookmark button (positioned absolutely) */}
+        <div
+          className="absolute top-4 right-4 z-10"
+          onClick={(e) => {
+            // Stop the event from bubbling up to the card
+            e.stopPropagation();
+            console.debug("2121");
+          }}
+        >
+          <button
+            className="p-2 rounded-lg hover:bg-gray-700 transition-colors duration-300"
+          >
+            <BookmarkIcon className="w-8 text-white h-8" />
+          </button>
+        </div>
+
       <CardBody className="p-4 bg-white text-black "
 
       >

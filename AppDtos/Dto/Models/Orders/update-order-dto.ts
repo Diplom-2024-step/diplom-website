@@ -23,7 +23,8 @@ export const updateOrderDtoSchema = z.object({
     howManyKids: z.number().int().min(0).max(10),
     fromCityId: z.string().uuid(),
     toCityId: z.string().uuid(),
-    id: z.string().uuid()
+    id: z.string().uuid(),
+    activityIds: z.array(z.string().uuid()).default([])
 });
 
 export type UpdateOrderDto = z.infer<typeof updateOrderDtoSchema>;

@@ -39,7 +39,7 @@ const page = async ({ params }: { params: { id: string } }) => {
       return <ImageGallery urls={hotel.urls} />
     }
     else if (value === "reviews") {
-      return <SelectCountryForHotels />
+      return <></>
     }
 
 
@@ -66,6 +66,7 @@ const page = async ({ params }: { params: { id: string } }) => {
             <HotelDetailHeader
               hotel={hotel}
               onSelectChage={onSelectChage}
+              activeTab={option}
             />
             {
               retunrOptionPage(option)
