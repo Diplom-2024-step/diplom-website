@@ -44,7 +44,7 @@ export const HotelCarousel = (
 
   return (
     <div className="w-full max-w-6xl mx-auto px-4 text-black">
-      <h2 className="text-2xl font-bold mb-6">Рекомендуємо відвідати</h2>
+      <h2 className="text-2xl font-bold mt-6">Рекомендуємо відвідати</h2>
       
       <div className="relative ">
         <div className="overflow-hidden">

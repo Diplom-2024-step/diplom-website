@@ -13,7 +13,7 @@ const DietTypeSingInputeFromCollection :SpecificInputFromColletion = (
 ) => {
   const renderFunction = (item: GetDietTypeDto) => {
         return (
-                <span>{item.name} - {item.price*44} грн. </span>
+                <span>{item.name} - {item.price} грн. </span>
 
         );
     }
