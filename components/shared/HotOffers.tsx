@@ -81,7 +81,7 @@ const HotDestinations = () => {
             <CardHeader className="absolute z-10 top-1 flex-col !items-end">
               <div className="flex flex-col justify-center bg-customBlack bg-opacity-50 h-[30px] p-3 rounded-xl mt-[10px]">
                 <p className="text-[15px] text-white uppercase font-bold">
-                  {(items?.models[0].priceUSD! * 30)} ₴ / Цена
+                  {(items?.models[0].priceUSD! )} ₴ / Цена
                 </p>
               </div>
             </CardHeader>
@@ -126,7 +126,7 @@ const HotDestinations = () => {
                   />
                   <div className="flex flex-col justify-center bg-customBlack bg-opacity-50 h-[30px] p-3 rounded-xl mt-[10px]">
                     <p className="text-[15px] text-white uppercase font-bold">
-                      {(items?.models[1].priceUSD! * 30)} ₴ / Цена
+                      {(items?.models[1].priceUSD! )} ₴ / Цена
                     </p>
                   </div>
                 </CardHeader>
@@ -169,7 +169,7 @@ const HotDestinations = () => {
                   />
                   <div className="flex flex-col justify-center bg-customBlack bg-opacity-50 h-[30px] p-3 rounded-xl mt-[10px]">
                     <p className="text-[15px] text-white uppercase font-bold">
-                      {(items?.models[2].priceUSD! * 30)} ₴ / Цена
+                      {(items?.models[2].priceUSD! )} ₴ / Цена
                     </p>
                   </div>
                 </CardHeader>
@@ -201,7 +201,7 @@ const HotDestinations = () => {
                 isHoverable
                 isPressable
                 onClick={() => {
-                  router.push(`/${items?.models[3].hotel.city.country.id}/tours/${items?.models[3].id}`);
+                  router.push(`/tours/${items?.models[3].id}`);
                 }}
                 style={{
                   backgroundImage: `linear-gradient(to top, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0)), url(${testicon3.src})`,
@@ -214,7 +214,7 @@ const HotDestinations = () => {
                   />
                   <div className="flex flex-col justify-center bg-customBlack bg-opacity-50 h-[30px] p-3 rounded-xl mt-[10px]">
                     <p className="text-[15px] text-white uppercase font-bold">
-                      {(items?.models[3].priceUSD! * 30)} ₴ / Цена
+                      {(items?.models[3].priceUSD! )} ₴ / Цена
                     </p>
                   </div>
                 </CardHeader>

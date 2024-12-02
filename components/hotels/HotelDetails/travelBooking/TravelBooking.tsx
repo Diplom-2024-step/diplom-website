@@ -31,7 +31,7 @@ const TravelBooking = (
 
 
   const calculateCost = () => {
-    return (hotel.additionCostPerPerson * (adults + kids) + hotel.pricePerNight) * (differenceInDays(date.end.toString(), date.start.toString()) - 1) + (dietType?.price ? dietType.price * 44 : 1) + (roomType?.price ? roomType.price * 44 : 1)
+    return (hotel.additionCostPerPerson * (adults + kids) + hotel.pricePerNight) * (differenceInDays(date.end.toString(), date.start.toString()) - 1) + (dietType?.price ? dietType.price  : 1) + (roomType?.price ? roomType.price : 1)
   }
 
 
@@ -138,8 +138,8 @@ const TravelBooking = (
 
             <div className='w-full flex items-center justify-start p-2'>
               <div className='w-[80%] p-5 grid grid-cols-1 gap-2'>
-                <span>{"Кімната: " + roomType?.name} - {(roomType?.price ? roomType.price : 0) * 44 + " грн."}</span>
-                <span>{"Харчування: " + dietType?.name} - {(dietType?.price ? dietType.price : 0) * 44 + " грн."}</span>
+                <span>{"Кімната: " + roomType?.name} - {(roomType?.price ? roomType.price : 0)  + " грн."}</span>
+                <span>{"Харчування: " + dietType?.name} - {(dietType?.price ? dietType.price : 0)  + " грн."}</span>
               </div>
 
               <div className='w-[20%] h-full'>

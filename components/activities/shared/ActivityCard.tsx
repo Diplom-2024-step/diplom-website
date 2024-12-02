@@ -99,7 +99,7 @@ const ActivityCard = (
                                     <p className="text-start">{activity.description}</p>
                                 </div>
                                 <div className="self-center mt-2 text-center text-xl bg-gradient-to-b from-[#ECB003] to-[#AF3F2B]  text-transparent bg-clip-text">
-                                    <span>{activity.price * 44} грн.</span>
+                                    <span>{activity.price} грн.</span>
                                 </div>
 </div>
                             </div>
