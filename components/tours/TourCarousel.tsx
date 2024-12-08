@@ -97,3 +97,5 @@ export const TourCarousel = ({ tours }: { tours: GetTourDto[] }) => {
     </div>
   );
 };
+
+export default TourCarousel;
