@@ -1,19 +1,18 @@
 "use client";
-import TourCarousel from "../TourCarousel";
-import { GetTourDto } from "@/AppDtos/Dto/Models/Tours/get-tour-dto";
 import { ReturnPageDto } from "@/AppDtos/Shared/return-page-dto";
 import useDebounceState from "@/hooks/useDebounceState";
 import useGetPageOfItems from "@/hooks/useGetPageOfItems";
+import useSearchParam from "@/hooks/useSearchParam";
 import { TourService } from "@/service/crudServices/TourService";
 import { SortDescriptor } from "@nextui-org/react";
-import { LoadingState } from "@react-types/shared";
 import React, { useEffect, useState } from "react";
+import { LoadingState } from "@react-types/shared";
+import { TourCarousel } from "./TourCarousel";
+import TourCarouselSkeleton from "../shared/skeletons/TourCarouselSkeleton";
+import { GetTourDto } from "@/AppDtos/Dto/Models/Tours/get-tour-dto";
 
-import CarouselSkeleton from "@/components/shared/skeletons/CarouselSkeleton";
-import { FilterDto } from "@/AppDtos/Shared/filter-dto";
-
-const RecomendedToursCarouselForHotel = ({ hotelId }: { hotelId: string }) => {
-  const [perPage, setPerPage] = useState("6");
+const TourCarouselRecommendation = () => {
+  const [perPage, setPerPage] = useState("9");
   const [perPageState, setPerPageState] = useDebounceState(
     perPage,
     setPerPage,
@@ -24,16 +23,6 @@ const RecomendedToursCarouselForHotel = ({ hotelId }: { hotelId: string }) => {
   const [sortDescriptor, setSortDescriptor] = useState<SortDescriptor>();
   const [error, setError] = useState<string>();
   const [perPageError, setPerPageError] = useState<string>();
-  const [filters, setFilters] = useState<FilterDto[][]>([
-    [
-      {
-        column: "Hotel.Id",
-        searchTerm: hotelId,
-        filterType: "Strict",
-        negate: false,
-      },
-    ],
-  ]);
 
   const service = new TourService();
 
@@ -46,26 +35,18 @@ const RecomendedToursCarouselForHotel = ({ hotelId }: { hotelId: string }) => {
     setError,
     setPerPage,
     setItems,
-    "success",
-    filters
+    "success"
   );
 
   useEffect(() => {
     loadItems().then();
   }, [loadItems]);
 
-  return loadingState !== "idle" ? (
-    <>
-      <CarouselSkeleton title={"Тури, що входять до готелю"} />
-    </>
+  return loadingState === "idle" ? (
+    <TourCarousel tours={items?.models as GetTourDto[]} />
   ) : (
-    <>
-      {/* <TourCarousel
-        items={items?.models as any}
-        title={"Тури, що входять до готелю"}
-      /> */}
-    </>
+    <TourCarouselSkeleton />
   );
 };
 
-export default RecomendedToursCarouselForHotel;
+export default TourCarouselRecommendation;

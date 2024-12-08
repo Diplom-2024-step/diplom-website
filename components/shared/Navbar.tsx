@@ -4,9 +4,8 @@ import Image from "next/image";
 import headerLogoImage from "../../assets/images/header/Expedia_Logo_2023.png";
 import SignInButton from "./SignInButton";
 import { Icon } from "@iconify/react";
+import { Link } from "@nextui-org/react";
 import SelectCountryForHotels from "./sharedComponents/selects/SelectCountryForHotels";
-
-
 
 const Navbar = () => {
   return (
@@ -14,14 +13,15 @@ const Navbar = () => {
       <div className="container mx-auto flex items-center justify-between px-4">
         <Image alt="logo" src={headerLogoImage}></Image>
 
-
         <nav className="hidden md:flex items-center justify-center space-x-6 text-[15px]">
+          <SelectCountryForHotels />
 
-          <SelectCountryForHotels/>
-
-          <a href="#" className="text-gray-600 hover:text-gray-900">
+          <Link href={`/tours`} className="text-gray-600 hover:text-gray-900">
             Тури
-          </a>
+          </Link>
+          {/* <a href="#" className="text-gray-600 hover:text-gray-900">
+            Тури
+          </a> */}
 
           <div className="relative">
             <select className="bg-white text-gray-600 rounded-md py-2 px-3 focus:outline-none focus:ring focus:ring-blue-500 hover:bg-gray-100">
