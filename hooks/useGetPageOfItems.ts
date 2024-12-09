@@ -67,5 +67,5 @@ TService extends CrudService<TGetModelDto, object, ModelDto>
       else setError(`${e}`);
       setLoadingState("error");
     }
-  }, [page, sortDescriptor, perPage]);
+  }, [page, sortDescriptor, perPage, filtersDto]);
 }

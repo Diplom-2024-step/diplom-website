@@ -1,7 +1,7 @@
 "use client"
 
 import { useState } from "react";
-import HotelCard from "./HotelCard";
+import HotelCard from "./hotelCard/HotelCard";
 import { GetHotelDto } from "@/AppDtos/Dto/Models/Hotels/get-hotel-dto";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
@@ -44,7 +44,7 @@ export const HotelCarousel = (
 
   return (
     <div className="w-full max-w-6xl mx-auto px-4 text-black">
-      <h2 className="text-2xl font-bold mt-6">Рекомендуємо відвідати</h2>
+      <h2 className="text-5xl font-bold font-unbounded mt-6">Рекомендуємо відвідати</h2>
       
       <div className="relative ">
         <div className="overflow-hidden">

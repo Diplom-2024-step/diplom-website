@@ -342,9 +342,14 @@ const RegisterPage = () => {
                 {isLoading ? 'Завантаження...' : 'Створити'}
               </Button>
             </div>
-            {errorMessage && <p className="text-red-500">{errorMessage}</p>}
+          {errorMessage && <p className="text-red-500">{errorMessage}</p>}
+          <Spacer />
+          <div className="flex justify-center gap-4 text-[#0F171B] text-xs font-semibold">
+            <a href="/auth/forgot-password">Забули пароль?</a>
+            <a href="/auth/login">Увійти</a>
           </div>
-        
+        </div>
+
         {/* Правый блок с изображением */}
         <div className="relative flex-1 overflow-hidden md:ml-8">
           <Image src={loginFormImage} alt="Login Image" layout="fill" objectFit="cover" className="rounded-[20px]" />

@@ -20,6 +20,7 @@ import useDebounceState from "@/hooks/useDebounceState";
 import { TourService } from "@/service/crudServices/TourService";
 import HotOffersSkeleton from "./skeletons/HotOffersSkeleton";
 import { useRouter } from "next/navigation";
+import { FilterDto } from "@/AppDtos/Shared/filter-dto";
 
 
 
@@ -33,6 +34,7 @@ const HotDestinations = () => {
   const [sortDescriptor, setSortDescriptor] = useState<SortDescriptor>();
   const [error, setError] = useState<string>();
   const [perPageError, setPerPageError] = useState<string>();
+  const [filters, setFilters] = useState<FilterDto[][]>([]);
 
   const service = new TourService();
 
@@ -48,7 +50,8 @@ const HotDestinations = () => {
     setError,
     setPerPage,
     setItems,
-    "success"
+    "success",
+    filters
   );
 
   useEffect(() => {

@@ -105,7 +105,7 @@ const page = (
                                 >
                                     Скасувати
                                 </Button>
-                                <p className='font-nunito_font_family text-[#303030]  text-lg'>Відмінити всі активності, які обрали та почати спочатку</p>
+                                <p className='font-nunito_font_family text-[#303030]  text-lg opacity-70'>Відмінити всі активності, які обрали та почати спочатку</p>
                             </div>
                             <div className='text-center w-2/5 mr-5'>
                                 <Button className='text-white bg-primary font-nunito_font_family font-[700] text-xl rounded-full  px-20'
@@ -115,7 +115,7 @@ const page = (
                                 >
                                     Застосувати
                                 </Button>
-                                <p className='font-nunito_font_family  text-[#303030] text-lg'>Додати обрані види антивностей</p>
+                                <p className='font-nunito_font_family  text-[#303030] text-lg opacity-70'>Додати обрані види антивностей</p>
                             </div>
 
                         </div>
