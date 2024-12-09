@@ -10,6 +10,7 @@ import React, { useEffect, useState } from 'react'
 import { LoadingState } from "@react-types/shared";
 import { HotelCarousel } from './HotelCarousel';
 import HotelCarouselSkeleton from '../shared/skeletons/HotelCarouselSkeleton';
+import { FilterDto } from '@/AppDtos/Shared/filter-dto';
 
 const HotelCarouselRecommendation = () => {
   const [perPage, setPerPage] = useState("9");
@@ -19,6 +20,7 @@ const HotelCarouselRecommendation = () => {
   const [sortDescriptor, setSortDescriptor] = useState<SortDescriptor>();
   const [error, setError] = useState<string>();
   const [perPageError, setPerPageError] = useState<string>();
+  const [filters, setFilters] = useState<FilterDto[][]>([]);
 
   const service = new HotelService();
 
@@ -34,7 +36,9 @@ const HotelCarouselRecommendation = () => {
     setError,
     setPerPage,
     setItems,
-    "success"
+    "success",
+    filters
+
   );
 
   useEffect(() => {

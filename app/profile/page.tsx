@@ -1,12 +1,32 @@
 "use client"
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Image from 'next/image';
 import { Card, CardHeader, CardBody, CardFooter } from "@nextui-org/react";
 import background from '../../assets/images/block-1/image-2.png';
 import avatar from '../../assets/images/profile/avatar.png';
+import { useAuth } from "@/hooks/auth";
+import LoadingScreen from "@/components/shared/LoadingScreen";
+import UserService from "@/service/UserService";
 
 const Profile= () => {
+
+
+
+
+
+  const auth = useAuth( {
+    redirect: true
+  });
+
+
+
   const [activeTab, setActiveTab] = useState(""); // Состояние для активной вкладки
+
+  const service = UserService;
+
+
+
+  if (auth.status == "loading" || auth.status == 'unauthorized') return <LoadingScreen/>
 
 
   return (
@@ -44,7 +64,6 @@ const Profile= () => {
             style={{ fontFamily: 'Unbounded, sans-serif', fontWeight: 600 }}
             className=" pt-20  text-xl text-[#0F171B]"
           >
-            Ім’я Прізвище
           </h2>
         </div>
       </div>

@@ -1,11 +1,13 @@
 "use client"
 import { GetHotelDto } from '@/AppDtos/Dto/Models/Hotels/get-hotel-dto'
 import React, { useState } from 'react'
-import HotelCard from './HotelCard'
+import HotelCard from './hotelCard/HotelCard'
+import { AuthResponse } from '@/hooks/auth'
 
-const HotelGrid = ({ hotels } : {hotels:GetHotelDto[]}) => {
+const HotelGrid = ({ hotels, auth } : {hotels:GetHotelDto[], auth:AuthResponse}) => {
 
       const [hoveredId, setHoveredId] = useState<number | null>(null);
+
   return (
     <div className="w-full max-w-6xl mx-auto px-4 mb-10">
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">

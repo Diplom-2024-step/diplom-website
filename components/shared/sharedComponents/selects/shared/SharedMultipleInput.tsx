@@ -1,52 +1,54 @@
 "use client"
+import { FilterDto } from '@/AppDtos/Shared/filter-dto'
 import { ModelDto } from '@/AppDtos/Shared/model-dto'
 import { ReturnPageDto } from '@/AppDtos/Shared/return-page-dto'
+import LoadingCircle from '@/components/shared/skeletons/LoadingCircle'
 import { useAuthService } from '@/hooks/auth'
 import useDebounceState from '@/hooks/useDebounceState'
-import { CrudService } from '@/service/shared/CrudService'
-import React, { ReactNode, useEffect, useState } from 'react'
-import { LoadingState, SortDescriptor } from "@react-types/shared";
 import useGetPageOfItems from '@/hooks/useGetPageOfItems'
-import { Select, SelectedItemProps, SelectedItems, SelectItem, SharedSelection } from '@nextui-org/react'
-import LoadingCircle from '@/components/shared/skeletons/LoadingCircle'
-import { GetTransportationTypeDto } from '@/AppDtos/Dto/Models/TransportationTypes/get-transportation-type-dto'
-import { FilterDto } from '@/AppDtos/Shared/filter-dto'
+import { CrudService } from '@/service/shared/CrudService'
+import OnChangeFunctionProps from '@/types/components/inputs/OnChangeFunctionProps'
+import { Select, SelectedItems, SelectItem, SharedSelection } from '@nextui-org/react'
+import { LoadingState, SortDescriptor } from "@react-types/shared";
+import React, { ReactNode, useEffect, useState } from 'react'
 
-
-
-const SharedSingleInput = <
+const SharedMultipleInput = <
     TGetModel extends ModelDto,
     TService extends CrudService<TGetModel, object, ModelDto>
 >(
     {
         service,
-        setItem,
+        onChange,
         currectValue,
         renderFunction,
         onSelectRenderFunction,
         placeholder,
+        propertyName
 
     } : {
         service:TService,
-        setItem: (item:TGetModel) => void,
-        currectValue?: TGetModel, 
+        onChange: OnChangeFunctionProps,
+        currectValue: any,
         renderFunction: (item:TGetModel) => ReactNode,
         onSelectRenderFunction : (item:TGetModel) => ReactNode,
         placeholder: string
+        propertyName: string
     }
 ) => {
-
-  const [perPage, setPerPage] = useState("50");
+ const [perPage, setPerPage] = useState("50");
   const page = "1";
+
   const [value, setValue] = useState<string>("");
+
   const [perPageState, setPerPageState] = useDebounceState(perPage, setPerPage, 500);
   const [items, setItems] = useState<ReturnPageDto<TGetModel>>();
   const [loadingState, setLoadingState] = useState<LoadingState>("loading");
   const [sortDescriptor, setSortDescriptor] = useState<SortDescriptor>();
   const [error, setError] = useState<string>();
   const [perPageError, setPerPageError] = useState<string>();
-  
+
   const [filters, setFilters] = useState<FilterDto[][]>([])
+
 
   const loadItems = useGetPageOfItems<
     TGetModel,
@@ -60,7 +62,7 @@ const SharedSingleInput = <
     setError,
     setPerPage,
     setItems,
-    "success",
+    "success", 
     filters
   );
 
@@ -70,30 +72,41 @@ const SharedSingleInput = <
 
 
   const innerOnSelectionChanged = (keys: SharedSelection) => {
+    var arrayKeys = [ ...keys];
 
-    const item = items?.models.filter(e => e.id === keys.currentKey)[0];
-
-    setItem(item as TGetModel)
-
+    onChange({
+      target: {
+        value: arrayKeys,
+        name: propertyName,
+      }
+    } as any,
+  "string");
   };
 
 
-
-
-  return (
+   return (
     <>
       {
         error === undefined ?
         loadingState === "loading" ? <LoadingCircle /> :
-          <Select
+          <Select 
+
+            classNames={{
+    trigger: "bg-white  border-gray-100 border-3 "
+  }}
             required={true}
-            disallowEmptySelection
             items={items?.models}
-            defaultSelectedKeys={[(currectValue ? currectValue.id : "")]}
-            label={placeholder}
+            isMultiline={true}
+            selectionMode='multiple'
+            defaultSelectedKeys={[...currectValue]}
+            label={<div className='text-2xl font-unbounded mb-6   text-center w-full z-10 font-[600]'>
+              <div className='mb-auto w-full text-center'>
+              {placeholder}
+</div>
+            </div>}
             placeholder={placeholder}
             onSelectionChange={innerOnSelectionChanged}
-            selectedKeys={[(currectValue ? currectValue.id : "")]}
+            selectedKeys={[...currectValue]}
                   renderValue={(items: SelectedItems<TGetModel>) => {
         return items.map((item) => onSelectRenderFunction(item.data as TGetModel));
       }}
@@ -116,4 +129,4 @@ const SharedSingleInput = <
   );
 }
 
-export default SharedSingleInput
+export default SharedMultipleInput
