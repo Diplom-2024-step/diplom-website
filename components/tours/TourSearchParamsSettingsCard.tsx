@@ -1,5 +1,6 @@
 "use client"
-import { Button, Checkbox, Divider, Slider, SliderValue } from '@nextui-org/react';
+import { parseDate } from "@internationalized/date";
+import { Button, Checkbox, DateRangePicker, DateValue, Divider, RangeValue, Slider, SliderValue } from '@nextui-org/react';
 import React, { ChangeEvent, HtmlHTMLAttributes, useState } from 'react'
 import NumberInput from '../shared/sharedComponents/NumberInput';
 import { Star } from 'lucide-react';
@@ -10,24 +11,29 @@ import InHotelInput from '../shared/sharedComponents/selects/multipleSelects/InH
 import RoomTypeInput from '../shared/sharedComponents/selects/multipleSelects/RoomTypeInput';
 import { Romanesco } from 'next/font/google';
 import { useSetSearchPropsLikeDict } from '@/hooks/useSetSearchParamsLikeDict';
+import { addDays, differenceInDays, formatISO } from 'date-fns';
+import CountryMultipleInput from "../shared/sharedComponents/selects/multipleSelects/CountryMultipleInput";
 
 const TourSearchParamsSettingsCard = (
   {
 
     lowestPrice,
     heightPrice,
+    duration,
     onClose,
     outsideDietTypesIds,
     outsideBeachTypesIds,
     outsideRoomTypesIds,
     outsideInHotelIds,
-    stars
-
-
+    stars,
+    outsideHowManyAdults,
+    outsideHowManyKids,
+    outsideCountriesIds,
   }:
     {
       lowestPrice?: string;
       heightPrice?: string;
+      duration?: string;
       onClose: () => void;
       outsideDietTypesIds?: string[];
       outsideBeachTypesIds?: string[];
@@ -36,18 +42,22 @@ const TourSearchParamsSettingsCard = (
       stars?: string;
       outsideHowManyKids?: string;
       outsideHowManyAdults?: string;
+      outsideCountriesIds?: string[]
     }
 
 ) => {
 
-  const [budget, setBudget] = React.useState<SliderValue>([parseInt(lowestPrice ? lowestPrice : "1" ), parseInt(heightPrice ? heightPrice : "2000")]);
+  const [budget, setBudget] = React.useState<SliderValue>([parseInt(lowestPrice ? lowestPrice : "1"), parseInt(heightPrice ? heightPrice : "50000")]);
 
-  const [dietTypesIds, setDietTypesIds] = useState<string[]>(outsideDietTypesIds? outsideDietTypesIds : []);
+  const [dietTypesIds, setDietTypesIds] = useState<string[]>(outsideDietTypesIds ? outsideDietTypesIds : []);
 
   const [beachTypesIds, setBeachTypesIds] = useState<string[]>(outsideBeachTypesIds ? outsideBeachTypesIds : []);
   const [roomTypesIds, setRoomTypesIds] = useState<string[]>(outsideRoomTypesIds ? outsideRoomTypesIds : []);
 
-  const [inHotelIds, setInHotelIds] = useState<string[]>(outsideInHotelIds ? outsideInHotelIds : []);
+  const [inHotelsIds, setInHotelsIds] = useState<string[]>(outsideInHotelIds ? outsideInHotelIds : []);
+
+  const [countriesIds, setCountriesIds] = useState<string[]>(outsideCountriesIds ? outsideCountriesIds : []);
+
 
   const [isThreeStars, setIsThreeStars] = useState(stars?.includes('3') ? stars.includes('3') : false);
 
@@ -56,6 +66,19 @@ const TourSearchParamsSettingsCard = (
   const [isFiveStars, setIsFiveStars] = useState(stars?.includes('5') ? stars.includes('5') : false);
 
   const setSearchParams = useSetSearchPropsLikeDict();
+
+  const [howManyAdults, setHowManyAdults] = useState(outsideHowManyAdults ? parseInt(outsideHowManyAdults) : 1);
+
+  const [howManyKids, setHowManyKids] = useState(outsideHowManyKids ? parseInt(outsideHowManyKids) : 0);
+
+  const currentDate = addDays(new Date(), 5);
+    const endDate = addDays(currentDate, duration ? parseInt(duration) : 7);
+    const [date, setDate] = useState<RangeValue<DateValue>>({
+        start: parseDate(formatISO(currentDate, { representation: 'date' })),
+        end: parseDate(formatISO(endDate, { representation: 'date' })),
+    });
+
+  const [innerDate, setInnerDate] = React.useState<RangeValue<DateValue>>(date);
 
 
 
@@ -76,8 +99,15 @@ const TourSearchParamsSettingsCard = (
 
   const onChangeInHotel = (e: any, type: string) => {
     let { name, value } = e.target;
-    setInHotelIds(value);
+    setInHotelsIds(value);
   }
+
+const onChangeCountry = (e: any, type: string) => {
+    let { name, value } = e.target;
+    setCountriesIds(value);
+  }
+
+
 
 
 
@@ -106,12 +136,11 @@ const TourSearchParamsSettingsCard = (
   };
 
 
-
   return (
     <>
       <div className='w-full flex-col rounded-2xl shadow-xl p-5 max-w-6xl mx-auto my-5  bg-white '>
         <div className='w-full flex p-4 rounded-2xl border-2 border-gray-100 shadow-xl'>
-          <div className='w-3/4'>
+          <div className='w-1/2'>
             <h4
               className='font-unbounded font-[600] text-black text-2xl'
             >Бюджет</h4>
@@ -152,9 +181,33 @@ const TourSearchParamsSettingsCard = (
                 />
               </div>
             </div>
-            
           </div>
 
+          <Divider orientation='vertical' className=' bg-gray-300 w-px  h-auto mx-4 ' />
+
+          <div className='w-1/4 text-center'>
+            <h4 className='font-unbounded font-[600] text-black text-2xl'>Мандрівники</h4>
+            <div className='w-full flex mt-3 gap-2'>
+              <div className='w-1/2 '>
+                <NumberInput
+                  value={howManyAdults}
+                  setValue={setHowManyAdults}
+                  label='Дорослих'
+                  min={1}
+                  max={6}
+                />
+              </div>
+              <div className='w-1/2'>
+                <NumberInput
+                  label='Дітей'
+                  value={howManyKids}
+                  setValue={setHowManyKids}
+                  min={0}
+                  max={6}
+                />
+              </div>
+            </div>
+          </div>
 
           <Divider orientation='vertical' className=' bg-gray-300 w-px  h-auto mx-4 ' />
 
@@ -222,11 +275,27 @@ const TourSearchParamsSettingsCard = (
         </div>
 
         <div className='flex p-2 mt-2 gap-2 bg-transparent'>
+          <CountryMultipleInput
+          currectValue={countriesIds}
+          onChange={onChangeCountry}
+          />
+          <div className='flex-col w-full '>
+            <BeachTypeInput onChange={onChangeBeachTypes} currectValue={beachTypesIds} />
+             <DateRangePicker
+                  minValue={parseDate(formatISO(addDays(new Date(), 4), { representation: 'date' }))}
+                  value={innerDate}
+                  onChange={setInnerDate}
+                  label="Тривалість"
+                  className="w-full mt-2"
+                />
+          </div>
+
+
           <DietTypeInput onChange={onChangeDietTypes} currectValue={dietTypesIds} />
 
-          <BeachTypeInput onChange={onChangeBeachTypes} currectValue={beachTypesIds} />
 
-          <InHotelInput onChange={onChangeInHotel} currectValue={inHotelIds} />
+          <InHotelInput onChange={onChangeInHotel} currectValue={inHotelsIds} />
+
 
           <RoomTypeInput onChange={onChangeRoomTypes} currectValue={roomTypesIds} />
         </div>
@@ -239,7 +308,6 @@ const TourSearchParamsSettingsCard = (
             <Button className='bg-transparent text-black text-xl rounded-full px-20 text-center  border-1 border-black'
               onClick={() => {
                 onClose();
-
               }}
             >
               Скасувати
@@ -250,27 +318,33 @@ const TourSearchParamsSettingsCard = (
             <Button className='text-white bg-primary font-nunito_font_family font-[700] text-xl text-center rounded-full  px-20'
 
               onClick={() => {
-                  let stars:number[] = []
-
-                  if (isFiveStars) stars.push(5)
-
-                  if (isFourStars) stars.push(4)
-
-                  if (isThreeStars) stars.push(3)
+                let stars: number[] = []
 
 
+                const duration = differenceInDays(date.end.toString(), date.start.toString())
 
-                const searchParamsDict:Record<string, string | undefined> = {
-                    lowestPrice: (budget as any as number[])[0].toString(),
-                    heightPrice: (budget as any as number[])[1].toString(),
-                    inHotels: inHotelIds.join(','),
-                    beachTypes: beachTypesIds.join(','),
-                    dietTypes: dietTypesIds.join(','),
-                    roomTypes: roomTypesIds.join(','),
-                    st: stars.join(',')
+                if (isFiveStars) stars.push(5)
+
+                if (isFourStars) stars.push(4)
+
+                if (isThreeStars) stars.push(3)
+
+
+                const searchParamsDict: Record<string, string | undefined> = {
+                  lowestPrice: (budget as any as number[])[0].toString(),
+                  heightPrice: (budget as any as number[])[1].toString(),
+                  beachTypes: beachTypesIds.join(','),
+                  dietTypes: dietTypesIds.join(','),
+                  roomTypes: roomTypesIds.join(','),
+                  inHotelsIds: inHotelsIds.join(','),
+                  st: stars.join(','),
+                  countries: countriesIds.join(','),
+                  adults: howManyAdults.toString(),
+                  kids: howManyKids.toString(),
+                  duration: duration.toString()
 
                 };
-                
+
 
 
                 setSearchParams(searchParamsDict);

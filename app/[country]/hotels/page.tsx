@@ -42,8 +42,9 @@ const page = (
   const [stars, setStars] = useSearchParam("st");
   const [beachTypesIds, setBeachTypesIds] = useSearchParam("beachTypes");
   const [dietTypesIds, setDietTypesIds] = useSearchParam("dietTypes");
-  const [inHotelsIds, setInHotelsIds] = useSearchParam("inHotels");
   const [roomTypesIds, setRoomTypesIds] = useSearchParam("roomTypes");
+
+  const [inHotelsIds, setInHotelsIds] = useSearchParam("inHotels");
 
   const [perPage, setPerPage] = useState("9");
   const [perPageState, setPerPageState] = useDebounceState(perPage, setPerPage, 500);

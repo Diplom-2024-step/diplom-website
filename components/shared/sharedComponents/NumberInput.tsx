@@ -32,7 +32,7 @@ const NumberInput = ({
   
 
   return (
-    <div className="max-w-xs mx-auto">
+    <div className="w-full mx-auto">
       <label htmlFor="quantity-input" className="block mb-2 text-sm font-medium text-center text-gray-900">
         {label}
       </label>
@@ -55,7 +55,7 @@ const NumberInput = ({
 
         <div
           id="quantity-input"
-          className="bg-white border border-gray-300 border-opacity-0  text-center text-gray-900 text-sm focus:ring-transparent block w-20 py-2.5"
+          className="bg-white border border-gray-300 border-opacity-0  text-center text-gray-900 text-sm focus:ring-transparent block w-14 py-2.5"
         >
             {value}
         </div>

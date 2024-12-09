@@ -17,16 +17,23 @@ import { FilterDto } from "@/AppDtos/Shared/filter-dto";
 import { Icon } from "@iconify/react";
 import HotelSearchParamsSettingsCard from "@/components/hotels/HotelSearchParamsSettingsCard";
 import { GetTourDto } from "@/AppDtos/Dto/Models/Tours/get-tour-dto";
+import TourSearchParamsSettingsCard from "@/components/tours/TourSearchParamsSettingsCard";
 
 const page = ({ params }: { params: { country: string } }) => {
-  const [isSearchSettingsOpen, setSearchSettingsOpen] = useState(false);
+  const [isSearchSettingsOpen, setIsSearchSettingsOpen] = useState(false);
 
   const [page, setPage] = useSearchParam("page");
-  // const [lowestPrice, setLowestPrice] = useSearchParam("lp");
-  // const [heightPrice, setHeightPrice] = useSearchParam("lh");
-  // const [kids, setKids] = useSearchParam("kids");
-  // const [adults, setAdluts] = useSearchParam("kids");
-  // const [stars, setStars] = useSearchParam("st");
+  const [lowestPrice, setLowestPrice] = useSearchParam("lowestPrice");
+  const [heightPrice, setHeightPrice] = useSearchParam("heightPrice");
+  const [kids, setKids] = useSearchParam("kids");
+  const [duration, setDuration] = useSearchParam("duration");
+  const [adults, setAdluts] = useSearchParam("adults");
+  const [stars, setStars] = useSearchParam("st");
+  const [beachTypesIds, setBeachTypesIds] = useSearchParam("beachTypes");
+  const [dietTypesIds, setDietTypesIds] = useSearchParam("dietTypes");
+  const [roomTypesIds, setRoomTypesIds] = useSearchParam("roomTypes");
+  const [countriesIds, setCountriesIds] = useSearchParam("countriesIds");
+  const [inHotelsIds, setInHotelsIds] = useSearchParam("inHotelsIds");
 
   const [perPage, setPerPage] = useState("9");
   const [perPageState, setPerPageState] = useDebounceState(
@@ -70,22 +77,30 @@ const page = ({ params }: { params: { country: string } }) => {
 
         <Button
           className="bg-white rounded-full  "
-          onClick={() => setSearchSettingsOpen(!isSearchSettingsOpen)}
+          onClick={() => setIsSearchSettingsOpen(!isSearchSettingsOpen)}
         >
           <Icon icon="mingcute:settings-2-line" width="24" height="24" />
         </Button>
       </div>
 
-      {/* {isSearchSettingsOpen ? (
-        <HotelSearchParamsSettingsCard
-          setLowestPrice={setLowestPrice}
+      {isSearchSettingsOpen ? (
+        <TourSearchParamsSettingsCard
           lowestPrice={lowestPrice}
-          setHeightPrice={setHeightPrice}
           heightPrice={heightPrice}
+        outsideBeachTypesIds={beachTypesIds ? beachTypesIds.split(',') : []}
+        outsideDietTypesIds={dietTypesIds ? dietTypesIds.split(',') : []}
+        outsideRoomTypesIds={roomTypesIds ? roomTypesIds.split(',') : []}
+        outsideCountriesIds={countriesIds ? countriesIds.split(',') : []}
+        outsideInHotelIds={inHotelsIds ? inHotelsIds.split(',') : []}
+        onClose={() => { setIsSearchSettingsOpen(false); }}
+        outsideHowManyAdults={adults ? adults : "1"}
+        outsideHowManyKids={kids ? kids : "0"}
+        duration={duration}
+        stars={stars}
         />
       ) : (
         <></>
-      )} */}
+      )}
 
       {loadingState === "idle" ? (
         <>
