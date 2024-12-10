@@ -168,7 +168,7 @@ const HotDestinations = () => {
                 <CardHeader className="flex absolute z-10 top-1 justify-between !items-end">
                   <Icon
                     icon="mdi:flame"
-                    className="w-[35px] h-[35px] ml-[15px]"
+                    className="w-[35px] h-[35px] ml-[15px] text-white"
                   />
                   <div className="flex flex-col justify-center bg-customBlack bg-opacity-50 h-[30px] p-3 rounded-xl mt-[10px]">
                     <p className="text-[15px] text-white uppercase font-bold">
@@ -213,7 +213,7 @@ const HotDestinations = () => {
                 <CardHeader className="flex absolute z-10 top-1 justify-between !items-end">
                   <Icon
                     icon="mdi:flame"
-                    className="w-[35px] h-[35px] ml-[15px]"
+                    className="w-[35px] h-[35px] ml-[15px] text-white"
                   />
                   <div className="flex flex-col justify-center bg-customBlack bg-opacity-50 h-[30px] p-3 rounded-xl mt-[10px]">
                     <p className="text-[15px] text-white uppercase font-bold">

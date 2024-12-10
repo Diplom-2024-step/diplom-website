@@ -11,7 +11,9 @@ const Navbar = () => {
   return (
     <header className="bg-white shadow-md py-2">
       <div className="container mx-auto flex items-center justify-between px-4">
+        <Link href="/">
         <Image alt="logo" src={headerLogoImage}></Image>
+</Link>
 
         <nav className="hidden md:flex items-center justify-center space-x-6 text-[15px]">
           <SelectCountryForHotels />

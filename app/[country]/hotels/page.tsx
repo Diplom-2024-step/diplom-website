@@ -53,6 +53,7 @@ const page = (
   const [sortDescriptor, setSortDescriptor] = useState<SortDescriptor>();
   const [error, setError] = useState<string>();
   const [perPageError, setPerPageError] = useState<string>();
+  const [isFilterSet, setIsFilterSet] = useState(false);
   const [filters, setFilters] = useState<FilterDto[][]>([
     [
       {
@@ -67,7 +68,7 @@ const page = (
 
   const service = new HotelService();
 
- 
+
 
   useEffect(() => {
     let newFilters: FilterDto[][] = [[]]
@@ -91,23 +92,23 @@ const page = (
 
     if (lowestPrice) {
       newFilters[0].push({
-          column: "PricePerNight",
-          searchTerm: lowestPrice,
-          filterType: "BiggerOrEqual",
-          negate: false
-        });
+        column: "PricePerNight",
+        searchTerm: lowestPrice,
+        filterType: "BiggerOrEqual",
+        negate: false
+      });
     }
 
     if (heightPrice) {
       newFilters[0].push({
-          column: "PricePerNight",
-          searchTerm: heightPrice,
-          filterType: "SmallerOrEqual",
-          negate: false
-        });
+        column: "PricePerNight",
+        searchTerm: heightPrice,
+        filterType: "SmallerOrEqual",
+        negate: false
+      });
     }
 
-     if (inHotelsIds) {
+    if (inHotelsIds) {
       inHotelsIds.split(',').forEach(e => {
         newFilters[0].push({
           column: "InHotels.Id",
@@ -118,7 +119,7 @@ const page = (
       })
     }
 
-  if (dietTypesIds) {
+    if (dietTypesIds) {
       dietTypesIds.split(',').forEach(e => {
         newFilters[0].push({
           column: "DietTypes.Id",
@@ -129,7 +130,7 @@ const page = (
       })
     }
 
- if (roomTypesIds) {
+    if (roomTypesIds) {
       roomTypesIds.split(',').forEach(e => {
         newFilters[0].push({
           column: "RoomTypes.Id",
@@ -139,7 +140,7 @@ const page = (
         });
       })
     }
-if (beachTypesIds) {
+    if (beachTypesIds) {
       beachTypesIds.split(',').forEach(e => {
         newFilters[0].push({
           column: "BeachTypes.Id",
@@ -155,9 +156,15 @@ if (beachTypesIds) {
 
     setPage(undefined)
     setFilters(newFilters);
+    setIsFilterSet(true);
   }, [lowestPrice, heightPrice, stars, beachTypesIds, roomTypesIds, inHotelsIds, dietTypesIds])
 
- const loadItems = useGetPageOfItems<
+
+
+
+
+
+  const loadItems = useGetPageOfItems<
     GetHotelDto,
     typeof service
   >(
@@ -174,8 +181,7 @@ if (beachTypesIds) {
   );
 
   useEffect(() => {
-
-    loadItems().then();
+      loadItems().then();
   }, [loadItems, filters]);
 
 
@@ -223,7 +229,7 @@ if (beachTypesIds) {
         <>
 
           <HotelGrid hotels={items?.models as any}
-          auth={auth}
+            auth={auth}
           />
 
           <div className='flex justify-center items-center mb-10'>

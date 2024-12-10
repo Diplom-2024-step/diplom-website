@@ -78,7 +78,13 @@ const TourSearchParamsSettingsCard = (
         end: parseDate(formatISO(endDate, { representation: 'date' })),
     });
 
+
+
+  const [isDurationChange, setIsDurationChange] = useState(false);
+
   const [innerDate, setInnerDate] = React.useState<RangeValue<DateValue>>(date);
+
+
 
 
 
@@ -274,29 +280,27 @@ const onChangeCountry = (e: any, type: string) => {
 
         </div>
 
-        <div className='flex p-2 mt-2 gap-2 bg-transparent'>
+        <div className='flex w-full p-2 mt-2 gap-1 bg-transparent'>
           <CountryMultipleInput
           currectValue={countriesIds}
           onChange={onChangeCountry}
           />
-          <div className='flex-col w-full '>
+          <div className='flex-col  '>
             <BeachTypeInput onChange={onChangeBeachTypes} currectValue={beachTypesIds} />
              <DateRangePicker
                   minValue={parseDate(formatISO(addDays(new Date(), 4), { representation: 'date' }))}
                   value={innerDate}
-                  onChange={setInnerDate}
+                  onChange={(value) => 
+                    {
+                      setIsDurationChange(true);
+                      setInnerDate(value);
+                    }}
                   label="Тривалість"
                   className="w-full mt-2"
                 />
           </div>
-
-
           <DietTypeInput onChange={onChangeDietTypes} currectValue={dietTypesIds} />
-
-
-          <InHotelInput onChange={onChangeInHotel} currectValue={inHotelsIds} />
-
-
+          {/* <InHotelInput onChange={onChangeInHotel} currectValue={inHotelsIds} /> */}
           <RoomTypeInput onChange={onChangeRoomTypes} currectValue={roomTypesIds} />
         </div>
 
@@ -321,7 +325,13 @@ const onChangeCountry = (e: any, type: string) => {
                 let stars: number[] = []
 
 
-                const duration = differenceInDays(date.end.toString(), date.start.toString())
+
+                let duration: string | undefined = differenceInDays(innerDate.end.toString(), innerDate.start.toString()).toString()
+                
+                if (!isDurationChange)
+                  {
+                    duration = undefined;
+                  }
 
                 if (isFiveStars) stars.push(5)
 
@@ -338,10 +348,10 @@ const onChangeCountry = (e: any, type: string) => {
                   roomTypes: roomTypesIds.join(','),
                   inHotelsIds: inHotelsIds.join(','),
                   st: stars.join(','),
-                  countries: countriesIds.join(','),
+                  countriesIds: countriesIds.join(','),
                   adults: howManyAdults.toString(),
                   kids: howManyKids.toString(),
-                  duration: duration.toString()
+                  duration: duration
 
                 };
 

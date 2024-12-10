@@ -34,6 +34,7 @@ const page = ({ params }: { params: { country: string } }) => {
   const [roomTypesIds, setRoomTypesIds] = useSearchParam("roomTypes");
   const [countriesIds, setCountriesIds] = useSearchParam("countriesIds");
   const [inHotelsIds, setInHotelsIds] = useSearchParam("inHotelsIds");
+  const [filters, setFilters] = useState<FilterDto[][]>();
 
   const [perPage, setPerPage] = useState("9");
   const [perPageState, setPerPageState] = useDebounceState(
@@ -47,7 +48,136 @@ const page = ({ params }: { params: { country: string } }) => {
   const [error, setError] = useState<string>();
   const [perPageError, setPerPageError] = useState<string>();
 
+  const [isFilterSet, setIsFilterSet] = useState(false);
+
   const service = new TourService();
+
+  useEffect(() => {
+    let newFilters: FilterDto[][] = [[]]
+
+    if (stars) {
+      stars.split(',').forEach(e => {
+        newFilters[0].push({
+          column: "Hotel.Stars",
+          searchTerm: e,
+          filterType: "Strict",
+          negate: false
+        });
+      })
+    }
+
+    if (lowestPrice) {
+      newFilters[0].push({
+        column: "PriceUSD",
+        searchTerm: lowestPrice,
+        filterType: "BiggerOrEqual",
+        negate: false
+      });
+    }
+
+    if (heightPrice) {
+      newFilters[0].push({
+        column: "PriceUSD",
+        searchTerm: heightPrice,
+        filterType: "SmallerOrEqual",
+        negate: false
+      });
+    }
+
+    if (countriesIds) {
+      countriesIds.split(',').forEach(e => {
+        newFilters[0].push({
+          column: "Hotel.City.Country.Id",
+          searchTerm: e,
+          filterType: "Strict",
+          negate: false
+        });
+      })
+    }
+
+    if (inHotelsIds) {
+      inHotelsIds.split(',').forEach(e => {
+        newFilters[0].push({
+          column: "Hotel.InHotels.Id",
+          searchTerm: e,
+          filterType: "Strict",
+          negate: false
+        });
+      })
+    }
+
+    if (dietTypesIds) {
+      dietTypesIds.split(',').forEach(e => {
+        newFilters[0].push({
+          column: "DietType.Id",
+          searchTerm: e,
+          filterType: "Strict",
+          negate: false
+        });
+      })
+    }
+
+    if (roomTypesIds) {
+      roomTypesIds.split(',').forEach(e => {
+        newFilters[0].push({
+          column: "RoomType.Id",
+          searchTerm: e,
+          filterType: "Strict",
+          negate: false
+        });
+      })
+    }
+    if (beachTypesIds) {
+      beachTypesIds.split(',').forEach(e => {
+        newFilters[0].push({
+          column: "Hotel.BeachTypes.Id",
+          searchTerm: e,
+          filterType: "Strict",
+          negate: false
+        });
+      })
+    }
+
+    if (kids) {
+      newFilters[0].push({
+        column: "HowManyKids",
+        searchTerm: kids,
+        filterType: "Strict",
+        negate: false
+
+      });
+    }
+
+    if (adults) {
+      newFilters[0].push({
+        column: "HowManyAdults",
+        searchTerm: adults,
+        filterType: "Strict",
+        negate: false
+
+      });
+    }
+
+    if (duration) {
+      newFilters[0].push({
+        column: "Duration",
+        searchTerm: duration,
+        filterType: "Strict",
+        negate: false
+
+      });
+    }
+
+
+
+    setPage(undefined)
+    setFilters(newFilters);
+    setIsFilterSet(true);
+
+  }, [lowestPrice, heightPrice, stars, beachTypesIds, roomTypesIds, inHotelsIds, dietTypesIds, kids, adults, countriesIds])
+
+ 
+
 
   const loadItems = useGetPageOfItems<GetTourDto, typeof service>(
     service,
@@ -58,12 +188,14 @@ const page = ({ params }: { params: { country: string } }) => {
     setError,
     setPerPage,
     setItems,
-    "success"
+    "success",
+    filters
   );
 
+
   useEffect(() => {
-    loadItems().then();
-  }, [loadItems]);
+      loadItems().then();
+  }, [loadItems, filters]);
 
   return (
     <section className="container mx-auto mb-0 max-w-7xl px-5 flex-grow">
@@ -87,16 +219,17 @@ const page = ({ params }: { params: { country: string } }) => {
         <TourSearchParamsSettingsCard
           lowestPrice={lowestPrice}
           heightPrice={heightPrice}
-        outsideBeachTypesIds={beachTypesIds ? beachTypesIds.split(',') : []}
-        outsideDietTypesIds={dietTypesIds ? dietTypesIds.split(',') : []}
-        outsideRoomTypesIds={roomTypesIds ? roomTypesIds.split(',') : []}
-        outsideCountriesIds={countriesIds ? countriesIds.split(',') : []}
-        outsideInHotelIds={inHotelsIds ? inHotelsIds.split(',') : []}
-        onClose={() => { setIsSearchSettingsOpen(false); }}
-        outsideHowManyAdults={adults ? adults : "1"}
-        outsideHowManyKids={kids ? kids : "0"}
-        duration={duration}
-        stars={stars}
+          outsideBeachTypesIds={beachTypesIds ? beachTypesIds.split(',') : []}
+          outsideDietTypesIds={dietTypesIds ? dietTypesIds.split(',') : []}
+          outsideRoomTypesIds={roomTypesIds ? roomTypesIds.split(',') : []}
+          outsideCountriesIds={countriesIds ? countriesIds.split(',') : []}
+          outsideInHotelIds={inHotelsIds ? inHotelsIds.split(',') : []}
+          onClose={() => { setIsSearchSettingsOpen(false); }}
+          outsideHowManyAdults={adults ? adults : "1"}
+          outsideHowManyKids={kids ? kids : "0"}
+          duration={duration}
+          stars={stars}
+
         />
       ) : (
         <></>

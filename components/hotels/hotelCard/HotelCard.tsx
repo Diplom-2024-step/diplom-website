@@ -121,7 +121,6 @@ const HotelCard = ({ cardItem, isHovered, onHover, onLeave }: SharedCardProps<Ge
             loading='eager'
             alt={cardItem.name}
             className="h-[317px] w-[476px] object-cover z-0"
-            isZoomed
             radius='none'
           />
 

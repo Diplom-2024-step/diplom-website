@@ -8,11 +8,15 @@ import {
   CardFooter,
   CardHeader,
   Image,
+  useDisclosure,
 } from "@nextui-org/react";
 import { BookmarkIcon, MapPin, Star } from "lucide-react";
 import { useRouter } from "next/navigation";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { SharedCardProps } from "@/types/components/SharedCardProps";
+import { FavoriteTourRelationService } from "@/service/relationServices/FavoriteTourRelationService";
+import { useSession } from "next-auth/react";
+import { useAuthService } from "@/hooks/auth";
 
 interface TourCardProps {
   tour: GetTourDto;
@@ -28,6 +32,94 @@ const TourCard = ({
   onLeave,
 }: SharedCardProps<GetTourDto>) => {
   const router = useRouter();
+   const relationService = new FavoriteTourRelationService();
+  const { isOpen, onOpen, onOpenChange } = useDisclosure();
+
+  const { data: session, status, update } = useSession()
+
+  const [isFavorite, setIsFavorite] = useState(session ? session.user.favoriteTours.includes(cardItem.id) : false)
+  const statusServer = useAuthService(relationService);
+
+  useEffect(() => {
+    if (!isFavorite && session) {
+      const fetchAndUpdateFavorites = async () => {
+        try {
+          const response = await relationService.get(cardItem.id, session.user.id);
+
+          if (response.status === 200) {
+            setIsFavorite(true);
+            session.user.favoriteTours.push(cardItem.id);
+
+            const updatedSession = await update({
+              favoriteToursIds: session.user.favoriteTours.join(',')
+            });
+
+            const ses = await update({
+              favoriteToursIds: session.user.favoriteTours.join(',')
+            });
+
+          }
+        } catch (error) {
+          console.error('Error updating favorites:', error);
+        }
+      };
+
+      fetchAndUpdateFavorites();
+    }
+  }, [isFavorite, session]);
+
+
+
+  // Function to update favorite hotels
+  const toggleFavorite = async () => {
+    if (!session) {
+      onOpen();
+      return;
+    }
+
+
+    try {
+
+
+      if (!session.user.favoriteTours.includes(cardItem.id)) {
+
+        const response = await relationService.post(cardItem.id, session.user.id);
+        session.user.favoriteTours.push(cardItem.id);
+
+        console.debug("status:" + response.status)
+      }
+      else {
+
+        const response = await relationService.delete(cardItem.id, session.user.id);
+
+        const index = session.user.favoriteTours.indexOf(cardItem.id);
+        session.user.favoriteTours.splice(index);
+        console.debug("status:" + response.status)
+      }
+
+
+
+      // Use the update method with the specific changes
+      console.debug("old session:")
+      console.debug(session.user.favoriteTours);
+
+      const ses = await update({
+        favoriteTours: session.user.favoriteTours.join(',')
+      });
+
+
+
+
+
+      // Update local state
+      setIsFavorite(!isFavorite);
+    } catch (error) {
+      console.error('Failed to update favorites', error);
+      // Optionally revert the local state change
+      setIsFavorite(isFavorite);
+    }
+  };
+
   return (
     <Card
       className={`relative overflow-hidden hover:cursor-pointer ${isHovered ? "scale-105" : ""}`}
@@ -36,32 +128,35 @@ const TourCard = ({
       onMouseLeave={onLeave}
       isHoverable
       isPressable
+      disableRipple
       onClick={() => {
         router.push(`/tours/${cardItem.id}`);
       }}
     >
       <div className="relative">
+
         <Image
-          src={cardItem.urls[0]}
-          loading="eager"
-          alt={cardItem.name}
-          className="h-[317px] w-[476px] object-cover z-0"
-          isZoomed
-          radius="none"
+            src={cardItem.urls[0]}
+            loading='eager'
+            alt={cardItem.name}
+            className="h-[317px] w-[476px] object-cover z-0"
+            radius='none'
         />
+
         <div className="absolute inset-0 bg-gradient-to-b from-black/30 to-transparent z-10"></div>
         {/* Bookmark button (positioned absolutely) */}
         <div
           className="absolute top-4 right-4 z-10"
           onClick={(e) => {
-            // Stop the event from bubbling up to the card
             e.stopPropagation();
-            console.debug("2121");
+            toggleFavorite();
           }}
         >
-          <button className="p-2 rounded-lg hover:bg-gray-700 transition-colors duration-300">
-            <BookmarkIcon className="w-8 text-white h-8" />
-          </button>
+           <button
+              className="p-2 rounded-lg hover:bg-gray-700 transition-colors bg-transparent duration-300"
+            >
+              <Icon icon={isFavorite ? 'ri:bookmark-fill' : `mingcute:bookmark-line`} className={`w-8  h-8 ` + (isFavorite ? 'text-yellow-500' : `text-white`)} />
+            </button>
         </div>
         <div className="absolute flex text-center items-center top-4 right-[250px] z-10">
           <Icon
