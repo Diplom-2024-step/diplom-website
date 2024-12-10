@@ -18,11 +18,13 @@ import { Icon } from "@iconify/react";
 import HotelSearchParamsSettingsCard from "@/components/hotels/HotelSearchParamsSettingsCard";
 import { GetTourDto } from "@/AppDtos/Dto/Models/Tours/get-tour-dto";
 import TourSearchParamsSettingsCard from "@/components/tours/TourSearchParamsSettingsCard";
+import FindTourCardWithBg from "@/components/shared/sharedComponents/FindTourCardWithBg";
 
 const page = ({ params }: { params: { country: string } }) => {
   const [isSearchSettingsOpen, setIsSearchSettingsOpen] = useState(false);
-
   const [page, setPage] = useSearchParam("page");
+  const [toCity, setToCity] = useSearchParam("toCity");
+  const [fromCity, setFromCity] = useSearchParam("fromCity");
   const [lowestPrice, setLowestPrice] = useSearchParam("lowestPrice");
   const [heightPrice, setHeightPrice] = useSearchParam("heightPrice");
   const [kids, setKids] = useSearchParam("kids");
@@ -35,6 +37,7 @@ const page = ({ params }: { params: { country: string } }) => {
   const [countriesIds, setCountriesIds] = useSearchParam("countriesIds");
   const [inHotelsIds, setInHotelsIds] = useSearchParam("inHotelsIds");
   const [filters, setFilters] = useState<FilterDto[][]>();
+  const [isFilterSet, setIsFilterSet] = useState(false);
 
   const [perPage, setPerPage] = useState("9");
   const [perPageState, setPerPageState] = useDebounceState(
@@ -48,7 +51,6 @@ const page = ({ params }: { params: { country: string } }) => {
   const [error, setError] = useState<string>();
   const [perPageError, setPerPageError] = useState<string>();
 
-  const [isFilterSet, setIsFilterSet] = useState(false);
 
   const service = new TourService();
 
@@ -167,16 +169,35 @@ const page = ({ params }: { params: { country: string } }) => {
 
       });
     }
+    if (toCity) {
+      newFilters[0].push({
+        column: "ToCity.Id",
+        searchTerm: toCity,
+        filterType: "Strict",
+        negate: false
+
+      });
+    }
+
+    if (fromCity) {
+      newFilters[0].push({
+        column: "FromCity.Id",
+        searchTerm: fromCity,
+        filterType: "Strict",
+        negate: false
+
+      });
+    }
 
 
 
-    setPage(undefined)
     setFilters(newFilters);
-    setIsFilterSet(true);
+    setPage(undefined)
+    setIsFilterSet(true)    
 
   }, [lowestPrice, heightPrice, stars, beachTypesIds, roomTypesIds, inHotelsIds, dietTypesIds, kids, adults, countriesIds])
 
- 
+
 
 
   const loadItems = useGetPageOfItems<GetTourDto, typeof service>(
@@ -193,64 +214,72 @@ const page = ({ params }: { params: { country: string } }) => {
   );
 
 
+
   useEffect(() => {
+    if (isFilterSet) {
       loadItems().then();
-  }, [loadItems, filters]);
+    }
+  }, [page, filters]);
 
   return (
-    <section className="container mx-auto mb-0 max-w-7xl px-5 flex-grow">
-      <TourCarouselRecommendation />
-      <div className="w-full flex justify-between max-w-6xl mx-auto px-4 mt-20">
-        <span>
-          <h2 className="text-3xl font-bold font-unbounded  mb-6 text-black">
-            Наші тури
-          </h2>
-        </span>
+    <>
+    <FindTourCardWithBg/>
+      <section className="container mx-auto mb-0 max-w-7xl px-5 flex-grow">
+        <TourCarouselRecommendation />
+        <div className="w-full flex justify-between max-w-6xl mx-auto px-4 mt-20">
+          <span>
+            <h2 className="text-3xl font-bold font-unbounded  mb-6 text-black">
+              Наші тури
+            </h2>
+          </span>
 
-        <Button
-          className="bg-white rounded-full  "
-          onClick={() => setIsSearchSettingsOpen(!isSearchSettingsOpen)}
-        >
-          <Icon icon="mingcute:settings-2-line" width="24" height="24" />
-        </Button>
-      </div>
+          <Button
+            className="bg-white rounded-full  "
+            onClick={() => setIsSearchSettingsOpen(!isSearchSettingsOpen)}
+          >
+            <Icon icon="mingcute:settings-2-line" width="24" height="24" />
+          </Button>
+        </div>
 
-      {isSearchSettingsOpen ? (
-        <TourSearchParamsSettingsCard
-          lowestPrice={lowestPrice}
-          heightPrice={heightPrice}
-          outsideBeachTypesIds={beachTypesIds ? beachTypesIds.split(',') : []}
-          outsideDietTypesIds={dietTypesIds ? dietTypesIds.split(',') : []}
-          outsideRoomTypesIds={roomTypesIds ? roomTypesIds.split(',') : []}
-          outsideCountriesIds={countriesIds ? countriesIds.split(',') : []}
-          outsideInHotelIds={inHotelsIds ? inHotelsIds.split(',') : []}
-          onClose={() => { setIsSearchSettingsOpen(false); }}
-          outsideHowManyAdults={adults ? adults : "1"}
-          outsideHowManyKids={kids ? kids : "0"}
-          duration={duration}
-          stars={stars}
+        {isSearchSettingsOpen ? (
+          <TourSearchParamsSettingsCard
+            lowestPrice={lowestPrice}
+            heightPrice={heightPrice}
+            outsideBeachTypesIds={beachTypesIds ? beachTypesIds.split(',') : []}
+            outsideDietTypesIds={dietTypesIds ? dietTypesIds.split(',') : []}
+            outsideRoomTypesIds={roomTypesIds ? roomTypesIds.split(',') : []}
+            outsideCountriesIds={countriesIds ? countriesIds.split(',') : []}
+            outsideInHotelIds={inHotelsIds ? inHotelsIds.split(',') : []}
+            onClose={() => { setIsSearchSettingsOpen(false); }}
+            outsideHowManyAdults={adults ? adults : "1"}
+            outsideHowManyKids={kids ? kids : "0"}
+            duration={duration}
+            stars={stars}
+            fromCity={fromCity}
+            toCity={toCity}
 
-        />
-      ) : (
-        <></>
-      )}
+          />
+        ) : (
+          <></>
+        )}
 
-      {loadingState === "idle" ? (
-        <>
-          <TourGrid tours={items?.models as any} />
+        {loadingState === "idle" ? (
+          <>
+            <TourGrid tours={items?.models as any} />
 
-          <div className="flex justify-center items-center mb-10">
-            <MyPagination
-              total={items?.howManyPages as any}
-              page={page ? parseInt(page) : 1}
-              onchange={(page: number) => setPage(page.toString())}
-            />
-          </div>
-        </>
-      ) : (
-        <Loading />
-      )}
-    </section>
+            <div className="flex justify-center items-center mb-10">
+              <MyPagination
+                total={items?.howManyPages as any}
+                page={page ? parseInt(page) : 1}
+                onchange={(page: number) => setPage(page.toString())}
+              />
+            </div>
+          </>
+        ) : (
+          <Loading />
+        )}
+      </section>
+    </>
   );
 };
 

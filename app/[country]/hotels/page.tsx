@@ -20,6 +20,8 @@ import HotelSearchParamsSettingsCard from '@/components/hotels/HotelSearchParams
 import { string } from 'zod';
 import { useAuth } from '@/hooks/auth';
 import { useSession } from 'next-auth/react';
+import FindTourCard from '@/components/tours/FindTourCard';
+import FindTourCardWithBg from '@/components/shared/sharedComponents/FindTourCardWithBg';
 
 
 
@@ -181,71 +183,77 @@ const page = (
   );
 
   useEffect(() => {
+    if (isFilterSet) {
       loadItems().then();
+    }
   }, [loadItems, filters]);
 
 
   return (
-    <section className='container mx-auto mb-0 max-w-7xl px-5 flex-grow'>
-      <HotelCarouselRecommendation />
-      <div className="w-full flex justify-between max-w-6xl mx-auto px-4 mt-20">
-        <span><h2 className="text-5xl font-bold mb-6 text-black  font-unbounded">Доступні готелі</h2></span>
-        <Button
-          className='bg-white rounded-full  '
-          onClick={() => setIsSearchSettingsOpen(!isSearchSettingsOpen)}
-        >
-          <Icon icon="mingcute:settings-2-line" width="24" height="24" />
-        </Button>
+    <>
+      <FindTourCardWithBg />
+      <section className='container mx-auto mb-0 max-w-7xl px-5 flex-grow'>
+        <HotelCarouselRecommendation />
+        <div className="w-full flex justify-between max-w-6xl mx-auto px-4 mt-20">
+          <span><h2 className="text-5xl font-bold mb-6 text-black  font-unbounded">Доступні готелі</h2></span>
+          <Button
+            className='bg-white rounded-full  '
+            onClick={() => setIsSearchSettingsOpen(!isSearchSettingsOpen)}
+          >
+            <Icon icon="mingcute:settings-2-line" width="24" height="24" />
+          </Button>
 
-      </div>
-
-
-      {isSearchSettingsOpen ? <HotelSearchParamsSettingsCard
-
-        stars={stars}
-        lowestPrice={lowestPrice}
-
-        heightPrice={heightPrice}
-
-        outsideBeachTypesIds={beachTypesIds ? beachTypesIds.split(',') : []}
+        </div>
 
 
-        outsideDietTypesIds={dietTypesIds ? dietTypesIds.split(',') : []}
+        {isSearchSettingsOpen ? <HotelSearchParamsSettingsCard
+
+          stars={stars}
+          lowestPrice={lowestPrice}
+
+          heightPrice={heightPrice}
+
+          outsideBeachTypesIds={beachTypesIds ? beachTypesIds.split(',') : []}
 
 
-        outsideInHotelIds={inHotelsIds ? inHotelsIds.split(',') : []}
+          outsideDietTypesIds={dietTypesIds ? dietTypesIds.split(',') : []}
+
+
+          outsideInHotelIds={inHotelsIds ? inHotelsIds.split(',') : []}
 
 
 
-        outsideRoomTypesIds={roomTypesIds ? roomTypesIds.split(',') : []}
+          outsideRoomTypesIds={roomTypesIds ? roomTypesIds.split(',') : []}
 
 
-        onClose={() => { setIsSearchSettingsOpen(false); }}
+          onClose={() => { setIsSearchSettingsOpen(false); }}
 
-      /> : <></>}
+        /> : <></>}
 
 
-      {loadingState === 'idle' ?
-        <>
+        {loadingState === 'idle' ?
+          <>
 
-          <HotelGrid hotels={items?.models as any}
-            auth={auth}
-          />
-
-          <div className='flex justify-center items-center mb-10'>
-            <MyPagination
-              total={items?.howManyPages as any}
-              page={page ? parseInt(page) : 1}
-              onchange={(page: number) => setPage(page.toString())}
+            <HotelGrid hotels={items?.models as any}
+              auth={auth}
             />
-          </div>
+
+            <div className='flex justify-center items-center mb-10'>
+              <MyPagination
+                total={items?.howManyPages as any}
+                page={page ? parseInt(page) : 1}
+                onchange={(page: number) => setPage(page.toString())}
+              />
+            </div>
 
 
-        </>
-        :
-        <Loading />
-      }
-    </section>
+          </>
+          :
+          <Loading />
+        }
+      </section>
+
+    </>
   )
 }
 

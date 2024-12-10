@@ -29,6 +29,8 @@ const TourSearchParamsSettingsCard = (
     outsideHowManyAdults,
     outsideHowManyKids,
     outsideCountriesIds,
+    toCity,
+    fromCity
   }:
     {
       lowestPrice?: string;
@@ -42,6 +44,8 @@ const TourSearchParamsSettingsCard = (
       stars?: string;
       outsideHowManyKids?: string;
       outsideHowManyAdults?: string;
+      fromCity?: string;
+      toCity?: string;
       outsideCountriesIds?: string[]
     }
 
@@ -79,10 +83,10 @@ const TourSearchParamsSettingsCard = (
     });
 
 
+  const [innerDate, setInnerDate] = React.useState<RangeValue<DateValue>>(date);
 
   const [isDurationChange, setIsDurationChange] = useState(false);
 
-  const [innerDate, setInnerDate] = React.useState<RangeValue<DateValue>>(date);
 
 
 
@@ -288,7 +292,6 @@ const onChangeCountry = (e: any, type: string) => {
           <div className='flex-col  '>
             <BeachTypeInput onChange={onChangeBeachTypes} currectValue={beachTypesIds} />
              <DateRangePicker
-                  minValue={parseDate(formatISO(addDays(new Date(), 4), { representation: 'date' }))}
                   value={innerDate}
                   onChange={(value) => 
                     {
@@ -351,8 +354,9 @@ const onChangeCountry = (e: any, type: string) => {
                   countriesIds: countriesIds.join(','),
                   adults: howManyAdults.toString(),
                   kids: howManyKids.toString(),
-                  duration: duration
-
+                  duration: duration,
+                  toCity: toCity,
+                  fromCity: fromCity,
                 };
 
 

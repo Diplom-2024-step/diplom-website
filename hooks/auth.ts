@@ -32,7 +32,7 @@ export const useAuth = ({ requiredRoles, lockedRoles, redirect }: AuthProps = {}
   let isAuthorized = status == "authenticated";
   isAuthorized &&= requiredRoles?.every(role => roles?.includes(role.trim().toLowerCase())) ?? true;
   isAuthorized &&= lockedRoles?.every(role => !roles?.includes(role.trim().toLowerCase())) ?? true;
-  const isSiteSessionExpired = data?.expires ? new Date(data?.expires) < new Date() : true;
+  const isSiteSessionExpired = data?.expires ? new Date(data?.expires) < new Date() : false;
 
   useEffect(() => {
     
