@@ -22,6 +22,7 @@ import { useAuth } from '@/hooks/auth';
 import { useSession } from 'next-auth/react';
 import FindTourCard from '@/components/tours/FindTourCard';
 import FindTourCardWithBg from '@/components/shared/sharedComponents/FindTourCardWithBg';
+import DeleteAllFiltersButton from '@/components/shared/sharedComponents/DeleteAllFiltersButton';
 
 
 
@@ -196,12 +197,15 @@ const page = (
         <HotelCarouselRecommendation />
         <div className="w-full flex justify-between max-w-6xl mx-auto px-4 mt-20">
           <span><h2 className="text-5xl font-bold mb-6 text-black  font-unbounded">Доступні готелі</h2></span>
+          <div className="flex justify-between my-5 gap-6">
+            <DeleteAllFiltersButton/>
           <Button
             className='bg-white rounded-full  '
             onClick={() => setIsSearchSettingsOpen(!isSearchSettingsOpen)}
           >
             <Icon icon="mingcute:settings-2-line" width="24" height="24" />
           </Button>
+          </div>
 
         </div>
 

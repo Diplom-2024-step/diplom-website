@@ -19,17 +19,19 @@ import HotelSearchParamsSettingsCard from "@/components/hotels/HotelSearchParams
 import { GetTourDto } from "@/AppDtos/Dto/Models/Tours/get-tour-dto";
 import TourSearchParamsSettingsCard from "@/components/tours/TourSearchParamsSettingsCard";
 import FindTourCardWithBg from "@/components/shared/sharedComponents/FindTourCardWithBg";
+import DeleteAllFiltersButton from "@/components/shared/sharedComponents/DeleteAllFiltersButton";
 
 const page = ({ params }: { params: { country: string } }) => {
   const [isSearchSettingsOpen, setIsSearchSettingsOpen] = useState(false);
   const [page, setPage] = useSearchParam("page");
   const [toCity, setToCity] = useSearchParam("toCity");
   const [fromCity, setFromCity] = useSearchParam("fromCity");
-  const [lowestPrice, setLowestPrice] = useSearchParam("lowestPrice");
-  const [heightPrice, setHeightPrice] = useSearchParam("heightPrice");
-  const [kids, setKids] = useSearchParam("kids");
+ const [kids, setKids] = useSearchParam("kids");
   const [duration, setDuration] = useSearchParam("duration");
   const [adults, setAdluts] = useSearchParam("adults");
+
+  const [lowestPrice, setLowestPrice] = useSearchParam("lowestPrice");
+  const [heightPrice, setHeightPrice] = useSearchParam("heightPrice");
   const [stars, setStars] = useSearchParam("st");
   const [beachTypesIds, setBeachTypesIds] = useSearchParam("beachTypes");
   const [dietTypesIds, setDietTypesIds] = useSearchParam("dietTypes");
@@ -195,7 +197,7 @@ const page = ({ params }: { params: { country: string } }) => {
     setPage(undefined)
     setIsFilterSet(true)    
 
-  }, [lowestPrice, heightPrice, stars, beachTypesIds, roomTypesIds, inHotelsIds, dietTypesIds, kids, adults, countriesIds])
+  }, [lowestPrice, heightPrice, stars, beachTypesIds, roomTypesIds, inHotelsIds, dietTypesIds, kids, adults, countriesIds, toCity, fromCity, duration])
 
 
 
@@ -233,12 +235,16 @@ const page = ({ params }: { params: { country: string } }) => {
             </h2>
           </span>
 
+          <div className="flex justify-between my-5 gap-6">
+            <DeleteAllFiltersButton/>
+
           <Button
             className="bg-white rounded-full  "
             onClick={() => setIsSearchSettingsOpen(!isSearchSettingsOpen)}
           >
             <Icon icon="mingcute:settings-2-line" width="24" height="24" />
           </Button>
+</div>
         </div>
 
         {isSearchSettingsOpen ? (

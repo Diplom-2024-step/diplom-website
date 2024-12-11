@@ -75,7 +75,7 @@ const TourSearchParamsSettingsCard = (
 
   const [howManyKids, setHowManyKids] = useState(outsideHowManyKids ? parseInt(outsideHowManyKids) : 0);
 
-  const currentDate = addDays(new Date(), 5);
+  const currentDate = addDays(new Date(), 0);
     const endDate = addDays(currentDate, duration ? parseInt(duration) : 7);
     const [date, setDate] = useState<RangeValue<DateValue>>({
         start: parseDate(formatISO(currentDate, { representation: 'date' })),
