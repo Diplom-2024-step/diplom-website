@@ -4,6 +4,7 @@ import HotelDetailHeader from '@/components/hotels/hotelDetails/HotelDetailHeade
 import ImageGallery from '@/components/hotels/hotelDetails/imageGallery/ImageGallery'
 import TravelBooking from '@/components/hotels/hotelDetails/travelBooking/TravelBooking'
 import PaymentGuaranteeSection from '@/components/hotels/layout/PaymentGuaranteeSection'
+import ReviewCardCarouselWithService from '@/components/reviews/ReviewCardCarouselWithService'
 import SelectCountryForHotels from '@/components/shared/sharedComponents/selects/SelectCountryForHotels'
 import LoadingCircle from '@/components/shared/skeletons/LoadingCircle'
 import RecomendedToursCarouselForHotel from '@/components/tours/Carsousels/RecomendedToursCarouselForHotel'
@@ -39,7 +40,7 @@ const page = async ({ params }: { params: { id: string } }) => {
       return <ImageGallery urls={hotel.urls} />
     }
     else if (value === "reviews") {
-      return <></>
+      return <ReviewCardCarouselWithService reviewableId={params.id}/>
     }
 
 

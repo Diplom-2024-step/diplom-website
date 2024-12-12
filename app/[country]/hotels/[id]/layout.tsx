@@ -1,7 +1,7 @@
 "use client";
 import { TravelBookingProvider } from '@/components/providers/TravelBookingProvider';
 import { Icon } from '@iconify/react';
-import Link from 'next/link';
+import { Link } from '@nextui-org/link';
 import React from 'react'
 
 const Layout: React.FC<{ children: React.ReactNode }> = ({
