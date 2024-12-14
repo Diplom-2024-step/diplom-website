@@ -286,6 +286,7 @@ const page = ({ params }: { params: { country: string } }) => {
         )}
       </section>
     </>
+
   );
 };
 

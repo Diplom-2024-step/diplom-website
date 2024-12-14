@@ -3,6 +3,7 @@ import TourDescription from "@/components/tours/TourDetails/TourDescription";
 import TourDetailHeader from "@/components/tours/TourDetails/TourDetailHeader";
 import ImageGallery from "@/components/hotels/hotelDetails/imageGallery/ImageGallery";
 import TravelBooking from "@/components/tours/TourDetails/travelBooking/TravelBooking";
+import TravelDescription from "@/components/tours/TourDetails/travelBooking/TravelDescription";
 import PaymentGuaranteeSection from "@/components/hotels/layout/PaymentGuaranteeSection";
 import SelectCountryForHotels from "@/components/shared/sharedComponents/selects/SelectCountryForHotels";
 import LoadingCircle from "@/components/shared/skeletons/LoadingCircle";
@@ -24,11 +25,9 @@ const page = async ({ params }: { params: { id: string } }) => {
 
   const retunrOptionPage = (value: string) => {
     if (value === "tour") {
-      return <TravelBooking tour={tour} />;
+      return <TravelDescription tour={tour} />;
     } else if (value === "description") {
       return <TourDescription tour={tour} />;
-    } else if (value === "photos") {
-      return <ImageGallery urls={tour.urls} />;
     } else if (value === "reviews") {
       return <></>;
     }
