@@ -34,16 +34,9 @@ export const useAuth = ({
   const user = data?.user;
   const roles = user?.role.split(",").map((role) => role.trim().toLowerCase());
   let isAuthorized = status == "authenticated";
-  isAuthorized &&=
-    requiredRoles?.every((role) =>
-      roles?.includes(role.trim().toLowerCase())
-    ) ?? true;
-  isAuthorized &&=
-    lockedRoles?.every((role) => !roles?.includes(role.trim().toLowerCase())) ??
-    true;
-  const isSiteSessionExpired = data?.expires
-    ? new Date(data?.expires) < new Date()
-    : false;
+  isAuthorized &&= requiredRoles?.every(role => roles?.includes(role.trim().toLowerCase())) ?? true;
+  isAuthorized &&= lockedRoles?.every(role => !roles?.includes(role.trim().toLowerCase())) ?? true;
+  const isSiteSessionExpired = data?.expires ? new Date(data?.expires) < new Date() : false;
 
   useEffect(() => {
     if (status == "loading") return;

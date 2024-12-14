@@ -43,7 +43,7 @@ const TourCarouselRecommendation = () => {
   }, [loadItems]);
 
   return loadingState === "idle" ? (
-    <TourCarousel tours={items?.models as GetTourDto[]} />
+    <TourCarousel tours={items?.models as GetTourDto[]} title="Гарячі пропозиції" />
   ) : (
     <TourCarouselSkeleton />
   );

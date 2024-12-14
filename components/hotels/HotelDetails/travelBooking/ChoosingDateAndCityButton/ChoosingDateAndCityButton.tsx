@@ -78,6 +78,7 @@ const ChoosingDateAndCityButton = (
                 <SelectCityToTravelFrom
                 city={innerCity}                
                 setCity={setInnerCity}
+                placeholder='Звідки'
                 />
 
                 <SelectTransportationType

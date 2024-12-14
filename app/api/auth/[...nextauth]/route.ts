@@ -78,6 +78,10 @@ const handler = NextAuth({
       if (session.user.favoriteHotels === undefined){
           session.user.favoriteHotels = user.favoriteHotelsIds.split(',');
       }
+if (session.user.favoriteTours === undefined){
+          session.user.favoriteTours = user.favoriteToursIds.split(',');
+      }
+      
       session.user.email = user.email;
       session.user.id = user.id;
       session.decodeToken = user;

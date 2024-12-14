@@ -60,10 +60,10 @@ const RecomendedToursCarouselForHotel = ({ hotelId }: { hotelId: string }) => {
     </>
   ) : (
     <>
-      {/* <TourCarousel
-        items={items?.models as any}
+      <TourCarousel
+        tours={items?.models as any}
         title={"Тури, що входять до готелю"}
-      /> */}
+      />
     </>
   );
 };

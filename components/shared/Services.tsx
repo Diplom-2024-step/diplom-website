@@ -25,7 +25,7 @@ const Services = () => {
           backgroundImage: `url(${servicesShadowImage.src})`,
         }}
       >
-        <p className="text-[43px] font-bold mb-[35px]">
+        <p className="text-[43px] font-bold font-unbounded text-white mb-[35px]">
           Залиште всі ваші турботи нам
         </p>
         <div className="flex flex-col space-y-7">

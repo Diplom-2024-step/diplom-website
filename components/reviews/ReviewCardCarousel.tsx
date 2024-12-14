@@ -1,24 +1,22 @@
-"use client";
+import { GetReviewDto } from '@/AppDtos/Dto/Models/Reviews/get-review-dto';
+import React, { useState } from 'react'
+import ReviewCard from './ReviewCard';
+import { ChevronLeft, ChevronRight } from 'lucide-react';
 
-import { useState } from "react";
-import TourCard from "./TourCard";
-import { GetTourDto } from "@/AppDtos/Dto/Models/Tours/get-tour-dto";
-import { ChevronLeft, ChevronRight } from "lucide-react";
-
-export const TourCarousel = ({ tours, title }: { tours: GetTourDto[], title:string }) => {
+const ReviewCardCarousel = ({  reviews }: { reviews: GetReviewDto[] }) => {
   const [currentIndex, setCurrentIndex] = useState<number>(0);
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
   const handleNext = (): void => {
-    setCurrentIndex((prev) => (prev + 1) % (tours.length - 2));
+    setCurrentIndex((prev) => (prev + 1) % (reviews.length - 3));
   };
 
   const handlePrev = (): void => {
     setCurrentIndex((prev) => {
       if (prev === 0) {
-        return tours.length - 3;
+        return reviews.length - 4;
       } else {
-        return prev - 1;
+        return prev-1;
       }
     });
   };
@@ -38,7 +36,7 @@ export const TourCarousel = ({ tours, title }: { tours: GetTourDto[], title:stri
   return (
     <div className="w-full max-w-6xl mx-auto px-4 text-black">
       <h2 className="text-3xl font-bold font-unbounded mt-6">
-        {title}
+        Враження відвідувачів
       </h2>
 
       <div className="relative ">
@@ -46,17 +44,12 @@ export const TourCarousel = ({ tours, title }: { tours: GetTourDto[], title:stri
           <div
             className="flex transition-transform duration-300 ease-in-out"
             style={{
-              transform: `translateX(-${currentIndex * 33.333}%)`,
+              transform: `translateX(-${currentIndex * 25}%)`,
             }}
           >
-            {tours.map((tour, index) => (
-              <div key={tour.id} className="w-1/3 mt-6 mb-6 flex-shrink-0 px-2">
-                <TourCard
-                  cardItem={tour}
-                  isHovered={hoveredIndex === index}
-                  onHover={() => handleHover(index)}
-                  onLeave={handleLeave}
-                />
+            {reviews.map((review, index) => (
+              <div key={review.id} className="w-1/4 mt-6 mb-6 flex-shrink-0 px-2">
+                <ReviewCard review={review}/>
               </div>
             ))}
           </div>
@@ -64,24 +57,24 @@ export const TourCarousel = ({ tours, title }: { tours: GetTourDto[], title:stri
 
         <button
           onClick={handlePrev}
-          className="absolute left-0 top-1/3 -translate-y-1/2 -translate-x-4 bg-white p-2 rounded-full shadow-lg hover:bg-gray-100 z-10"
+          className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-14 bg-transparent p-2 rounded-full border-none  z-10"
           type="button"
           aria-label="Previous slide"
         >
-          <ChevronLeft className="w-6 h-6" />
+          <ChevronLeft className="w-12 h-12" />
         </button>
 
         <button
           onClick={handleNext}
-          className="absolute right-0 top-1/3 -translate-y-1/2 translate-x-4 bg-white p-2 rounded-full shadow-lg hover:bg-gray-100 z-10"
+          className="absolute bg-transparent right-0 top-1/2 -translate-y-1/2 translate-x-14  p-2 rounded-full   z-10 border-none"
           type="button"
           aria-label="Next slide"
         >
-          <ChevronRight className="w-6 h-6" />
+          <ChevronRight className="w-12 h-12" />
         </button>
 
         <div className="flex justify-center gap-2 mt-4">
-          {[...Array(tours.length - 2)].map((_, index) => (
+          {[...Array(reviews.length - 3)].map((_, index) => (
             <button
               key={index}
               type="button"
@@ -98,4 +91,4 @@ export const TourCarousel = ({ tours, title }: { tours: GetTourDto[], title:stri
   );
 };
 
-export default TourCarousel;
+export default ReviewCardCarousel

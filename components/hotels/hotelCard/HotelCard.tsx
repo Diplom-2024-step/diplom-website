@@ -9,8 +9,12 @@ import { SharedCardProps } from '@/types/components/SharedCardProps';
 import { useSession } from 'next-auth/react';
 import { FavoriteHotelRelationService } from '@/service/relationServices/FavoriteHotelRelationService';
 import { useAuth, useAuthService } from '@/hooks/auth';
+import { HistoryItemTypes, useSearchHistory } from '@/hooks/useSearchHistory';
 
 const HotelCard = ({ cardItem, isHovered, onHover, onLeave }: SharedCardProps<GetHotelDto>) => {
+
+  const [hisotry, addToHistory] = useSearchHistory();
+
   const router = useRouter();
   const relationService = new FavoriteHotelRelationService();
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
@@ -87,10 +91,6 @@ const HotelCard = ({ cardItem, isHovered, onHover, onLeave }: SharedCardProps<Ge
         favoriteHotelsIds: session.user.favoriteHotels.join(',')
       });
 
-
-
-
-
       // Update local state
       setIsFavorite(!isFavorite);
     } catch (error) {
@@ -111,6 +111,12 @@ const HotelCard = ({ cardItem, isHovered, onHover, onLeave }: SharedCardProps<Ge
         isPressable
         disableRipple
         onClick={() => {
+          addToHistory({
+            item: cardItem,
+            type: HistoryItemTypes.Hotel
+          });
+
+          console.debug(history);
           router.push(`/${cardItem.city.country.id}/hotels/${cardItem.id}`);
         }}
 
@@ -121,7 +127,6 @@ const HotelCard = ({ cardItem, isHovered, onHover, onLeave }: SharedCardProps<Ge
             loading='eager'
             alt={cardItem.name}
             className="h-[317px] w-[476px] object-cover z-0"
-            isZoomed
             radius='none'
           />
 
