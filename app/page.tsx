@@ -6,6 +6,8 @@ import PartnerBlocks from "@/components/shared/PartnerBlock";
 import Preface from "@/components/shared/Preface";
 import { Button } from "@nextui-org/button";
 import { signIn, signOut } from "next-auth/react";
+import WorkWithUs from "@/components/shared/WorkWithUs";
+import Header from "@/components/shared/Header";
 
 export default function Home() {
   return (

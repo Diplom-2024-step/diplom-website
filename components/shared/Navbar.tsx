@@ -67,7 +67,6 @@ const Navbar = () => {
               placeholder="Країни"
               className="bg-white text-gray-600 rounded-md pt-2 pb-2 px-3 focus:outline-none focus:ring focus:ring-blue-500 hover:bg-gray-100 mt-[20px]"
             />
-            ;
           </div>
 
           <a href="#" className="text-gray-600 hover:text-gray-900">
