@@ -114,7 +114,7 @@ const SelectCountryForHotels = () => {
             className="w-[130px] "
             items={items?.models}
             selectedKeys={[""]}
-            placeholder={"select city"}
+            placeholder={"Країни"}
             renderValue={(items: SelectedItems<GetCountryDto>) => {
               return items.map((item) =>
                 renderFunction(item.data as GetCountryDto)

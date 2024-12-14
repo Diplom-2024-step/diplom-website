@@ -13,29 +13,31 @@ import { LoadingState, SortDescriptor } from "@react-types/shared";
 import React, { ReactNode, useEffect, useState } from 'react'
 
 const SharedMultipleInput = <
-    TGetModel extends ModelDto,
-    TService extends CrudService<TGetModel, object, ModelDto>
+  TGetModel extends ModelDto,
+  TService extends CrudService<TGetModel, object, ModelDto>
 >(
-    {
-        service,
-        onChange,
-        currectValue,
-        renderFunction,
-        onSelectRenderFunction,
-        placeholder,
-        propertyName
+  {
+    service,
+    onChange,
+    currectValue,
+    renderFunction,
+    onSelectRenderFunction,
+    placeholder,
+    propertyName,
+    outFiltres
 
-    } : {
-        service:TService,
-        onChange: OnChangeFunctionProps,
-        currectValue: any,
-        renderFunction: (item:TGetModel) => ReactNode,
-        onSelectRenderFunction : (item:TGetModel) => ReactNode,
-        placeholder: string
-        propertyName: string
-    }
+  }: {
+    service: TService,
+    onChange: OnChangeFunctionProps,
+    currectValue: any,
+    renderFunction: (item: TGetModel) => ReactNode,
+    onSelectRenderFunction: (item: TGetModel) => ReactNode,
+    placeholder: string
+    propertyName: string
+    outFiltres?: FilterDto[][]
+  }
 ) => {
- const [perPage, setPerPage] = useState("50");
+  const [perPage, setPerPage] = useState("50");
   const page = "1";
 
   const [value, setValue] = useState<string>("");
@@ -47,7 +49,7 @@ const SharedMultipleInput = <
   const [error, setError] = useState<string>();
   const [perPageError, setPerPageError] = useState<string>();
 
-  const [filters, setFilters] = useState<FilterDto[][]>([])
+  const [filters, setFilters] = useState<FilterDto[][]>(outFiltres ? outFiltres : [])
 
 
   const loadItems = useGetPageOfItems<
@@ -62,7 +64,7 @@ const SharedMultipleInput = <
     setError,
     setPerPage,
     setItems,
-    "success", 
+    "success",
     filters
   );
 
@@ -72,7 +74,7 @@ const SharedMultipleInput = <
 
 
   const innerOnSelectionChanged = (keys: SharedSelection) => {
-    var arrayKeys = [ ...keys];
+    var arrayKeys = [...keys];
 
     onChange({
       target: {
@@ -80,46 +82,50 @@ const SharedMultipleInput = <
         name: propertyName,
       }
     } as any,
-  "string");
+      "string");
   };
 
 
-   return (
+  return (
     <>
       {
         error === undefined ?
-        loadingState === "loading" ? <LoadingCircle /> :
-          <Select 
+          loadingState === "loading" ? <LoadingCircle /> :
+            <Select
 
-            classNames={{
-    trigger: "bg-white  border-gray-100 border-3 "
-  }}
-            required={true}
-            items={items?.models}
-            isMultiline={true}
-            selectionMode='multiple'
-            defaultSelectedKeys={[...currectValue]}
-            label={<div className='text-2xl font-unbounded mb-6   text-center w-full z-10 font-[600]'>
-              <div className='mb-auto w-full text-center'>
-              {placeholder}
-</div>
-            </div>}
-            placeholder={placeholder}
-            onSelectionChange={innerOnSelectionChanged}
-            selectedKeys={[...currectValue]}
-                  renderValue={(items: SelectedItems<TGetModel>) => {
-        return items.map((item) => onSelectRenderFunction(item.data as TGetModel));
-      }}
-          >
-            {(item) => (
-              <SelectItem key={
-                item.id
+              classNames={{
+                trigger: "bg-white  border-gray-100 border-3"
+
+
+              }
+
+              }
+              required={true}
+              items={items?.models}
+              isMultiline={true}
+              selectionMode='multiple'
+              defaultSelectedKeys={[...currectValue]}
+              label={<div className='text-2xl font-unbounded mb-6 text-nowrap  text-center w-full z-10 font-[600]'>
+                <div className='mb-auto w-full text-center'>
+                  {placeholder}
+                </div>
+              </div>}
+              placeholder={placeholder}
+              onSelectionChange={innerOnSelectionChanged}
+              selectedKeys={[...currectValue]}
+              renderValue={(items: SelectedItems<TGetModel>) => {
+                return items.map((item) => onSelectRenderFunction(item.data as TGetModel));
+              }}
+            >
+              {(item) => (
+                <SelectItem key={
+                  item.id
                 }>
-                {renderFunction(item)}
-              </SelectItem>
-            )
-            }
-          </Select>
+                  {renderFunction(item)}
+                </SelectItem>
+              )
+              }
+            </Select>
           :
           <p className="text-red-700">
             {error}

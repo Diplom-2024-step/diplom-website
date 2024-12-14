@@ -14,10 +14,13 @@ import React, { useEffect, useState } from 'react'
 const SelectCityToTravelTo = (
 {
     city,
-    setCity
+    setCity,
+    placeholder
 }:{
      city?: GetCityDto,
         setCity: (value:GetCityDto) => void,
+
+    placeholder?:string
 }
 
 
@@ -117,8 +120,10 @@ const SelectCityToTravelTo = (
                         <Select
                             required={true}
                             items={items?.models}
-                            label={"select city"}
-                            placeholder={"select city"}
+                            label={placeholder}
+                            radius='full'
+                            placeholder={placeholder}
+                            className='w-full md:w-60'
                             onSelectionChange={innerOnSelectionChanged}
                             selectedKeys={[city?.id ? city?.id : "" ]}
                             renderValue={(items: SelectedItems<GetCityDto>) => {
