@@ -23,6 +23,7 @@ import { SharedCardProps } from "@/types/components/SharedCardProps";
 import { FavoriteTourRelationService } from "@/service/relationServices/FavoriteTourRelationService";
 import { useSession } from "next-auth/react";
 import { useAuthService } from "@/hooks/auth";
+import { HistoryItemTypes, useSearchHistory } from "@/hooks/useSearchHistory";
 
 interface TourCardProps {
   tour: GetTourDto;
@@ -39,6 +40,8 @@ const TourCard = ({
 }: SharedCardProps<GetTourDto>) => {
   const router = useRouter();
   const relationService = new FavoriteTourRelationService();
+  const [hisotry, addToHistory] = useSearchHistory();
+
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
 
   const { data: session, status, update } = useSession()
@@ -137,6 +140,11 @@ const TourCard = ({
         isPressable
         disableRipple
         onClick={() => {
+          addToHistory({
+            item: cardItem,
+            type: HistoryItemTypes.Tour
+
+          });
           router.push(`/tours/${cardItem.id}`);
         }}
       >
@@ -156,6 +164,7 @@ const TourCard = ({
             className="absolute top-4 right-4 z-10"
             onClick={(e) => {
               e.stopPropagation();
+
               toggleFavorite();
             }}
           >

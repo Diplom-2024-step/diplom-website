@@ -7,6 +7,8 @@ import avatar from '../../assets/images/profile/avatar.png';
 import { useAuth } from "@/hooks/auth";
 import LoadingScreen from "@/components/shared/LoadingScreen";
 import UserService from "@/service/UserService";
+import { useSearchHistory } from "@/hooks/useSearchHistory";
+import HistoryCarousel from "@/components/profile/HistoryCarousel";
 
 const Profile= () => {
 
@@ -30,7 +32,7 @@ const Profile= () => {
 
 
   return (
-    <div className="flex flex-col items-center  min-h-screen ">
+    <div className="flex flex-col items-center  min-h-screen pb-10 ">
       {/* Header Section */}
       <div className="w-full h-64 relative">
         <Image
@@ -118,6 +120,9 @@ const Profile= () => {
           {activeTab === "comments" && <p>Контент для коментарів</p>} */}
         </CardBody>
       </Card>
+    
+
+    <HistoryCarousel/>
     </div>
   );
 };
