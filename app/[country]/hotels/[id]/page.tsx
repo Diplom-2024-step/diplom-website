@@ -76,8 +76,11 @@ const page = async ({ params }: { params: { id: string } }) => {
 
           <PaymentGuaranteeSection />
 
+            <div className='mb-5'>
           <RecomendedToursCarouselForHotel hotelId={params.id}
           />
+
+</div>
         </>
           : <LoadingCircle />
       }
