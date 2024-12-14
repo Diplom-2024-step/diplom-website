@@ -71,12 +71,12 @@ const TourCard = ({
           <span className="text-white whitespace-nowrap">
             {cardItem.duration}{" "}
             {cardItem.duration % 10 === 1 && cardItem.duration !== 11
-              ? "день"
+              ? "ніч"
               : cardItem.duration % 10 >= 2 &&
                   cardItem.duration % 10 <= 4 &&
                   (cardItem.duration < 10 || cardItem.duration > 20)
-                ? "дні"
-                : "днів"}
+                ? "ночей"
+                : "ночей"}
           </span>
         </div>
         {/* Bottom overlay (positioned relatively) */}

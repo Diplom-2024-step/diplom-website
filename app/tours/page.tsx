@@ -63,7 +63,7 @@ const page = ({ params }: { params: { country: string } }) => {
       <TourCarouselRecommendation />
       <div className="w-full flex justify-between max-w-6xl mx-auto px-4 mt-20">
         <span>
-          <h2 className="text-3xl font-bold font-unbounded  mb-6 text-black">
+          <h2 className="text-3xl font-bold  mb-6 text-black font-unbounded">
             Наші тури
           </h2>
         </span>

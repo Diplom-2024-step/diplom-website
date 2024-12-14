@@ -1,8 +1,10 @@
 import { GetTourDto } from "@/AppDtos/Dto/Models/Tours/get-tour-dto";
+import TravelBooking from "@/components/tours/TourDetails/travelBooking/TravelBooking";
 import { Card, Tab, Tabs } from "@nextui-org/react";
 import { Image } from "@nextui-org/react";
 import { MapPin } from "lucide-react";
 import React, { Key } from "react";
+import { Link } from "@nextui-org/react";
 
 const TourDetailHeader = ({
   tour,
@@ -35,15 +37,7 @@ const TourDetailHeader = ({
           >
             Готель
           </button>
-          <button
-            onClick={() => onSelectChage("photos")}
-            className={`flex-1 px-11 pt-2 text-sm font-medium bg-white rounded-t-[20px] border-r-2 border-gray-300 shadow-right whitespace-nowrap 
-        relative transition-all duration-300 ease-in-out 
-        ${activeTab === "photos" ? "text-[#0F171B] bg-gray-100" : "text-[#161616]"}
-        hover:bg-gray-100 hover:text-[#0F171B]`}
-          >
-            Фото
-          </button>
+
           <button
             onClick={() => onSelectChage("reviews")}
             className={`flex-1 pl-7 px-11 pt-2 text-sm font-medium bg-white rounded-t-[20px] border-r-2 shadow-right whitespace-nowrap   
@@ -81,17 +75,20 @@ const TourDetailHeader = ({
               <div className="space-y-6">
                 {/* Tour Name and Rating */}
                 <div className="flex justify-between items-start">
-                  <h1 className="text-3xl font-bold text-gray-900">
+                  <h1 className="text-3xl font-bold font-unbounded text-gray-900">
                     {tour.hotel.city.country.name}, {tour.hotel.city.name}
                   </h1>
                 </div>
 
                 {/* Location */}
                 <div className="flex items-center gap-2 text-sky-500">
-                  <MapPin className="w-5 h-5" />
-                  <span>
-                    {tour.hotel.city.country.name}, {tour.hotel.city.name}
-                  </span>
+                  <Link
+                    href={`/${tour.hotel.city.country.id}/hotels/${tour.hotel.id}`}
+                  >
+                    <MapPin className="w-5 h-5" />
+                    <span>{tour.hotel.name}</span>
+                  </Link>
+
                   <div className="ml-2 flex items-center text-center">
                     <div className="text-2xl font-bold text-gray-900 mr-2">
                       {tour.hotel.stars}
@@ -130,6 +127,7 @@ const TourDetailHeader = ({
           </div>
         </div>
       </Card>
+      <TravelBooking tour={tour} />
     </div>
   );
 };

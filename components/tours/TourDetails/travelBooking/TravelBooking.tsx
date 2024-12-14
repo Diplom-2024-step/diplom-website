@@ -8,7 +8,7 @@ import { setConfig } from "next/config";
 import ChoosingDietTypeRoomTypeButton from "@/components/hotels/hotelDetails/travelBooking/choosingDietTypeRoomTypeButton/ChoosingDietTypeRoomTypeButton";
 import { GetDietTypeDto } from "@/AppDtos/Dto/Models/DietTypes/get-diet-type-dto";
 import { GetRoomTypeDto } from "@/AppDtos/Dto/Models/RoomTypes/get-room-type-dto";
-import ChoosingDateAndCityButton from "@/components/hotels/hotelDetails/travelBooking/ChoosingDateAndCityButton/ChoosingDateAndCityButton";
+import ChoosingDateButton from "@/components/tours/TourDetails/travelBooking/ChoosingDateAndCityButton/ChoosingDateButton";
 import { parseDate } from "@internationalized/date";
 import { addDays, differenceInDays, formatISO } from "date-fns";
 import { GetCityDto } from "@/AppDtos/Dto/Models/Hotels/get-city-dto";
@@ -91,9 +91,7 @@ const TravelBooking = ({ tour }: { tour: GetTourDto }) => {
               <div className="w-[80%] p-5 justify-between flex">
                 <div className="flex flex-col">
                   <div>{date.start.toString()}</div>
-                  <div>
-                    {city?.name} - {tour.hotel.city.name}
-                  </div>
+                  <div>- {tour.fromCity.name}</div>
                 </div>
                 <div className="flex-col text-center">
                   <div>
@@ -115,20 +113,11 @@ const TravelBooking = ({ tour }: { tour: GetTourDto }) => {
                 </div>
                 <div className="flex flex-col">
                   <div>{date.end.toString()}</div>
-                  <div>
-                    {tour.hotel.city.name} - {city?.name}
-                  </div>
+                  <div>{tour.toCity.name} -</div>
                 </div>
               </div>
               <div className="w-[20%] h-full">
-                <ChoosingDateAndCityButton
-                  date={date}
-                  setDate={setDate}
-                  city={city}
-                  setCity={setCity}
-                  setTransportationType={setTransportationType}
-                  transportationType={transportationType}
-                />
+                <ChoosingDateButton date={date} setDate={setDate} tour={tour} />
               </div>
             </div>
           </div>
@@ -173,33 +162,13 @@ const TravelBooking = ({ tour }: { tour: GetTourDto }) => {
           </div>
 
           <BuyButtonActive
-            city={city!}
-            transporationType={transportationType}
+            city={tour.fromCity!}
+            transporationType={tour.transportationType}
             cost={calculateCost()}
           />
         </div>
       </div>
-
-      <PickActivitiesForTour />
-      <div className="p-10 bg-white">
-        <div>
-          <p className="text-black mb-5 text-[25px]">Опис туру</p>
-        </div>
-        <div>
-          <p>
-            Головна ідея наших турів полягає у тому, що до кожного туру ви
-            можете обрати будь-який інший готель, що вам запропоновано. Тобто є
-            тур з вже включеним готелем, але ви можете змінити його на інший в
-            рамках цієї країни, яку ви обрали.
-          </p>
-          <p className="mt-10">
-            Також ще одна наша фішка - це активні відпочинки, які ви зможете
-            додати в готелі. Ця послуга виключно від турагентства. Ми пропонуємо
-            вам більший вибір готелів та будь-які види активного відпочинку на
-            ваш смак. У цьому і полягає сам тур.
-          </p>
-        </div>
-      </div>
+      <PickActivitiesForTour tour={tour} />
     </>
   );
 };
