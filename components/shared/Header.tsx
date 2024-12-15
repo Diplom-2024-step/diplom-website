@@ -6,16 +6,16 @@ import { Select, SelectItem } from "@nextui-org/select";
 import { Avatar } from "@nextui-org/avatar";
 import {DateRangePicker} from "@nextui-org/react";
 
-import image1 from '../../assets/images/block-1/image-1.png';
-import image2 from '../../assets/images/block-1/image-2.png';
-import image3 from '../../assets/images/block-1/image-3.png';
-import image4 from '../../assets/images/block-1/image-4.png';
-import image5 from '../../assets/images/block-1/image-5.png';
-import image6 from '../../assets/images/block-1/image-6.png';
-import image7 from '../../assets/images/block-1/image-7.png';
-import image8 from '../../assets/images/block-1/image-8.png';
-import image9 from '../../assets/images/block-1/image-9.png';
-import image10 from '../../assets/images/block-1/image-10.png';
+import image1 from '../../assets/images/block-1/image-1.webp';
+import image2 from '../../assets/images/block-1/image-2.webp';
+import image3 from '../../assets/images/block-1/image-3.webp';
+import image4 from '../../assets/images/block-1/image-4.webp';
+import image5 from '../../assets/images/block-1/image-5.webp';
+import image6 from '../../assets/images/block-1/image-6.webp';
+import image7 from '../../assets/images/block-1/image-7.webp';
+import image8 from '../../assets/images/block-1/image-8.webp';
+import image9 from '../../assets/images/block-1/image-9.webp';
+import image10 from '../../assets/images/block-1/image-10.webp';
 import TravelerCard from './TravelerCard';
 import FindTourCard from '../tours/FindTourCard';
 
@@ -65,7 +65,7 @@ const Header = () => {
 
   const handleSave = () => {
     toggleModal(); // Закрыть модальное окно
-    // Здесь можете добавить логику для сохранения или использования значений adults и children
+    // добавить логику для сохранения или использования значений adults и children
   };
 
   return (
