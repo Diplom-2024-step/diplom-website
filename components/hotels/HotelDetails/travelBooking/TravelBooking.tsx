@@ -14,7 +14,7 @@ import { addDays, differenceInDays, formatISO } from 'date-fns'
 import { GetCityDto } from '@/AppDtos/Dto/Models/Hotels/get-city-dto'
 import { GetTransportationTypeDto } from '@/AppDtos/Dto/Models/TransportationTypes/get-transportation-type-dto'
 import BuyButtonActive from './BuyTravel/BuyButtonActive'
-import { useTravelBookingContext } from '@/components/providers/TravelBookingProvider'
+import { useTravelBookingContextInjectedHotel } from '@/components/providers/TravelBookingProvider'
 import PickActivitiesForTour from '@/components/activities/PickActivitiesForTour'
 
 const TravelBooking = (
@@ -27,11 +27,11 @@ const TravelBooking = (
 ) => {
 
 
-  const { adults, kids, dietType, roomType, city, transportationType, date, setAdults, setKids, setDietType, setRoomType, setCity, setTransportationType, setDate } = useTravelBookingContext(hotel);
+  const { adults, kids, dietType, roomType, city, transportationType, date, setAdults, setKids, setDietType, setRoomType, setCity, setTransportationType, setDate } = useTravelBookingContextInjectedHotel(hotel);
 
 
   const calculateCost = () => {
-    return (hotel.additionCostPerPerson * (adults + kids) + hotel.pricePerNight) * (differenceInDays(date.end.toString(), date.start.toString()) - 1) + (dietType?.price ? dietType.price * 44 : 1) + (roomType?.price ? roomType.price * 44 : 1)
+    return (hotel.additionCostPerPerson * (adults + kids) + hotel.pricePerNight) * (differenceInDays(date.end.toString(), date.start.toString()) - 1) + (dietType?.price ? dietType.price  : 1) + (roomType?.price ? roomType.price : 1)
   }
 
 
@@ -138,8 +138,8 @@ const TravelBooking = (
 
             <div className='w-full flex items-center justify-start p-2'>
               <div className='w-[80%] p-5 grid grid-cols-1 gap-2'>
-                <span>{"Кімната: " + roomType?.name} - {(roomType?.price ? roomType.price : 0) * 44 + " грн."}</span>
-                <span>{"Харчування: " + dietType?.name} - {(dietType?.price ? dietType.price : 0) * 44 + " грн."}</span>
+                <span>{"Кімната: " + roomType?.name} - {(roomType?.price ? roomType.price : 0)  + " грн."}</span>
+                <span>{"Харчування: " + dietType?.name} - {(dietType?.price ? dietType.price : 0)  + " грн."}</span>
               </div>
 
               <div className='w-[20%] h-full'>
@@ -164,8 +164,9 @@ const TravelBooking = (
             </div>
           </div>
 
-          <BuyButtonActive howManyAdults={adults} howManyChildren={kids} dietType={dietType!} roomType={roomType!} city={city} date={date}
+          <BuyButtonActive     city={city!} 
             transporationType={transportationType}
+            cost={calculateCost()}
           />
         </div>
       </div>

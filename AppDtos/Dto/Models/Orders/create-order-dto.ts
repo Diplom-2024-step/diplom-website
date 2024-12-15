@@ -6,15 +6,15 @@
 import { z } from 'zod';
 
 export const createOrderDtoSchema = z.object({
-    tourId: z.string().uuid(),
+    hotelId: z.string().uuid(),
     priceUSD: z.number().int().min(0).max(2147483647),
-    startDate: z.date(),
-    endDate: z.date(),
+    startDate: z.string(),
+    endDate: z.string(),
     mobilePhoneNumber: z.string().max(32),
     fullName: z.string().max(128),
     userId: z.string().uuid().nullish(),
     adminId: z.string().uuid().nullish(),
-    orderStatusId: z.string().uuid(),
+    orderStatus: z.string(),
     duration: z.number().int().min(3).max(90),
     transportationTypeId: z.string().uuid(),
     roomTypeId: z.string().uuid(),
@@ -23,6 +23,7 @@ export const createOrderDtoSchema = z.object({
     howManyKids: z.number().int().min(0).max(10),
     fromCityId: z.string().uuid(),
     toCityId: z.string().uuid(),
+    activityIds: z.array(z.string().uuid()).default([])
 });
 
 export type CreateOrderDto = z.infer<typeof createOrderDtoSchema>;

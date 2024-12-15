@@ -9,9 +9,9 @@ const HotelCarouselSkeleton = () => {
   return (
     <div className="w-full max-w-6xl mx-auto px-4 text-black">
       {/* Title skeleton */}
-      <Skeleton className="rounded-lg mb-6">
-        <div className="h-8 w-64" />
-      </Skeleton>
+                  <h2 className="text-5xl font-bold font-unbounded mt-6">Рекомендуємо відвідати</h2>
+
+
 
       <div className="relative">
         <div className="overflow-hidden">

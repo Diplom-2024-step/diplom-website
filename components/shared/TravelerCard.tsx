@@ -1,6 +1,7 @@
 import React from 'react';
 import { Button, Card, CardBody, CardFooter, CardHeader, Input} from '@nextui-org/react';
 import  '../../assets/fonts-styles/font.css';
+import NumberInput from './sharedComponents/NumberInput';
 
 interface TravelerCardProps {
   adults: number;
@@ -36,27 +37,21 @@ const TravelerCard: React.FC<TravelerCardProps> = ({ adults, children, setAdults
         
         <CardBody className="flex flex-row space-y-4 shadow-lg p-5">
           <div className="flex justify-between space-x-3">
-              <Input
-                variant="bordered"
-                radius='none'
-                min="1"
-                value={adults.toString()}
-                onChange={handleAdultChange}
-                className="w-7 h-[0.5px]"
-                size="sm"
+            <NumberInput
+               value={adults} 
+               setValue={setAdults}              
+               min={1}
+               max={6}
+               label='Дорослих'
               />
-            <span>Дорослих</span>
 
-            <Input
-              variant="bordered"
-              radius='none'
-              min="0"
-              value={children.toString()}
-              onChange={handleChildrenChange}
-              className="w-7  h-[0.5px]" 
-              size="sm"
-            />
-            <span>Дітей</span>
+            <NumberInput
+               value={children} 
+               setValue={setChildren}              
+               min={0}
+               max={6}
+               label='Дітей'
+              />
          
           </div>
         </CardBody>

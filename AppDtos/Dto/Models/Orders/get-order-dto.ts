@@ -11,9 +11,11 @@ import { getTransportationTypeDtoSchema } from "../TransportationTypes/get-trans
 import { getRoomTypeDtoSchema } from "../RoomTypes/get-room-type-dto";
 import { getDietTypeDtoSchema } from "../DietTypes/get-diet-type-dto";
 import { getCityDtoSchema } from "../Hotels/get-city-dto";
+import { getHotelDtoSchema } from "../Hotels/get-hotel-dto";
+import { getActivityDtoSchema } from "../Activities/get-activity-dto";
 
 export const getOrderDtoSchema = z.object({
-    tour: getTourDtoSchema,
+    hotel: getHotelDtoSchema,
     priceUSD: z.number().int(),
     startDate: z.date(),
     endDate: z.date(),
@@ -21,7 +23,7 @@ export const getOrderDtoSchema = z.object({
     fullName: z.string(),
     user: getUserDtoSchema.nullish(),
     admin: getUserDtoSchema.nullish(),
-    orderStatus: getOrderStatusDtoSchema,
+    orderStatus: z.string(),
     id: z.string().uuid(),
     duration: z.number().int().min(3).max(90),
     transportationType: getTransportationTypeDtoSchema,
@@ -31,6 +33,8 @@ export const getOrderDtoSchema = z.object({
     howManyKids: z.number().int().min(0).max(10),
     fromCity: getCityDtoSchema,
     toCityId: getCityDtoSchema,
+    activities: z.array(getActivityDtoSchema),
+
 });
 
 export type GetOrderDto = z.infer<typeof getOrderDtoSchema>;

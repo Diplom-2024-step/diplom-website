@@ -1,77 +1,30 @@
 "use client";
 import React from "react";
 import Image from "next/image";
-import Select from "react-select";
 import headerLogoImage from "../../assets/images/header/Expedia_Logo_2023.png";
 import SignInButton from "./SignInButton";
 import { Icon } from "@iconify/react";
-
-const countryOptions = [
-  {
-    value: "spain",
-    label: (
-      <div className="flex items-center gap-2">
-        <Icon icon="openmoji:flag-spain" />
-        Іспанія
-      </div>
-    ),
-  },
-  {
-    value: "egypt",
-    label: (
-      <div className="flex items-center gap-2">
-        <Icon icon="openmoji:flag-egypt" />
-        Єгипт
-      </div>
-    ),
-  },
-  {
-    value: "italy",
-    label: (
-      <div className="flex items-center gap-2">
-        <Icon icon="openmoji:flag-italy" />
-        Італія
-      </div>
-    ),
-  },
-  {
-    value: "turkey",
-    label: (
-      <div className="flex items-center gap-2">
-        <Icon icon="openmoji:flag-turkey" />
-        Туреччина
-      </div>
-    ),
-  },
-  {
-    value: "maldives",
-    label: (
-      <div className="flex items-center gap-2">
-        <Icon icon="openmoji:flag-maldives" />
-        Мальдіви
-      </div>
-    ),
-  },
-];
+import { Link } from "@nextui-org/react";
+import SelectCountryForHotels from "./sharedComponents/selects/SelectCountryForHotels";
 
 const Navbar = () => {
   return (
     <header className="bg-white shadow-md py-2">
       <div className="container mx-auto flex items-center justify-between px-4">
+        <Link href="/">
         <Image alt="logo" src={headerLogoImage}></Image>
+</Link>
 
         <nav className="hidden md:flex items-center justify-center space-x-6 text-[15px]">
-          <div className="relative">
-            <Select
-              options={countryOptions}
-              placeholder="Країни"
-              className="bg-white text-gray-600 rounded-md pt-2 pb-2 px-3 focus:outline-none focus:ring focus:ring-blue-500 hover:bg-gray-100 mt-[20px]"
-            />
-          </div>
 
-          <a href="#" className="text-gray-600 hover:text-gray-900">
+          <SelectCountryForHotels />
+
+          <Link href={`/tours`} className="text-gray-600 hover:text-gray-900">
             Тури
-          </a>
+          </Link>
+          {/* <a href="#" className="text-gray-600 hover:text-gray-900">
+            Тури
+          </a> */}
 
           <div className="relative">
             <select className="bg-white text-gray-600 rounded-md py-2 px-3 focus:outline-none focus:ring focus:ring-blue-500 hover:bg-gray-100">

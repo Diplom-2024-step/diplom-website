@@ -59,7 +59,7 @@ const HotelDescription = (
                             {
                                 hotel.dietTypes.map((key, value) => 
                                     <li key={value}>
-                                        - {key.name} - {key.price * 44} грн.        
+                                        - {key.name} - {key.price } грн.        
                                     </li>
                                 )
                             }
@@ -105,7 +105,7 @@ const HotelDescription = (
                             {
                                 hotel.roomTypes.map((key, value) => 
                                     <li key={value}>
-                                        - {key.name} - {key.price * 44} грн.        
+                                        - {key.name} - {key.price } грн.        
                                     </li>
                                 )
                             }

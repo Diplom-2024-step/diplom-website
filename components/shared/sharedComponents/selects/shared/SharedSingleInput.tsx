@@ -10,6 +10,7 @@ import useGetPageOfItems from '@/hooks/useGetPageOfItems'
 import { Select, SelectedItemProps, SelectedItems, SelectItem, SharedSelection } from '@nextui-org/react'
 import LoadingCircle from '@/components/shared/skeletons/LoadingCircle'
 import { GetTransportationTypeDto } from '@/AppDtos/Dto/Models/TransportationTypes/get-transportation-type-dto'
+import { FilterDto } from '@/AppDtos/Shared/filter-dto'
 
 
 
@@ -37,16 +38,15 @@ const SharedSingleInput = <
 
   const [perPage, setPerPage] = useState("50");
   const page = "1";
-
   const [value, setValue] = useState<string>("");
-
   const [perPageState, setPerPageState] = useDebounceState(perPage, setPerPage, 500);
   const [items, setItems] = useState<ReturnPageDto<TGetModel>>();
   const [loadingState, setLoadingState] = useState<LoadingState>("loading");
   const [sortDescriptor, setSortDescriptor] = useState<SortDescriptor>();
   const [error, setError] = useState<string>();
   const [perPageError, setPerPageError] = useState<string>();
-
+  
+  const [filters, setFilters] = useState<FilterDto[][]>([])
 
   const loadItems = useGetPageOfItems<
     TGetModel,
@@ -60,7 +60,8 @@ const SharedSingleInput = <
     setError,
     setPerPage,
     setItems,
-    "success"
+    "success",
+    filters
   );
 
   useEffect(() => {

@@ -1,9 +1,14 @@
 "use client"
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Image from 'next/image';
 import { Card, CardHeader, CardBody, CardFooter } from "@nextui-org/react";
 import background from '../../assets/images/block-1/image-2.webp';
 import avatar from '../../assets/images/profile/avatar.png';
+import { useAuth } from "@/hooks/auth";
+import LoadingScreen from "@/components/shared/LoadingScreen";
+import UserService from "@/service/UserService";
+import { useSearchHistory } from "@/hooks/useSearchHistory";
+import HistoryCarousel from "@/components/profile/HistoryCarousel";
 
 import surfing from "../../assets/images/profile/surfing.jpg";
 import diving from "../../assets/images/profile/diving.jpg";
@@ -56,8 +61,29 @@ const Profile= () => {
     },
   ];
 
+
+
+
+
+
+
+  const auth = useAuth( {
+    redirect: true
+  });
+
+
+
+  const [activeTab, setActiveTab] = useState(""); // Состояние для активной вкладки
+
+  const service = UserService;
+
+
+
+  if (auth.status == "loading" || auth.status == 'unauthorized') return <LoadingScreen/>
+
+
   return (
-    <div className="flex flex-col items-center min-h-screen">
+    <div className="flex flex-col items-center  min-h-screen pb-10 ">
       {/* Header Section */}
       <div className="w-full h-64 relative">
         <Image
@@ -91,7 +117,6 @@ const Profile= () => {
             style={{ fontFamily: 'Unbounded, sans-serif', fontWeight: 600 }}
             className=" pt-20  text-xl text-[#0F171B]"
           >
-            Ім’я Прізвище
           </h2>
         </div>
       </div>
@@ -156,6 +181,9 @@ const Profile= () => {
             {activeTab === "favorites" && <p>Контент для обраного</p>}
             {activeTab === "comments" && <p>Контент для коментарів</p>} */}
       </Card>
+    
+
+    <HistoryCarousel/>
     </div>
   );
 };
