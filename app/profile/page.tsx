@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from "react";
 import Image from 'next/image';
 import { Card, CardHeader, CardBody, CardFooter } from "@nextui-org/react";
-import background from '../../assets/images/block-1/image-2.png';
+import background from '../../assets/images/block-1/image-2.webp';
 import avatar from '../../assets/images/profile/avatar.png';
 import { useAuth } from "@/hooks/auth";
 import LoadingScreen from "@/components/shared/LoadingScreen";
@@ -10,7 +10,58 @@ import UserService from "@/service/UserService";
 import { useSearchHistory } from "@/hooks/useSearchHistory";
 import HistoryCarousel from "@/components/profile/HistoryCarousel";
 
+import surfing from "../../assets/images/profile/surfing.jpg";
+import diving from "../../assets/images/profile/diving.jpg";
+import tennis from "../../assets/images/profile/tennis.jpg"
+import climbing from "../../assets/images/profile/Climbing.png";
+import yachtTrips from "../../assets/images/profile/Yacht-trips.png";
+import sapi from "../../assets/images/profile/Sapi.png";
+import quadracycles from "../../assets/images/profile/Quadracycles.png";
+
+import TravelCardProfile from "./travelCard";
+import {TravelCardProps} from "./travelCard";
+
 const Profile= () => {
+  const [activeTab, setActiveTab] = useState("booked"); // Состояние для активной вкладки
+
+  const cardsData: TravelCardProps[] = [
+    {
+      title: "Beachscape Kin Ha Villas & Suites",
+      location: "Мексика, Канкун",
+      price: "27 882",
+      tourists: "1 Дорослий",
+      departure: "10 Дек 2024",
+      room: "Standard Double Room",
+      meals: "Сніданки (BB)",
+      activities: [
+        { name: "Серфінг", image: surfing.src },
+        { name: "Дайвінг", image: diving.src },
+        { name: "Теніс", image: tennis.src },
+        { name: "Скелелазіння", image: climbing.src },
+        { name: "Прогулянки на яхті", image: yachtTrips.src },
+        { name: "Сапи", image: sapi.src },
+        { name: "Квадрацикли", image: quadracycles.src },
+      ],
+      stars: 4, // Добавлено поле для звезд
+    },
+    {
+      title: "Royal Caribbean Resort",
+      location: "Таїланд, Паттайя",
+      price: "21 550",
+      tourists: "2 Дорослих",
+      departure: "15 Янв 2025",
+      room: "Suite",
+      meals: "Все включено (AI)",
+      activities: [
+        { name: "Скелелазіння", image: climbing.src },
+        { name: "Прогулянки на яхті", image: yachtTrips.src },
+        { name: "Сапи", image: sapi.src },
+      ],
+      stars: 5, // Добавлено поле для звезд
+    },
+  ];
+
+
 
 
 
@@ -84,41 +135,51 @@ const Profile= () => {
           <div className="flex justify-between text-[#161616]">
             <button
               onClick={() => setActiveTab("booked")}
-              className={`flex-1 px-6 pt-2 text-sm font-medium rounded-tr-[20px] border-r-2 border-gray-300 shadow-right whitespace-nowrap 
-                relative transition-all duration-300 ease-in-out 
-                ${  activeTab === "booked" ? "text-[#0F171B] scale-110 " : "text-[#161616]" }`}>
+              className={`flex-1 px-6 pt-2 text-sm font-medium rounded-tr-[20px] whitespace-nowrap 
+                relative 
+                ${activeTab === "booked" ? "text-[#0F171B] scale-110 " : "text-[#161616]" }
+                ${activeTab === "completed" ? "border-r-0" : "border-r-2 border-gray-300  shadow-right"}`}>
               Заброньовані тури
             </button>
             <button 
             onClick={() => setActiveTab("completed")}
-            className={` flex-1  px-6 pt-2 text-sm font-medium rounded-tr-[20px] border-r-2 border-gray-300 shadow-right whitespace-nowrap 
-              relative transition-all duration-300 ease-in-out 
-              ${  activeTab === "completed" ? "text-[#0F171B] scale-110 z-10" : "text-[#161616]" }`}>
+            className={` flex-1  px-6 pt-2 text-sm font-medium rounded-tr-[20px] shadow-right whitespace-nowrap 
+              relative
+              ${activeTab === "completed" ? "text-[#0F171B] scale-110 rounded-tl-[20px] shadow-left rounded-tr-[20px] shadow-right border-l-2 border-gray-300" : "text-[#161616]"} 
+              ${activeTab === "favorites" ? "border-r-0" : "border-r-2 border-gray-300"}`}>
               Завершені тури
             </button>
             <button 
              onClick={() => setActiveTab("favorites")}
-            className={` flex-1  px-11 pt-2 text-sm font-medium rounded-tr-[20px] border-r-2 border-gray-300 shadow-right whitespace-nowrap 
-              relative transition-all duration-300 ease-in-out 
-              ${ activeTab === "favorites" ? "text-[#0F171B] scale-110" : "text-[#161616]" }`}>
+            className={` flex-1  px-11 pt-2 text-sm font-medium rounded-tr-[20px] shadow-right whitespace-nowrap 
+              relative
+              ${activeTab === "favorites" ? "text-[#0F171B] scale-110 rounded-tl-[20px] shadow-left rounded-tr-[20px] shadow-right border-l-2 border-gray-300" : "text-[#161616]"} 
+              ${activeTab === "comments" ? "border-r-0" : "border-r-2 border-gray-300"} `}>
               Обране
             </button>
             <button 
             onClick={() => setActiveTab("comments")}
             className={` flex-1  pl-7 pt-2 text-sm font-medium  shadow-right  whitespace-nowrap
-              relative transition-all duration-300 ease-in-out 
-              ${ activeTab === "comments" ? "text-[#0F171B] scale-110" : "text-[#161616]"  }`}>
+              relative
+              ${activeTab === "comments" ? "text-[#0F171B] scale-110 rounded-tl-[20px] shadow-left border-l-2 border-gray-300" : "text-[#161616]"  }`}>
               Мої коментарі
             </button>
           </div>
         </CardHeader>
 
-        <CardBody className="h-96 w-full text-[#0F171B] bg-white rounded-tr-[20px] shadow-lg">
-          {/* {activeTab === "booked" && <p>Контент для заброньованих турів</p>}
-          {activeTab === "completed" && <p>Контент для завершених турів</p>}
-          {activeTab === "favorites" && <p>Контент для обраного</p>}
-          {activeTab === "comments" && <p>Контент для коментарів</p>} */}
+        <CardBody className="h-auto w-full  text-[#0F171B] bg-white rounded-tr-[20px] shadow-lg">
+            {activeTab === "booked" && (
+             <div className="my-10">
+              {cardsData.map((card, index) => (
+                <TravelCardProfile key={index} {...card} />
+              ))}
+            </div>
+            )}
         </CardBody>
+
+        {/* {activeTab === "completed" && <p>Контент для завершених турів</p>}
+            {activeTab === "favorites" && <p>Контент для обраного</p>}
+            {activeTab === "comments" && <p>Контент для коментарів</p>} */}
       </Card>
     
 
@@ -126,5 +187,6 @@ const Profile= () => {
     </div>
   );
 };
+
 
 export default Profile;

@@ -16,6 +16,7 @@ const Navbar = () => {
 </Link>
 
         <nav className="hidden md:flex items-center justify-center space-x-6 text-[15px]">
+
           <SelectCountryForHotels />
 
           <Link href={`/tours`} className="text-gray-600 hover:text-gray-900">

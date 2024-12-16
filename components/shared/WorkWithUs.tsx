@@ -113,10 +113,10 @@ const WorkWithUs: React.FC = () => {
         </div>
       </div>
 
-      <Button radius='full' size='md' className="mt-8 text-white px-10 transition-colors duration-200">
+      <Button radius='full' size='md' className="mt-8 bg-[#5DB3C1] text-white px-10 transition-colors duration-200">
         Зв’яжіться з нами
       </Button>
-      <p className="mt-2 text-[13 px] text-[#0F171B]">Потрібна консультація?</p>
+      <p className="mt-2 text-[13px] text-[#0F171B]">Потрібна консультація?</p>
     </div>
   );
 };
