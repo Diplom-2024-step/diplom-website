@@ -29,7 +29,6 @@
 		"@nextui-org/theme": "^2.4.3",
 		"@react-aria/ssr": "3.9.4",
 		"@react-aria/visually-hidden": "3.8.12",
-		"@tailwindcss/typography": "^0.5.15",
 		"axios": "^1.7.7",
 		"caniuse-lite": "^1.0.30001680",
 		"clsx": "2.1.1",
@@ -50,6 +49,7 @@
 	},
 	"devDependencies": {
 		"@iconify/react": "^5.0.2",
+		"@tailwindcss/typography": "^0.5.15",
 		"@types/jsonwebtoken": "^9.0.7",
 		"@types/node": "20.5.7",
 		"@types/react": "18.3.3",

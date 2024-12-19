@@ -32,7 +32,7 @@ const TourDetailHeader = ({
             onClick={() => onSelectChage("description")}
             className={`flex-1 px-11 pt-2 text-sm font-medium  rounded-t-[20px] border-r-2 border-gray-300 shadow-right whitespace-nowrap 
         relative transition-all duration-300 ease-in-out 
-        ${activeTab === "description" ? "text-[#0F171B] !bg-gray-300" : "text-[#161616] bg-white"}
+        ${activeTab === "description" ? "text-[#0F171B] !bg-gray-100" : "text-[#161616] bg-white"}
         hover:bg-gray-100 hover:text-[#0F171B]`}
           >
             Готель
@@ -120,14 +120,15 @@ const TourDetailHeader = ({
 
                 {/* Description */}
                 <div className=" rounded-lg p-4">
-                  <p className=" leading-relaxed">{tour.hotel.description}</p>
+                  <p className=" leading-relaxed text-[18px]">
+                    {tour.hotel.description}
+                  </p>
                 </div>
               </div>
             </div>
           </div>
         </div>
       </Card>
-      <TravelBooking tour={tour} />
     </div>
   );
 };
