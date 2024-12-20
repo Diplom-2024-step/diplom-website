@@ -65,7 +65,7 @@ const CountryDescription = ({ countryName }: { countryName: string }) => {
           },
         ],
       };
-    } else if (countryName === "Єгипет") {
+    } else if (countryName === "Єгипт") {
       return {
         name: countryName,
         description:
@@ -186,17 +186,15 @@ const CountryDescription = ({ countryName }: { countryName: string }) => {
       className="flex flex-col items-end bg-cover bg-center h-full rounded-xl"
       style={{ backgroundImage: `url(${country?.backgroundImage.src})` }}
     >
-      <div className="flex flex-col w-[55%] h-full mt-[50px] mr-[30px]">
+      <div className="flex flex-col w-[55%] h-full mt-[40px] mr-[30px]">
         <div className="flex flex-col w-full h-[40%]">
-          <p className="text-[35px] text-unbounded text-white mb-5">
-            Про країну
-          </p>
+          <p className="text-[35px] text-unbounded text-white ">Про країну</p>
           <p
             className="flex flex-col space-y-3 text-[17px] text-nunito_font_family text-white"
             dangerouslySetInnerHTML={{ __html: boldFirstWordDescription }}
           />
         </div>
-        <div>
+        <div className="h-full mt-[10px]">
           <p className="text-[17px] text-nunito_font_family text-white mb-[20px] font-bold">
             Чим славиться:
           </p>
