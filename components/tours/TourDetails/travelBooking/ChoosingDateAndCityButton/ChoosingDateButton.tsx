@@ -46,6 +46,11 @@ const ChoosingDateButton = ({
       formatISO(newEnd, { representation: "date" })
     ); // Форматируем конечную дату
 
+    setInnerDate({
+      start: newRange,
+      end: formattedEnd,
+    });
+
     // Применяем изменения для внешнего состояния
     setDate({
       start: newRange,
@@ -99,7 +104,6 @@ const ChoosingDateButton = ({
                       representation: "date",
                     })
                   )}
-                  selectsRange
                   value={innerDate.start}
                   onChange={handleDateChange}
                   label="Select Date Range"
