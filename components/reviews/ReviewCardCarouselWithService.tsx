@@ -1,19 +1,21 @@
-import { GetReviewDto } from '@/AppDtos/Dto/Models/Reviews/get-review-dto';
-import { FilterDto } from '@/AppDtos/Shared/filter-dto';
-import { ReturnPageDto } from '@/AppDtos/Shared/return-page-dto';
-import useDebounceState from '@/hooks/useDebounceState';
-import { ReviewService } from '@/service/crudServices/ReviewService'
+import { GetReviewDto } from "@/AppDtos/Dto/Models/Reviews/get-review-dto";
+import { FilterDto } from "@/AppDtos/Shared/filter-dto";
+import { ReturnPageDto } from "@/AppDtos/Shared/return-page-dto";
+import useDebounceState from "@/hooks/useDebounceState";
+import { ReviewService } from "@/service/crudServices/ReviewService";
 import { LoadingState } from "@react-types/shared";
-import { SortDescriptor } from '@nextui-org/react';
-import React, { useEffect, useState } from 'react'
-import useGetPageOfItems from '@/hooks/useGetPageOfItems';
-import ReviewCardCarouselSkeleton from '../shared/skeletons/ReviewCardCarouselSkeleton';
-import ReviewCardCarousel from './ReviewCardCarousel';
+import { SortDescriptor } from "@nextui-org/react";
+import React, { useEffect, useState } from "react";
+import useGetPageOfItems from "@/hooks/useGetPageOfItems";
+import ReviewCardCarouselSkeleton from "../shared/skeletons/ReviewCardCarouselSkeleton";
+import ReviewCardCarousel from "./ReviewCardCarousel";
 
-const ReviewCardCarouselWithService = ({ reviewableId }: { reviewableId: string }) => {
-
-
-    const [perPage, setPerPage] = useState("10");
+const ReviewCardCarouselWithService = ({
+  reviewableId,
+}: {
+  reviewableId: string;
+}) => {
+  const [perPage, setPerPage] = useState("10");
   const [perPageState, setPerPageState] = useDebounceState(
     perPage,
     setPerPage,
@@ -35,7 +37,7 @@ const ReviewCardCarouselWithService = ({ reviewableId }: { reviewableId: string 
     ],
   ]);
 
-    const service = new ReviewService();
+  const service = new ReviewService();
 
   const loadItems = useGetPageOfItems<GetReviewDto, typeof service>(
     service,
@@ -54,18 +56,15 @@ const ReviewCardCarouselWithService = ({ reviewableId }: { reviewableId: string 
     loadItems().then();
   }, [loadItems]);
 
-
-
-
-    return loadingState !== "idle" ? (
+  return loadingState !== "idle" ? (
     <>
-      <ReviewCardCarouselSkeleton reviews={[...Array(10)]}/>
+      <ReviewCardCarouselSkeleton reviews={[...Array(10)]} />
     </>
   ) : (
     <>
-      <ReviewCardCarousel reviews={items?.models!}      />
+      <ReviewCardCarousel reviews={items?.models!} />
     </>
   );
-}
+};
 
-export default ReviewCardCarouselWithService
+export default ReviewCardCarouselWithService;

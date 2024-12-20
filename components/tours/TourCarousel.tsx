@@ -5,7 +5,13 @@ import TourCard from "./TourCard";
 import { GetTourDto } from "@/AppDtos/Dto/Models/Tours/get-tour-dto";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
-export const TourCarousel = ({ tours, title }: { tours: GetTourDto[], title:string }) => {
+export const TourCarousel = ({
+  tours,
+  title,
+}: {
+  tours: GetTourDto[];
+  title: string;
+}) => {
   const [currentIndex, setCurrentIndex] = useState<number>(0);
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
@@ -37,9 +43,7 @@ export const TourCarousel = ({ tours, title }: { tours: GetTourDto[], title:stri
 
   return (
     <div className="w-full max-w-6xl mx-auto px-4 text-black">
-      <h2 className="text-3xl font-bold font-unbounded mt-6">
-        {title}
-      </h2>
+      <h2 className="text-[50px] font-bold font-unbounded mt-6">{title}</h2>
 
       <div className="relative ">
         <div className="overflow-hidden">
