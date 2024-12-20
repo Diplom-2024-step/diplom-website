@@ -26,7 +26,7 @@ const page = ({ params }: { params: { country: string } }) => {
   const [page, setPage] = useSearchParam("page");
   const [toCity, setToCity] = useSearchParam("toCity");
   const [fromCity, setFromCity] = useSearchParam("fromCity");
- const [kids, setKids] = useSearchParam("kids");
+  const [kids, setKids] = useSearchParam("kids");
   const [duration, setDuration] = useSearchParam("duration");
   const [adults, setAdluts] = useSearchParam("adults");
 
@@ -53,21 +53,20 @@ const page = ({ params }: { params: { country: string } }) => {
   const [error, setError] = useState<string>();
   const [perPageError, setPerPageError] = useState<string>();
 
-
   const service = new TourService();
 
   useEffect(() => {
-    let newFilters: FilterDto[][] = [[]]
+    let newFilters: FilterDto[][] = [[]];
 
     if (stars) {
-      stars.split(',').forEach(e => {
+      stars.split(",").forEach((e) => {
         newFilters[0].push({
           column: "Hotel.Stars",
           searchTerm: e,
           filterType: "Strict",
-          negate: false
+          negate: false,
         });
-      })
+      });
     }
 
     if (lowestPrice) {
@@ -75,7 +74,7 @@ const page = ({ params }: { params: { country: string } }) => {
         column: "PriceUSD",
         searchTerm: lowestPrice,
         filterType: "BiggerOrEqual",
-        negate: false
+        negate: false,
       });
     }
 
@@ -84,62 +83,62 @@ const page = ({ params }: { params: { country: string } }) => {
         column: "PriceUSD",
         searchTerm: heightPrice,
         filterType: "SmallerOrEqual",
-        negate: false
+        negate: false,
       });
     }
 
     if (countriesIds) {
-      countriesIds.split(',').forEach(e => {
+      countriesIds.split(",").forEach((e) => {
         newFilters[0].push({
           column: "Hotel.City.Country.Id",
           searchTerm: e,
           filterType: "Strict",
-          negate: false
+          negate: false,
         });
-      })
+      });
     }
 
     if (inHotelsIds) {
-      inHotelsIds.split(',').forEach(e => {
+      inHotelsIds.split(",").forEach((e) => {
         newFilters[0].push({
           column: "Hotel.InHotels.Id",
           searchTerm: e,
           filterType: "Strict",
-          negate: false
+          negate: false,
         });
-      })
+      });
     }
 
     if (dietTypesIds) {
-      dietTypesIds.split(',').forEach(e => {
+      dietTypesIds.split(",").forEach((e) => {
         newFilters[0].push({
           column: "DietType.Id",
           searchTerm: e,
           filterType: "Strict",
-          negate: false
+          negate: false,
         });
-      })
+      });
     }
 
     if (roomTypesIds) {
-      roomTypesIds.split(',').forEach(e => {
+      roomTypesIds.split(",").forEach((e) => {
         newFilters[0].push({
           column: "RoomType.Id",
           searchTerm: e,
           filterType: "Strict",
-          negate: false
+          negate: false,
         });
-      })
+      });
     }
     if (beachTypesIds) {
-      beachTypesIds.split(',').forEach(e => {
+      beachTypesIds.split(",").forEach((e) => {
         newFilters[0].push({
           column: "Hotel.BeachTypes.Id",
           searchTerm: e,
           filterType: "Strict",
-          negate: false
+          negate: false,
         });
-      })
+      });
     }
 
     if (kids) {
@@ -147,8 +146,7 @@ const page = ({ params }: { params: { country: string } }) => {
         column: "HowManyKids",
         searchTerm: kids,
         filterType: "Strict",
-        negate: false
-
+        negate: false,
       });
     }
 
@@ -157,8 +155,7 @@ const page = ({ params }: { params: { country: string } }) => {
         column: "HowManyAdults",
         searchTerm: adults,
         filterType: "Strict",
-        negate: false
-
+        negate: false,
       });
     }
 
@@ -167,8 +164,7 @@ const page = ({ params }: { params: { country: string } }) => {
         column: "Duration",
         searchTerm: duration,
         filterType: "Strict",
-        negate: false
-
+        negate: false,
       });
     }
     if (toCity) {
@@ -176,8 +172,7 @@ const page = ({ params }: { params: { country: string } }) => {
         column: "ToCity.Id",
         searchTerm: toCity,
         filterType: "Strict",
-        negate: false
-
+        negate: false,
       });
     }
 
@@ -186,21 +181,28 @@ const page = ({ params }: { params: { country: string } }) => {
         column: "FromCity.Id",
         searchTerm: fromCity,
         filterType: "Strict",
-        negate: false
-
+        negate: false,
       });
     }
 
-
-
     setFilters(newFilters);
-    setPage(undefined)
-    setIsFilterSet(true)    
-
-  }, [lowestPrice, heightPrice, stars, beachTypesIds, roomTypesIds, inHotelsIds, dietTypesIds, kids, adults, countriesIds, toCity, fromCity, duration])
-
-
-
+    setPage(undefined);
+    setIsFilterSet(true);
+  }, [
+    lowestPrice,
+    heightPrice,
+    stars,
+    beachTypesIds,
+    roomTypesIds,
+    inHotelsIds,
+    dietTypesIds,
+    kids,
+    adults,
+    countriesIds,
+    toCity,
+    fromCity,
+    duration,
+  ]);
 
   const loadItems = useGetPageOfItems<GetTourDto, typeof service>(
     service,
@@ -215,8 +217,6 @@ const page = ({ params }: { params: { country: string } }) => {
     filters
   );
 
-
-
   useEffect(() => {
     if (isFilterSet) {
       loadItems().then();
@@ -225,45 +225,46 @@ const page = ({ params }: { params: { country: string } }) => {
 
   return (
     <>
-    <FindTourCardWithBg/>
+      <FindTourCardWithBg />
       <section className="container mx-auto mb-0 max-w-7xl px-5 flex-grow">
         <TourCarouselRecommendation />
         <div className="w-full flex justify-between max-w-6xl mx-auto px-4 mt-20">
           <span>
-            <h2 className="text-3xl font-bold font-unbounded  mb-6 text-black">
+            <h2 className="text-[50px] font-bold font-unbounded  mb-6 text-black">
               Наші тури
             </h2>
           </span>
 
           <div className="flex justify-between my-5 gap-6">
-            <DeleteAllFiltersButton/>
+            <DeleteAllFiltersButton />
 
-          <Button
-            className="bg-white rounded-full  "
-            onClick={() => setIsSearchSettingsOpen(!isSearchSettingsOpen)}
-          >
-            <Icon icon="mingcute:settings-2-line" width="24" height="24" />
-          </Button>
-</div>
+            <Button
+              className="bg-white rounded-full  "
+              onClick={() => setIsSearchSettingsOpen(!isSearchSettingsOpen)}
+            >
+              <Icon icon="mingcute:settings-2-line" width="24" height="24" />
+            </Button>
+          </div>
         </div>
 
         {isSearchSettingsOpen ? (
           <TourSearchParamsSettingsCard
             lowestPrice={lowestPrice}
             heightPrice={heightPrice}
-            outsideBeachTypesIds={beachTypesIds ? beachTypesIds.split(',') : []}
-            outsideDietTypesIds={dietTypesIds ? dietTypesIds.split(',') : []}
-            outsideRoomTypesIds={roomTypesIds ? roomTypesIds.split(',') : []}
-            outsideCountriesIds={countriesIds ? countriesIds.split(',') : []}
-            outsideInHotelIds={inHotelsIds ? inHotelsIds.split(',') : []}
-            onClose={() => { setIsSearchSettingsOpen(false); }}
+            outsideBeachTypesIds={beachTypesIds ? beachTypesIds.split(",") : []}
+            outsideDietTypesIds={dietTypesIds ? dietTypesIds.split(",") : []}
+            outsideRoomTypesIds={roomTypesIds ? roomTypesIds.split(",") : []}
+            outsideCountriesIds={countriesIds ? countriesIds.split(",") : []}
+            outsideInHotelIds={inHotelsIds ? inHotelsIds.split(",") : []}
+            onClose={() => {
+              setIsSearchSettingsOpen(false);
+            }}
             outsideHowManyAdults={adults ? adults : "1"}
             outsideHowManyKids={kids ? kids : "0"}
             duration={duration}
             stars={stars}
             fromCity={fromCity}
             toCity={toCity}
-
           />
         ) : (
           <></>
@@ -286,7 +287,6 @@ const page = ({ params }: { params: { country: string } }) => {
         )}
       </section>
     </>
-
   );
 };
 

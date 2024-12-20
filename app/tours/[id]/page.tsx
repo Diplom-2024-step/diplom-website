@@ -7,6 +7,7 @@ import TravelDescription from "@/components/tours/TourDetails/travelBooking/Trav
 import PaymentGuaranteeSection from "@/components/hotels/layout/PaymentGuaranteeSection";
 import SelectCountryForHotels from "@/components/shared/sharedComponents/selects/SelectCountryForHotels";
 import LoadingCircle from "@/components/shared/skeletons/LoadingCircle";
+import ReviewCardCarouselWithService from "@/components/reviews/ReviewCardCarouselWithService";
 import RecomendedToursCarouselForHotel from "@/components/tours/Carsousels/RecomendedToursCarouselForHotel";
 import { TourService } from "@/service/crudServices/TourService";
 import React, { Key, useEffect, useState } from "react";
@@ -29,7 +30,7 @@ const page = async ({ params }: { params: { id: string } }) => {
     } else if (value === "description") {
       return <TourDescription tour={tour} />;
     } else if (value === "reviews") {
-      return <></>;
+      return <ReviewCardCarouselWithService reviewableId={params.id} />;
     }
   };
 

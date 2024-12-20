@@ -9,7 +9,7 @@ const TourCarouselSkeleton = () => {
   return (
     <div className="w-full max-w-6xl mx-auto px-4 text-black">
       {/* Title skeleton */}
-      <h2 className="text-2xl font-bold mt-6">Рекомендуємо відвідати</h2>
+      <h2 className="text-[50px] font-bold mt-6">Гарячі пропозиції</h2>
 
       <div className="relative">
         <div className="overflow-hidden">
