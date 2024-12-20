@@ -4,7 +4,7 @@ import React, { useState } from 'react'
 import HotelCard from './hotelCard/HotelCard'
 import { AuthResponse } from '@/hooks/auth'
 
-const HotelGrid = ({ hotels, auth } : {hotels:GetHotelDto[], auth:AuthResponse}) => {
+const HotelGrid = ({ hotels } : {hotels:GetHotelDto[]}) => {
 
       const [hoveredId, setHoveredId] = useState<number | null>(null);
 

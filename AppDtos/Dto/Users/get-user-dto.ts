@@ -10,7 +10,8 @@ export const getUserDtoSchema = z.object({
     roles: z.array(z.string()),
     userName: z.string(),
     id: z.string().uuid(),
-    favoriteHotelsIds: z.array(z.string())
+    favoriteHotelsIds: z.array(z.string()),
+    favoriteToursIds: z.array(z.string())
 });
 
 export type GetUserDto = z.infer<typeof getUserDtoSchema>;

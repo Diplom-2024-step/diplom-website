@@ -31,7 +31,6 @@ const page = (
 ) => {
 
 
-  const auth = useAuth();
   // const session = useSession();
 
 
@@ -239,7 +238,6 @@ const page = (
           <>
 
             <HotelGrid hotels={items?.models as any}
-              auth={auth}
             />
 
             <div className='flex justify-center items-center mb-10'>
