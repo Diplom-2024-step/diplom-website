@@ -1,7 +1,8 @@
 import NextAuth from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import { DecodedToken } from "@/types/DecodedToken";
-import { getToken } from "@/lib/jwtTokenUtils";
+import { decodeJwtToken, getToken } from "@/lib/jwtTokenUtils";
+import { use } from "react";
 
 const handler = NextAuth({
   session: {
@@ -51,16 +52,41 @@ const handler = NextAuth({
     newUser: "/auth/registrate/"
   },
   callbacks: {
-    async jwt({ token, user }) {
-      return { ...token, ...user };
+    async jwt({ token, user, trigger, session }) {
+
+      return { ...token, ...user, ...session };
     },
 
     async session({ session, token }) {
-      const user = token as unknown as { accessToken: string } & DecodedToken;
+       
+      const user = token as any as { accessToken: string } & DecodedToken;
+
+
+      // session.user.favoriteHotels = user.favoriteHotelsIds.split(',');
+      // session.user.accessToken =  user.accessToken;
+      // session.user.email= user.email;
+      // session.user.username = user.unique_name;
+
       user.accessToken = getToken(user.accessToken)!;
 
-      session.user = user;
-      session.user.name = user.unique_name;
+      session.user.accessToken = user.accessToken;
+      session.user.role = user.role;
+      if (session.expires === undefined){
+          const exp = new Date(new Date().getTime() + 12*60*60*1000).toISOString(); 
+          session.expires = exp;
+      }
+      if (session.user.favoriteHotels === undefined){
+          session.user.favoriteHotels = user.favoriteHotelsIds.split(',');
+      }
+if (session.user.favoriteTours === undefined){
+          session.user.favoriteTours = user.favoriteToursIds.split(',');
+      }
+      
+      session.user.email = user.email;
+      session.user.id = user.id;
+      session.decodeToken = user;
+
+
       return session;
     }
   }

@@ -6,12 +6,12 @@ import { GetTransportationTypeDto } from '@/AppDtos/Dto/Models/TransportationTyp
 const SelectTransportationType  = (
 {
   currectValue,
-  setItem
+  setItem,
 }
 :
 {
   currectValue: GetTransportationTypeDto,
-  setItem: (item:GetTransportationTypeDto) => void
+  setItem: (item:GetTransportationTypeDto) => void,
 }
 
 ) => {
@@ -34,12 +34,10 @@ const SelectTransportationType  = (
     <SharedSingleInput
       currectValue={currectValue}
       setItem={setItem}
-      placeholder='Select transportation type'
+      placeholder='Виберіть вид транспорту'
       service={transportationTypeService}
       onSelectRenderFunction={renderFunction}
       renderFunction={renderFunction}
-
-    
     
     />
   )
