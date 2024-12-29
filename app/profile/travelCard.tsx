@@ -12,6 +12,7 @@ import { Star } from 'lucide-react';
 import Image from 'next/image';
 import '../../assets/fonts-styles/font.css';
 import Slider from "./slider";
+import ProgressSteps from "./steps";
 
 export interface TravelCardProps {
   title: string;
@@ -182,15 +183,8 @@ const TravelCardProfile: React.FC<TravelCardProps> = ({
         </div>
         
         {/* Статус заказа */}
-        <div className="w-1/2 pl-5 mt-4 pt-4">
-          <div className="flex items-center justify-between">
-            <Progress
-              value={70}
-              color="primary"
-              className="w-full mr-4"
-              size="sm"
-            />
-          </div>
+        <div className="w-1/2 pl-5 mt-4 pr-4">
+           <ProgressSteps />
         </div>
       </div>
       </CardBody>
