@@ -12,7 +12,8 @@ declare module "next-auth" {
       accessToken: string;
       favoriteHotels: string[];
       favoriteTours: string[];
-      role: string
+      role: string;
+      iconNumber: string;
     };
 
   }

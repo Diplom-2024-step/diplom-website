@@ -32,11 +32,13 @@ const NumberInput = ({
   
 
   return (
-    <div className="w-full mx-auto">
+    <div className="w-full mx-auto flex-col justify-center items-center">
+      <div>
       <label htmlFor="quantity-input" className="block mb-2 text-sm font-medium text-center text-gray-900">
         {label}
       </label>
-      <div className="relative flex items-center">
+</div>
+      <div className="relative flex items-center justify-center">
         <button
           type="button"
           onClick={handleDecrement}

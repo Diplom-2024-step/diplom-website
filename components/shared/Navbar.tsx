@@ -10,7 +10,7 @@ import SelectCountryForHotels from "./sharedComponents/selects/SelectCountryForH
 const Navbar = () => {
   return (
     <header className="bg-white shadow-md py-2">
-      <div className="container mx-auto flex items-center justify-between px-4">
+      <div className="container mx-auto mb-0 max-w-7xl  flex-grow  flex items-center justify-between px-4">
         <Link href="/">
         <Image alt="logo" src={headerLogoImage}></Image>
 </Link>

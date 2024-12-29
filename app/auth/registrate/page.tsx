@@ -169,7 +169,7 @@ const RegisterPage = () => {
       return;
     }
 
-    const username = `${firstName} ${lastName}`.trim();
+    setUsername(`${firstName} ${lastName}`.trim());
 
     try {
       const result = await axios.post("/api/registrate", {

@@ -5,6 +5,7 @@ import React, { useState } from 'react'
 import { Card } from '@nextui-org/card';
 import { format } from 'date-fns';
 import { Button, Modal, ModalBody, ModalContent, ModalFooter, ModalHeader, useDisclosure } from '@nextui-org/react';
+import { getIconAccordingToIconNumber } from '@/lib/utils';
 
 const ReviewCard = ({
     review
@@ -35,7 +36,7 @@ const ReviewCard = ({
                 {/* Фото пользователя */}
                 <div className="flex items-center h-[15%]">
                     <Image
-                        src={photo4.src}
+                        src={getIconAccordingToIconNumber(review.user.iconNumber).src}
                         alt={`${review.id}`}
                         width={48}
                         height={48}
