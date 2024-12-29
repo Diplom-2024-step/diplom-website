@@ -77,7 +77,7 @@ const FavoriteHotelsTab = ({
   useEffect(() => {
 
   
-    if (isFilterSet){
+    if (isFilterSet && hotelsIds.length > 0){
     loadItems().then();
     }
 
@@ -92,7 +92,8 @@ const FavoriteHotelsTab = ({
 
   return (
     <>
-      {loadingState === "idle" ? <>
+      { hotelsIds.length > 0 ?
+      loadingState === "idle" ? <>
         <HotelGrid hotels={items?.models!}
         />
         <div className='w-full flex justify-around'>
@@ -100,7 +101,10 @@ const FavoriteHotelsTab = ({
         />
 </div>
       </>
-        : <HotelGridSkeleton howManyCards={6} />}
+        : <HotelGridSkeleton howManyCards={6} /> : <></>
+        
+        
+        }
 
 
     </>

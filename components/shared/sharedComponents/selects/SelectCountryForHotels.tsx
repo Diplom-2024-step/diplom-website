@@ -54,7 +54,7 @@ const SelectCountryForHotels = () => {
       },
       {
         column: "Name",
-        searchTerm: "Єгипт",
+        searchTerm: "Єгипeт",
         filterType: "Strict",
         negate: false,
       },

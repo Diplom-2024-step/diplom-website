@@ -26,7 +26,7 @@ export const getTourDtoSchema = z.object({
     howManyAdults: z.number().int(),
     howManyKids: z.number().int(),
     urls: z.array(z.string()),
-    Activities: z.array(getActivityDtoSchema),
+    activities: z.array(getActivityDtoSchema),
     id: z.string().uuid()
 });
 

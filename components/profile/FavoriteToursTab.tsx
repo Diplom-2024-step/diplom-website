@@ -75,7 +75,7 @@ const FavoriteToursTab = ({
   useEffect(() => {
 
   
-    if (isFilterSet){
+    if (isFilterSet && toursIds.length > 0){
     loadItems().then();
     }
 
@@ -89,8 +89,10 @@ const FavoriteToursTab = ({
 
 
   return (
-    <>
-      {loadingState === "idle" ? <>
+             <div className="my-10 min-h-64">
+    {
+      toursIds.length > 0 ?
+      loadingState === "idle" ? <>
         <TourGrid tours={items?.models!}
         />
         <div className='w-full flex justify-around'>
@@ -98,10 +100,10 @@ const FavoriteToursTab = ({
         />
 </div>
       </>
-        : <HotelGridSkeleton howManyCards={6} />}
+        : <HotelGridSkeleton howManyCards={6} /> : <></>
+    }
 
-
-    </>
+    </div>
   )
 }
 

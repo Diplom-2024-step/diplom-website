@@ -4,6 +4,8 @@ import { CreateOrderDto } from "@/AppDtos/Dto/Models/Orders/create-order-dto";
 import { GetRoomTypeDto } from "@/AppDtos/Dto/Models/RoomTypes/get-room-type-dto";
 import { GetTransportationTypeDto } from "@/AppDtos/Dto/Models/TransportationTypes/get-transportation-type-dto";
 import { useTravelBookingContext } from "@/components/providers/TravelBookingProvider";
+import LoadingCircle from "@/components/shared/skeletons/LoadingCircle";
+import { useAuth } from "@/hooks/auth";
 import { OrderService } from "@/service/crudServices/OrderService";
 import {
   Button,
@@ -19,16 +21,18 @@ import {
 } from "@nextui-org/react";
 import { AxiosError } from "axios";
 import { differenceInDays } from "date-fns";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 const BuyButtonActive = ({
   transporationType,
   city,
   cost,
+  tourId
 }: {
   transporationType?: GetTransportationTypeDto;
   city?: GetCityDto;
   cost: number;
+  tourId?: string
 }) => {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
 
@@ -42,6 +46,8 @@ const BuyButtonActive = ({
   const [isOpenErrorWindow, setIsOpenErrorWindow] = useState(false);
 
   const [fullName, setFullName] = useState("");
+
+  const auth = useAuth();
 
   const {
     adults,
@@ -64,6 +70,14 @@ const BuyButtonActive = ({
   }, [phoneNumber]);
 
   const createOrdere = async () => {
+
+    let userId:string | null = null;
+
+    if (auth.status === "authorized")
+      {
+        userId = auth.user?.user.id!;
+      }
+
     const service = new OrderService();
 
     const cityId: string = city?.id!;
@@ -91,7 +105,8 @@ const BuyButtonActive = ({
       transportationTypeId: transporationType?.id!,
       activityIds: activitiesIds,
       adminId: null,
-      userId: null,
+      userId: userId,
+      tourId: tourId
     };
 
     console.debug(order);
@@ -107,6 +122,15 @@ const BuyButtonActive = ({
       setIsOpenErrorWindow(true);
     }
   };
+
+  useEffect(() => {
+    if (auth.status === "authorized")
+      {
+        setFullName(auth.user?.user.username!);
+        //setPhoneNumber(auth.user?.decodeToken.mobilephone!);
+      }
+  }, [auth.status]);
+
 
   return city !== undefined && transporationType !== undefined ? (
     <>
@@ -145,6 +169,7 @@ const BuyButtonActive = ({
                 />
               </ModalBody>
               <ModalFooter>
+             
                 <Button
                   variant="light"
                   className="bg-transparent text-black  rounded-full   border-1 border-black"

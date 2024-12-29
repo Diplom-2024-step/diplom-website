@@ -6,12 +6,18 @@ import LoadingCircle from "./skeletons/LoadingCircle";
 import { Avatar, Dropdown, DropdownItem, DropdownMenu, DropdownTrigger } from "@nextui-org/react";
 import avatar1 from '@/assets/images/profile/avatar.png'
 import { useRouter } from "next/navigation";
+import { getIconAccordingToIconNumber } from "@/lib/utils";
+import { useNewIcon } from "@/hooks/useNewIcon";
+import { useEffect } from "react";
 
 export default function SignInButton() {
 
   const auth = useAuth();
 
+  const [icon, setNewIcon] = useNewIcon();
+
   const router = useRouter();
+
 
   if (auth.status == "loading") {
     return <LoadingCircle/>
@@ -26,7 +32,7 @@ export default function SignInButton() {
             isBordered
             as="button"
             className="transition-transform border-transparent"
-            src={avatar1.src}
+            src={getIconAccordingToIconNumber(icon === null ? auth.user?.user.iconNumber  || '1' : icon).src}
           />
         </DropdownTrigger>
         <DropdownMenu aria-label="Profile Actions" variant="flat">
@@ -36,7 +42,12 @@ export default function SignInButton() {
             <p className="font-semibold">Увійтии як</p>
             <p className="font-semibold">{auth.user?.user.email}</p>
           </DropdownItem>
-          <DropdownItem key="logout" color="danger" onPress={() => signOut()}>
+          <DropdownItem key="logout" color="danger" onPress={() => signOut(
+            {
+              redirect: true,
+              callbackUrl: '/'
+            }
+          )}>
             Вийти
           </DropdownItem>
         </DropdownMenu>

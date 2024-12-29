@@ -18,7 +18,7 @@ const FavoriteTab = (
 
 
     return (
-        <div className='mt-5'>
+        <div className='mt-5 min-h-64'>
             <div className='mb-3 ml-14 flex gap-3'>
                 <Tooltip content="Отели" delay={0} closeDelay={0}>
                     <Icon icon="ri:hotel-fill" className={`hover:text-primary cursor-pointer ` + (isHotel ? 'text-primary' : 'text-black')} width="48" height="48" onClick={() => setIsHotel(true)} />
