@@ -242,7 +242,7 @@ const TourCard = ({
             </div>
             <Icon
               icon="ei:arrow-up"
-              className={`w-10 h-10 transition-transform rotate-45 text-black ${isHovered ? "-translate-y-6" : ""
+              className={`w-10 h-10 transition-transform rotate-45 text-black ${isHovered ? "-translate-y-6 text-primary" : ""
                 }`}
             />
           </div>

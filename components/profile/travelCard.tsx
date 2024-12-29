@@ -15,6 +15,8 @@ import Slider from "./slider";
 import { GetOrderDto } from "@/AppDtos/Dto/Models/Orders/get-order-dto";
 import { differenceInDays } from "date-fns/differenceInDays";
 import OrderProgressMark, { MarkStatus } from "./OrderProgressMark";
+import { Icon } from "@iconify/react";
+import { useRouter } from "next/navigation";
 
 export interface TravelCardProps {
   order: GetOrderDto
@@ -28,6 +30,8 @@ interface ProgressStage  {
 const TravelCardProfile: React.FC<TravelCardProps> = ({
   order
 }) => {
+
+  const router = useRouter();
 
   let orderStage: Record<string, ProgressStage> = {
     "waiting": {
@@ -117,7 +121,18 @@ const TravelCardProfile: React.FC<TravelCardProps> = ({
 
 
   return (
-    <Card className="w-full max-w-7xl mx-auto  mb-8 rounded-[40px]  overflow-hidden">
+    <Card className="w-full max-w-7xl mx-auto  mb-8 rounded-[40px]  overflow-hidden group"
+    onPress={()=> {
+      if (order.tourId !== null){
+        router.push(`/tours/${order.tourId}`)
+      }
+      else {
+        router.push(`/${order.hotel.city.country.id}/hotels/${order.hotel.id}`)
+      }
+    }}
+    isHoverable
+    isPressable
+    >
       {/* Верхняя часть карточки */}
       <div className="flex flex-col md:flex-row">
         {/* Левая часть с изображением */}
@@ -332,9 +347,17 @@ const TravelCardProfile: React.FC<TravelCardProps> = ({
               />
 
             </div>
+
           </div>
         </div>
+       
       </CardBody>
+       <div className="absolute inset-x-0 bottom-0 h-16 flex items-center justify-end pr-4">
+    <Icon 
+      icon="ei:arrow-up" 
+      className="w-10 h-10 transition-transform rotate-45 text-black group-hover:-translate-y-6 group-hover:text-primary"
+    />
+  </div>
     </Card>
   );
 };
