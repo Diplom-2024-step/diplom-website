@@ -105,13 +105,13 @@ const SelectCountryForHotels = () => {
   };
 
   return (
-    <>
+    <div className="w-full">
       {error === undefined ? (
         loadingState === "loading" ? (
           <LoadingCircle />
         ) : (
           <Select
-            className="w-[130px] "
+            className=" "
             items={items?.models}
             selectedKeys={[""]}
             placeholder={"Країни"}
@@ -131,7 +131,7 @@ const SelectCountryForHotels = () => {
       ) : (
         <p className="text-red-700">{error}</p>
       )}
-    </>
+    </div>
   );
 };
 
