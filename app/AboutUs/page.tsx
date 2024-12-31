@@ -3,9 +3,10 @@ import type {Selection} from "@nextui-org/react";
 import {TimeInput} from "@nextui-org/date-input";
 import {Time} from "@internationalized/date";
 import React, { useState, useEffect } from "react";
-import upArrow from "../../assets/images/about_as/up-arrow.svg"
 import { Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, Button, useDisclosure, Input, Dropdown, DropdownTrigger, DropdownMenu, DropdownItem } from "@nextui-org/react";
 import './style.css';
+import { Icon } from "@iconify/react";
+import ReviewsOnAboutUsPage from "@/components/reviews/ReviewsOnAboutUsPage";
 
 export const AboutUs = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -403,6 +404,8 @@ export const AboutUs = () => {
         </div>
       </div>
 
+      <ReviewsOnAboutUsPage/>
+
       {/* Кнопка звонка */}
       <div className="flex flex-col gap-2 fixed bottom-10 right-5">
         <Button
@@ -423,7 +426,7 @@ export const AboutUs = () => {
             className="scroll-button bg-[#c2c1c1ee] hover:bg-gray-400 text-gray-700 p-2 rounded shadow-lg mt-1"
             aria-label="Scroll to top"
           >
-            <img  src={upArrow.src} alt="upArrow"/>
+          <Icon icon="mdi-light:arrow-up" width="24" height="24" />
           </button>
         )}
       </div>
