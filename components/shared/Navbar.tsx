@@ -69,7 +69,7 @@ const ContactUs = () => {
   return (
     <Popover key={"contactUs"} placement={"bottom"}>
       <PopoverTrigger>
-        <div className="w-full text-center hover:cursor-pointer ">
+        <div className="w-full text-center hover:cursor-pointer text-gray-600 hover:text-gray-900 ">
           <p>
             Контакти
           </p>

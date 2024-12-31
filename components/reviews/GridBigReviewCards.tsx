@@ -1,3 +1,4 @@
+"use client"
 import { GetReviewOnCompanyDto } from '@/AppDtos/Dto/Models/ReviewOnCompanies/get-review-on-company-dto';
 import { ReturnPageDto } from '@/AppDtos/Shared/return-page-dto';
 import useDebounceState from '@/hooks/useDebounceState';
