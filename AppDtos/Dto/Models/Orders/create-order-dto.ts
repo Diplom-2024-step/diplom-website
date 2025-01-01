@@ -23,7 +23,9 @@ export const createOrderDtoSchema = z.object({
     howManyKids: z.number().int().min(0).max(10),
     fromCityId: z.string().uuid(),
     toCityId: z.string().uuid(),
-    activityIds: z.array(z.string().uuid()).default([])
+    activityIds: z.array(z.string().uuid()).default([]),
+    tourId: z.string().uuid().nullish(),
+
 });
 
 export type CreateOrderDto = z.infer<typeof createOrderDtoSchema>;

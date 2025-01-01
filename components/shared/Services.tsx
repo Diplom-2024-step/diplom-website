@@ -14,6 +14,7 @@ import servicesShadowImage from "../../assets/images/services/Shadow.png";
 const Services = () => {
   return (
     <div
+    id="services"
       className="flex flex-col w-full h-full justify-center items-center text-center bg-cover bg-center bg-no-repeat"
       style={{
         backgroundImage: `url(${servicesBackgroundImage.src})`,

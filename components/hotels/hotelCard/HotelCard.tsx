@@ -103,7 +103,7 @@ const HotelCard = ({ cardItem, isHovered, onHover, onLeave }: SharedCardProps<Ge
   return (
     <>
       <Card
-        className={`relative overflow-hidden hover:cursor-pointer ${isHovered ? "scale-105" : ''}`}
+        className={`relative overflow-hidden shadow-lg hover:cursor-pointer ${isHovered ? "scale-105" : ''}`}
         shadow='none'
         onMouseEnter={onHover}
         onMouseLeave={onLeave}
@@ -170,7 +170,7 @@ const HotelCard = ({ cardItem, isHovered, onHover, onLeave }: SharedCardProps<Ge
               <span className="text-lg font-bold">{cardItem.pricePerNight} ₴</span>
               <span className="text-lg "> / Ніч</span>
             </div>
-            <Icon icon="ei:arrow-up" className={`w-10 h-10 transition-transform rotate-45 text-black ${isHovered ? '-translate-y-6' : ''
+            <Icon icon="ei:arrow-up" className={`w-10 h-10 transition-transform rotate-45 text-black ${isHovered ? '-translate-y-6 text-primary' : ''
               }`} />
           </div>
         </CardBody>

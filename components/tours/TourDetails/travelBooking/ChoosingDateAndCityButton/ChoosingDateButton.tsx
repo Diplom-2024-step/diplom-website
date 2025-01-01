@@ -13,7 +13,7 @@ import {
 } from "@nextui-org/react";
 import { addDays, formatISO } from "date-fns";
 import React, { useState } from "react";
-import { parseDate } from "@internationalized/date";
+import { CalendarDate, parseDate } from "@internationalized/date";
 import { GetCityDto } from "@/AppDtos/Dto/Models/Hotels/get-city-dto";
 import SelectCityToTravelFrom from "@/components/shared/sharedComponents/selects/singleSelects/SelectCityToTravelFrom";
 import { GetTransportationTypeDto } from "@/AppDtos/Dto/Models/TransportationTypes/get-transportation-type-dto";
@@ -37,7 +37,8 @@ const ChoosingDateButton = ({
     setIsOpen(value);
   };
 
-  const handleDateChange = (newRange: DateValue) => {
+  const handleDateChange = (newRange: DateValue | null) => {
+    if (newRange === null) return;
     //const { start } = newRange.;
     // Если выбирается только начальная дата
     const startDate = new Date(newRange.year, newRange.month - 1, newRange.day); // Преобразуем в стандартный Date
@@ -52,10 +53,7 @@ const ChoosingDateButton = ({
     });
 
     // Применяем изменения для внешнего состояния
-    setDate({
-      start: newRange,
-      end: formattedEnd,
-    });
+   
   };
 
   return (
@@ -87,18 +85,9 @@ const ChoosingDateButton = ({
                 <span>Дати та тривалість</span>
               </ModalHeader>
               <ModalBody>
-                {/* <DateRangePicker
-                  minValue={parseDate(
-                    formatISO(addDays(new Date(), 4), {
-                      representation: "date",
-                    })
-                  )}
-                  value={innerDate}
-                  onChange={setInnerDate}
-                  label="Дати та тривалість"
-                  className="max-w-xs"
-                /> */}
+             
                 <DatePicker
+                
                   minValue={parseDate(
                     formatISO(addDays(new Date(), 4), {
                       representation: "date",
@@ -121,7 +110,10 @@ const ChoosingDateButton = ({
                 <Button
                   color="primary"
                   className="text-white rounded-full"
-                  onPress={onClose}
+                  onPress={() => {onClose();  setDate({
+      start: innerDate.start,
+      end: innerDate.end,
+    });}}
                 >
                   Застосувати
                 </Button>

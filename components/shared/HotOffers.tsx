@@ -68,7 +68,7 @@ const HotDestinations = () => {
         </p>
         <div className="flex  w-4/7 h-full">
           <Card
-            className="flex flex-col justify-between col-span-12 sm:col-span-4 min-h-[520px] min-w-[398px] bg-cover bg-center cursor-pointer"
+            className="flex flex-col group justify-between col-span-12 sm:col-span-4 min-h-[520px] min-w-[398px] bg-cover bg-center cursor-pointer"
 
             isHoverable
             isPressable
@@ -82,6 +82,10 @@ const HotDestinations = () => {
             }}
           >
             <CardHeader className="absolute z-10 top-1 flex-col !items-end">
+               <Icon
+                    icon="mdi:flame"
+                    className="w-[35px] absolute top-3  left-0 h-[35px] ml-[15px] text-white"
+                  />
               <div className="flex flex-col justify-center bg-customBlack bg-opacity-50 h-[30px] p-3 rounded-xl mt-[10px]">
                 <p className="text-[15px] text-white uppercase font-bold">
                   {(items?.models[0].priceUSD! )} ₴ / Цена
@@ -103,7 +107,7 @@ const HotDestinations = () => {
               >
                 <Icon
                   icon="ei:arrow-up"
-                  className={`w-10 h-10 transition-transform rotate-45 text-white
+                  className={`w-10 h-10 transition-transform rotate-45 group-hover:-translate-y-4 group-hover:text-primary text-white
                 }`}
                 />
               </button>
@@ -112,7 +116,7 @@ const HotDestinations = () => {
           <div className="flex flex-col h-full w-3/5 ml-[60px]">
             <div className="flex justify-between">
               <Card
-                className="flex flex-col justify-between col-span-12 sm:col-span-4 min-h-[240px] min-w-[280px] mr-[35px] bg-cover bg-center cursor-pointer"
+                className="flex flex-col justify-between group col-span-12 sm:col-span-4 min-h-[240px] min-w-[280px] mr-[35px] bg-cover bg-center cursor-pointer"
                 isHoverable
                 isPressable
                 onClick={() => {
@@ -148,14 +152,14 @@ const HotDestinations = () => {
                   >
                     <Icon
                       icon="ei:arrow-up"
-                      className={`w-10 h-10 transition-transform rotate-45 text-white
+                      className={`w-10 h-10 transition-transform group-hover:text-primary group-hover:-translate-y-4 rotate-45 text-white
                 }`}
                     />
                   </button>
                 </CardFooter>
               </Card>
               <Card
-                className="flex flex-col justify-between col-span-12 sm:col-span-4 min-h-[240px] min-w-[280px] bg-cover bg-center cursor-pointer"
+                className="flex flex-col group justify-between col-span-12 sm:col-span-4 min-h-[240px] min-w-[280px] bg-cover bg-center cursor-pointer"
                 isHoverable
                 isPressable
                 onClick={() => {
@@ -191,7 +195,7 @@ const HotDestinations = () => {
                   >
                     <Icon
                       icon="ei:arrow-up"
-                      className={`w-10 h-10 transition-transform rotate-45 text-white
+                      className={`w-10 h-10 transition-transform group-hover:text-primary group-hover:-translate-y-4 rotate-45 text-white
                 }`}
                     />
                   </button>
@@ -200,7 +204,7 @@ const HotDestinations = () => {
             </div>
             <div>
               <Card
-                className="flex flex-col justify-between col-span-12 sm:col-span-4 min-h-[240px] w-full mt-[40px] bg-cover bg-center cursor-pointer"
+                className="flex flex-col justify-between group col-span-12 sm:col-span-4 min-h-[240px] w-full mt-[40px] bg-cover bg-center cursor-pointer"
                 isHoverable
                 isPressable
                 onClick={() => {
@@ -237,7 +241,7 @@ const HotDestinations = () => {
                   >
                     <Icon
                       icon="ei:arrow-up"
-                      className={`w-10 h-10 transition-transform rotate-45 text-white
+                      className={`w-10 h-10 group-hover:text-primary group-hover:-translate-y-4 transition-transform rotate-45 text-white
                 }`}
                     />
                   </button>

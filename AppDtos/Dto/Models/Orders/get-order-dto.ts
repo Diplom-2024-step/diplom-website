@@ -28,12 +28,13 @@ export const getOrderDtoSchema = z.object({
     duration: z.number().int().min(3).max(90),
     transportationType: getTransportationTypeDtoSchema,
     roomType: getRoomTypeDtoSchema,
-    dietTypeId: getDietTypeDtoSchema,
+    dietType: getDietTypeDtoSchema,
     howManyAdults: z.number().int().min(0).max(10),
     howManyKids: z.number().int().min(0).max(10),
     fromCity: getCityDtoSchema,
-    toCityId: getCityDtoSchema,
+    toCity: getCityDtoSchema,
     activities: z.array(getActivityDtoSchema),
+    tourId: z.string().uuid().nullish(),
 
 });
 
