@@ -6,7 +6,7 @@ export const AboutUs = () => {
 
   return (
     <section className="about-us">
-      <div className="container">
+      <div className="container mx-auto">
         <div className="about-us__content">
           <div className="about-us__main-container about-us__main-block">
             <div className="about-us__main-mobile">
