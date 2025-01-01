@@ -36,7 +36,7 @@ const ReviewCard = ({
                 {/* Фото пользователя */}
                 <div className="flex items-center h-[15%]">
                     <Image
-                        src={getIconAccordingToIconNumber(review.user.iconNumber).src}
+                        src={getIconAccordingToIconNumber(review.user.iconNumber.toString()).src}
                         alt={`${review.id}`}
                         width={48}
                         height={48}

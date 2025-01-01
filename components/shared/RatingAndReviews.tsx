@@ -5,6 +5,7 @@ import photo1 from "../../assets/images/reviews/character3.png";
 import photo2 from "../../assets/images/reviews/character5.png";
 import photo3 from "../../assets/images/reviews/character2.png";
 import photo4 from "../../assets/images/reviews/character4.png";
+import { Link } from "@nextui-org/link";
 
 const reviews = [
   {
@@ -41,7 +42,7 @@ const userImages = [photo1, photo2, photo3, photo4];
 const RatingAndReviews = () => {
   return (
     <div className="flex flex-col items-center mb-[50px]">
-      <div className="flex flex-col items-center  w-full h-full mt-10 mb-10 w-4/5">
+      <div className="flex flex-col items-center   h-full mt-10 mb-10 w-4/5">
         <p className="text-[43px] font-bold mb-[35px] text-customBlack font-unbounded">
           Рейтинг та відгуки
         </p>
@@ -134,16 +135,17 @@ const RatingAndReviews = () => {
             </div>
           ))}
         </div>
-        <button
-          className="flex items-center m-[45px] p-2 bg-white/20 backdrop-blur-sm rounded-full 
-              transition-all duration-300 hover:bg-white/30"
+        <Link
+        href={'/aboutUs#reviews'}
+          className="flex items-center m-[45px] p-2 group backdrop-blur-sm rounded-full 
+              transition-all duration-300 "
         >
           <p className="text-black text-[20px]">Переглянути більше</p>
           <Icon
             icon="ei:arrow-up"
-            className={`w-10 h-10 transition-transform rotate-45 text-black ml-[12px]`}
+            className={`w-10 h-10 transition-transform group-hover:-translate-y-3 group-hover:text-primary rotate-45 text-black ml-[12px]`}
           />
-        </button>
+        </Link>
       </div>
     </div>
   );
