@@ -1,5 +1,6 @@
 import { GetReviewOnCompanyDto } from '@/AppDtos/Dto/Models/ReviewOnCompanies/get-review-on-company-dto'
 import Image from 'next/image';
+import { format } from 'date-fns';
 import { getIconAccordingToIconNumber } from '@/lib/utils';
 import { Card, CardBody } from '@nextui-org/card';
 import { Star } from 'lucide-react';
@@ -13,6 +14,15 @@ const BigReviewCard = (
     {
         review: GetReviewOnCompanyDto
     }) => {
+
+  const formatDate = (dateString: string): string => {
+        // Parse the ISO string into a Date object
+        const date = new Date(dateString);
+
+        // Format the date using date-fns library with Ukrainian localization
+        return format(date, "HH:mm dd MMM yyyy");
+    };
+
  const renderStars = (count: number) => {
     return Array(5).fill(0).map((_, index) => (
       <Star
@@ -60,26 +70,7 @@ const BigReviewCard = (
             {/* Footer */}
             <div className="flex justify-between items-center mt-4">
               <div className="text-sm text-gray-500">
-                {new Date().toLocaleTimeString('uk-UA', { 
-                  hour: '2-digit', 
-                  minute: '2-digit' 
-                })}
-                <br />
-                {new Date().toLocaleDateString('uk-UA', { 
-                  day: '2-digit',
-                  month: 'short',
-                  year: 'numeric'
-                })}
-              </div>
-              <div className="flex items-center gap-4">
-                <div className="flex items-center gap-2">
-                  <span className="text-green-600">👍</span>
-                  <span>12</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <span className="text-red-600">👎</span>
-                  <span>0</span>
-                </div>
+                {formatDate(review.createdAt.toString())}
               </div>
             </div>
           </div>
