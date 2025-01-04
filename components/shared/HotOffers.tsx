@@ -89,54 +89,15 @@ const HotDestinations = () => {
                   </p>
                 </div>
 
-  return (
-    loadingState === "idle" ?
-      <div className="flex flex-col items-center  w-full h-full mt-10 mb-10">
-        <p className="text-[43px] font-bold mb-[65px] text-customBlack">
-          Гарячі пропозиції
-        </p>
-        <div className="flex  w-4/7 h-full">
-          <Card
-            className="flex flex-col group justify-between col-span-12 sm:col-span-4 min-h-[520px] min-w-[398px] bg-cover bg-center cursor-pointer"
-
-            isHoverable
-            isPressable
-
-            onClick={() => {
-              router.push(`/tours/${items?.models[0].id}`);
-            }}
-
-            style={{
-              backgroundImage: `linear-gradient(to top, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0)), url(${mexicoPng.src})`,
-            }}
-          >
-            <CardHeader className="absolute z-10 top-1 flex-col !items-end">
-               <Icon
-                    icon="mdi:flame"
-                    className="w-[35px] absolute top-3  left-0 h-[35px] ml-[15px] text-white"
-                  />
-              <div className="flex flex-col justify-center bg-customBlack bg-opacity-50 h-[30px] p-3 rounded-xl mt-[10px]">
-                <p className="text-[15px] text-white uppercase font-bold">
-                  {(items?.models[0].priceUSD! )} ₴ / Цена
+                <p className="text-[15px] text-white font-nunito_font_family font-[300]">
+                  {items?.models[0].hotel.city.country.name!}
                 </p>
               </div>
-            </CardHeader>
-            <CardFooter className="absolute bottom-3 z-10">
-              <div className="flex flex-grow gap-2 items-center">
-                <div className="flex flex-col text-left">
-                  <div className="flex text-white items-start w-3/4  text-left">
-                    <p className="text-white text-[25px] font-unbounded font-[600] text-balance">{(items?.models[0].hotel.city.name!)}</p>
-                  </div>
-
-                  <p className="text-[15px] text-white font-nunito_font_family font-[300]">{(items?.models[0].hotel.city.country.name!)}</p>
-                </div>
-              </div>
-              <button
-                className="absolute bottom-4 right-4 rounded-full"
-              >
-                <Icon
-                  icon="ei:arrow-up"
-                  className={`w-10 h-10 transition-transform rotate-45 group-hover:-translate-y-4 group-hover:text-primary text-white
+            </div>
+            <button className="absolute bottom-4 right-4 rounded-full">
+              <Icon
+                icon="ei:arrow-up"
+                className={`w-10 h-10 transition-transform rotate-45 text-white
                 }`}
               />
             </button>
@@ -160,71 +121,27 @@ const HotDestinations = () => {
                   icon="mdi:flame"
                   className="w-[35px] h-[35px] ml-[15px] text-white"
                 />
-
-              </button>
-            </CardFooter>
-          </Card>
-          <div className="flex flex-col h-full w-3/5 ml-[60px]">
-            <div className="flex justify-between">
-              <Card
-                className="flex flex-col justify-between group col-span-12 sm:col-span-4 min-h-[240px] min-w-[280px] mr-[35px] bg-cover bg-center cursor-pointer"
-                isHoverable
-                isPressable
-                onClick={() => {
-                  router.push(`/tours/${items?.models[1].id}`);
-                }}
-                style={{
-                  backgroundImage: `linear-gradient(to top, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0)), url(${testicon1.src})`,
-                }}
-              >
-                <CardHeader className="flex absolute z-10 top-1 justify-between !items-end">
-                  <Icon
-                    icon="mdi:flame"
-                    className="w-[35px] h-[35px] ml-[15px] text-white"
-                  />
-                  <div className="flex flex-col justify-center bg-customBlack bg-opacity-50 h-[30px] p-3 rounded-xl mt-[10px]">
-                    <p className="text-[15px] text-white uppercase font-bold">
-                      {(items?.models[1].priceUSD! )} ₴ / Цена
-                    </p>
-                  </div>
-                </CardHeader>
-                <CardFooter className="absolute bottom-3 z-10">
-                  <div className="flex flex-grow gap-2 items-center">
-                    <div className="flex flex-col text-left">
-                      <div className=" text-left">
-                        <p className="text-white text-[25px]">{(items?.models[1].hotel.city.name!)}</p>
-                      </div>
-
-                      <p className="text-[15px] text-white">{(items?.models[1].hotel.city.country.name!)}</p>
+                <div className="flex flex-col justify-center bg-customBlack bg-opacity-50 h-[30px] p-3 rounded-xl mt-[10px]">
+                  <p className="text-[15px] text-white uppercase font-bold">
+                    {items?.models[1].priceUSD!} ₴ / Цена
+                  </p>
+                </div>
+              </CardHeader>
+              <CardFooter className="absolute bottom-3 z-10">
+                <div className="flex flex-grow gap-2 items-center">
+                  <div className="flex flex-col text-left">
+                    <div className=" text-left">
+                      <p className="text-white text-[25px]">
+                        {items?.models[1].hotel.city.name!}
+                      </p>
                     </div>
 
                     <p className="text-[15px] text-white">
                       {items?.models[1].hotel.city.country.name!}
                     </p>
                   </div>
-                  <button
-                    className="absolute bottom-4 right-4 rounded-full"
-                  >
-                    <Icon
-                      icon="ei:arrow-up"
-                      className={`w-10 h-10 transition-transform group-hover:text-primary group-hover:-translate-y-4 rotate-45 text-white
-                }`}
-                    />
-                  </button>
-                </CardFooter>
-              </Card>
-              <Card
-                className="flex flex-col group justify-between col-span-12 sm:col-span-4 min-h-[240px] min-w-[280px] bg-cover bg-center cursor-pointer"
-                isHoverable
-                isPressable
-                onClick={() => {
-                  router.push(`/tours/${items?.models[2].id}`);
-                }}
-                style={{
-                  backgroundImage: `linear-gradient(to top, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0)), url(${testicon2.src})`,
-                }}
-              >
-                <CardHeader className="flex absolute z-10 top-1 justify-between !items-end">
+                </div>
+                <button className="absolute bottom-4 right-4 rounded-full">
                   <Icon
                     icon="ei:arrow-up"
                     className={`w-10 h-10 transition-transform rotate-45 text-white
@@ -268,31 +185,8 @@ const HotDestinations = () => {
                       {items?.models[2].hotel.city.country.name!}
                     </p>
                   </div>
-                  <button
-                    className="absolute bottom-4 right-4 rounded-full "
-                  >
-                    <Icon
-                      icon="ei:arrow-up"
-                      className={`w-10 h-10 transition-transform group-hover:text-primary group-hover:-translate-y-4 rotate-45 text-white
-                }`}
-                    />
-                  </button>
-                </CardFooter>
-              </Card>
-            </div>
-            <div>
-              <Card
-                className="flex flex-col justify-between group col-span-12 sm:col-span-4 min-h-[240px] w-full mt-[40px] bg-cover bg-center cursor-pointer"
-                isHoverable
-                isPressable
-                onClick={() => {
-                  router.push(`/tours/${items?.models[3].id}`);
-                }}
-                style={{
-                  backgroundImage: `linear-gradient(to top, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0)), url(${testicon3.src})`,
-                }}
-              >
-                <CardHeader className="flex absolute z-10 top-1 justify-between !items-end">
+                </div>
+                <button className="absolute bottom-4 right-4 rounded-full ">
                   <Icon
                     icon="ei:arrow-up"
                     className={`w-10 h-10 transition-transform rotate-45 text-white
@@ -338,12 +232,11 @@ const HotDestinations = () => {
                       {items?.models[3].hotel.city.country.name!}
                     </p>
                   </div>
-                  <button
-                    className="absolute bottom-4 right-4 rounded-full "
-                  >
-                    <Icon
-                      icon="ei:arrow-up"
-                      className={`w-10 h-10 group-hover:text-primary group-hover:-translate-y-4 transition-transform rotate-45 text-white
+                </div>
+                <button className="absolute bottom-4 right-4 rounded-full ">
+                  <Icon
+                    icon="ei:arrow-up"
+                    className={`w-10 h-10 transition-transform rotate-45 text-white
                 }`}
                   />
                 </button>

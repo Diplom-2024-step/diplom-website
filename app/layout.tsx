@@ -20,7 +20,7 @@ export default function RootLayout({
 }) {
   const pathname = usePathname();
   // List of pages where Navbar and Footer should be hidden
-  const hideLayoutFor = ["/auth/login", "/auth/registrate"];
+  const hideLayoutFor = ["/auth/login", "/auth/registrate", "/auth/confirm-email"];
   // List of pages where only Navbar should be shown
   const showOnlyNavbarFor = ["/profile"];
 

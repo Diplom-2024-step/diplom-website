@@ -173,25 +173,28 @@ const RegisterPage = () => {
 
     try {
       const result = await axios.post("/api/registrate", {
-        email,
-        password,
+        email: email,
+        password: password,
+        iconNumber: 1,
         userName: userName,
         role: "User"
       });
       if (result.status !== 200) {
         setError("Failed to register");
       } else {
-        const signInResult = await signIn("credentials", {
-          email,
-          password,
-          callbackUrl: "/",
-          redirect: false
-        });
-        if (signInResult?.error) {
-          setError("Failed to login");
-        } else {
-          route.push("/");
-        }
+
+        route.push('/auth/confirm-email?email='+email)
+        // const signInResult = await signIn("credentials", {
+        //   email,
+        //   password,
+        //   callbackUrl: "/",
+        //   redirect: false
+        // });
+        // if (signInResult?.error) {
+        //   setError("Failed to login");
+        // } else {
+        //   route.push("/");
+        // }
       }
     } catch (e) {
       const error = e as Error;

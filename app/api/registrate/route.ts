@@ -5,7 +5,7 @@ import { AxiosError } from "axios";
 export async function POST(params: Request) {
 	try {
 		const model: UserRegistrationDto = await params.json();
-		const user = await UserService.registerUser(model);
+		const user = await UserService.registerUserWithEmail(model);
 		return new Response(JSON.stringify(user.data), {
 			status: user.status,
 			statusText: user.statusText
