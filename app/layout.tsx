@@ -11,6 +11,7 @@ import { siteConfig } from "@/config/site";
 import { fontSans } from "@/config/fonts";
 import Navbar from "../components/shared/Navbar";
 import HotOffers from "../components/shared/HotOffers";
+import FixedButtonPhone from "@/components/shared/FixedButtonPhone";
 
 export default function RootLayout({
   children,
@@ -37,6 +38,7 @@ export default function RootLayout({
       >
         <Providers themeProps={{ attribute: "class", defaultTheme: "dark" }}>
           <div className="relative flex flex-col min-h-screen bg-gray-200">
+             {!shouldHideLayout && <FixedButtonPhone/>}
             {/* Show Navbar only if route is not in hidden list */}
             {!shouldHideLayout && <Navbar />}
 

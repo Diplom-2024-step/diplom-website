@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import InnerActivityCard from "./shared/InnerActivityCard";
 import { usePathname, useRouter } from "next/navigation";
 import { useTravelBookingContext } from "../providers/TravelBookingProvider";
@@ -12,6 +12,8 @@ const PickActivitiesForTour = () => {
   const pathname = usePathname();
   const router = useRouter();
 
+  const [currentIndex, setCurrentIndex] = useState(0)
+
   const { activities } = useTravelBookingContext();
 
   return (
@@ -22,8 +24,10 @@ const PickActivitiesForTour = () => {
 
       {activities.length !== 0 ? (
         <div className="flex-row w-full rounded-md shadow-lg mt-5 bg-white h-[330px]">
-          <div className="flex  justify-between items-center w-full h-full">
-            <div className="w-[90%] flex justify-start overflow-x-clip">
+          <div className="flex  justify-between items-center    w-full h-full">
+            <div className="w-[80%] flex justify-start overflow-hidden "
+                      style={{ transform: `translateX(-${currentIndex * 30}%)`, width: `${activities.length * 100}%` }}
+>
               {activities.map((activity, index) => (
                 <div className="w-[20%] p-4" key={index}>
                   <InnerActivityCard activity={activity} />

@@ -15,4 +15,5 @@ export interface DecodedToken extends JwtPayload {
 	mobilephone?: string;
 	favoriteHotelsIds: string;
     favoriteToursIds: string;
+	iconNumber: string
 }

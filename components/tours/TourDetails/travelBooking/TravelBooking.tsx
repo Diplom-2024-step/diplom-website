@@ -16,6 +16,7 @@ import { GetTransportationTypeDto } from "@/AppDtos/Dto/Models/TransportationTyp
 import BuyButtonActive from "@/components/hotels/hotelDetails/travelBooking/BuyTravel/BuyButtonActive";
 import { useTravelBookingContextInjectedHotel } from "@/components/providers/TravelBookingProvider";
 import ShowActivitiesForTour from "@/components/activities/ShowActivitiesForTour";
+import { Torus } from "lucide-react";
 
 const TravelBooking = ({ tour }: { tour: GetTourDto }) => {
   const {
@@ -32,18 +33,25 @@ const TravelBooking = ({ tour }: { tour: GetTourDto }) => {
     setRoomType,
     setCity,
     setTransportationType,
+    setActivities,
     setDate,
   } = useTravelBookingContextInjectedHotel(tour.hotel);
 
   const calculateCost = () => {
     return (
-      (tour.hotel.additionCostPerPerson * (adults + kids) +
-        tour.hotel.pricePerNight) *
-        (differenceInDays(date.end.toString(), date.start.toString()) - 1) +
-      (dietType?.price ? dietType.price : 1) +
-      (roomType?.price ? roomType.price : 1)
+      tour.priceUSD
     );
   };
+  useEffect(() => {
+    setAdults(tour.howManyAdults);
+    setKids(tour.howManyKids);
+    setDietType(tour.dietType);
+    setRoomType(tour.roomType);
+    setCity(tour.fromCity);
+    setTransportationType(tour.transportationType);
+    setActivities(tour.activities);
+
+  }, []);
 
   return (
     <>
@@ -139,17 +147,6 @@ const TravelBooking = ({ tour }: { tour: GetTourDto }) => {
                   {(dietType?.price ? dietType.price : 0) + " грн."}
                 </span>
               </div>
-
-              {/* <div className="w-[20%] h-full">
-                <ChoosingDietTypeRoomTypeButton
-                  availableDietTypes={tour.hotel.dietTypes}
-                  availableRoomTypes={tour.hotel.roomTypes}
-                  dietType={dietType ? dietType : tour.hotel.dietTypes[0]}
-                  roomType={roomType ? roomType : tour.hotel.roomTypes[0]}
-                  setDietType={setDietType}
-                  setRoomType={setRoomType}
-                />
-              </div> */}
             </div>
           </div>
         </div>
@@ -165,6 +162,7 @@ const TravelBooking = ({ tour }: { tour: GetTourDto }) => {
             city={tour.fromCity!}
             transporationType={tour.transportationType}
             cost={calculateCost()}
+            tourId={tour.id}
           />
         </div>
       </div>

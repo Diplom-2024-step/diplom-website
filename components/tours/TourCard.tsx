@@ -132,7 +132,7 @@ const TourCard = ({
   return (
     <>
       <Card
-        className={`relative overflow-hidden hover:cursor-pointer ${isHovered ? "scale-105" : ""}`}
+        className={`relative overflow-hidden shadow-lg hover:cursor-pointer ${isHovered ? "scale-105" : ""}`}
         shadow="none"
         onMouseEnter={onHover}
         onMouseLeave={onLeave}
@@ -242,7 +242,7 @@ const TourCard = ({
             </div>
             <Icon
               icon="ei:arrow-up"
-              className={`w-10 h-10 transition-transform rotate-45 text-black ${isHovered ? "-translate-y-6" : ""
+              className={`w-10 h-10 transition-transform rotate-45 text-black ${isHovered ? "-translate-y-6 text-primary" : ""
                 }`}
             />
           </div>

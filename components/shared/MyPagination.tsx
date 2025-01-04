@@ -25,7 +25,7 @@ export const MyPagination = (
   }: PaginationItemRenderProps) => {
     if (value === PaginationItemType.NEXT) {
       return (
-        <button key={key} className={cn(className, "bg-default-200/50 min-w-8 w-8 h-8")} onClick={onNext}>
+        <button key={key} className={cn(className, "bg-transparent min-w-8 w-8 h-8")} onClick={onNext}>
           <ChevronRight  />
         </button>
       );
@@ -33,7 +33,7 @@ export const MyPagination = (
 
     if (value === PaginationItemType.PREV) {
       return (
-        <button key={key} className={cn(className, "bg-default-200/50 min-w-8 w-8 h-8")} onClick={onPrevious}>
+        <button key={key} className={cn(className, "bg-transparent min-w-8 w-8 h-8")} onClick={onPrevious}>
           <ChevronLeft/>
         </button>
       );

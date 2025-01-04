@@ -11,25 +11,11 @@ import { TourService } from "@/service/crudServices/TourService";
 import { GetTourDto } from "@/AppDtos/Dto/Models/Tours/get-tour-dto";
 
 const ShowActivitiesForTour = ({ tour }: { tour: GetTourDto }) => {
-  //const service = new TourService();
   const pathname = usePathname();
   const router = useRouter();
-  // const [tours, setTour] = useState<any>(null);
 
   const { activities } = useTravelBookingContext();
 
-  // useEffect(() => {
-  //   const fetchTourData = async () => {
-  //     try {
-  //       const fetchedTour = await service.getById(tour.id);
-  //       setTour(fetchedTour);
-  //     } catch (error) {
-  //       console.error("Error fetching tour data:", error);
-  //     }
-  //   };
-
-  //   fetchTourData();
-  // }, [tour.id]);
 
   return (
     <div className="text-center w-full mt-10 mb-10">
@@ -38,7 +24,7 @@ const ShowActivitiesForTour = ({ tour }: { tour: GetTourDto }) => {
       </h2>
       <div className="flex-row w-full rounded-md shadow-lg mt-5 bg-white h-[330px]">
         <div className="flex  justify-between items-center w-full h-full">
-          <div className="w-[90%] flex justify-start overflow-x-clip">
+          <div className="w-full flex justify-start overflow-x-clip">
             {tour.activities.map((activity, index) => (
               <div className="w-[20%] p-4" key={index}>
                 <InnerActivityCard activity={activity} />
