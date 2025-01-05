@@ -3,18 +3,14 @@ import GridBigReviewCards from './GridBigReviewCards'
 
 const ReviewsOnAboutUsPage = () => {
 
-
-
-
-
     return (
-        <div id="reviews" className="flex flex-col items-center mb-[50px]">
+        <div id="reviews" className="flex flex-col items-center mb-[50px] mt-[150px] ">
             <div className="flex flex-col items-center   h-full mt-10 mb-10 w-4/5">
                 <p className="text-[43px] font-bold mb-[35px] text-customBlack font-unbounded">
                     Рейтинг та відгуки
                 </p>
             </div>
-            <div className="w-4/6 bg-gray-100">
+            <div className="w-4/6   bg-gray-100">
                 <div className="grid grid-cols-5 gap-4 p-4 rounded-lg">
                     <div className="col-span-1 flex flex-col items-center">
                         <p className="text-[75px] font-bold text-black">4.8</p>
@@ -69,10 +65,8 @@ const ReviewsOnAboutUsPage = () => {
                         <div className="text-blue-400 text-2xl">☹️</div>
                     </div>
                 </div>
-                
-<GridBigReviewCards/>
+                <GridBigReviewCards/>
             </div>
-
         </div>
     )
 }

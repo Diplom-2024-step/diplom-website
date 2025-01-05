@@ -179,6 +179,7 @@ const BuyButtonActive = ({
                 </Button>
                 <Button
                   color="primary"
+                  isDisabled={(isInvalidPhoneNumber || phoneNumber.length === 0) || (fullName === undefined || fullName === "")}
                   className="text-white rounded-full text-[18px]"
                   onPress={() => {
                     createOrdere();

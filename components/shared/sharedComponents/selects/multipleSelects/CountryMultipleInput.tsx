@@ -50,39 +50,39 @@ const CountryMultipleInput: SpecificInput = (
             service={service}
             outFiltres={
                 [
-                    [
-                        {
-                            column: "Name",
-                            searchTerm: "Мальдіви",
-                            filterType: "Strict",
-                            negate: false,
-                        },
-                        {
-                            column: "Name",
-                            searchTerm: "Італія",
-                            filterType: "Strict",
-                            negate: false,
-                        },
-                        {
-                            column: "Name",
-                            searchTerm: "Єгипт",
-                            filterType: "Strict",
-                            negate: false,
-                        },
-                        {
-                            column: "Name",
-                            searchTerm: "Іспанія",
-                            filterType: "Strict",
-                            negate: false,
-                        },
-                        {
-                            column: "Name",
-                            searchTerm: "Туреччина",
-                            filterType: "Strict",
-                            negate: false,
-                        },
-                    ],
-                ]
+    [
+      {
+        column: "Name",
+        searchTerm: "Мальдіви",
+        filterType: "Strict",
+        negate: false,
+      },
+      {
+        column: "Name",
+        searchTerm: "Італія",
+        filterType: "Strict",
+        negate: false,
+      },
+      {
+        column: "Name",
+        searchTerm: "Єгипeт",
+        filterType: "Strict",
+        negate: false,
+      },
+      {
+        column: "Name",
+        searchTerm: "Іспанія",
+        filterType: "Strict",
+        negate: false,
+      },
+      {
+        column: "Name",
+        searchTerm: "Туреччина",
+        filterType: "Strict",
+        negate: false,
+      },
+    ],
+  ]
 
             }
 
