@@ -254,7 +254,7 @@ const Profile = () => {
 
                 </div>
                 <div className="flex-row flex justify-around">
-                  <div className="flex-row w-2/5 flex justify-between">
+                  <div className="flex-row w-2/5 flex justify-between mb-28">
                   <Button className="text-white font-nunito_font_family  mb-10 text-base px-10" radius="full" color="primary"
 
                   onPress={() => {

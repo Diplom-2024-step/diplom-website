@@ -146,7 +146,7 @@ const FindTourCard = () => {
                 className="text-[#171717]"
                 radius="full"
                 value={date}
-                onChange={setDate}
+                onChange={(e) => setDate(e!)}
                 classNames={{
                   input: "text-[#171717]",
                   popoverContent: "bg-blue-100 dark:bg-blue-900",

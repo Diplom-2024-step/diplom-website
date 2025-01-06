@@ -48,6 +48,7 @@ export const MyPagination = (
       <button
         ref={ref}
         key={key}
+
         className={cn(
           className,
           isActive &&
@@ -63,6 +64,7 @@ export const MyPagination = (
   return (
     total > 1 ?
     <Pagination
+    
       disableCursorAnimation
       showControls
       total={total}

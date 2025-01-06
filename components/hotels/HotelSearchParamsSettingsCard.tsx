@@ -108,15 +108,15 @@ const HotelSearchParamsSettingsCard = (
   return (
     <>
       <div className='w-full flex-col rounded-2xl shadow-xl p-5 max-w-6xl mx-auto my-5  bg-white '>
-        <div className='w-full flex p-4 rounded-2xl border-2 border-gray-100 shadow-xl'>
+        <div className='w-full flex p-4 rounded-2xl border-2 border-gray-100 shadow-xl first-params-settings-windows'>
           <div className='w-3/4'>
             <h4
               className='font-unbounded font-[600] text-black text-2xl'
             >Бюджет</h4>
 
             <div
-              className=" justify-between flex text-xl font-nunito_font_family font-[600] *:
-          bg-gradient-to-b   from-[#ECB003] to-[#AF3F2B] py-2  text-transparent bg-clip-text
+              className="budget-money-from-to justify-between flex text-xl font-nunito_font_family font-[600] *:
+              bg-gradient-to-b from-[rgba(236,176,3,1)] to-[rgba(175,63,43,1)] py-2  text-transparent bg-clip-text
           
           "
             >
@@ -157,7 +157,7 @@ const HotelSearchParamsSettingsCard = (
           <Divider orientation='vertical' className=' bg-gray-300 w-px  h-auto mx-4 ' />
 
 
-          <div className='w-1/4'>
+          <div className='w-1/3 lg:w-1/4 first-params-settings-window'>
             <h4 className='font-unbounded font-[600] text-black text-2xl'>Рейтинг готелю</h4>
 
             <div className='w-full py-2'>
@@ -219,7 +219,7 @@ const HotelSearchParamsSettingsCard = (
 
         </div>
 
-        <div className='flex p-2 mt-2 gap-2 bg-transparent'>
+        <div className='flex w-full p-2 mt-2 gap-1 bg-transparent second-params-settings-windows'>
           <DietTypeInput onChange={onChangeDietTypes} currectValue={dietTypesIds} />
 
           <BeachTypeInput onChange={onChangeBeachTypes} currectValue={beachTypesIds} />
@@ -232,8 +232,8 @@ const HotelSearchParamsSettingsCard = (
       </div>
 
       <div className='flex justify-center items-center my-10'>
-        <div className='flex-row flex justify-center w-full' >
-          <div className='text-center text-wrap w-2/5'>
+        <div className='flex-row flex justify-center w-full params-settings-buttons-container' >
+          <div className='text-center text-wrap w-2/5 params-settings-button-container'>
             <Button className='bg-transparent text-black text-xl rounded-full px-20 text-center  border-1 border-black'
               onClick={() => {
                 onClose();
@@ -244,7 +244,7 @@ const HotelSearchParamsSettingsCard = (
             </Button>
             <p className='font-nunito_font_family text-[#303030] text-opacity-70  text-lg'>Відмінити всі обрані фільтри</p>
           </div>
-          <div className='text-center w-2/5 mr-5'>
+          <div className='text-center w-2/5 mr-5 params-settings-button-container'>
             <Button className='text-white bg-primary font-nunito_font_family font-[700] text-xl text-center rounded-full  px-20'
 
               onClick={() => {
