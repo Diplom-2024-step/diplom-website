@@ -48,8 +48,8 @@ const TravelBooking = ({ hotel }: { hotel: GetHotelDto }) => {
     <>
       <div className="flex w-full justify-between mt-10 text-black">
         <div className="flex-col w-[80%]">
-          <div className="w-full flex bg-white shadow-md">
-            <div className="w-[40%] bg-primary text-white flex items-center justify-start p-5 rounded-r-lg">
+          <div className="w-full  md:flex   bg-white shadow-md">
+            <div className="md:w-[40%] bg-primary text-white flex items-center justify-center md:justify-start p-5 rounded-r-lg">
               <Icon
                 icon="stash:people-group-duotone"
                 className="mr-3 text-4xl"
@@ -57,11 +57,10 @@ const TravelBooking = ({ hotel }: { hotel: GetHotelDto }) => {
               <span>Туристи</span>
             </div>
 
-            <div className="w-full flex items-center justify-start p-2">
-              <div className="w-[80%] p-5">
-                <span>
+            <div className="w-full md:flex items-center justify-start p-2">
+              <div className="w-full md:w-[80%] p-5 flex justify-center sm:justify-start md:justify-start">
+                <span className="text-center sm:text-left md:text-left">
                   {adults === 1 ? "1 дорослий " : `${adults} дорослих `}
-
                   {kids === 0
                     ? ""
                     : kids === 1
@@ -69,7 +68,7 @@ const TravelBooking = ({ hotel }: { hotel: GetHotelDto }) => {
                       : `${kids} дитин `}
                 </span>
               </div>
-              <div className="w-[20%] h-full">
+              <div className="w-full md:w-[20%] h-full">
                 <ChoosingHowManyPeopleButton
                   adults={adults}
                   children={kids}
@@ -132,7 +131,7 @@ const TravelBooking = ({ hotel }: { hotel: GetHotelDto }) => {
             </div>
           </div>
 
-          <div className="w-full flex bg-white shadow-md mt-5">
+          <div className="w-full md:flex bg-white shadow-md mt-5">
             <div className="w-[40%] bg-primary text-white flex items-center justify-start p-5 rounded-r-lg">
               <Icon icon="fa-solid:concierge-bell" className="mr-3 text-4xl" />
               <span>Тип кімнати і харчування</span>
@@ -170,7 +169,6 @@ const TravelBooking = ({ hotel }: { hotel: GetHotelDto }) => {
               <p className="text-2xl">{calculateCost()} грн.</p>
             </div>
           </div>
-
           <BuyButtonActive
             city={city!}
             transporationType={transportationType}
