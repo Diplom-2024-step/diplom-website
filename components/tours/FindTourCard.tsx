@@ -114,7 +114,7 @@ const FindTourCard = () => {
       isBlurred={false}
       isFooterBlurred={false}
       radius="none"
-      className="rounded-tl-none rounded-tr-[20px] rounded-br-[20px] rounded-bl-[30px] overflow-visible"
+      className="rounded-tl-none rounded-tr-[20px] rounded-br-[20px] rounded-bl-[30px]  mt-[30px] lg:w-auto w-full"
     >
       <div className="flex items-center justify-center bg-white text-[#161616] w-44 md:w-60 pt-2 md:pt-3 pr-10 pl-10 font-bold rounded-tl-[15px] md:rounded-tl-[20px] rounded-tr-[15px] md:rounded-tr-[20px] shadow-lg">
         Тури
@@ -193,7 +193,7 @@ const FindTourCard = () => {
             </Popover>
           </div>
         </div>
-        <div className="flex items-center justify-center mt-4 md:mt-0 md:ml-2 md:mr-3">
+        <div className="flex items-center justify-center lg:mt-4 md:mt-0 md:ml-2 md:mr-3">
           <Button
             className="rounded-full text-white bg-[#5DB3C1] font-medium py-6 px-4"
             onClick={() => {

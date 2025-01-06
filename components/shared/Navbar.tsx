@@ -4,7 +4,14 @@ import Image from "next/image";
 import headerLogoImage from "../../assets/images/header/Expedia_Logo_2023.png";
 import SignInButton from "./SignInButton";
 import { Icon } from "@iconify/react";
-import { Link, Popover, PopoverContent, PopoverTrigger, Select, SelectItem } from "@nextui-org/react";
+import {
+  Link,
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+  Select,
+  SelectItem,
+} from "@nextui-org/react";
 import SelectCountryForHotels from "./sharedComponents/selects/SelectCountryForHotels";
 
 const ContactInfo = () => {
@@ -110,13 +117,11 @@ const ForTouristSelect = () => {
     </div>
   );
 };
-
 const ContactUs = () => {
   return (
     <Popover key="contactUs" placement="bottom">
       <PopoverTrigger>
-        <div className="w-full text-center hover:cursor-pointer text-gray-600 hover:text-gray-900">
-          <p>Контакти</p>
+        <div className="w-full text-center hover:cursor-pointer text-gray-600 hover:text-gray-900">          <p>Контакти</p>
         </div>
       </PopoverTrigger>
       <PopoverContent>
@@ -145,6 +150,7 @@ const ContactUs = () => {
   );
 };
 
+
 const MobileMenu = ({ isOpen, onClose } : {isOpen:boolean, onClose: () => void}) => {
    return (
     <div className={`fixed inset-0 z-50 transform ${isOpen ? 'translate-x-0' : '-translate-x-full'} transition-transform duration-300 ease-in-out md:hidden`}>
@@ -157,6 +163,7 @@ const MobileMenu = ({ isOpen, onClose } : {isOpen:boolean, onClose: () => void})
         </div>
         <div className="flex flex-col">
           <div className="px-4 py-2">
+
             <SelectCountryForHotels />
           </div>
           
@@ -236,7 +243,6 @@ const Navbar = () => {
               <AboutUsSelect />
             </div>
           </nav>
-
           <div className="flex items-center space-x-4">
             <div className="">
               <SignInButton />
