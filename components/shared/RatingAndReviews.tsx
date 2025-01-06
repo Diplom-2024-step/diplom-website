@@ -1,14 +1,17 @@
 "use client";
 import React from "react";
 import Image from "next/image";
+import { Swiper, SwiperSlide } from "swiper/react";
 import { Icon } from "@iconify/react";
 import { useState } from "react";
-import { ChevronLeft, ChevronRight } from "lucide-react";
 import photo1 from "../../assets/images/reviews/character3.png";
 import photo2 from "../../assets/images/reviews/character5.png";
 import photo3 from "../../assets/images/reviews/character2.png";
 import photo4 from "../../assets/images/reviews/character4.png";
 import { Link } from "@nextui-org/link";
+import "swiper/css";
+import "swiper/css/pagination";
+import { Pagination, Navigation } from "swiper/modules";
 
 const reviews = [
   {
@@ -64,21 +67,14 @@ const RatingAndReviews = () => {
     setCurrentIndex(index);
   };
 
-  const handleHover = (index: number): void => {
-    setHoveredIndex(index);
-  };
-
-  const handleLeave = (): void => {
-    setHoveredIndex(null);
-  };
-
   return (
     <div className="flex flex-col items-center mb-[50px]">
       <div className="flex flex-col items-center   h-full mt-10 mb-10 w-4/5">
-        <p className="text-[43px] font-bold mb-[35px] text-customBlack font-unbounded">
+        <p className="lg:text-[43px] text-[26px] font-bold mb-[35px] text-customBlack font-unbounded">
           Рейтинг та відгуки
         </p>
       </div>
+      {/* Версия для пк */}
       <div className="hidden lg:flex flex-col w-4/6 bg-gray-100">
         <div className="grid grid-cols-5 gap-4 p-4 rounded-lg">
           <div className="col-span-1 flex flex-col items-center">
@@ -168,7 +164,7 @@ const RatingAndReviews = () => {
           ))}
         </div>
         <Link
-        href={'/aboutUs#reviews'}
+          href={"/aboutUs#reviews"}
           className="flex items-center m-[45px] p-2 group backdrop-blur-sm rounded-full 
               transition-all duration-300 "
         >
@@ -179,6 +175,7 @@ const RatingAndReviews = () => {
           />
         </Link>
       </div>
+      {/* Версия для мобилок */}
       <div className="lg:hidden flex flex-col w-5/6 bg-gray-100">
         <div className=" rounded-lg">
           <div className="flex justify-center items-center">
@@ -242,94 +239,63 @@ const RatingAndReviews = () => {
         {/* Блок отзывов */}
         <div className="m-[45px] mt-8 h-[350px]">
           <div className="w-full mx-auto px-4 text-black">
-            <div className="relative ">
-              <div className="overflow-hidden">
-                <div
-                  className="flex transition-transform duration-300 ease-in-out"
-                  style={{
-                    transform: `translateX(-${currentIndex * 33.333}%)`,
-                  }}
-                >
-                  {reviews.map((review, index) => (
-                    <div
-                      key={index}
-                      className=" mt-6 mb-6 flex-shrink-0 px-2 background-customAqua"
-                    >
-                      <div className="flex items-center">
+            <div className="w-full">
+              <Swiper
+                modules={[Pagination, Navigation]}
+                spaceBetween={30}
+                slidesPerView={1}
+                navigation
+                pagination={{ clickable: true }}
+                breakpoints={{
+                  640: { slidesPerView: 1 },
+                  768: { slidesPerView: 2 },
+                  1024: { slidesPerView: 3 },
+                }}
+                className="swiper-container"
+              >
+                {reviews.map((review, index) => (
+                  <SwiperSlide key={index} className="flex mb-[30px]">
+                    <div className="p-4 bg-customAqua rounded-lg">
+                      <div className="flex items-center h-[15%]">
                         <Image
-                          src={reviews[index].photo}
-                          alt={`User ${index}`}
+                          src={review.photo}
+                          alt={`User ${index + 1}`}
                           className="w-12 h-12 bg-yellow-100 rounded-full object-cover"
                         />
                         <div className="ml-4">
                           <p className="font-semibold text-black">
-                            {reviews[index].name}
+                            {review.name}
                           </p>
                           <div className="flex mt-1">
                             <span className="text-yellow-500">★★★★★</span>
                           </div>
                         </div>
                       </div>
-
                       <div className="h-[65%]">
-                        <p className="text-gray-700 mt-4">
-                          {reviews[index].text}
-                        </p>
+                        <p className="text-gray-700 mt-4">{review.text}</p>
                       </div>
-
                       <div className="flex flex-col mt-4 text-gray-600 text-sm">
-                        <p>{reviews[index].time}</p>
-                        <p>{reviews[index].date}</p>
+                        <p>{review.time}</p>
+                        <p>{review.date}</p>
                       </div>
                     </div>
-                  ))}
-                </div>
-              </div>
-
-              <button
-                onClick={handlePrev}
-                className="absolute left-0 top-1/3 -translate-y-1/2 -translate-x-4 bg-white p-2 rounded-full shadow-lg hover:bg-gray-100 z-10"
-                type="button"
-                aria-label="Previous slide"
-              >
-                <ChevronLeft className="w-6 h-6" />
-              </button>
-
-              <button
-                onClick={handleNext}
-                className="absolute right-0 top-1/3 -translate-y-1/2 translate-x-4 bg-white p-2 rounded-full shadow-lg hover:bg-gray-100 z-10"
-                type="button"
-                aria-label="Next slide"
-              >
-                <ChevronRight className="w-6 h-6" />
-              </button>
-
-              <div className="flex justify-center gap-2 mt-4">
-                {[...Array(reviews.length - 2)].map((_, index) => (
-                  <button
-                    key={index}
-                    type="button"
-                    aria-label={`Go to slide ${index + 1}`}
-                    className={`w-6 h-1 transition-colors ${
-                      index === currentIndex ? "bg-black" : "bg-gray-300"
-                    }`}
-                    onClick={() => handleDotClick(index)}
-                  />
+                  </SwiperSlide>
                 ))}
-              </div>
+              </Swiper>
             </div>
           </div>
         </div>
-        <button
-          className="flex items-center m-[45px] p-2 bg-white/20 backdrop-blur-sm rounded-full 
-              transition-all duration-300 hover:bg-white/30"
+        <Link
+          href={"/aboutUs#reviews"}
+          className="flex items-center m-[45px] p-2 group backdrop-blur-sm rounded-full 
+              transition-all duration-300 "
         >
           <p className="text-black text-[20px]">Переглянути більше</p>
           <Icon
             icon="ei:arrow-up"
-            className={`w-10 h-10 transition-transform rotate-45 text-black ml-[12px]`}
+            className={`w-10 h-10 transition-transform group-hover:-translate-y-3 group-hover:text-primary rotate-45 text-black ml-[12px]`}
           />
-        </button>
+        </Link>
       </div>
     </div>
   );

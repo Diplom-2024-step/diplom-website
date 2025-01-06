@@ -4,7 +4,14 @@ import Image from "next/image";
 import headerLogoImage from "../../assets/images/header/Expedia_Logo_2023.png";
 import SignInButton from "./SignInButton";
 import { Icon } from "@iconify/react";
-import { Link, Popover, PopoverContent, PopoverTrigger, Select, SelectItem } from "@nextui-org/react";
+import {
+  Link,
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+  Select,
+  SelectItem,
+} from "@nextui-org/react";
 import SelectCountryForHotels from "./sharedComponents/selects/SelectCountryForHotels";
 
 const AboutUsSelect = () => {
@@ -14,19 +21,25 @@ const AboutUsSelect = () => {
       placeholder="Про нас"
       selectionMode="none"
       defaultSelectedKeys={[""]}
-      items={[{
-        label: "Про компанію",
-        id: "1",
-        href: "/aboutUs"
-      }, {
-        label: "Рейтинг та відгуки",
-        id: "2",
-        href: "/aboutUs#reviews"
-      }]}
+      items={[
+        {
+          label: "Про компанію",
+          id: "1",
+          href: "/aboutUs",
+        },
+        {
+          label: "Рейтинг та відгуки",
+          id: "2",
+          href: "/aboutUs#reviews",
+        },
+      ]}
     >
       {(item) => (
         <SelectItem key={item.id}>
-          <Link href={item.href} className="text-gray-600 hover:text-gray-900 text-sm">
+          <Link
+            href={item.href}
+            className="text-gray-600 hover:text-gray-900 text-sm"
+          >
             <p>{item.label}</p>
           </Link>
         </SelectItem>
@@ -35,7 +48,6 @@ const AboutUsSelect = () => {
   );
 };
 
-
 const ForTouristSelect = () => {
   return (
     <Select
@@ -43,39 +55,42 @@ const ForTouristSelect = () => {
       placeholder="Туристам"
       selectionMode="none"
       defaultSelectedKeys={[""]}
-      items={[{
-        label: "Зворотній звязок",
-        id: "1",
-        href: "/"
-      }, {
-        label: "Наші послуги",
-        id: "2",
-        href: "/#services"
-      }]}
+      items={[
+        {
+          label: "Зворотній звязок",
+          id: "1",
+          href: "/",
+        },
+        {
+          label: "Наші послуги",
+          id: "2",
+          href: "/#services",
+        },
+      ]}
     >
       {(item) => (
         <SelectItem key={item.id}>
-          <Link href={item.href} className="text-gray-600 hover:text-gray-900 text-sm">
+          <Link
+            href={item.href}
+            className="text-gray-600 hover:text-gray-900 text-sm"
+          >
             <p>{item.label}</p>
           </Link>
         </SelectItem>
       )}
     </Select>
   );
-}
-
+};
 
 const ContactUs = () => {
   return (
     <Popover key={"contactUs"} placement={"bottom"}>
       <PopoverTrigger>
         <div className="w-full text-center hover:cursor-pointer text-gray-600 hover:text-gray-900 ">
-          <p>
-            Контакти
-          </p>
+          <p>Контакти</p>
         </div>
       </PopoverTrigger>
-      <PopoverContent >
+      <PopoverContent>
         <div className="px-1 py-2 text-xl font-nunito_font_family">
           <div className="flex items-start gap-2  font-bold">
             <Icon icon="mdi:map-marker" className="mt-1 text-2xl" />
@@ -95,12 +110,11 @@ const ContactUs = () => {
               <span>+38 (068) 778 90 00</span>
             </div>
           </div>
-        </div>         </PopoverContent>
+        </div>{" "}
+      </PopoverContent>
     </Popover>
-  )
-}
-
-
+  );
+};
 
 const Navbar = () => {
   return (
@@ -111,7 +125,6 @@ const Navbar = () => {
         </Link>
 
         <nav className=" flex items-center justify-center  w-1/2 text-[15px]">
-
           <div className="w-1/5">
             <SelectCountryForHotels />
           </div>
@@ -122,11 +135,9 @@ const Navbar = () => {
             </Link>
           </div>
 
-
           <div className="w-1/5">
             <ForTouristSelect />
           </div>
-
 
           <div className="w-1/5">
             <ContactUs />

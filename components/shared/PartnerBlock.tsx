@@ -15,15 +15,15 @@ import pngwing from "../../assets/images/partners/pngwing.com.png";
 
 const PartnerBlock = () => {
   return (
-    <div className="flex flex-col items-center bg-white py-10 px-6 lg:px-20">
-      <div className="grid lg:grid-cols-2 gap-8 items-center w-[73%]">
+    <div className="flex flex-col items-center lg:bg-white py-10 px-6 lg:px-20">
+      <div className="grid lg:grid-cols-2 gap-8 items-center lg:w-[73%] w-full">
         {/* Левая часть: заголовок и текст */}
-        <div className="w-[90%]">
-          <h1 className="text-[43px] text-black font-bold mb-4">
+        <div className="flex flex-col w-[90%] lg:text-left text-center">
+          <h1 className="font-unbounded lg:text-[43px] text-[26px] text-black font-bold mb-4">
             Нам довіряють
           </h1>
           <div className="flex">
-            <p className="text-black leading-relaxed">
+            <p className="font-nunito_font_family text-black lg:text-[inherit] text-[16px] leading-relaxed">
               Ми пишаємося співпрацею з провідними компаніями та організаціями,
               які допомагають нам надавати найкращі туристичні послуги для наших
               клієнтів. Завдяки нашим партнерам і спонсорам ми можемо
