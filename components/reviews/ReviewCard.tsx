@@ -76,7 +76,7 @@ const ReviewCard = ({
           {(onClose) => (
             <>
               <ModalHeader className="flex  gap-1">   <Image
-                        src={photo4.src}
+                        src={getIconAccordingToIconNumber(review.user.iconNumber.toString())}
                         alt={`${review.id}`}
                         width={64}
                         height={64}

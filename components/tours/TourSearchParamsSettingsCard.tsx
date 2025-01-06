@@ -293,7 +293,7 @@ const onChangeCountry = (e: any, type: string) => {
                   onChange={(value) => 
                     {
                       setIsDurationChange(true);
-                      setInnerDate(value);
+                      setInnerDate(value!);
                     }}
                   label="Тривалість"
                   className="w-full mt-2"

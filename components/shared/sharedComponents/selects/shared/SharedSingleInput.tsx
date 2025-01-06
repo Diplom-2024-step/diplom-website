@@ -25,6 +25,8 @@ const SharedSingleInput = <
         renderFunction,
         onSelectRenderFunction,
         placeholder,
+        outFiltres
+        
 
     } : {
         service:TService,
@@ -32,7 +34,9 @@ const SharedSingleInput = <
         currectValue?: TGetModel, 
         renderFunction: (item:TGetModel) => ReactNode,
         onSelectRenderFunction : (item:TGetModel) => ReactNode,
-        placeholder: string
+        placeholder: string;
+            outFiltres?: FilterDto[][]
+
     }
 ) => {
 
@@ -46,7 +50,7 @@ const SharedSingleInput = <
   const [error, setError] = useState<string>();
   const [perPageError, setPerPageError] = useState<string>();
   
-  const [filters, setFilters] = useState<FilterDto[][]>([])
+  const [filters, setFilters] = useState<FilterDto[][]>(outFiltres ? outFiltres : [])
 
   const loadItems = useGetPageOfItems<
     TGetModel,

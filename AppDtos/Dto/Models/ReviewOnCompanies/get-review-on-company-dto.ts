@@ -8,8 +8,9 @@ export const getReviewOnCompanyDtoSchema = z.object({
   service: z.number().int(),
   body: z.string().max(2048),
   score: z.number().int().min(1).max(5),
+  createdAt: z.date(),
   user: getUserDtoSchema,
-    id: z.string().uuid(),
+  id: z.string().uuid(),
 });
 
 export type GetReviewOnCompanyDto = z.infer<typeof getReviewOnCompanyDtoSchema>;

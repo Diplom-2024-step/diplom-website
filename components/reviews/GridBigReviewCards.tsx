@@ -10,6 +10,7 @@ import React, { useEffect, useState } from 'react'
 import GridBigReviewCardsSkeleton from '../shared/skeletons/GridBigReviewCardsSkeleton';
 import BigReviewCard from './BigReviewCard';
 import MyPagination from '../shared/MyPagination';
+import ReviewCardCarousel from './ReviewCardCarousel';
 
 const GridBigReviewCards = () => {
 
@@ -49,19 +50,22 @@ const GridBigReviewCards = () => {
 
   return (
     loadingState === "idle" ? <>
-      <div className='grid-cols-2 grid  gap-4 mx-4'>
-        {items?.models.map((e, index) => <BigReviewCard review={e} key={index} />)}
-
-        
+      <div className="hidden sm:block xl:grid-cols-2 lg:grid-cols-1 md:visible md:grid gap-4 mx-4">
+        {items?.models.map((e, index) => (
+          <BigReviewCard review={e} key={index} />
+        ))}
       </div>
-      <div className=' w-full my-10'>
-        <div className='flex justify-center items-center'>
-      <MyPagination
-          onchange={(e) => setPage(e.toString())} total={items?.howManyPages!} page={parseInt(page)}        
-        />
-</div>
-</div>
-       </> : <GridBigReviewCardsSkeleton />
+      <div className='block sm:hidden mb-10'>
+        <ReviewCardCarousel reviews={items?.models as any} />
+      </div>
+      <div className='hidden sm:block md:visible w-full md:my-10'>
+        <div className='flex justify-center mt-10 items-center'>
+          <MyPagination
+            onchange={(e) => setPage(e.toString())} total={items?.howManyPages!} page={parseInt(page)}
+          />
+        </div>
+      </div>
+    </> : <GridBigReviewCardsSkeleton />
   )
 }
 

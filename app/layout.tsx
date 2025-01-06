@@ -20,19 +20,19 @@ export default function RootLayout({
 }) {
   const pathname = usePathname();
   // List of pages where Navbar and Footer should be hidden
-  const hideLayoutFor = ["/auth/login", "/auth/registrate"];
+  const hideLayoutFor = ["/auth/login", "/auth/registrate", "/auth/confirm-email"];
   // List of pages where only Navbar should be shown
   const showOnlyNavbarFor = ["/profile"];
-  
+
   // Flags to check layout visibility
   const shouldHideLayout = hideLayoutFor.includes(pathname);
   const shouldShowOnlyNavbar = showOnlyNavbarFor.includes(pathname);
-  
+
   return (
     <html suppressHydrationWarning lang="en">
       <body
         className={clsx(
-          "min-h-screen bg-[#edebeb] font-sans antialiased",
+          "min-h-screen overflow-x-hidden bg-[#edebeb] font-sans antialiased",
           fontSans.variable
         )}
       >
@@ -41,11 +41,9 @@ export default function RootLayout({
              {!shouldHideLayout && <FixedButtonPhone/>}
             {/* Show Navbar only if route is not in hidden list */}
             {!shouldHideLayout && <Navbar />}
-     
-            <main className="flex-grow">
-              {children}
-            </main>
-             
+
+            <main className="flex-grow">{children}</main>
+
             {/* Show Footer only if layout is not hidden and not only showing Navbar */}
             {!shouldHideLayout && !shouldShowOnlyNavbar && <Footer />}
           </div>

@@ -49,7 +49,8 @@ const handler = NextAuth({
   ],
   pages: {
     signIn: "/auth/login/",
-    newUser: "/auth/registrate/"
+    newUser: "/auth/registrate/",
+    verifyRequest: "/auth/login/"
   },
   callbacks: {
     async jwt({ token, user, trigger, session }) {
