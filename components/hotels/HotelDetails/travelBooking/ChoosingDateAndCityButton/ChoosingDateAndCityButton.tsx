@@ -54,7 +54,8 @@ const ChoosingDateAndCityButton = (
               '
         onClick={() => setIsOpen(true)}
       >
-        <div className='absolute w-[2px] bg-gray-400 h-full top-0 bottom-0 left-0 z-10'></div>
+                <div className='hidden md:block absolute w-[2px] bg-gray-400 h-full top-0 bottom-0 left-0 z-10'></div>
+
         <Icon
           icon="weui:arrow-outlined"
           className='z-20 rotate-90 text-4xl text-black'
