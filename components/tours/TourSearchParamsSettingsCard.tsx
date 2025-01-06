@@ -156,10 +156,8 @@ const onChangeCountry = (e: any, type: string) => {
             >Бюджет</h4>
 
             <div
-              className="budget-money-from-to justify-between flex text-xl font-nunito_font_family font-[600] *:
-          bg-gradient-to-b   from-[#ECB003] to-[#AF3F2B] py-2  text-transparent bg-clip-text
-          
-          "
+              className="budget-money-from-to justify-between flex text-xl font-nunito_font_family font-[600]
+              bg-gradient-to-b from-[rgba(236,176,3,1)] to-[rgba(175,63,43,1)] py-2 text-transparent bg-clip-text"
             >
               <span className='text-start'>{(budget as any as number[])[0].toLocaleString().replace(',', ' ')} ₴</span>
 

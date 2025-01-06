@@ -42,7 +42,7 @@ export const TourCarousel = ({
   };
 
   return (
-    <div className="w-full mx-auto px-4 text-black lg:max-w-6xl carousel-block">
+    <div className="w-full max-w-6xl mx-auto px-4 text-black lg:max-w-6xl carousel-block">
       <h2 className="text-[50px] font-bold font-unbounded mt-6 carousel-title">{title}</h2>
 
       <div className="relative">
