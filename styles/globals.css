@@ -85,7 +85,6 @@
 }
 
 
-
 /*Фильтрация тура*/
 @media (max-width: 768px) {
   .first-params-settings-windows,
@@ -112,7 +111,8 @@
   }
 
   .budget-slider {
-    display: none;
+    /* display: none; */
+    margin-bottom: 25px;
   }
 
   .budget-money-from-to {
