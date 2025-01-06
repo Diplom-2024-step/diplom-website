@@ -50,3 +50,94 @@
   }
 
 }
+
+/*Карусель туров*/
+
+@media (max-width: 767px) {
+  .carousel-block {
+    max-width: 500px;
+  }
+
+  .carousel-title {
+    text-align: center;
+    font-size: 26px;
+  }
+
+  .tours-carousel-item {
+    width: 100%;
+  }
+}
+
+@media (min-width: 768px) and (max-width:1024px) {
+  .carousel-title {
+    text-align: left;
+  }
+
+  .tours-carousel-item {
+    width: 50%;
+  }
+}
+
+@media (max-width: 1024px) {
+  .carousel-list-buttons {
+    display: none;
+  }
+}
+
+
+
+/*Фильтрация тура*/
+@media (max-width: 768px) {
+  .first-params-settings-windows,
+  .second-params-settings-windows {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .second-params-settings-windows {
+    row-gap: 15px;
+  }
+
+  .first-params-settings-window {
+    width: 100%;
+    padding-bottom: 25px;
+    margin-bottom: 25px;
+    border-bottom: 1px solid #f1f0f0;
+  }
+
+  .first-params-settings-window:last-child {
+    margin: 0;
+    padding: 0;
+    border: none;
+  }
+
+  .budget-slider {
+    display: none;
+  }
+
+  .budget-money-from-to {
+    padding: 25px 0 49px;
+  }
+
+  .budget-price-from-to {
+    display: flex;
+    justify-content: space-between;
+    margin: 0;
+  }
+
+  .params-settings-buttons-container {
+    display: flex;
+    flex-direction: column-reverse;
+    justify-content: center;
+    align-items: center;
+    row-gap: 15px;
+  }
+
+  .params-settings-button-container {
+    width: 50%;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    row-gap: 5px;
+  }
+}

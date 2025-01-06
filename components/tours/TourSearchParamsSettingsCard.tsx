@@ -149,14 +149,14 @@ const onChangeCountry = (e: any, type: string) => {
   return (
     <>
       <div className='w-full flex-col rounded-2xl shadow-xl p-5 max-w-6xl mx-auto my-5  bg-white '>
-        <div className='w-full flex p-4 rounded-2xl border-2 border-gray-100 shadow-xl'>
-          <div className='w-1/2'>
+        <div className='w-full flex p-4 rounded-2xl border-2 border-gray-100 shadow-xl first-params-settings-windows'>
+          <div className='w-1/3 lg:w-1/2 first-params-settings-window'>
             <h4
               className='font-unbounded font-[600] text-black text-2xl'
             >Бюджет</h4>
 
             <div
-              className=" justify-between flex text-xl font-nunito_font_family font-[600] *:
+              className="budget-money-from-to justify-between flex text-xl font-nunito_font_family font-[600] *:
           bg-gradient-to-b   from-[#ECB003] to-[#AF3F2B] py-2  text-transparent bg-clip-text
           
           "
@@ -167,7 +167,7 @@ const onChangeCountry = (e: any, type: string) => {
 
             </div>
             <div className='flex-col w-full'>
-              <div className='w-full'>
+              <div className='w-full budget-slider'>
                 <Slider
                   step={100}
                   maxValue={200000}
@@ -177,7 +177,7 @@ const onChangeCountry = (e: any, type: string) => {
                   className=""
                 />
               </div>
-              <div className='flex-row mt-2'>
+              <div className='flex-row mt-2 budget-price-from-to'>
                 <span className='mr-2'>Від</span>
                 <input type="text" className='w-20 mr-2 border-black border-small border-opacity-30 text-center ' value={(budget as any as number[])[0]}
                   onChange={(e: React.FormEvent<HTMLInputElement>) => handleInputChange(e, 0)}
@@ -187,7 +187,6 @@ const onChangeCountry = (e: any, type: string) => {
                 <span className='mr-2'>до</span>
                 <input type="text" className='w-20 border-black border-small border-opacity-30 text-center ' value={(budget as any as number[])[1]}
                   onChange={(e: React.FormEvent<HTMLInputElement>) => handleInputChange(e, 1)}
-
                 />
               </div>
             </div>
@@ -195,7 +194,7 @@ const onChangeCountry = (e: any, type: string) => {
 
           <Divider orientation='vertical' className=' bg-gray-300 w-px  h-auto mx-4 ' />
 
-          <div className='w-1/4 text-center'>
+          <div className='w-1/3 lg:w-1/4 text-center first-params-settings-window'>
             <h4 className='font-unbounded font-[600] text-black text-2xl'>Мандрівники</h4>
             <div className='w-full flex mt-3 gap-2'>
               <div className='w-1/2 '>
@@ -222,7 +221,7 @@ const onChangeCountry = (e: any, type: string) => {
           <Divider orientation='vertical' className=' bg-gray-300 w-px  h-auto mx-4 ' />
 
 
-          <div className='w-1/4'>
+          <div className='w-1/3 lg:w-1/4 first-params-settings-window'>
             <h4 className='font-unbounded font-[600] text-black text-2xl'>Рейтинг готелю</h4>
 
             <div className='w-full py-2'>
@@ -284,7 +283,7 @@ const onChangeCountry = (e: any, type: string) => {
 
         </div>
 
-        <div className='flex w-full p-2 mt-2 gap-1 bg-transparent'>
+        <div className='flex w-full p-2 mt-2 gap-1 bg-transparent second-params-settings-windows'>
           <CountryMultipleInput
           currectValue={countriesIds}
           onChange={onChangeCountry}
@@ -310,8 +309,8 @@ const onChangeCountry = (e: any, type: string) => {
       </div>
 
       <div className='flex justify-center items-center my-10'>
-        <div className='flex-row flex justify-center w-full' >
-          <div className='text-center text-wrap w-2/5'>
+        <div className='flex-row flex justify-center w-full params-settings-buttons-container'>
+          <div className='text-center text-wrap w-2/5 params-settings-button-container'>
             <Button className='bg-transparent text-black text-xl rounded-full px-20 text-center  border-1 border-black'
               onClick={() => {
                 onClose();
@@ -321,7 +320,7 @@ const onChangeCountry = (e: any, type: string) => {
             </Button>
             <p className='font-nunito_font_family text-[#303030] text-opacity-70  text-lg'>Відмінити всі обрані фільтри</p>
           </div>
-          <div className='text-center w-2/5 mr-5'>
+          <div className='text-center w-2/5 mr-5 params-settings-button-container'>
             <Button className='text-white bg-primary font-nunito_font_family font-[700] text-xl text-center rounded-full  px-20'
 
               onClick={() => {
