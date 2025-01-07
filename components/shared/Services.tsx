@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Image from "next/image";
+import { Swiper, SwiperSlide } from "swiper/react";
 import servicesDocumentsImage from "../../assets/images/services/Documents.png";
 import servicesFlightTicketImage from "../../assets/images/services/Flight_tickets.png";
 import servicesInsuranceImage from "../../assets/images/services/Insurance.png";
@@ -20,6 +21,9 @@ import {
   useDisclosure,
 } from "@nextui-org/react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
+import "swiper/css";
+import "swiper/css/pagination";
+import { Pagination, Navigation } from "swiper/modules";
 
 const services = [
   {
@@ -67,30 +71,38 @@ const services = [
 const Services = () => {
   const [selectedService, setSelectedService] = useState(null);
   const { isOpen, onOpen, onClose, onOpenChange } = useDisclosure();
-  const [currentIndex, setCurrentIndex] = useState<number>(0);
+  const [startX, setStartX] = useState(0);
+  const [startY, setStartY] = useState(0);
+
+  const handleTouchStart = (e) => {
+    const touch = e.touches[0];
+    setStartX(touch.clientX);
+    setStartY(touch.clientY);
+  };
+
+  const handleTouchEnd = (e, service) => {
+    const touch = e.changedTouches[0];
+    const endX = touch.clientX;
+    const endY = touch.clientY;
+
+    // Рассчитываем расстояние свайпа
+    const deltaX = Math.abs(endX - startX);
+    const deltaY = Math.abs(endY - startY);
+
+    // Если свайп незначительный, считаем это кликом
+    if (deltaX < 10 && deltaY < 10) {
+      handleOpenModal(service);
+    }
+  };
 
   const handleOpenModal = (service) => {
     setSelectedService(service);
     onOpen();
   };
 
-  const handleNext = (): void => {
-    setCurrentIndex((prev) => (prev + 1) % (services.length - 2));
-  };
-
-  const handlePrev = (): void => {
-    setCurrentIndex((prev) => {
-      if (prev === 0) {
-        return services.length - 3;
-      } else {
-        return prev - 1;
-      }
-    });
-  };
-
   return (
     <div
-    id="services"
+      id="services"
       className="flex flex-col w-full h-full justify-center items-center text-center bg-cover bg-center bg-no-repeat"
       style={{
         backgroundImage: `url(${servicesBackgroundImage.src})`,
@@ -106,61 +118,38 @@ const Services = () => {
           Залиште всі ваші турботи нам
         </p>
         <div className="lg:hidden flex flex-col items-center justify-center overflow-x-hidden">
-          <div className="flex items-center max-w-[45%] text-black">
-            {/* Кнопка назад */}
-            <button
-              onClick={handlePrev}
-              className=" bg-white p-2 rounded-full shadow-lg hover:bg-gray-100"
-              type="button"
-              aria-label="Previous slide"
+          <div
+            className="bg-cover bg-center py-10 px-4"
+            style={{ backgroundImage: "url('/images/background-water.png')" }}
+          >
+            <Swiper
+              slidesPerView={2}
+              spaceBetween={16}
+              pagination={{ clickable: true }}
+              navigation
+              modules={[Pagination, Navigation]}
+              className="w-full max-w-md mx-auto h-[220px]"
             >
-              <ChevronLeft className="w-6 h-6" />
-            </button>
-            <div className="w-full max-w-[1024px] mx-auto">
-              <div className="overflow-hidden">
-                <div
-                  className="flex transition-transform duration-300 ease-in-out"
-                  style={{
-                    transform: `translateX(-${currentIndex * 33.333}%)`,
-                  }}
-                >
-                  {services.map((service, index) => (
-                    <div
-                      key={index}
-                      className="w-[1/3] mt-6 mb-6 flex-shrink-0 px-2"
-                    >
-                      <Button
-                        className="h-full bg-transparent"
-                        onPress={() => handleOpenModal(services[index])}
-                      >
-                        <div className="flex flex-col w-[194px] h-[192px] bg-transparent border-2 border-customAqua rounded-full justify-center items-center text-center hover:border-gradientCustom group">
-                          <div className="flex flex-col w-[170px] h-[168px] bg-white rounded-full justify-center items-center text-center">
-                            <Image
-                              alt={services[index].title}
-                              src={services[index].image}
-                            />
-                            <p className="text-servicesTextColor mt-[5px] font-bold">
-                              {services[index].title}
-                            </p>
-                          </div>
-                        </div>
-                      </Button>
+              {services.map((service, index) => (
+                <SwiperSlide key={index}>
+                  <div
+                    className="flex flex-col w-[194px] h-[192px] bg-transparent border-2 border-customAqua rounded-full justify-center items-center text-center hover:border-gradientCustom group"
+                    onTouchStart={handleTouchStart}
+                    onTouchEnd={(e) => handleTouchEnd(e, service)}
+                  >
+                    <div className="flex flex-col w-[170px] h-[168px] bg-white rounded-full justify-center items-center text-center">
+                      <Image alt={service.title} src={service.image} />
+                      <p className="text-servicesTextColor mt-[5px] font-bold">
+                        {service.title}
+                      </p>
                     </div>
-                  ))}
-                </div>
-              </div>
-            </div>
-            {/* Кнопка вперед */}
-            <button
-              onClick={handleNext}
-              className="bg-white p-2 rounded-full shadow-lg hover:bg-gray-100"
-              type="button"
-              aria-label="Next slide"
-            >
-              <ChevronRight className="w-6 h-6" />
-            </button>
+                  </div>
+                </SwiperSlide>
+              ))}
+            </Swiper>
           </div>
         </div>
+
         <div className="hidden lg:flex justify-center items-center">
           <div className="flex flex-col space-y-7">
             <div className="flex flex-wrap justify-center gap-7 md:space-x-10">
