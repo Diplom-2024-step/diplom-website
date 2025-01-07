@@ -43,8 +43,8 @@ export const HotelCarousel = (
   };
 
   return (
-    <div className="w-full max-w-6xl mx-auto px-4 text-black">
-      <h2 className="text-5xl font-bold font-unbounded mt-6">Рекомендуємо відвідати</h2>
+    <div className="w-full max-w-6xl mx-auto px-4 text-black lg:max-w-6xl carousel-block">
+      <h2 className="text-5xl font-bold font-unbounded mt-6 carousel-title">Рекомендуємо відвідати</h2>
       
       <div className="relative ">
         <div className="overflow-hidden">
@@ -57,7 +57,7 @@ export const HotelCarousel = (
             {hotels.map((hotel, index) => (
               <div
                 key={hotel.id}
-                className="w-1/3 mt-6 mb-6 flex-shrink-0 px-2"
+                className="w-1/3 mt-6 mb-6 flex-shrink-0 px-2 tours-carousel-item"
               >
                 <HotelCard
                   cardItem={hotel}
@@ -88,7 +88,7 @@ export const HotelCarousel = (
           <ChevronRight className="w-6 h-6" />
         </button>
         
-        <div className="flex justify-center gap-2 mt-4">
+        <div className="flex justify-center gap-2 mt-4 carousel-list-buttons">
           {[...Array(hotels.length-2)].map((_, index) => (
             <button
               key={index}

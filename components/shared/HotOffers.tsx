@@ -57,8 +57,8 @@ const HotDestinations = () => {
   }, [loadItems]);
 
   return loadingState === "idle" ? (
-    <div className="flex flex-col items-center  w-full h-full mt-10 mb-10">
-      <p className="text-[43px] font-bold mb-[65px] text-customBlack">
+    <div className="flex flex-col items-center text-center  w-full h-full mt-10 mb-10">
+      <p className="font-unbounded lg:text-[50px] text-[26px] font-bold lg:mb-[65px] mb-[30px] text-customBlack">
         Гарячі пропозиції
       </p>
       <div className="hidden lg:flex  w-4/7 h-full">
@@ -384,7 +384,7 @@ const HotDestinations = () => {
       </div>
       <Button
         variant="light"
-        className="px-6 py-2 border border-gray-500 rounded-full text-gray-700 hover:bg-gray-100 mt-[60px] mb-[60px] lg:h-auto lg:w-auto lg:text-auto sm:text-[30px] sm:w-[60%] sm:h-[60px]"
+        className="font-nunito_font_family px-6 py-2 border border-gray-500 rounded-full text-gray-700 hover:bg-gray-100 mt-[60px] mb-[60px] text-[18px]  w-[300px] h-[50px]"
         onClick={() => router.push(`/tours`)}
       >
         Переглянути більше
