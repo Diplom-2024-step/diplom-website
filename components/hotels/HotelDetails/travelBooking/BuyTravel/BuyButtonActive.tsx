@@ -135,7 +135,7 @@ const BuyButtonActive = ({
   return city !== undefined && transporationType !== undefined ? (
     <>
       <Button
-        className="mt-5 text-white w-full text-center"
+        className="mt-5 text-white w-full text-center booking-button"
         color="primary"
         radius="full"
         onClick={onOpen}
@@ -252,7 +252,7 @@ const BuyButtonActive = ({
     </>
   ) : (
     <Button
-      className="mt-5 text-black w-full text-center"
+      className="mt-5 text-black w-full text-center booking-button"
       isDisabled={true}
       color="default"
       variant="bordered"
