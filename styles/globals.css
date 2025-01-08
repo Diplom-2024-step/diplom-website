@@ -224,3 +224,99 @@
     display: none;
   }
 }
+
+/*Карточка забронированного тура*/
+
+@media (max-width: 767px) {
+  .booked-seting-content-container {
+    width: 100%;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    padding: 10px 0;
+  }
+
+  .booked-setting-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+    margin: 0 auto;
+    padding: 10px 0;
+  }
+
+  .booked-container {
+    display: flex;
+    flex-direction: column;
+    row-gap: 40px;
+  }
+
+  .booked-title-price-container {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 30px;
+  }
+
+  .price-block {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .travel-card-status-flex {
+    display: flex;
+    flex-direction: column;
+    row-gap: 40px;
+    padding-bottom: 20px;
+  }
+
+  .travel-card-status-progress {
+    margin: 0;
+    transform: rotate(90deg);
+  }
+}
+
+@media (max-width: 1024px) {
+  .travel-card-image-info-container, .travel-card-active-status-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    row-gap: 40px;
+  }
+
+  .travel-card-active-status-container {
+    margin: 0;
+  }
+
+  .travel-card-status-container, .travel-card-active-container {
+    width: 100%;
+  }
+
+  .travel-card-status-container {
+    margin: 0;
+    padding: 0 50px;
+  }
+
+  .travel-card-info-container {
+    width: 100%;
+  }
+
+  .card-header-tabs-menu-container {
+    width: 90%;
+  }
+}
+
+@media (min-width: 100px) and (max-width: 767px) {
+  .card-header-tab-button {
+    font-size: 11px;
+    padding: 3px 6px 3px;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+  .card-header-tab-button {
+    padding: 2px 15px 5px;
+  }
+}
