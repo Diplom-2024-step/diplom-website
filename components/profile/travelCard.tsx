@@ -134,9 +134,9 @@ const TravelCardProfile: React.FC<TravelCardProps> = ({
     isPressable
     >
       {/* Верхняя часть карточки */}
-      <div className="flex flex-col md:flex-row">
+      <div className="flex flex-row travel-card-image-info-container">
         {/* Левая часть с изображением */}
-        <div className="w-full md:w-2/4 relative">
+        <div className="w-full lg:w-2/4 relative">
           <Image
             src={order.hotel.urls[0]}
             alt="image1"
@@ -145,13 +145,13 @@ const TravelCardProfile: React.FC<TravelCardProps> = ({
         </div>
 
         {/* Правая часть с информацией */}
-        <div className="w-full md:w-2/3 flex flex-col rounded-bl-[20px] p-4">
+        <div className="w-2/3 flex flex-col rounded-bl-[20px] p-4 travel-card-info-container">
           {/* Заголовок и цена */}
-          <div className="flex justify-between items-center mb-2">
+          <div className="flex justify-between items-center mb-2 booked-title-price-container">
             <h2
               style={{ fontFamily: 'Unbounded, sans-serif', fontWeight: 450 }}
               className="lg:w-2/4 text-lg font-semibold text-[#161616] pl-3">{order.hotel.city.country.name}, {order.hotel.city.name}</h2>
-            <div className="w-1/4 flex flex-col justify-end items-end p-0 md:pr-6">
+            <div className="w-1/4 flex flex-col justify-end items-end p-0 md:pr-6 price-block">
               <p
                 className="text-sm font-bold bg-gradient-to-b from-[rgba(236,176,3,1)] to-[rgba(175,63,43,1)] bg-clip-text text-transparent"
 
@@ -186,9 +186,9 @@ const TravelCardProfile: React.FC<TravelCardProps> = ({
 
           {/* Туристическая информация */}
           {/* <div className=" w-2/3 absolute left-[22rem] bottom-[200px] bg-[#FFFFFF] rounded-tl-[20px] rounded-bl-[20px] mr-5"> */}
-          <div className="flex flex-col gap-3 mt-3">
-            <div className="flex justify-between bg-[#EBEFF2] rounded-tr-[10px] rounded-br-[10px]">
-              <div className="w-2/5 flex flex-row items-center bg-[#5DB3C1] text-[#FFFFFF] text-sm rounded-tr-[10px] rounded-br-[10px] gap-4 p-3">
+          <div className="flex flex-col gap-3 mt-3 booked-container">
+            <div className="flex justify-between bg-[#EBEFF2] rounded-tr-[10px] rounded-br-[10px] booking-setting-container">
+              <div className="w-2/5 flex flex-row items-center bg-[#5DB3C1] text-[#FFFFFF] text-sm rounded-tr-[10px] rounded-br-[10px] gap-4 p-3 booking-setting-header">
                 <Image
                   src={locGroup.src}
                   alt="ic-group"
@@ -202,7 +202,7 @@ const TravelCardProfile: React.FC<TravelCardProps> = ({
               </div>
               <span
                 style={{ fontFamily: 'Nunito, sans-serif', fontWeight: 700, lineHeight: '1.2' }}
-                className="w-3/5 flex flex-col justify-center items-start gap-2 pl-6 text-sm"> {order.howManyAdults === 1 ? "1 дорослий " : `${order.howManyAdults} дорослих `}
+                className="w-3/5 flex flex-col justify-center items-start gap-2 pl-6 text-sm booked-setting-content"> {order.howManyAdults === 1 ? "1 дорослий " : `${order.howManyAdults} дорослих `}
 
                 {order.howManyKids === 0
                   ? ""
@@ -210,8 +210,8 @@ const TravelCardProfile: React.FC<TravelCardProps> = ({
                     ? "1 дитина "
                     : `${order.howManyKids} дитин `}</span>
             </div>
-            <div className="flex justify-between bg-[#EBEFF2] rounded-tr-[10px] rounded-br-[10px]">
-              <div className="w-2/5 flex justify-between items-center bg-[#5DB3C1] text-[#FFFFFF] text-sm rounded-tr-[10px] rounded-br-[10px] gap-5 p-3">
+            <div className="flex justify-between bg-[#EBEFF2] rounded-tr-[10px] rounded-br-[10px] booking-setting-container">
+              <div className="w-2/5 flex justify-between items-center bg-[#5DB3C1] text-[#FFFFFF] text-sm rounded-tr-[10px] rounded-br-[10px] gap-5 p-3 booking-setting-header">
                 <Image
                   src={locCal.src}
                   alt="ic-group"
@@ -223,7 +223,7 @@ const TravelCardProfile: React.FC<TravelCardProps> = ({
                   Дата відправлення і тривалість туру
                 </span>
               </div>
-              <div className="flex w-3/5 pl-6">
+              <div className="flex w-3/5 pl-6 booked-seting-content-container">
                 <div className="flex flex-col text-sm">
                   <div>{order.startDate.toString().replace('T00:00:00Z', '')}</div>
                   <div>
@@ -248,7 +248,7 @@ const TravelCardProfile: React.FC<TravelCardProps> = ({
                     <p className="text-primary">( включено ) </p>
                   </div>
                 </div>
-                <div className="flex flex-col text-right text-sm">
+                <div className="flex flex-col text-center text-sm md:text-right">
                   <div>{order.endDate.toString().replace('T00:00:00Z', '')}</div>
                   <div>
                     {order.hotel.city.name} - {order.fromCity?.name}
@@ -261,8 +261,8 @@ const TravelCardProfile: React.FC<TravelCardProps> = ({
                className="w-2/3 flex flex-col justify-center items-start gap-2 pl-6 text-sm">{departure}</span> */}
 
             </div>
-            <div className="flex justify-between gap-0 bg-[#EBEFF2] rounded-tr-[10px] rounded-br-[10px]">
-              <div className="w-2/5 flex items-center bg-[#5DB3C1] text-[#FFFFFF] text-sm rounded-tr-[10px] rounded-br-[10px] gap-5 p-3 pr-6">
+            <div className="flex justify-between gap-0 bg-[#EBEFF2] rounded-tr-[10px] rounded-br-[10px] booking-setting-container">
+              <div className="w-2/5 flex items-center bg-[#5DB3C1] text-[#FFFFFF] text-sm rounded-tr-[10px] rounded-br-[10px] gap-5 p-3 pr-6 booking-setting-header">
                 <Image
                   src={locCloche.src}
                   alt="ic-cloche"
@@ -275,7 +275,7 @@ const TravelCardProfile: React.FC<TravelCardProps> = ({
                   Тип кімнати і харчування
                 </span>
               </div>
-              <div className="w-3/5 flex flex-col justify-center items-start gap-2 pl-6 pr-3 py-2 text-sm">
+              <div className="w-3/5 flex flex-col justify-center items-start gap-2 pl-6 pr-3 py-2 text-sm booked-setting-content">
                 <p
                   style={{ fontFamily: 'Nunito, sans-serif', fontWeight: 700, lineHeight: '1.2' }}
                 >Кімната: <span className="font-normal">{order.roomType.name}</span></p>
@@ -290,9 +290,9 @@ const TravelCardProfile: React.FC<TravelCardProps> = ({
       </div>
 
       <CardBody>
-        <div className="flex justify-between items-center mx-5 mb-5">
+        <div className="flex justify-between items-center mx-5 mb-5 travel-card-active-status-container">
           {/* Добавленные активности */}
-          <div className="w-1/2 mt-1">
+          <div className="w-1/2 mt-1 travel-card-active-container">
             <h1
               style={{ fontFamily: 'Unbounded, sans-serif', fontWeight: 450 }}
               className="text-xl font-medium mb-3">Додані активності</h1>
@@ -302,8 +302,8 @@ const TravelCardProfile: React.FC<TravelCardProps> = ({
           </div>
 
           {/* Статус заказа */}
-          <div className="w-1/2 pl-5 mt-7 pt-4 mb-auto">
-            <div className="flex items-center justify-between ">
+          <div className="w-1/2 pl-5 mt-7 pt-4 mb-auto travel-card-status-container">
+            <div className="flex items-center justify-between travel-card-status-flex">
               <OrderProgressMark
                 status={orderStage["waiting"].markStatus}
                 icon="check"
@@ -313,7 +313,7 @@ const TravelCardProfile: React.FC<TravelCardProps> = ({
               <Progress
                 value={orderStage["waiting"].progress }
                 color="primary"
-                className="w-1/5 mb-auto mt-5"
+                className="w-1/5 mb-auto mt-5 travel-card-status-progress"
                 size="sm"
               />
               <OrderProgressMark
@@ -325,7 +325,7 @@ const TravelCardProfile: React.FC<TravelCardProps> = ({
               <Progress
                 value={orderStage["paying"].progress}
                 color="primary"
-                className="w-1/5 mb-auto mt-5"
+                className="w-1/5 mb-auto mt-5 travel-card-status-progress"
                 size="sm"
               />
               <OrderProgressMark
@@ -337,7 +337,7 @@ const TravelCardProfile: React.FC<TravelCardProps> = ({
               <Progress
                 value={orderStage["confirming"].progress}
                 color="primary"
-                className="w-1/5 mb-auto mt-5"
+                className="w-1/5 mb-auto mt-5 travel-card-status-progress"
                 size="sm"
               />
               <OrderProgressMark
