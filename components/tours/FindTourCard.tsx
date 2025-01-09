@@ -138,7 +138,7 @@ const FindTourCard = () => {
           />
         </div>
 
-        <div className="flex flex-row w-full gap-4">
+        <div className="md:flex md:flex-row w-full gap-4">
           <div className="flex-1">
             <p className="mb-2">Тривалість</p>
             <div className="flex w-full flex-wrap md:flex-nowrap  mb-6 md:mb-0 gap-4">
@@ -160,7 +160,7 @@ const FindTourCard = () => {
             <p className="mb-2">Мандрівники</p>
             <Popover placement="bottom" showArrow={true}>
               <PopoverTrigger>
-                <Button radius="full" className="text-[#171717] bg-gray-100">
+                <Button radius="full" className="text-[#171717] w-full bg-gray-100">
                   {`${adults} мандрівників, ${children} дітей`}
                 </Button>
               </PopoverTrigger>

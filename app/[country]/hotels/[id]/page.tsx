@@ -1,13 +1,13 @@
 "use client";
 import HotelDescription from "@/components/hotels/hotelDetails/HotelDescription";
 import HotelDetailHeader from "@/components/hotels/hotelDetails/HotelDetailHeader";
-import ImageGallery from "@/components/hotels/hotelDetails/imageGallery/ImageGallery";
 import TravelBooking from "@/components/hotels/hotelDetails/travelBooking/TravelBooking";
 import PaymentGuaranteeSection from "@/components/hotels/layout/PaymentGuaranteeSection";
 import ReviewCardCarouselWithService from "@/components/reviews/ReviewCardCarouselWithService";
 import SelectCountryForHotels from "@/components/shared/sharedComponents/selects/SelectCountryForHotels";
 import LoadingCircle from "@/components/shared/skeletons/LoadingCircle";
 import RecomendedToursCarouselForHotel from "@/components/tours/Carsousels/RecomendedToursCarouselForHotel";
+import ImageGallery from "@/components/tours/TourDetails/imageGallery/ImageGallery";
 import { HotelService } from "@/service/crudServices/HotelService";
 import React, { Key, useEffect, useState } from "react";
 

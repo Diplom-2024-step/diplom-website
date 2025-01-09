@@ -211,7 +211,7 @@ const TourCard = ({
             <span className="text-sm ml-2">{cardItem.hotel.stars}/5</span>
           </div>
           <div className="flex items-center justify-between  bg-white">
-            <div className="flex bg-gradient-to-b from-[#ECB003] to-[#AF3F2B] text-transparent bg-clip-text text-center items-center">
+            <div className="flex text-nowrap bg-gradient-to-b from-[#ECB003] to-[#AF3F2B] text-transparent bg-clip-text text-center items-center">
               <span className="text-lg font-bold mr-1">
                 {cardItem.priceUSD} ₴
               </span>
