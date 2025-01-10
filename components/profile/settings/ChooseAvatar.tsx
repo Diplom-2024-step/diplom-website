@@ -1,8 +1,8 @@
 import { Icon } from '@iconify/react'
 import avatar1 from '@/assets/images/profile/avatar.png'
-import avatar2 from '@/assets/images/profile/avatar2.png'
-import avatar3 from '@/assets/images/profile/avatar3.png'
-import avatar4 from '@/assets/images/profile/avatar4.png'
+import avatar2 from '@/assets/images/profile/avatar2.webp'
+import avatar3 from '@/assets/images/profile/avatar3.webp'
+import avatar4 from '@/assets/images/profile/avatar4.webp'
 import { Image, Popover, PopoverContent, PopoverTrigger } from '@nextui-org/react'
 import React from 'react'
 

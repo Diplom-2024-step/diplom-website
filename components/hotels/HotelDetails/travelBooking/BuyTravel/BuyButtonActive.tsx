@@ -1,10 +1,7 @@
-import { GetDietTypeDto } from "@/AppDtos/Dto/Models/DietTypes/get-diet-type-dto";
 import { GetCityDto } from "@/AppDtos/Dto/Models/Hotels/get-city-dto";
 import { CreateOrderDto } from "@/AppDtos/Dto/Models/Orders/create-order-dto";
-import { GetRoomTypeDto } from "@/AppDtos/Dto/Models/RoomTypes/get-room-type-dto";
 import { GetTransportationTypeDto } from "@/AppDtos/Dto/Models/TransportationTypes/get-transportation-type-dto";
 import { useTravelBookingContext } from "@/components/providers/TravelBookingProvider";
-import LoadingCircle from "@/components/shared/skeletons/LoadingCircle";
 import { useAuth } from "@/hooks/auth";
 import { OrderService } from "@/service/crudServices/OrderService";
 import {

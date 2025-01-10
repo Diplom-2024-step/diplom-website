@@ -1,7 +1,6 @@
 "use client";
 import TourDescription from "@/components/tours/TourDetails/TourDescription";
 import TourDetailHeader from "@/components/tours/TourDetails/TourDetailHeader";
-import ImageGallery from "@/components/hotels/hotelDetails/imageGallery/ImageGallery";
 import TravelBooking from "@/components/tours/TourDetails/travelBooking/TravelBooking";
 import TravelDescription from "@/components/tours/TourDetails/travelBooking/TravelDescription";
 import PaymentGuaranteeSection from "@/components/hotels/layout/PaymentGuaranteeSection";

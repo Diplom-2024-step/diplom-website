@@ -1,5 +1,5 @@
 ﻿"use client";
-import { CardHeader } from "@nextui-org/card";
+import { Card, CardHeader } from "@nextui-org/card";
 import { useAuth } from "@/hooks/auth";
 import { signOut } from "next-auth/react";
 import { useEffect, useState } from "react";
@@ -9,19 +9,21 @@ export default function UnauthorizedPage() {
 	const { status } = useAuth({ redirect: true});
 	const [isLoading, setIsLoading] = useState(false);
 
+	useEffect(() => {
+		if (status == "loading") setIsLoading(true);
+		else setIsLoading(false);
+	}, []);
+
 	const handleLogout = async () => {
 		setIsLoading(true);
 		await signOut({ redirect: false });
 		setIsLoading(false);
 	};
 
-	useEffect(() => {
-		if (status == "loading") setIsLoading(true);
-		else setIsLoading(false);
-	}, []);
+
 
 	return (
-		<CardHeader
+		<Card
 			className="
           	flex
           	flex-wrap
@@ -36,6 +38,6 @@ export default function UnauthorizedPage() {
 			>
 				Log Out
 			</Button>
-		</CardHeader>
+		</Card>
 	);
 }

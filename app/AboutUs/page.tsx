@@ -2,7 +2,7 @@ import React from "react";
 import './style.css';
 import ReviewsOnAboutUsPage from "@/components/reviews/ReviewsOnAboutUsPage";
 
-export const AboutUs = () => {
+const page = () => {
 
   return (
     <section className="about-us">
@@ -301,4 +301,4 @@ export const AboutUs = () => {
   );
 };
 
-export default AboutUs;
+export default page;
