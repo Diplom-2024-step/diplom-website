@@ -1,21 +1,14 @@
 "use client";
 import { GetHotelDto } from "@/AppDtos/Dto/Models/Hotels/get-hotel-dto";
 import { Icon } from "@iconify/react";
-import { Button, DateValue, RangeValue, Spacer } from "@nextui-org/react";
 import React, { useEffect, useState } from "react";
-import ChoosingHowManyPeopleButton from "./choosingHowManyPeopleButton/ChoosingHowManyPeopleButton";
-import { setConfig } from "next/config";
-import ChoosingDietTypeRoomTypeButton from "./choosingDietTypeRoomTypeButton/ChoosingDietTypeRoomTypeButton";
-import { GetDietTypeDto } from "@/AppDtos/Dto/Models/DietTypes/get-diet-type-dto";
-import { GetRoomTypeDto } from "@/AppDtos/Dto/Models/RoomTypes/get-room-type-dto";
-import ChoosingDateAndCityButton from "./ChoosingDateAndCityButton/ChoosingDateAndCityButton";
-import { parseDate } from "@internationalized/date";
 import { addDays, differenceInDays, formatISO } from "date-fns";
-import { GetCityDto } from "@/AppDtos/Dto/Models/Hotels/get-city-dto";
-import { GetTransportationTypeDto } from "@/AppDtos/Dto/Models/TransportationTypes/get-transportation-type-dto";
-import BuyButtonActive from "./BuyTravel/BuyButtonActive";
 import { useTravelBookingContextInjectedHotel } from "@/components/providers/TravelBookingProvider";
 import PickActivitiesForTour from "@/components/activities/PickActivitiesForTour";
+import ChoosingHowManyPeopleButton from "./choosingHowManyPeopleButton/ChoosingHowManyPeopleButton";
+import ChoosingDateAndCityButton from "./ChoosingDateAndCityButton/ChoosingDateAndCityButton";
+import ChoosingDietTypeRoomTypeButton from "./choosingDietTypeRoomTypeButton/ChoosingDietTypeRoomTypeButton";
+import BuyButtonActive from "./BuyTravel/BuyButtonActive";
 
 const TravelBooking = ({ hotel }: { hotel: GetHotelDto }) => {
   const {
@@ -46,10 +39,11 @@ const TravelBooking = ({ hotel }: { hotel: GetHotelDto }) => {
 
   return (
     <>
-      <div className="flex w-full justify-between mt-10 text-black">
-        <div className="flex-col w-[80%]">
-          <div className="w-full  md:flex   bg-white shadow-md">
-            <div className="md:w-[40%] bg-primary text-white flex items-center justify-center md:justify-start p-5 rounded-r-lg">
+
+      <div className="flex w-full justify-between mt-10 text-black booking-container">
+        <div className="flex-col w-[80%] booking-filtering-container">
+          <div className="w-full flex bg-white shadow-md booking-setting-container">
+            <div className="w-[40%] bg-primary text-white flex items-center justify-start p-5 rounded-r-lg booking-setting-header">
               <Icon
                 icon="stash:people-group-duotone"
                 className="mr-3 text-4xl"
@@ -57,9 +51,10 @@ const TravelBooking = ({ hotel }: { hotel: GetHotelDto }) => {
               <span>Туристи</span>
             </div>
 
-            <div className="w-full md:flex items-center justify-start p-2">
-              <div className="w-full md:w-[80%] p-5 flex justify-center sm:justify-start md:justify-start">
-                <span className="text-center sm:text-left md:text-left">
+
+            <div className="w-full flex items-center justify-start p-2 booking-setting-content-container">
+              <div className="w-[80%] p-5 booking-setting-content">
+                <span>
                   {adults === 1 ? "1 дорослий " : `${adults} дорослих `}
                   {kids === 0
                     ? ""
@@ -79,20 +74,49 @@ const TravelBooking = ({ hotel }: { hotel: GetHotelDto }) => {
             </div>
           </div>
 
-          <div className="w-full flex bg-white shadow-md mt-5">
-            <div className="w-[40%] bg-primary text-white flex items-center justify-start p-5 rounded-r-lg">
+          <div className="w-full flex bg-white shadow-md mt-5 booking-setting-container">
+            <div className="w-[40%] bg-primary text-white flex items-center justify-start p-5 rounded-r-lg booking-setting-header">
               <Icon icon="lsicon:calendar-outline" className="mr-3 text-5xl" />
               <span>Дата віправлення і тривалість туру</span>
             </div>
 
-            <div className="w-full flex items-center justify-start p-2">
-              <div className="w-[80%] p-5 justify-between flex">
+            <div className="w-full flex items-center justify-start p-2 booking-setting-content-container">
+              <div className="w-[80%] p-5 justify-between flex booking-setting-content">
                 <div className="flex flex-col">
                   <div>{date.start.toString()}</div>
                   <div>
                     {city?.name} - {hotel.city.name}
                   </div>
                 </div>
+
+                <div className="flex-col text-center booking-mobile-none">
+                  <div>
+                    {differenceInDays(
+                      date.end.toString(),
+                      date.start.toString()
+                    ) - 1}{" "}
+                    ночей /{" "}
+                    {differenceInDays(
+                      date.end.toString(),
+                      date.start.toString()
+                    )}{" "}
+                    днів
+                  </div>
+                  <div className="text-base">
+                    {transportationType?.name}{" "}
+                    <p className="text-primary">( включено ) </p>
+                  </div>
+                </div>
+
+                <div className="flex flex-col">
+                  <div>{date.end.toString()}</div>
+                  <div>
+                    {hotel.city.name} - {city?.name}
+                  </div>
+                </div>
+              </div>
+
+              <div className="booking-mobile-block">
                 <div className="flex-col text-center">
                   <div>
                     {differenceInDays(
@@ -111,12 +135,6 @@ const TravelBooking = ({ hotel }: { hotel: GetHotelDto }) => {
                     <p className="text-primary">( включено ) </p>
                   </div>
                 </div>
-                <div className="flex flex-col">
-                  <div>{date.end.toString()}</div>
-                  <div>
-                    {hotel.city.name} - {city?.name}
-                  </div>
-                </div>
               </div>
               <div className="w-[20%] h-full">
                 <ChoosingDateAndCityButton
@@ -131,14 +149,15 @@ const TravelBooking = ({ hotel }: { hotel: GetHotelDto }) => {
             </div>
           </div>
 
-          <div className="w-full md:flex bg-white shadow-md mt-5">
-            <div className="w-[40%] bg-primary text-white flex items-center justify-start p-5 rounded-r-lg">
+
+          <div className="w-full flex bg-white shadow-md mt-5 booking-setting-container">
+            <div className="w-[40%] bg-primary text-white flex items-center justify-start p-5 rounded-r-lg booking-setting-header">
               <Icon icon="fa-solid:concierge-bell" className="mr-3 text-4xl" />
               <span>Тип кімнати і харчування</span>
             </div>
 
-            <div className="w-full flex items-center justify-start p-2">
-              <div className="w-[80%] p-5 grid grid-cols-1 gap-2">
+            <div className="w-full flex items-center justify-start p-2 booking-setting-content-container">
+              <div className="w-[80%] p-5 grid grid-cols-1 gap-2 booking-setting-content">
                 <span>
                   {"Кімната: " + roomType?.name} -{" "}
                   {(roomType?.price ? roomType.price : 0) + " грн."}
@@ -162,8 +181,9 @@ const TravelBooking = ({ hotel }: { hotel: GetHotelDto }) => {
             </div>
           </div>
         </div>
-        <div className="flex-col w-[15%] ">
-          <div className=" shadow-lg rounded-md bg-white ">
+
+        <div className="flex-col w-[15%] booking-totalprice-button-container">
+          <div className=" shadow-lg rounded-md bg-white booking-totalprice-container">
             <div className="bg-gradient-to-b text-end  from-[#ECB003] to-[#AF3F2B] p-2  text-transparent bg-clip-text">
               <p className="text-lg">Разом:</p>
               <p className="text-2xl">{calculateCost()} грн.</p>

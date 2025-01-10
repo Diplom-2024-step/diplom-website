@@ -254,7 +254,7 @@ const Profile = () => {
 
                 </div>
                 <div className="flex-row flex justify-around">
-                  <div className="flex-row w-2/5 flex justify-between mb-28">
+                  <div className="flex-row w-2/5 flex justify-between">
                   <Button className="text-white font-nunito_font_family  mb-10 text-base px-10" radius="full" color="primary"
 
                   onPress={() => {
@@ -328,12 +328,12 @@ const Profile = () => {
           isFooterBlurred={false}
           radius='none'
           className="w-3/4 md:max-w-[75%] mt-36 rounded-tl-[20px] rounded-br-[20px] rounded-bl-[30px] z-0">
-          <CardHeader className="w-2/4  h-9 mt-0 pt-1 bg-[#FFFFFF] text-[#161616]  rounded-tl-[20px] rounded-tr-[20px] ">
+          <CardHeader className="w-2/4  h-9 mt-0 pt-1 bg-[#FFFFFF] text-[#161616]  rounded-tl-[20px] rounded-tr-[20px] card-header-tabs-menu-container">
             <div className="flex justify-between text-[#161616]">
               <button
                 onClick={() => setActiveTab("booked")}
                 className={`flex-1 px-6 pt-2 text-sm font-medium rounded-tr-[20px] whitespace-nowrap 
-                relative 
+                relative card-header-tab-button
                 ${activeTab === "booked" ? "text-[#0F171B] scale-110 " : "text-[#161616]"}
                 ${activeTab === "completed" ? "border-r-0" : "border-r-2 border-gray-300  shadow-right"}`}>
                 Заброньовані тури
@@ -341,7 +341,7 @@ const Profile = () => {
               <button
                 onClick={() => setActiveTab("completed")}
                 className={` flex-1  px-6 pt-2 text-sm font-medium rounded-tr-[20px] shadow-right whitespace-nowrap 
-              relative
+              relative card-header-tab-button
               ${activeTab === "completed" ? "text-[#0F171B] scale-110 rounded-tl-[20px] shadow-left rounded-tr-[20px] shadow-right border-l-2 border-gray-300" : "text-[#161616]"} 
               ${activeTab === "favorites" ? "border-r-0" : "border-r-2 border-gray-300"}`}>
                 Завершені тури
@@ -349,7 +349,7 @@ const Profile = () => {
               <button
                 onClick={() => setActiveTab("favorites")}
                 className={` flex-1  px-11 pt-2 text-sm font-medium rounded-tr-[20px] shadow-right whitespace-nowrap 
-              relative
+              relative card-header-tab-button
               ${activeTab === "favorites" ? "text-[#0F171B] scale-110 rounded-tl-[20px] shadow-left rounded-tr-[20px] shadow-right border-l-2 border-gray-300" : "text-[#161616]"} 
               ${activeTab === "comments" ? "border-r-0" : "border-r-2 border-gray-300"} `}>
                 Обране
@@ -357,7 +357,7 @@ const Profile = () => {
               <button
                 onClick={() => setActiveTab("comments")}
                 className={` flex-1  pl-7 pt-2 text-sm font-medium  shadow-right   whitespace-nowrap
-              relative
+              relative card-header-tab-button
               ${activeTab === "comments" ? "text-[#0F171B] scale-110 rounded-tl-[20px] shadow-left border-l-2 border-gray-300" : "text-[#161616]"}`}>
                 Мої коментарі
               </button>

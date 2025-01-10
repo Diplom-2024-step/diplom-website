@@ -1,10 +1,7 @@
-import { GetDietTypeDto } from "@/AppDtos/Dto/Models/DietTypes/get-diet-type-dto";
 import { GetCityDto } from "@/AppDtos/Dto/Models/Hotels/get-city-dto";
 import { CreateOrderDto } from "@/AppDtos/Dto/Models/Orders/create-order-dto";
-import { GetRoomTypeDto } from "@/AppDtos/Dto/Models/RoomTypes/get-room-type-dto";
 import { GetTransportationTypeDto } from "@/AppDtos/Dto/Models/TransportationTypes/get-transportation-type-dto";
 import { useTravelBookingContext } from "@/components/providers/TravelBookingProvider";
-import LoadingCircle from "@/components/shared/skeletons/LoadingCircle";
 import { useAuth } from "@/hooks/auth";
 import { OrderService } from "@/service/crudServices/OrderService";
 import {
@@ -135,7 +132,7 @@ const BuyButtonActive = ({
   return city !== undefined && transporationType !== undefined ? (
     <>
       <Button
-        className="mt-5 text-white w-full text-center"
+        className="mt-5 text-white w-full text-center booking-button"
         color="primary"
         radius="full"
         onClick={onOpen}
@@ -252,7 +249,7 @@ const BuyButtonActive = ({
     </>
   ) : (
     <Button
-      className="mt-5 text-black w-full text-center"
+      className="mt-5 text-black w-full text-center booking-button"
       isDisabled={true}
       color="default"
       variant="bordered"

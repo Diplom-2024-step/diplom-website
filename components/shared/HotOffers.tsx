@@ -63,7 +63,7 @@ const HotDestinations = () => {
       </p>
       <div className="hidden lg:flex  w-4/7 h-full">
         <Card
-          className="flex flex-col justify-between col-span-12 sm:col-span-4 min-h-[520px] min-w-[398px] bg-cover bg-center cursor-pointer"
+          className="flex flex-col justify-between col-span-12 sm:col-span-4 min-h-[520px] min-w-[398px] bg-cover bg-center cursor-pointer group"
           isHoverable
           isPressable
           onClick={() => {
@@ -97,7 +97,7 @@ const HotDestinations = () => {
             <button className="absolute bottom-4 right-4 rounded-full">
               <Icon
                 icon="ei:arrow-up"
-                className={`w-10 h-10 transition-transform rotate-45 text-white
+                className={`w-10 h-10 transition-transform rotate-45 text-white group-hover:-translate-y-5 group-hover:text-primary
                 }`}
               />
             </button>

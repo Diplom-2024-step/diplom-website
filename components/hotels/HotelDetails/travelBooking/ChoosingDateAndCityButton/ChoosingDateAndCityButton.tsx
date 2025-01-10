@@ -54,8 +54,8 @@ const ChoosingDateAndCityButton = (
               '
         onClick={() => setIsOpen(true)}
       >
-                <div className='hidden md:block absolute w-[2px] bg-gray-400 h-full top-0 bottom-0 left-0 z-10'></div>
 
+        <div className='absolute w-[2px] bg-gray-400 h-full top-0 bottom-0 left-0 z-10 booking-chose-button-left-border'></div>
         <Icon
           icon="weui:arrow-outlined"
           className='z-20 rotate-90 text-4xl text-black'
@@ -72,7 +72,7 @@ const ChoosingDateAndCityButton = (
                 <DateRangePicker
                   minValue={parseDate(formatISO(addDays(new Date(), 4), { representation: 'date' }))}
                   value={innerDate}
-                  onChange={setInnerDate}
+                  onChange={(e:RangeValue<DateValue> | null) => setInnerDate(e!)}
                   label="Дати та тривалість"
                   className="max-w-xs"
                 />

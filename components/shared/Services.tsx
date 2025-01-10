@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Image from "next/image";
+import Image, { StaticImageData } from "next/image";
 import { Swiper, SwiperSlide } from "swiper/react";
 import servicesDocumentsImage from "../../assets/images/services/Documents.png";
 import servicesFlightTicketImage from "../../assets/images/services/Flight_tickets.png";
@@ -24,6 +24,9 @@ import { Icon } from "@iconify/react";
 import "swiper/css";
 import "swiper/css/pagination";
 import { Pagination, Navigation } from "swiper/modules";
+
+
+
 
 const services = [
   {
@@ -69,18 +72,22 @@ const services = [
 ];
 
 const Services = () => {
-  const [selectedService, setSelectedService] = useState(null);
+  const [selectedService, setSelectedService] = useState<{
+    title:string,
+    image:StaticImageData,
+    description:string,
+  } | null>(null);
   const { isOpen, onOpen, onClose, onOpenChange } = useDisclosure();
   const [startX, setStartX] = useState(0);
   const [startY, setStartY] = useState(0);
 
-  const handleTouchStart = (e) => {
+  const handleTouchStart = (e:any) => {
     const touch = e.touches[0];
     setStartX(touch.clientX);
     setStartY(touch.clientY);
   };
 
-  const handleTouchEnd = (e, service) => {
+  const handleTouchEnd = (e:any, service:any) => {
     const touch = e.changedTouches[0];
     const endX = touch.clientX;
     const endY = touch.clientY;
@@ -95,7 +102,7 @@ const Services = () => {
     }
   };
 
-  const handleOpenModal = (service) => {
+  const handleOpenModal = (service:any) => {
     setSelectedService(service);
     onOpen();
   };
