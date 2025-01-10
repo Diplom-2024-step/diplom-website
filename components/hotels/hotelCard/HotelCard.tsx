@@ -131,8 +131,9 @@ const HotelCard = ({ cardItem, isHovered, onHover, onLeave }: SharedCardProps<Ge
           />
 
           {/* Bookmark button (positioned absolutely) */}
-          <div
+          <button
             className="absolute top-4 right-4 z-10"
+        aria-label="Toggle book mark"
             onClick={(e) => {
               e.stopPropagation();
               toggleFavorite();
@@ -143,7 +144,7 @@ const HotelCard = ({ cardItem, isHovered, onHover, onLeave }: SharedCardProps<Ge
             >
               <Icon icon={isFavorite ? 'ri:bookmark-fill' : `mingcute:bookmark-line`} className={`w-8  h-8 ` + (isFavorite ? 'text-yellow-500' : `text-white`)} />
             </button>
-          </div>
+          </button>
           {/* Bottom overlay (positioned relatively) */}
           <div className='absolute bottom-0 left-1/3 rounded-tr-full transform -translate-x-1/2 z-10 bg-white h-5 w-3/4'>
             <div className='absolute -bottom-[10px] -right-1 bg-white z-10 h-5 w-5 rounded-none rotate-45'>

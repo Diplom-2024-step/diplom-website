@@ -160,20 +160,21 @@ const TourCard = ({
 
           <div className="absolute inset-0 bg-gradient-to-b from-black/30 to-transparent z-10"></div>
           {/* Bookmark button (positioned absolutely) */}
-          <div
+          <button
             className="absolute top-4 right-4 z-10"
             onClick={(e) => {
               e.stopPropagation();
 
               toggleFavorite();
             }}
+              aria-label="Toggle book mark"
           >
             <button
               className="p-2 rounded-lg hover:bg-gray-700 transition-colors bg-transparent duration-300"
             >
               <Icon icon={isFavorite ? 'ri:bookmark-fill' : `mingcute:bookmark-line`} className={`w-8  h-8 ` + (isFavorite ? 'text-yellow-500' : `text-white`)} />
             </button>
-          </div>
+          </button>
           <div className="absolute flex text-center items-center top-4 right-[250px] z-10">
             <Icon
               icon="lsicon:calendar-outline"
