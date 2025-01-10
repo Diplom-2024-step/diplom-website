@@ -1,3 +1,0 @@
-[submodule "service"]
-	path = service
-	url = git@github.com:Diplom-2024-step/service.git
