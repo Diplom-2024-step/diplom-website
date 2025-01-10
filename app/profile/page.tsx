@@ -266,8 +266,6 @@ const Profile = () => {
                       />
                     </div>
                   </div>
-
-
                 </div>
                 <div className="flex-row flex justify-around">
                   <div className="flex-row w-2/5 flex justify-between">
