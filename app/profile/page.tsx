@@ -54,11 +54,11 @@ const Profile = () => {
 
   const status = useAuthService(service);
 
-   const validatePhoneNumber = (value: string) =>
+  const validatePhoneNumber = (value: string) =>
     value.match(/^\+380\d{2}\d{3}\d{2}\d{2}$/);
 
   const isInvalidPhoneNumber = React.useMemo(() => {
-    if ( tel === null || tel === "") return false;
+    if (tel === null || tel === "") return false;
 
     return validatePhoneNumber(tel) ? false : true;
   }, [tel]);
@@ -84,7 +84,7 @@ const Profile = () => {
   useEffect(() => {
     if (user !== undefined) {
       const firstSecondName = user?.userName.split(" ")!;
-      if (firstSecondName[1] === undefined || firstSecondName[1] === null ) {
+      if (firstSecondName[1] === undefined || firstSecondName[1] === null) {
         firstSecondName[1] = " ";
       }
 
@@ -178,8 +178,11 @@ const Profile = () => {
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     {/* First Name */}
                     <div className="space-y-2">
-                      <label className="block text-gray-800 text-xl">Ім'я</label>
+                      <label htmlFor="firstName" className="block text-gray-800 text-xl">
+                        Ім'я
+                      </label>
                       <input
+                        id="firstName"
                         type="text"
                         value={firstName}
                         onChange={(e) => setFirstName(e.target.value)}
@@ -189,8 +192,11 @@ const Profile = () => {
 
                     {/* Last Name */}
                     <div className="space-y-2">
-                      <label className="block text-gray-800 text-xl">Прізвище</label>
+                      <label htmlFor="secondName" className="block text-gray-800 text-xl">
+                        Прізвище
+                      </label>
                       <input
+                        id="secondName"
                         type="text"
                         value={secondName}
                         onChange={(e) => setSecondName(e.target.value)}
@@ -200,27 +206,31 @@ const Profile = () => {
 
                     {/* Phone Number */}
                     <div className="space-y-2">
-                      <label className="block text-gray-800 text-xl">Номер телефону</label>
-                       <input
-
+                      <label htmlFor="tel" className="block text-gray-800 text-xl">
+                        Номер телефону
+                      </label>
+                      <input
+                        id="tel"
                         className="w-full p-2 border border-blue-200 rounded bg-blue-50"
-    onChange={(e) => setTel(e.target.value)}
-    value={tel || ''}
-    color={isInvalidPhoneNumber ? "danger" : "default"}
-    placeholder="+380501234567"
-  />
-  {isInvalidPhoneNumber && (
-    <div className="text-danger">
-      {"Введіть дійсний номер телефону"}
-    </div>
-  )}
-                      
+                        onChange={(e) => setTel(e.target.value)}
+                        value={tel || ''}
+                        color={isInvalidPhoneNumber ? "danger" : "default"}
+                        placeholder="+380501234567"
+                      />
+                      {isInvalidPhoneNumber && (
+                        <div className="text-danger">
+                          {"Введіть дійсний номер телефону"}
+                        </div>
+                      )}
                     </div>
 
                     {/* Email */}
                     <div className="space-y-2">
-                      <label className="block text-gray-800 text-xl">Електронна адреса</label>
+                      <label htmlFor="email" className="block text-gray-800 text-xl">
+                        Електронна адреса
+                      </label>
                       <input
+                        id="email"
                         disabled
                         type="email"
                         value={user.email}
@@ -228,11 +238,14 @@ const Profile = () => {
                       />
                     </div>
 
-                    {/* Date of Birth - Full Width */}
+                    {/* Date of Birth */}
                     <div className="space-y-2">
-                      <label className="block text-gray-800 text-xl">Дата народження</label>
+                      <label htmlFor="birthDate" className="block text-gray-800 text-xl">
+                        Дата народження
+                      </label>
                       <DatePicker
-                        className="w-full  border border-blue-200 rounded bg-blue-50"
+                        id="birthDate"
+                        className="w-full border border-blue-200 rounded bg-blue-50"
                         value={birthDate}
                         onChange={(date) => setBirthDate(date)}
                         variant="underlined"
@@ -241,8 +254,11 @@ const Profile = () => {
 
                     {/* City */}
                     <div className="space-y-2">
-                      <label className="block text-gray-800 text-xl">Місто</label>
+                      <label htmlFor="city" className="block text-gray-800 text-xl">
+                        Місто
+                      </label>
                       <input
+                        id="city"
                         type="text"
                         value={city || ''}
                         onChange={(e) => setCity(e.target.value)}
@@ -255,38 +271,38 @@ const Profile = () => {
                 </div>
                 <div className="flex-row flex justify-around">
                   <div className="flex-row w-2/5 flex justify-between">
-                  <Button className="text-white font-nunito_font_family  mb-10 text-base px-10" radius="full" color="primary"
+                    <Button className="text-white font-nunito_font_family  mb-10 text-base px-10" radius="full" color="primary"
 
-                  onPress={() => {
-                    if (isInvalidPhoneNumber) return;
-                    const updateUser:UpdateUserDto = {
-                      email: user.email,
-                      iconNumber: parseInt(icon),
-                      id: user.id,
-                      role: user.roles[0],
-                      userName: firstName+ " "+secondName,
-                      birthDate: birthDate ? birthDate?.toString() : null,
-                      cityName: city,
-                      phoneNumber: tel
+                      onPress={() => {
+                        if (isInvalidPhoneNumber) return;
+                        const updateUser: UpdateUserDto = {
+                          email: user.email,
+                          iconNumber: parseInt(icon),
+                          id: user.id,
+                          role: user.roles[0],
+                          userName: firstName + " " + secondName,
+                          birthDate: birthDate ? birthDate?.toString() : null,
+                          cityName: city,
+                          phoneNumber: tel
 
-                    }
-                    service.update(updateUser);
-                    
+                        }
+                        service.update(updateUser);
+
                         setIsSettingsOpen(false);
 
-                        setUserName(firstName + " " +secondName);
+                        setUserName(firstName + " " + secondName);
                         setNewIcon(icon);
 
-                  }}
+                      }}
 
-                  >
-                    Оновити дані
-                  </Button>
-                  <Button
-                    className="bg-transparent text-black text-base rounded-full px-10  border-1 border-black"
+                    >
+                      Оновити дані
+                    </Button>
+                    <Button
+                      className="bg-transparent text-black text-base rounded-full px-10  border-1 border-black"
                       onPress={() => {
                         const firstSecondName = user?.userName.split(' ')!;
-                        if (firstSecondName[1] === undefined ||firstSecondName[1] === null) {
+                        if (firstSecondName[1] === undefined || firstSecondName[1] === null) {
                           firstSecondName[1] = " ";
                         }
 
@@ -302,7 +318,7 @@ const Profile = () => {
                         setTel(user?.phoneNumber || null);
 
                         setIsSettingsOpen(false);
-                        setUserName((firstSecondName[0] + " " +firstSecondName[1]).trim());
+                        setUserName((firstSecondName[0] + " " + firstSecondName[1]).trim());
 
 
                       }}
