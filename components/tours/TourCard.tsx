@@ -169,11 +169,11 @@ const TourCard = ({
             }}
               aria-label="Toggle book mark"
           >
-            <button
+            <div
               className="p-2 rounded-lg hover:bg-gray-700 transition-colors bg-transparent duration-300"
             >
               <Icon icon={isFavorite ? 'ri:bookmark-fill' : `mingcute:bookmark-line`} className={`w-8  h-8 ` + (isFavorite ? 'text-yellow-500' : `text-white`)} />
-            </button>
+            </div>
           </button>
           <div className="absolute flex text-center items-center top-4 right-[250px] z-10">
             <Icon

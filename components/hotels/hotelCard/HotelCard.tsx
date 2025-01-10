@@ -139,11 +139,11 @@ const HotelCard = ({ cardItem, isHovered, onHover, onLeave }: SharedCardProps<Ge
               toggleFavorite();
             }}
           >
-            <button
+            <div
               className="p-2 rounded-lg hover:bg-gray-700 transition-colors bg-transparent duration-300"
             >
               <Icon icon={isFavorite ? 'ri:bookmark-fill' : `mingcute:bookmark-line`} className={`w-8  h-8 ` + (isFavorite ? 'text-yellow-500' : `text-white`)} />
-            </button>
+            </div>
           </button>
           {/* Bottom overlay (positioned relatively) */}
           <div className='absolute bottom-0 left-1/3 rounded-tr-full transform -translate-x-1/2 z-10 bg-white h-5 w-3/4'>
