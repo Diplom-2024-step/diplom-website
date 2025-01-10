@@ -20,7 +20,7 @@ import {
   Button,
   useDisclosure,
 } from "@nextui-org/react";
-import { ChevronLeft, ChevronRight } from "lucide-react";
+import { Icon } from "@iconify/react";
 import "swiper/css";
 import "swiper/css/pagination";
 import { Pagination, Navigation } from "swiper/modules";
@@ -31,42 +31,42 @@ import { Pagination, Navigation } from "swiper/modules";
 const services = [
   {
     title: "Документи",
-    image: servicesDocumentsImage,
+    image: "bi:passport",
     description: `"Ми беремо на себе всі питання з оформленням документів для вашої подорожі. Візи, закордонні паспорти, дозволи – ми подбаємо про всі формальності, щоб ви могли сконцентруватися на плануванні відпочинку."`,
   },
   {
     title: "Авіа квитки",
-    image: servicesFlightTicketImage,
+    image: "clarity:plane-solid",
     description: `"Забезпечимо бронювання авіаквитків за вигідними тарифами. Допоможемо знайти найзручніший маршрут, запропонуємо варіанти для економії часу і коштів, а також проконсультуємо щодо багажу та пересадок."`,
   },
   {
     title: "Страхування",
-    image: servicesInsuranceImage,
+    image: "fluent:shield-task-28-regular",
     description: `"Ваша безпека – наш пріоритет. Ми підберемо надійний страховий поліс, який покриє медичні витрати, втрату багажу чи непередбачені ситуації, щоб ви почувались упевнено під час подорожі."`,
   },
   {
     title: "Трансфер",
-    image: servicesTransferImage,
+    image: "pajamas:location-dot",
     description: `"Забудьте про пошуки таксі або громадського транспорту! Ми організуємо комфортний трансфер з аеропорту, вокзалу або готелю, щоб ви насолоджувалися подорожжю з першої хвилини."`,
   },
   {
     title: "Круїзи",
-    image: servicesCruisesImage,
+    image: "famicons:boat-outline",
     description: `"Вирушайте у подорож вашої мрії: від спокійних прогулянок річковими маршрутами до захоплюючих океанічних подорожей із безліччю зупинок у мальовничих портах."`,
   },
   {
     title: "Житло",
-    image: servicesDwellingImage,
+    image: "pepicons-pencil:house",
     description: `"Відповідно до ваших побажань, ми підберемо ідеальне місце для проживання. Бюджетні варіанти, сімейні кімнати чи розкішні курорти – вибір за вами, а організація за нами."`,
   },
   {
     title: "Консультації",
-    image: servicesConsultationsImage,
+    image: "healthicons:dollar",
     description: `"Не знаєте, який напрямок обрати чи виникли сумніви щодо туру? Наші експерти з туризму проконсультують вас щодо всіх питань і допоможуть знайти найкраще рішення."`,
   },
   {
     title: "Дозвілля",
-    image: servicesLeisureImage,
+    image: "emojione-monotone:umbrella-on-ground",
     description: `"Ми організуємо для вас екскурсії, культурні заходи, активний відпочинок чи навіть гастрономічну тур. Ваша подорож стане не лише комфортною, а й наповненою яскравими емоціями."`,
   },
 ];
@@ -145,8 +145,11 @@ const Services = () => {
                     onTouchEnd={(e) => handleTouchEnd(e, service)}
                   >
                     <div className="flex flex-col w-[170px] h-[168px] bg-white rounded-full justify-center items-center text-center">
-                      <Image alt={service.title} src={service.image} />
-                      <p className="text-servicesTextColor mt-[5px] font-bold">
+                      <Icon
+                        icon={service.image}
+                        className="absolute top-8 w-[50px] h-[100px] text-customAqua"
+                      />
+                      <p className="text-servicesTextColor mt-[50px] font-bold">
                         {service.title}
                       </p>
                     </div>
@@ -168,8 +171,11 @@ const Services = () => {
                 >
                   <div className="flex flex-col w-[194px] h-[192px] bg-transparent border-2 border-customAqua rounded-full justify-center items-center text-center hover:border-gradientCustom group">
                     <div className="flex flex-col w-[170px] h-[168px] bg-white rounded-full justify-center items-center text-center">
-                      <Image alt={service.title} src={service.image} />
-                      <p className="text-servicesTextColor mt-[5px] font-bold">
+                      <Icon
+                        icon={service.image}
+                        className="absolute top-8 w-[50px] h-[100px] text-customAqua"
+                      />
+                      <p className="text-servicesTextColor mt-[50px] font-bold">
                         {service.title}
                       </p>
                     </div>
@@ -188,8 +194,11 @@ const Services = () => {
                   >
                     <div className="flex flex-col w-[194px] h-[192px] bg-transparent border-2 border-customAqua rounded-full justify-center items-center text-center hover:border-gradientCustom group">
                       <div className="flex flex-col w-[170px] h-[168px] bg-white rounded-full justify-center items-center text-center">
-                        <Image alt={service.title} src={service.image} />
-                        <p className="text-servicesTextColor mt-[5px] font-bold">
+                        <Icon
+                          icon={service.image}
+                          className="absolute top-8 w-[50px] h-[100px] text-customAqua"
+                        />
+                        <p className="text-servicesTextColor mt-[50px] font-bold">
                           {service.title}
                         </p>
                       </div>
@@ -201,75 +210,149 @@ const Services = () => {
         </div>
       </div>
 
-      <Modal
-        isOpen={isOpen}
-        size="4xl"
-        motionProps={{
-          variants: {
-            enter: {
-              y: 0,
-              opacity: 1,
-              transition: {
-                duration: 0.3,
-                ease: "easeOut",
+      <div>
+        <Modal
+          className="lg:hidden"
+          isOpen={isOpen}
+          size="4xl"
+          motionProps={{
+            variants: {
+              enter: {
+                y: 0,
+                opacity: 1,
+                transition: {
+                  duration: 0.3,
+                  ease: "easeOut",
+                },
+              },
+              exit: {
+                y: -20,
+                opacity: 0,
+                transition: {
+                  duration: 0.2,
+                  ease: "easeIn",
+                },
               },
             },
-            exit: {
-              y: -20,
-              opacity: 0,
-              transition: {
-                duration: 0.2,
-                ease: "easeIn",
-              },
-            },
-          },
-        }}
-        onOpenChange={onOpenChange}
-        classNames={{
-          base: "bg-transparent", // Прозрачный фон модального окна
-        }}
-      >
-        <ModalContent>
-          {selectedService && (
-            <>
-              <ModalBody>
-                <div className="relative rounded-tl-full rounded-bl-full rounded-br-full mx-auto bg-gradient-to-l from-[#FFFFFF] to-[#71BCC8] mr-3">
-                  <div className="flex items-start justify-center items-center ">
-                    <div className="h-full w-[30%]">
-                      <div className="flex flex-col w-[194px] h-[194px] bg-transparent border-2 border-[#99D8DE] rounded-full justify-center items-center text-center hover:border-gradientCustom group">
+          }}
+          onOpenChange={onOpenChange}
+          classNames={{
+            base: "bg-transparent",
+          }}
+        >
+          <ModalContent>
+            {selectedService && (
+              <>
+                <ModalBody>
+                  <div className="flex flex-col-reverse h-[425px]">
+                    <div className="absolute z-60 left-5 top-0 flex flex-col mb-4">
+                      <div className="flex flex-col w-[194px] h-[192px] bg-transparent border-2 border-customAqua rounded-full justify-center items-center text-center hover:border-gradientCustom group">
                         <div className="flex flex-col w-[170px] h-[168px] bg-white rounded-full justify-center items-center text-center">
-                          <Image
-                            alt={selectedService.title}
-                            src={selectedService.image}
+                          <Icon
+                            icon={selectedService.image}
+                            className="absolute top-8 w-[50px] h-[100px] text-customAqua"
                           />
-                          <p className="text-servicesTextColor mt-[5px] font-bold">
+                          <p className="text-servicesTextColor mt-[50px] font-bold">
                             {selectedService.title}
                           </p>
                         </div>
                       </div>
                     </div>
-                    <div className="ml-10">
-                      <p className="text-[20px] text-cyan-900 mt-1 italic">
-                        {selectedService.description}
-                      </p>
+                    <div className="rounded-bl-[50px] rounded-tl-[100px] rounded-br-[50px] mx-auto bg-gradient-to-t from-[#FFFFFF] to-[#71BCC8] shadow-lg p-6 max-w-[400px] h-[350px] ">
+                      <div className="flex flex-col items-center justify-center h-full pt-[70px]">
+                        <p className="text-[16px] text-center text-cyan-900 italic">
+                          {selectedService.description}
+                        </p>
+                      </div>
                     </div>
                   </div>
-                </div>
-              </ModalBody>
-              <ModalFooter className="flex items-center justify-center">
-                <Button
-                  onPress={onClose}
-                  className=" h-[80px] p-[0px] border-4 bg-transparent border-white rounded-full flex items-center justify-center shadow-md"
-                >
-                  <span className="flex text-white text-[50px] text-center justify-center items-center w-full h-full pb-[8px]">
-                    &times;
-                  </span>
-                </Button>
-              </ModalFooter>
-            </>
-          )}
-        </ModalContent>
-      </Modal>
+                </ModalBody>
+                <ModalFooter className="flex items-center justify-center">
+                  <Button
+                    onPress={onClose}
+                    className=" h-[80px] p-[0px] border-4 bg-transparent border-white rounded-full flex items-center justify-center shadow-md"
+                  >
+                    <span className="flex text-white text-[50px] text-center justify-center items-center w-full h-full pb-[8px]">
+                      &times;
+                    </span>
+                  </Button>
+                </ModalFooter>
+              </>
+            )}
+          </ModalContent>
+        </Modal>
+
+        <Modal
+          className="hidden lg:flex"
+          isOpen={isOpen}
+          size="4xl"
+          motionProps={{
+            variants: {
+              enter: {
+                y: 0,
+                opacity: 1,
+                transition: {
+                  duration: 0.3,
+                  ease: "easeOut",
+                },
+              },
+              exit: {
+                y: -20,
+                opacity: 0,
+                transition: {
+                  duration: 0.2,
+                  ease: "easeIn",
+                },
+              },
+            },
+          }}
+          onOpenChange={onOpenChange}
+          classNames={{
+            base: "bg-transparent",
+          }}
+        >
+          <ModalContent>
+            {selectedService && (
+              <>
+                <ModalBody>
+                  <div className="relative rounded-tl-full rounded-bl-full rounded-br-full mx-auto bg-gradient-to-l from-[#FFFFFF] to-[#71BCC8] mr-3">
+                    <div className="flex items-start justify-center items-center ">
+                      <div className="h-full w-[30%]">
+                        <div className="flex flex-col w-[194px] h-[192px] bg-transparent border-2 border-customAqua rounded-full justify-center items-center text-center hover:border-gradientCustom group">
+                          <div className="flex flex-col w-[170px] h-[168px] bg-white rounded-full justify-center items-center text-center">
+                            <Icon
+                              icon={selectedService.image}
+                              className="absolute top-8 w-[50px] h-[100px] text-customAqua"
+                            />
+                            <p className="text-servicesTextColor mt-[50px] font-bold">
+                              {selectedService.title}
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                      <div className="ml-10">
+                        <p className="text-[20px] text-cyan-900 mt-1 italic">
+                          {selectedService.description}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </ModalBody>
+                <ModalFooter className="flex items-center justify-center">
+                  <Button
+                    onPress={onClose}
+                    className=" h-[80px] p-[0px] border-4 bg-transparent border-white rounded-full flex items-center justify-center shadow-md"
+                  >
+                    <span className="flex text-white text-[50px] text-center justify-center items-center w-full h-full pb-[8px]">
+                      &times;
+                    </span>
+                  </Button>
+                </ModalFooter>
+              </>
+            )}
+          </ModalContent>
+        </Modal>
+      </div>
     </div>
   );
 };

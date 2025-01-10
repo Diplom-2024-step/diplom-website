@@ -187,6 +187,7 @@ const Footer = () => {
                   </li>
                 </ul>
               </div>
+
               <div className="text-white w-[40%]">
                 <ul className="space-y-6">
                   <li>
@@ -256,6 +257,21 @@ const Footer = () => {
                 />
               </div>
             </div>
+          </div>
+        </div>
+        <div
+          className="bg-cover bg-center flex flex-col justify-between bg-cover bg-no-repeat w-full"
+          style={{
+            backgroundImage: `linear-gradient(to top, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.2)), url(${footerBackImage.src})`,
+          }}
+        >
+          <div className="font-nunito_font_family text-white text-sm h-full w-full justify-center p-10 text-center">
+            <p>2024 ООО "Expedia". Всі права захищені.</p>
+            <p className="font-nunito_font_family mt-5">
+              <a href="#" className="hover:underline">
+                Політика конфіденційності
+              </a>
+            </p>
           </div>
         </div>
       </div>
