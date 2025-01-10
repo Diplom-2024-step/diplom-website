@@ -100,6 +100,7 @@ const HotelDetailHeader = ({
                       ))}
                       {[...Array(5 - hotel.stars)].map((i) => (
                         <svg
+                        key={i}
                           className="w-5 h-5 text-yellow-400 fill-current"
                           viewBox="0 0 24 24"
                         >

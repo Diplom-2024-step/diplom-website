@@ -44,12 +44,14 @@ const ChoosingDietTypeRoomTypeButton = (
 
     return (
         <>
-            <div className='w-full
+            <button className='w-full
                h-full flex items-center justify-center relative
                cursor-pointer
                hover:bg-gray-100
               '
               onClick={() => setIsOpen(true)}
+                aria-label="Toggle ChoosingDietTypeRoomTypeButton"
+
             >
 
                 <div className='absolute w-[2px] bg-gray-400 h-full top-0 bottom-0 left-0 z-10 booking-chose-button-left-border'></div>
@@ -57,7 +59,7 @@ const ChoosingDietTypeRoomTypeButton = (
                     icon="weui:arrow-outlined"
                     className='z-20 rotate-90 text-4xl text-black'
                 />
-            </div>
+            </button>
 
             <Modal isOpen={isOpen} onOpenChange={OpenChange} isKeyboardDismissDisabled={true} size='sm'>
                 <ModalContent className='bg-white text-black'>

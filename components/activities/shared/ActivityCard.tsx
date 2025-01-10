@@ -30,7 +30,7 @@ const ActivityCard = (
 
     return (
         <>
-            <div
+            <button
                 onMouseEnter={onHover}
                 onMouseLeave={onLeave}
                 onClick={() => {
@@ -105,7 +105,7 @@ const ActivityCard = (
                             </div>
                     }
                 </Card>
-            </div>
+            </button>
         </>
 
     )

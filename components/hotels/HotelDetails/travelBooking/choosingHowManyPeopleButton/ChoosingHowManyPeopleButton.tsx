@@ -36,11 +36,12 @@ const ChoosingHowManyPeopleButton = (
 
     return (
         <>
-            <div className='w-full
+            <button className='w-full
                h-full flex items-center justify-center relative
                cursor-pointer
                hover:bg-gray-100
               '
+                aria-label="Toggle ChoosingHowManyPeopleButton"
                 onClick={() => setIsOpen(true)}
             >
 
@@ -49,7 +50,7 @@ const ChoosingHowManyPeopleButton = (
                     icon="weui:arrow-outlined"
                     className='z-20 rotate-90 text-4xl text-black'
                 />
-            </div>
+            </button>
 
             <Modal isOpen={isOpen} onOpenChange={OpenChange} isKeyboardDismissDisabled={true} size='sm'>
                 <ModalContent className='bg-white text-black'>
