@@ -1,9 +1,75 @@
 // WorkWithUs.tsx
 import React from "react";
 import { Button } from "@nextui-org/react";
+import { Input } from "@nextui-org/react";
+import Image from "next/image";
+import { Modal, ModalContent, useDisclosure } from "@nextui-org/react";
+import MyImage from "../../assets/images/consultation/image.webp";
+import { Autocomplete, AutocompleteItem } from "@nextui-org/react";
 import "../../assets/fonts-styles/font.css";
 
+export const messages = [
+  {
+    label: "Підбір туру",
+    key: "tour",
+    description: "",
+  },
+  {
+    label: "Популярні напрямки",
+    key: "popular",
+    description: "",
+  },
+  {
+    label: "Купівля авіа-квитків",
+    key: "buy",
+    description: "",
+  },
+  {
+    label: "Оформлення віз та документів",
+    key: "doc",
+    description: "",
+  },
+  {
+    label: "Бронювання готелю",
+    key: "booking",
+    description: "",
+  },
+  {
+    label: "Замовлення додаткових послуг",
+    key: "order",
+    description: "",
+  },
+  {
+    label: "Романтичні подорожі",
+    key: "romantic",
+    description: "",
+  },
+  {
+    label: "Корпоративні/Групові тури",
+    key: "group",
+    description: "",
+  },
+  {
+    label: "Повернення чи зміна деталей",
+    key: "details",
+    description: "",
+  },
+  {
+    label: "Інше",
+    key: "other",
+    description: "",
+  },
+];
+
 const WorkWithUs: React.FC = () => {
+  const { isOpen, onOpen, onClose, onOpenChange } = useDisclosure();
+
+  const handleOpenModal = () => {
+    onOpen();
+  };
+  const handleCloseModal = () => {
+    onClose();
+  };
   return (
     <div>
       <div className="hidden lg:flex flex-col bg-[#e1ebf1] my-8 py-10 text-center overflow-hidden">
@@ -133,6 +199,7 @@ const WorkWithUs: React.FC = () => {
             radius="full"
             size="md"
             className="mt-8 bg-[#5DB3C1] text-white px-10 transition-colors duration-200 w-[140px]"
+            onPress={() => handleOpenModal()}
           >
             Зв’яжіться з нами
           </Button>
@@ -222,6 +289,101 @@ const WorkWithUs: React.FC = () => {
           </p>
         </div>
       </div>
+      <Modal
+        isOpen={isOpen}
+        motionProps={{
+          variants: {
+            enter: {
+              y: 0,
+              opacity: 1,
+              transition: {
+                duration: 0.3,
+                ease: "easeOut",
+              },
+            },
+            exit: {
+              y: -20,
+              opacity: 0,
+              transition: {
+                duration: 0.2,
+                ease: "easeIn",
+              },
+            },
+          },
+        }}
+        onOpenChange={onOpenChange}
+        classNames={{
+          base: "bg-transparent", // Прозрачный фон модального окна
+        }}
+      >
+        <ModalContent>
+          <div className="bg-white flex flex-col h-[550px] p-10 items-center">
+            <div className="flex flex-col items-center">
+              <p className="text-[30px] font-unbounded font-bold">
+                Консультація
+              </p>
+              <Image src={MyImage} alt="image" className="mt-5 mb-5"></Image>
+            </div>
+            <div className="flex flex-col items-center w-full">
+              <Autocomplete
+                allowsCustomValue
+                className="w-full"
+                defaultItems={messages}
+                label="Тема повідомлення"
+                variant="bordered"
+                radius="full"
+                size="lg"
+              >
+                {(item) => (
+                  <AutocompleteItem
+                    key={item.key}
+                    className="border-2 text-[18px] font-nunito_font_family"
+                  >
+                    {item.label}
+                  </AutocompleteItem>
+                )}
+              </Autocomplete>
+              <div className="flex w-full gap-4 mt-5">
+                <Input
+                  label="Телефон"
+                  type="telephone"
+                  className="font-nunito_font_family rounded-full"
+                  size="lg"
+                  variant="bordered"
+                  radius="full"
+                />
+                <Input
+                  label="Ім'я"
+                  type="name"
+                  className="font-nunito_font_family"
+                  size="lg"
+                  variant="bordered"
+                  radius="full"
+                />
+              </div>
+              <Input
+                label="Елктронна адреса"
+                type="email"
+                className="font-nunito_font_family mt-5"
+                size="lg"
+                variant="bordered"
+                radius="full"
+              />
+              <p className="text-[18px] font-nunito_font_family mt-1">
+                Для надсилання додаткової інформації
+              </p>
+              <Button
+                radius="full"
+                size="md"
+                className="mt-3 bg-[#5DB3C1] text-white text-[18px] px-10 transition-colors duration-200 w-[140px]"
+                onPress={() => handleCloseModal()}
+              >
+                Замовити
+              </Button>
+            </div>
+          </div>
+        </ModalContent>
+      </Modal>
     </div>
   );
 };

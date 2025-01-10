@@ -69,6 +69,7 @@ export const TourCarousel = ({
   return (
     <div className="w-full max-w-6xl mx-auto px-4 text-black lg:max-w-6xl carousel-block">
       <h2 className="text-[50px] font-bold font-unbounded mt-6 carousel-title">{title}</h2>
+
       <div className="relative">
         <div className="overflow-hidden">
           <div
@@ -84,6 +85,7 @@ export const TourCarousel = ({
                   ${slidesPerView === 1 ? 'w-full' :
                     slidesPerView === 2 ? 'w-1/2' :
                     'w-1/3'}`}
+
               >
                 <TourCard
                   cardItem={tour}
