@@ -7,14 +7,14 @@ import React, { useState } from 'react'
 const ChoosingHowManyPeopleButton = (
     {
         adults,
-        children,
+        kids,
         setAdluts,
         setChildren
     }:
         {
 
             adults: number,
-            children: number,
+            kids: number,
             setAdluts: (value: number) => void,
             setChildren: (value: number) => void
         }
@@ -23,7 +23,7 @@ const ChoosingHowManyPeopleButton = (
 
     const [isOpen, setIsOpen] = useState(false);
     const [innerAdults, setInnerAdults] = useState(adults)
-    const [innerChildren, setInnerChildren] = useState(children)
+    const [innerChildren, setInnerChildren] = useState(kids)
 
 
     const OpenChange = (value: boolean) => {

@@ -66,7 +66,7 @@ const TravelBooking = ({ hotel }: { hotel: GetHotelDto }) => {
               <div className="w-full md:w-[20%] h-full">
                 <ChoosingHowManyPeopleButton
                   adults={adults}
-                  children={kids}
+                  kids={kids}
                   setAdluts={setAdults}
                   setChildren={setKids}
                 />

@@ -154,14 +154,15 @@ const Profile = () => {
           }}
           className="absolute top-48 left-1/2 transform -translate-x-1/2 w-3/4 min-h-40 rounded-[10px] bg-[#FFFFFF] flex-col justify-center items-center text-center shadow-lg  z-10"
         >
-          <div className="absolute top-4 right-4 text-primary cursor-pointer"
+          <button className="absolute top-4 right-4 text-primary cursor-pointer"
+            aria-label="Toggle chose the icon"
             onClick={() => {
               setIsSettingsOpen(!isSettingsOpen);
             }}
 
           >
             <Icon icon="fa:gear" width="24" height="24" />
-          </div>
+          </button>
           <div className="mt-28">
             <h2
               style={{ fontFamily: 'Unbounded, sans-serif', fontWeight: 600 }}
