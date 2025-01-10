@@ -1,11 +1,11 @@
-"use client"
-import { GetReviewDto } from '@/AppDtos/Dto/Models/Reviews/get-review-dto';
-import React, { useEffect, useState } from 'react'
-import ReviewCard from './ReviewCard';
-import { ChevronLeft, ChevronRight } from 'lucide-react';
+"use client";
+import { GetReviewDto } from "@/AppDtos/Dto/Models/Reviews/get-review-dto";
+import React, { useEffect, useState } from "react";
+import ReviewCard from "./ReviewCard";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 
-const ReviewCardCarousel = ({  reviews }: { reviews: GetReviewDto[] }) => {
-    const [currentIndex, setCurrentIndex] = useState(0);
+const ReviewCardCarousel = ({ reviews }: { reviews: GetReviewDto[] }) => {
+  const [currentIndex, setCurrentIndex] = useState(0);
   const [slidesPerView, setSlidesPerView] = useState(4);
 
   useEffect(() => {
@@ -22,21 +22,21 @@ const ReviewCardCarousel = ({  reviews }: { reviews: GetReviewDto[] }) => {
     };
 
     updateSlidesPerView();
-    window.addEventListener('resize', updateSlidesPerView);
-    return () => window.removeEventListener('resize', updateSlidesPerView);
+    window.addEventListener("resize", updateSlidesPerView);
+    return () => window.removeEventListener("resize", updateSlidesPerView);
   }, []);
 
   const maxIndex = Math.max(0, reviews.length - slidesPerView);
 
   const handleNext = () => {
-    setCurrentIndex(prev => Math.min(prev + 1, maxIndex));
+    setCurrentIndex((prev) => Math.min(prev + 1, maxIndex));
   };
 
   const handlePrev = () => {
-    setCurrentIndex(prev => Math.max(prev - 1, 0));
+    setCurrentIndex((prev) => Math.max(prev - 1, 0));
   };
 
-  const handleDotClick = (index:number) => {
+  const handleDotClick = (index: number) => {
     setCurrentIndex(index);
   };
 
@@ -57,9 +57,15 @@ const ReviewCardCarousel = ({  reviews }: { reviews: GetReviewDto[] }) => {
               <div
                 key={review.id}
                 className={`flex-shrink-0 px-2 mt-6 mb-6 transition-all duration-300
-                  ${slidesPerView === 1 ? 'w-full' : 
-                    slidesPerView === 2 ? 'w-1/2' :
-                    slidesPerView === 3 ? 'w-1/3' : 'w-1/4'}`}
+                  ${
+                    slidesPerView === 1
+                      ? "w-full"
+                      : slidesPerView === 2
+                        ? "w-1/2"
+                        : slidesPerView === 3
+                          ? "w-1/3"
+                          : "w-1/4"
+                  }`}
               >
                 <ReviewCard review={review} />
               </div>
@@ -112,4 +118,4 @@ const ReviewCardCarousel = ({  reviews }: { reviews: GetReviewDto[] }) => {
   );
 };
 
-export default ReviewCardCarousel
+export default ReviewCardCarousel;
