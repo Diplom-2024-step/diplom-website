@@ -26,7 +26,7 @@ import DeleteAllFiltersButton from '@/components/shared/sharedComponents/DeleteA
 
 
 
-const page = (
+const Page = (
   { params }: { params: { country: string } }
 ) => {
 
@@ -260,4 +260,4 @@ const page = (
 }
 
 
-export default page
+export default Page

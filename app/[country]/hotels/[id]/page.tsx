@@ -11,7 +11,7 @@ import ImageGallery from "@/components/tours/TourDetails/imageGallery/ImageGalle
 import { HotelService } from "@/service/crudServices/HotelService";
 import React, { Key, useEffect, useState } from "react";
 
-const page = async ({ params }: { params: { id: string } }) => {
+const Page = async ({ params }: { params: { id: string } }) => {
   const service = new HotelService();
 
   const [option, setOption] = useState("hotel");
@@ -72,4 +72,4 @@ const page = async ({ params }: { params: { id: string } }) => {
   );
 };
 
-export default page;
+export default Page;

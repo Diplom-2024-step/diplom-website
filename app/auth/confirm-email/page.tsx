@@ -3,7 +3,7 @@ import { Button, Spacer } from '@nextui-org/react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import React from 'react'
 
-const page = () => {
+const Page = () => {
     const router = useRouter();
     const searchParams = useSearchParams();
     const email = searchParams.get('email'); // Получаем email параметров
@@ -43,4 +43,4 @@ const page = () => {
     )
 }
 
-export default page
+export default Page

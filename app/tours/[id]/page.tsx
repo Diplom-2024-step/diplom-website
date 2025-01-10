@@ -13,7 +13,7 @@ import React, { Key, useEffect, useState } from "react";
 import { Icon } from "@iconify/react";
 import { Link } from "@nextui-org/react";
 
-const page = async ({ params }: { params: { id: string } }) => {
+const Page = async ({ params }: { params: { id: string } }) => {
   const service = new TourService();
 
   const [option, setOption] = useState("tour");
@@ -80,4 +80,4 @@ const page = async ({ params }: { params: { id: string } }) => {
   );
 };
 
-export default page;
+export default Page;

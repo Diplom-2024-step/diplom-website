@@ -2,7 +2,7 @@ import React from "react";
 import './style.css';
 import ReviewsOnAboutUsPage from "@/components/reviews/ReviewsOnAboutUsPage";
 
-const page = () => {
+const Page = () => {
 
   return (
     <section className="about-us">
@@ -301,4 +301,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;

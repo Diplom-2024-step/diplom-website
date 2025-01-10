@@ -3,7 +3,7 @@ import HotelCarouselSkeleton from '@/components/shared/skeletons/HotelCarouselSk
 import HotelGridSkeleton from '@/components/shared/skeletons/HotelGridSkeleton'
 import React from 'react'
 
-const loading = () => {
+const Loading = () => {
   return (
   <>
 
@@ -14,4 +14,4 @@ const loading = () => {
   )
 }
 
-export default loading
+export default Loading

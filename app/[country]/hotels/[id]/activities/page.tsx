@@ -17,7 +17,7 @@ import { usePathname, useRouter } from "next/navigation";
 import React, { useEffect, useRef, useState } from "react";
 import { number } from "zod";
 
-const page = ({ params }: { params: { id: string; country: string } }) => {
+const Page = ({ params }: { params: { id: string; country: string } }) => {
   const { activities, setActivities } = useTravelBookingContext();
   const [selectedActiviriesAtStart, setSelectedActiviriesAtStart] =
     useState(activities);
@@ -125,4 +125,4 @@ const page = ({ params }: { params: { id: string; country: string } }) => {
   );
 };
 
-export default page;
+export default Page;

@@ -21,7 +21,7 @@ import TourSearchParamsSettingsCard from "@/components/tours/TourSearchParamsSet
 import FindTourCardWithBg from "@/components/shared/sharedComponents/FindTourCardWithBg";
 import DeleteAllFiltersButton from "@/components/shared/sharedComponents/DeleteAllFiltersButton";
 
-const page = ({ params }: { params: { country: string } }) => {
+const Page = ({ params }: { params: { country: string } }) => {
   const [isSearchSettingsOpen, setIsSearchSettingsOpen] = useState(false);
   const [page, setPage] = useSearchParam("page");
   const [toCity, setToCity] = useSearchParam("toCity");
@@ -290,4 +290,4 @@ const page = ({ params }: { params: { country: string } }) => {
   );
 };
 
-export default page;
+export default Page;
