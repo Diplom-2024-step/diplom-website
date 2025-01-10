@@ -72,7 +72,7 @@ const ChoosingDateAndCityButton = (
                 <DateRangePicker
                   minValue={parseDate(formatISO(addDays(new Date(), 4), { representation: 'date' }))}
                   value={innerDate}
-                  onChange={setInnerDate}
+                  onChange={(e:RangeValue<DateValue> | null) => setInnerDate(e!)}
                   label="Дати та тривалість"
                   className="max-w-xs"
                 />

@@ -1,21 +1,14 @@
 "use client";
 import { GetHotelDto } from "@/AppDtos/Dto/Models/Hotels/get-hotel-dto";
 import { Icon } from "@iconify/react";
-import { Button, DateValue, RangeValue, Spacer } from "@nextui-org/react";
 import React, { useEffect, useState } from "react";
-import ChoosingHowManyPeopleButton from "./choosingHowManyPeopleButton/ChoosingHowManyPeopleButton";
-import { setConfig } from "next/config";
-import ChoosingDietTypeRoomTypeButton from "./choosingDietTypeRoomTypeButton/ChoosingDietTypeRoomTypeButton";
-import { GetDietTypeDto } from "@/AppDtos/Dto/Models/DietTypes/get-diet-type-dto";
-import { GetRoomTypeDto } from "@/AppDtos/Dto/Models/RoomTypes/get-room-type-dto";
-import ChoosingDateAndCityButton from "./ChoosingDateAndCityButton/ChoosingDateAndCityButton";
-import { parseDate } from "@internationalized/date";
 import { addDays, differenceInDays, formatISO } from "date-fns";
-import { GetCityDto } from "@/AppDtos/Dto/Models/Hotels/get-city-dto";
-import { GetTransportationTypeDto } from "@/AppDtos/Dto/Models/TransportationTypes/get-transportation-type-dto";
-import BuyButtonActive from "./BuyTravel/BuyButtonActive";
 import { useTravelBookingContextInjectedHotel } from "@/components/providers/TravelBookingProvider";
 import PickActivitiesForTour from "@/components/activities/PickActivitiesForTour";
+import ChoosingHowManyPeopleButton from "./choosingHowManyPeopleButton/ChoosingHowManyPeopleButton";
+import ChoosingDateAndCityButton from "./ChoosingDateAndCityButton/ChoosingDateAndCityButton";
+import ChoosingDietTypeRoomTypeButton from "./choosingDietTypeRoomTypeButton/ChoosingDietTypeRoomTypeButton";
+import BuyButtonActive from "./BuyTravel/BuyButtonActive";
 
 const TravelBooking = ({ hotel }: { hotel: GetHotelDto }) => {
   const {

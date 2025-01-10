@@ -1,9 +1,9 @@
 import { type ClassValue, clsx } from "clsx";
 import { twMerge } from "tailwind-merge";
 import avatar1 from '@/assets/images/profile/avatar.png'
-import avatar2 from '@/assets/images/profile/avatar2.png'
-import avatar3 from '@/assets/images/profile/avatar3.png'
-import avatar4 from '@/assets/images/profile/avatar4.png'
+import avatar2 from '@/assets/images/profile/avatar2.webp'
+import avatar3 from '@/assets/images/profile/avatar3.webp'
+import avatar4 from '@/assets/images/profile/avatar4.webp'
 
 export function cn(...inputs: ClassValue[]) {
 	return twMerge(clsx(inputs));

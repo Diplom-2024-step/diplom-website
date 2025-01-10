@@ -1,7 +1,7 @@
 "use client";
-import HotelDescription from "@/components/hotels/hotelDetails/HotelDescription";
-import HotelDetailHeader from "@/components/hotels/hotelDetails/HotelDetailHeader";
-import TravelBooking from "@/components/hotels/hotelDetails/travelBooking/TravelBooking";
+import HotelDescription from "@/components/hotels/HotelDetails/HotelDescription";
+import HotelDetailHeader from "@/components/hotels/HotelDetails/HotelDetailHeader";
+import TravelBooking from "@/components/hotels/HotelDetails/travelBooking/TravelBooking";
 import PaymentGuaranteeSection from "@/components/hotels/layout/PaymentGuaranteeSection";
 import ReviewCardCarouselWithService from "@/components/reviews/ReviewCardCarouselWithService";
 import SelectCountryForHotels from "@/components/shared/sharedComponents/selects/SelectCountryForHotels";

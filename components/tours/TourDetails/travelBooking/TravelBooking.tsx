@@ -3,9 +3,7 @@ import { GetTourDto } from "@/AppDtos/Dto/Models/Tours/get-tour-dto";
 import { Icon } from "@iconify/react";
 import { Button, DateValue, RangeValue, Spacer } from "@nextui-org/react";
 import React, { useEffect, useState } from "react";
-import ChoosingHowManyPeopleButton from "@/components/hotels/hotelDetails/travelBooking/choosingHowManyPeopleButton/ChoosingHowManyPeopleButton";
 import { setConfig } from "next/config";
-import ChoosingDietTypeRoomTypeButton from "@/components/hotels/hotelDetails/travelBooking/choosingDietTypeRoomTypeButton/ChoosingDietTypeRoomTypeButton";
 import { GetDietTypeDto } from "@/AppDtos/Dto/Models/DietTypes/get-diet-type-dto";
 import { GetRoomTypeDto } from "@/AppDtos/Dto/Models/RoomTypes/get-room-type-dto";
 import ChoosingDateButton from "@/components/tours/TourDetails/travelBooking/ChoosingDateAndCityButton/ChoosingDateButton";
@@ -13,10 +11,10 @@ import { parseDate } from "@internationalized/date";
 import { addDays, differenceInDays, formatISO } from "date-fns";
 import { GetCityDto } from "@/AppDtos/Dto/Models/Hotels/get-city-dto";
 import { GetTransportationTypeDto } from "@/AppDtos/Dto/Models/TransportationTypes/get-transportation-type-dto";
-import BuyButtonActive from "@/components/hotels/hotelDetails/travelBooking/BuyTravel/BuyButtonActive";
 import { useTravelBookingContextInjectedHotel } from "@/components/providers/TravelBookingProvider";
 import ShowActivitiesForTour from "@/components/activities/ShowActivitiesForTour";
 import { Torus } from "lucide-react";
+import BuyButtonActive from "@/components/hotels/HotelDetails/travelBooking/BuyTravel/BuyButtonActive";
 
 const TravelBooking = ({ tour }: { tour: GetTourDto }) => {
   const {

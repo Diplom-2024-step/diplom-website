@@ -2,8 +2,6 @@ import { Card } from '@nextui-org/card';
 //import { Icon } from "@iconify-icon/react";
 import bgImage from '../../../assets/images/hotels/bg-triangle.webp';
 import React from 'react'
-import Image from 'next/image';
-import { Icon } from '@iconify/react';
 
 const PaymentGuaranteeSection = () => {
     return (
