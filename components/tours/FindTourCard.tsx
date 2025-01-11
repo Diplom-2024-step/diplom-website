@@ -1,29 +1,26 @@
 "use client";
 import { Button } from "@nextui-org/button";
-import { Card, CardBody, CardHeader } from "@nextui-org/card";
+import { Card, CardHeader } from "@nextui-org/card";
 import {
   DateRangePicker,
   DateValue,
-  Divider,
-  Input,
   Popover,
   PopoverContent,
   PopoverTrigger,
   RangeValue,
-  Select,
 } from "@nextui-org/react";
 import React, { useEffect, useState } from "react";
-import TravelerCard from "../shared/TravelerCard";
 import { parseDate } from "@internationalized/date";
-import SelectCityToTravelFrom from "../shared/sharedComponents/selects/singleSelects/SelectCityToTravelFrom";
-import { GetCityDto } from "@/AppDtos/Dto/Models/Hotels/get-city-dto";
-import SelectCityToTravelTo from "../shared/sharedComponents/selects/singleSelects/SelectCityToTravelTo";
-import NumberInput from "../shared/sharedComponents/NumberInput";
-import Link from "next/link";
-import { useSetSearchPropsLikeDict } from "@/hooks/useSetSearchParamsLikeDict";
 import { useRouter } from "next/navigation";
 import { addDays, differenceInDays, formatISO } from "date-fns";
+
+import { useSetSearchPropsLikeDict } from "@/hooks/useSetSearchParamsLikeDict";
+import { GetCityDto } from "@/AppDtos/Dto/Models/Hotels/get-city-dto";
 import useSearchParam from "@/hooks/useSearchParam";
+
+import NumberInput from "../shared/sharedComponents/NumberInput";
+import SelectCityToTravelTo from "../shared/sharedComponents/selects/singleSelects/SelectCityToTravelTo";
+import SelectCityToTravelFrom from "../shared/sharedComponents/selects/singleSelects/SelectCityToTravelFrom";
 
 const FindTourCard = () => {
   const setSearchParams = useSetSearchPropsLikeDict();
@@ -108,13 +105,13 @@ const FindTourCard = () => {
 
   return (
     <Card
+      className="rounded-tl-none rounded-tr-[20px] rounded-br-[20px] rounded-bl-[30px]  mt-[30px] lg:w-auto w-full"
       classNames={{
         base: "bg-transparent shadow-none",
       }}
       isBlurred={false}
       isFooterBlurred={false}
       radius="none"
-      className="rounded-tl-none rounded-tr-[20px] rounded-br-[20px] rounded-bl-[30px]  mt-[30px] lg:w-auto w-full"
     >
       <div className="flex items-center justify-center bg-white text-[#161616] w-44 md:w-60 pt-2 md:pt-3 pr-10 pl-10 font-bold rounded-tl-[15px] md:rounded-tl-[20px] rounded-tr-[15px] md:rounded-tr-[20px] shadow-lg">
         Тури
@@ -124,8 +121,8 @@ const FindTourCard = () => {
           <p className="mb-2">Звідки прямуєш</p>
           <SelectCityToTravelFrom
             city={fromCity}
-            setCity={setFromCity}
             placeholder="Звитки"
+            setCity={setFromCity}
           />
         </div>
 
@@ -133,8 +130,8 @@ const FindTourCard = () => {
           <p className="mb-2">Куди прямуєш</p>
           <SelectCityToTravelTo
             city={toCity}
-            setCity={setToCity}
             placeholder="Звитки"
+            setCity={setToCity}
           />
         </div>
 
@@ -144,14 +141,14 @@ const FindTourCard = () => {
             <div className="flex w-full flex-wrap md:flex-nowrap  mb-6 md:mb-0 gap-4">
               <DateRangePicker
                 className="text-[#171717]"
-                radius="full"
-                value={date}
-                onChange={(e) => setDate(e!)}
                 classNames={{
                   input: "text-[#171717]",
                   popoverContent: "bg-blue-100 dark:bg-blue-900",
                   calendar: "bg-white dark:bg-gray-800",
                 }}
+                radius="full"
+                value={date}
+                onChange={(e) => setDate(e!)}
               />
             </div>
           </div>
@@ -160,33 +157,36 @@ const FindTourCard = () => {
             <p className="mb-2">Мандрівники</p>
             <Popover placement="bottom" showArrow={true}>
               <PopoverTrigger>
-                <Button radius="full" className="text-[#171717] w-full bg-gray-100">
+                <Button
+                  className="text-[#171717] w-full bg-gray-100"
+                  radius="full"
+                >
                   {`${adults} мандрівників, ${children} дітей`}
                 </Button>
               </PopoverTrigger>
               <PopoverContent>
                 <h3
-                  style={{ fontFamily: "Unbounded, sans-serif" }}
                   className="text-md font-semibold pl-3 pt-2"
+                  style={{ fontFamily: "Unbounded, sans-serif" }}
                 >
                   Мандрівники
                 </h3>
 
                 <div className="flex justify-between space-x-3">
                   <NumberInput
-                    value={adults}
-                    setValue={setAdults}
-                    min={1}
-                    max={6}
                     label="Дорослих"
+                    max={6}
+                    min={1}
+                    setValue={setAdults}
+                    value={adults}
                   />
 
                   <NumberInput
-                    value={children}
-                    setValue={setChildren}
-                    min={0}
-                    max={6}
                     label="Дітей"
+                    max={6}
+                    min={0}
+                    setValue={setChildren}
+                    value={children}
                   />
                 </div>
               </PopoverContent>

@@ -43,7 +43,7 @@
 		"next-app-template": "file:",
 		"next-auth": "^4.24.8",
 		"next-themes": "^0.2.1",
-		"node": "^23.4.0",
+		"node": "^20.0.0",
 		"react": "18.3.1",
 		"react-dom": "18.3.1",
 		"react-swipeable": "^7.0.2",
@@ -51,6 +51,8 @@
 		"zod": "^3.23.8"
 	},
 	"devDependencies": {
+		"@eslint/config-array": "^0.19.1",
+		"@eslint/object-schema": "^2.1.5",
 		"@iconify/react": "^5.0.2",
 		"@tailwindcss/typography": "^0.5.15",
 		"@types/jsonwebtoken": "^9.0.7",
@@ -60,7 +62,7 @@
 		"@typescript-eslint/eslint-plugin": "7.2.0",
 		"@typescript-eslint/parser": "7.2.0",
 		"autoprefixer": "10.4.19",
-		"eslint": "^8.57.0",
+		"eslint": "^8.56.0",
 		"eslint-config-next": "14.2.1",
 		"eslint-config-prettier": "^8.2.0",
 		"eslint-plugin-import": "^2.26.0",
@@ -71,6 +73,7 @@
 		"eslint-plugin-react-hooks": "^4.6.0",
 		"eslint-plugin-unused-imports": "^3.2.0",
 		"postcss": "8.4.38",
+		"prettier": "^3.4.2",
 		"tailwind-variants": "0.1.20",
 		"tailwindcss": "3.4.3",
 		"typescript": "5.0.4"

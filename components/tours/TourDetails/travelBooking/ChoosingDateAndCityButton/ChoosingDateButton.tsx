@@ -13,11 +13,8 @@ import {
 } from "@nextui-org/react";
 import { addDays, formatISO } from "date-fns";
 import React, { useState } from "react";
-import { CalendarDate, parseDate } from "@internationalized/date";
-import { GetCityDto } from "@/AppDtos/Dto/Models/Hotels/get-city-dto";
-import SelectCityToTravelFrom from "@/components/shared/sharedComponents/selects/singleSelects/SelectCityToTravelFrom";
-import { GetTransportationTypeDto } from "@/AppDtos/Dto/Models/TransportationTypes/get-transportation-type-dto";
-import SelectTransportationType from "@/components/shared/sharedComponents/selects/singleSelects/SelectTransportationType";
+import { parseDate } from "@internationalized/date";
+
 import { GetTourDto } from "@/AppDtos/Dto/Models/Tours/get-tour-dto";
 
 const ChoosingDateButton = ({
@@ -49,11 +46,13 @@ const ChoosingDateButton = ({
       start: newRange,
       end: formattedEnd,
     });
+
+    // Применяем изменения для внешнего состояния
   };
 
   return (
     <>
-      <div
+      <button
         className="w-full
                h-full flex items-center justify-center relative
                cursor-pointer
@@ -61,16 +60,17 @@ const ChoosingDateButton = ({
               "
         onClick={() => setIsOpen(true)}
       >
+        <div className="absolute w-[2px] bg-gray-400 h-full top-0 bottom-0 left-0 z-10" />
         <Icon
-          icon="weui:arrow-outlined"
           className="z-20 rotate-90 text-4xl text-black"
+          icon="weui:arrow-outlined"
         />
-      </div>
+      </button>
       <Modal
-        isOpen={isOpen}
-        onOpenChange={OpenChange}
         isKeyboardDismissDisabled={true}
+        isOpen={isOpen}
         size="sm"
+        onOpenChange={OpenChange}
       >
         <ModalContent className="bg-white text-black">
           {(onClose) => (
@@ -80,6 +80,9 @@ const ChoosingDateButton = ({
               </ModalHeader>
               <ModalBody>
                 <DatePicker
+                  className="max-w-xs"
+                  label="Select Date Range"
+
                   minValue={parseDate(
                     formatISO(addDays(new Date(), 4), {
                       representation: "date",
@@ -87,21 +90,19 @@ const ChoosingDateButton = ({
                   )}
                   value={innerDate.start}
                   onChange={handleDateChange}
-                  label="Select Date Range"
-                  className="max-w-xs"
                 />
               </ModalBody>
               <ModalFooter>
                 <Button
-                  variant="light"
                   className="bg-transparent text-black  rounded-full   border-1 border-black"
+                  variant="light"
                   onPress={onClose}
                 >
                   Скасувати
                 </Button>
                 <Button
-                  color="primary"
                   className="text-white rounded-full"
+                  color="primary"
                   onPress={() => {
                     onClose();
                     setDate({

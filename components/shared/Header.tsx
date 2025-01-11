@@ -1,18 +1,6 @@
 "use client";
 import React, { useState, useEffect } from "react";
-import {
-  Input,
-  Button,
-  Card,
-  CardHeader,
-  Spacer,
-  image,
-  CardBody,
-} from "@nextui-org/react";
 import Image from "next/image";
-import { Select, SelectItem } from "@nextui-org/select";
-import { Avatar } from "@nextui-org/avatar";
-import { DateRangePicker } from "@nextui-org/react";
 
 import image1 from "../../assets/images/block-1/image-1.webp";
 import image2 from "../../assets/images/block-1/image-2.webp";
@@ -24,7 +12,6 @@ import image7 from "../../assets/images/block-1/image-7.webp";
 import image8 from "../../assets/images/block-1/image-8.webp";
 import image9 from "../../assets/images/block-1/image-9.webp";
 import image10 from "../../assets/images/block-1/image-10.webp";
-import TravelerCard from "./TravelerCard";
 import FindTourCard from "../tours/FindTourCard";
 
 const images = [
@@ -97,6 +84,7 @@ const Header = () => {
     const interval = setInterval(() => {
       setCurrentImage((prevImage) => (prevImage + 1) % images.length);
     }, 3000); // Меняем картинку каждые 3 секунды
+
     return () => clearInterval(interval);
   }, []);
 
@@ -122,11 +110,11 @@ const Header = () => {
       {images.map((img, index) => (
         <Image
           key={index}
-          src={img.src}
           alt={`slider ${index}`}
+          className={`absolute transition-opacity duration-700 ${index === currentImage ? "opacity-100" : "opacity-0"}`}
           layout="fill"
           objectFit="cover"
-          className={`absolute transition-opacity duration-700 ${index === currentImage ? "opacity-100" : "opacity-0"}`}
+          src={img.src}
         />
       ))}
 

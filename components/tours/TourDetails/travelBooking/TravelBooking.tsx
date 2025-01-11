@@ -1,19 +1,11 @@
 "use client";
-import { GetTourDto } from "@/AppDtos/Dto/Models/Tours/get-tour-dto";
 import { Icon } from "@iconify/react";
-import { Button, DateValue, RangeValue, Spacer } from "@nextui-org/react";
-import React, { useEffect, useState } from "react";
-import { setConfig } from "next/config";
-import { GetDietTypeDto } from "@/AppDtos/Dto/Models/DietTypes/get-diet-type-dto";
-import { GetRoomTypeDto } from "@/AppDtos/Dto/Models/RoomTypes/get-room-type-dto";
+import React, { useEffect } from "react";
+
+import { GetTourDto } from "@/AppDtos/Dto/Models/Tours/get-tour-dto";
 import ChoosingDateButton from "@/components/tours/TourDetails/travelBooking/ChoosingDateAndCityButton/ChoosingDateButton";
-import { parseDate } from "@internationalized/date";
-import { addDays, differenceInDays, formatISO } from "date-fns";
-import { GetCityDto } from "@/AppDtos/Dto/Models/Hotels/get-city-dto";
-import { GetTransportationTypeDto } from "@/AppDtos/Dto/Models/TransportationTypes/get-transportation-type-dto";
 import { useTravelBookingContextInjectedHotel } from "@/components/providers/TravelBookingProvider";
 import ShowActivitiesForTour from "@/components/activities/ShowActivitiesForTour";
-import { Torus } from "lucide-react";
 import BuyButtonActive from "@/components/hotels/HotelDetails/travelBooking/BuyTravel/BuyButtonActive";
 
 const TravelBooking = ({ tour }: { tour: GetTourDto }) => {
@@ -38,6 +30,7 @@ const TravelBooking = ({ tour }: { tour: GetTourDto }) => {
   const calculateCost = () => {
     return tour.priceUSD;
   };
+
   useEffect(() => {
     setAdults(tour.howManyAdults);
     setKids(tour.howManyKids);
@@ -57,6 +50,7 @@ const TravelBooking = ({ tour }: { tour: GetTourDto }) => {
               <Icon
                 icon="stash:people-group-duotone"
                 className="mr-3 text-4xl"
+
               />
               <span className="text-[20px] text-nunito_font_family">
                 Туристи
@@ -82,6 +76,7 @@ const TravelBooking = ({ tour }: { tour: GetTourDto }) => {
             <div className="w-[40%] bg-primary text-white flex items-center justify-start p-5 rounded-r-lg booking-setting-header">
               <Icon icon="lsicon:calendar-outline" className="mr-3 text-5xl" />
               <span className="text-nunito_font_family">
+
                 Дата віправлення і тривалість туру
               </span>
             </div>
@@ -129,10 +124,12 @@ const TravelBooking = ({ tour }: { tour: GetTourDto }) => {
             </div>
           </div>
 
+
           <div className="w-full flex bg-white shadow-md mt-5 booking-setting-container">
             <div className="w-[40%] bg-primary text-white flex items-center justify-start p-5 rounded-r-lg booking-setting-header">
               <Icon icon="fa-solid:concierge-bell" className="mr-3 text-4xl" />
               <span>Тип кімнати і харчування</span>
+
             </div>
 
             <div className="w-full flex items-center justify-start p-2 booking-setting-content-container">
@@ -160,9 +157,9 @@ const TravelBooking = ({ tour }: { tour: GetTourDto }) => {
 
           <BuyButtonActive
             city={tour.fromCity!}
-            transporationType={tour.transportationType}
             cost={calculateCost()}
             tourId={tour.id}
+            transporationType={tour.transportationType}
           />
         </div>
       </div>

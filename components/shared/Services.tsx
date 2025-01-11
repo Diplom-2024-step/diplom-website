@@ -1,20 +1,12 @@
 import React, { useState } from "react";
-import Image, { StaticImageData } from "next/image";
 import { Swiper, SwiperSlide } from "swiper/react";
-import servicesDocumentsImage from "../../assets/images/services/Documents.png";
-import servicesFlightTicketImage from "../../assets/images/services/Flight_tickets.png";
-import servicesInsuranceImage from "../../assets/images/services/Insurance.png";
-import servicesTransferImage from "../../assets/images/services/Transfer.png";
-import servicesCruisesImage from "../../assets/images/services/Cruises.png";
-import servicesDwellingImage from "../../assets/images/services/Dwelling.png";
-import servicesConsultationsImage from "../../assets/images/services/Consultations.png";
-import servicesLeisureImage from "../../assets/images/services/Leisure.png";
+
 import servicesBackgroundImage from "../../assets/images/services/servicesBackgroundImage.png";
 import servicesShadowImage from "../../assets/images/services/Shadow.png";
+
 import {
   Modal,
   ModalContent,
-  ModalHeader,
   ModalBody,
   ModalFooter,
   Button,
@@ -71,7 +63,7 @@ const services = [
 const Services = () => {
   const [selectedService, setSelectedService] = useState<{
     title: string;
-    image: StaticImageData;
+    image: string;
     description: string;
   } | null>(null);
   const { isOpen, onOpen, onClose, onOpenChange } = useDisclosure();
@@ -80,6 +72,7 @@ const Services = () => {
 
   const handleTouchStart = (e: any) => {
     const touch = e.touches[0];
+
     setStartX(touch.clientX);
     setStartY(touch.clientY);
   };
@@ -106,8 +99,8 @@ const Services = () => {
 
   return (
     <div
-      id="services"
       className="flex flex-col w-full h-full justify-center items-center text-center bg-cover bg-center bg-no-repeat"
+      id="services"
       style={{
         backgroundImage: `url(${servicesBackgroundImage.src})`,
       }}
@@ -127,24 +120,24 @@ const Services = () => {
             style={{ backgroundImage: "url('/images/background-water.png')" }}
           >
             <Swiper
+              navigation
+              className="w-full max-w-md mx-auto h-[220px]"
+              modules={[Pagination, Navigation]}
+              pagination={{ clickable: true }}
               slidesPerView={2}
               spaceBetween={16}
-              pagination={{ clickable: true }}
-              navigation
-              modules={[Pagination, Navigation]}
-              className="w-full max-w-md mx-auto h-[220px]"
             >
               {services.map((service, index) => (
                 <SwiperSlide key={index}>
                   <div
                     className="flex flex-col w-[194px] h-[192px] bg-transparent border-2 border-customAqua rounded-full justify-center items-center text-center hover:border-gradientCustom group"
-                    onTouchStart={handleTouchStart}
                     onTouchEnd={(e) => handleTouchEnd(e, service)}
+                    onTouchStart={handleTouchStart}
                   >
                     <div className="flex flex-col w-[170px] h-[168px] bg-white rounded-full justify-center items-center text-center">
                       <Icon
-                        icon={service.image}
                         className="absolute top-8 w-[50px] h-[100px] text-customAqua"
+                        icon={service.image}
                       />
                       <p className="text-servicesTextColor mt-[50px] font-bold">
                         {service.title}
@@ -169,8 +162,8 @@ const Services = () => {
                   <div className="flex flex-col w-[194px] h-[192px] bg-transparent border-2 border-customAqua rounded-full justify-center items-center text-center hover:border-gradientCustom group">
                     <div className="flex flex-col w-[170px] h-[168px] bg-white rounded-full justify-center items-center text-center">
                       <Icon
-                        icon={service.image}
                         className="absolute top-8 w-[50px] h-[100px] text-customAqua"
+                        icon={service.image}
                       />
                       <p className="text-servicesTextColor mt-[50px] font-bold">
                         {service.title}
@@ -192,8 +185,8 @@ const Services = () => {
                     <div className="flex flex-col w-[194px] h-[192px] bg-transparent border-2 border-customAqua rounded-full justify-center items-center text-center hover:border-gradientCustom group">
                       <div className="flex flex-col w-[170px] h-[168px] bg-white rounded-full justify-center items-center text-center">
                         <Icon
-                          icon={service.image}
                           className="absolute top-8 w-[50px] h-[100px] text-customAqua"
+                          icon={service.image}
                         />
                         <p className="text-servicesTextColor mt-[50px] font-bold">
                           {service.title}
@@ -210,8 +203,10 @@ const Services = () => {
       <div>
         <Modal
           className="lg:hidden"
+          classNames={{
+            base: "bg-transparent",
+          }}
           isOpen={isOpen}
-          size="4xl"
           motionProps={{
             variants: {
               enter: {
@@ -232,10 +227,8 @@ const Services = () => {
               },
             },
           }}
+          size="4xl"
           onOpenChange={onOpenChange}
-          classNames={{
-            base: "bg-transparent",
-          }}
         >
           <ModalContent>
             {selectedService && (
@@ -246,8 +239,8 @@ const Services = () => {
                       <div className="flex flex-col w-[194px] h-[192px] bg-transparent border-2 border-customAqua rounded-full justify-center items-center text-center hover:border-gradientCustom group">
                         <div className="flex flex-col w-[170px] h-[168px] bg-white rounded-full justify-center items-center text-center">
                           <Icon
-                            icon={selectedService.image}
                             className="absolute top-8 w-[50px] h-[100px] text-customAqua"
+                            icon={selectedService.image}
                           />
                           <p className="text-servicesTextColor mt-[50px] font-bold">
                             {selectedService.title}
@@ -266,8 +259,8 @@ const Services = () => {
                 </ModalBody>
                 <ModalFooter className="flex items-center justify-center">
                   <Button
-                    onPress={onClose}
                     className=" h-[80px] p-[0px] border-4 bg-transparent border-white rounded-full flex items-center justify-center shadow-md"
+                    onPress={onClose}
                   >
                     <span className="flex text-white text-[50px] text-center justify-center items-center w-full h-full pb-[8px]">
                       &times;
@@ -281,8 +274,10 @@ const Services = () => {
 
         <Modal
           className="hidden lg:flex"
+          classNames={{
+            base: "bg-transparent",
+          }}
           isOpen={isOpen}
-          size="4xl"
           motionProps={{
             variants: {
               enter: {
@@ -303,23 +298,21 @@ const Services = () => {
               },
             },
           }}
+          size="4xl"
           onOpenChange={onOpenChange}
-          classNames={{
-            base: "bg-transparent",
-          }}
         >
           <ModalContent>
             {selectedService && (
               <>
                 <ModalBody>
                   <div className="relative rounded-tl-full rounded-bl-full rounded-br-full mx-auto bg-gradient-to-l from-[#FFFFFF] to-[#71BCC8] mr-3">
-                    <div className="flex items-start justify-center items-center ">
+                    <div className="flex items-start justify-center  ">
                       <div className="h-full w-[30%]">
                         <div className="flex flex-col w-[194px] h-[192px] bg-transparent border-2 border-customAqua rounded-full justify-center items-center text-center hover:border-gradientCustom group">
                           <div className="flex flex-col w-[170px] h-[168px] bg-white rounded-full justify-center items-center text-center">
                             <Icon
-                              icon={selectedService.image}
                               className="absolute top-8 w-[50px] h-[100px] text-customAqua"
+                              icon={selectedService.image}
                             />
                             <p className="text-servicesTextColor mt-[50px] font-bold">
                               {selectedService.title}
@@ -337,8 +330,8 @@ const Services = () => {
                 </ModalBody>
                 <ModalFooter className="flex items-center justify-center">
                   <Button
-                    onPress={onClose}
                     className=" h-[80px] p-[0px] border-4 bg-transparent border-white rounded-full flex items-center justify-center shadow-md"
+                    onPress={onClose}
                   >
                     <span className="flex text-white text-[50px] text-center justify-center items-center w-full h-full pb-[8px]">
                       &times;

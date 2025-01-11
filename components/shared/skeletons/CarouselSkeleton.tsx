@@ -1,19 +1,16 @@
-"use client"
-import { Skeleton } from '@nextui-org/react';
-import React from 'react'
-import HotelCardSkeleton from './HotelCardSkeleton';
+"use client";
+import { Skeleton } from "@nextui-org/react";
+import React from "react";
 
+import HotelCardSkeleton from "./HotelCardSkeleton";
 
-
-const CarouselSkeleton = ({ 
-  title 
-}: {title:string}) => {
+const CarouselSkeleton = ({ title }: { title: string }) => {
   return (
     <div className="w-full max-w-6xl mx-auto px-4 text-black animate-pulse">
       {/* Title Skeleton */}
       <div className="mb-6">
         <h2 className="text-2xl font-bold mb-6 text-black">{title}</h2>
-    </div>
+      </div>
 
       {/* Cards Container */}
       <div className="relative">
@@ -32,7 +29,7 @@ const CarouselSkeleton = ({
         {/* Cards Grid */}
         <div className="grid grid-cols-3 gap-4">
           {[...Array(3)].map((_, index) => (
-            <HotelCardSkeleton/>
+            <HotelCardSkeleton key={index} />
           ))}
         </div>
 
@@ -49,4 +46,4 @@ const CarouselSkeleton = ({
   );
 };
 
-export default CarouselSkeleton
+export default CarouselSkeleton;

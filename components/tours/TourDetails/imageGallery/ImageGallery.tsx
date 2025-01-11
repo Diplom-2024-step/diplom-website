@@ -1,8 +1,16 @@
-"use client"
-import React, { useState, useRef, TouchEvent, MouseEvent } from 'react';
-import ImageLine from './ImageLine';
-import { Image } from '@nextui-org/image';
-import { ArrowLeft, ArrowRight } from 'lucide-react';
+"use client";
+
+import React, {
+  useState,
+  useRef,
+  TouchEvent,
+  MouseEvent,
+  KeyboardEvent,
+} from "react";
+import { Image } from "@nextui-org/image";
+import { ArrowLeft, ArrowRight } from "lucide-react";
+
+import ImageLine from "./ImageLine";
 
 const ImageGallery = ({ urls }: { urls: string[] }) => {
   const [index, setIndex] = useState(0);
@@ -31,7 +39,6 @@ const ImageGallery = ({ urls }: { urls: string[] }) => {
   const handleMouseDown = (e: MouseEvent) => {
     setIsDragging(true);
     startX.current = e.clientX;
-    // Prevent image dragging
     e.preventDefault();
   };
 
@@ -44,24 +51,31 @@ const ImageGallery = ({ urls }: { urls: string[] }) => {
 
   const handleDragEnd = () => {
     if (!isDragging && startX.current === 0) return;
-    
     const minSwipeDistance = 50;
     const swipeDistance = currentX.current - startX.current;
-    
+
     if (Math.abs(swipeDistance) > minSwipeDistance) {
       if (swipeDistance > 0) {
-        // Swiped right
         handlePrevClick();
       } else {
-        // Swiped left
         handleNextClick();
       }
     }
-
-    // Reset values
     setIsDragging(false);
     startX.current = 0;
     currentX.current = 0;
+  };
+
+  // Keyboard handler
+  const handleKeyDown = (e: KeyboardEvent) => {
+    switch (e.key) {
+      case "ArrowLeft":
+        handlePrevClick();
+        break;
+      case "ArrowRight":
+        handleNextClick();
+        break;
+    }
   };
 
   return (
@@ -69,31 +83,38 @@ const ImageGallery = ({ urls }: { urls: string[] }) => {
       {/* Navigation Buttons - Only visible on desktop */}
       <div className="hidden md:block absolute top-1/2 left-0 md:-left-10 z-10 transform -translate-y-1/2">
         <button
-          onClick={handlePrevClick}
+          aria-label="Previous image"
           className="p-2 bg-gray-200 rounded-full hover:bg-gray-300 transition-colors duration-200"
+          onClick={handlePrevClick}
         >
-          <ArrowLeft size={24} color="#333" />
+          <ArrowLeft color="#333" size={24} />
         </button>
       </div>
 
       {/* Main Image */}
       <div className="mb-5 w-full flex-grow flex items-center justify-center">
-        <div 
-          className={`w-full p-2 md:p-5 flex-col rounded-tl-md rounded-tr-md flex justify-around overflow-hidden mr-auto mt-4 md:mt-10 text-black bg-white shadow-md cursor-grab ${isDragging ? 'cursor-grabbing' : ''}`}
-          onTouchStart={handleTouchStart}
-          onTouchMove={handleTouchMove}
-          onTouchEnd={handleDragEnd}
+        <div
+          aria-label="Image gallery viewer"
+          className={`w-full p-2 md:p-5 flex-col rounded-tl-md rounded-tr-md flex justify-around overflow-hidden mr-auto mt-4 md:mt-10 text-black bg-white shadow-md cursor-grab ${
+            isDragging ? "cursor-grabbing" : ""
+          }`}
+          role="button"
+          tabIndex={0}
+          onKeyDown={handleKeyDown}
           onMouseDown={handleMouseDown}
+          onMouseLeave={handleDragEnd}
           onMouseMove={handleMouseMove}
           onMouseUp={handleDragEnd}
-          onMouseLeave={handleDragEnd}
+          onTouchEnd={handleDragEnd}
+          onTouchMove={handleTouchMove}
+          onTouchStart={handleTouchStart}
         >
           <div className="h-[300px] sm:h-[500px] md:h-[800px] w-full flex items-center justify-center select-none">
             <Image
-              src={urls[index]}
+              alt={`Gallery image ${index + 1} of ${urls.length}`}
               className="h-full w-full object-contain pointer-events-none"
-              alt={`Gallery image ${index + 1}`}
               draggable={false}
+              src={urls[index]}
             />
           </div>
         </div>
@@ -102,20 +123,17 @@ const ImageGallery = ({ urls }: { urls: string[] }) => {
       {/* Navigation Buttons - Only visible on desktop */}
       <div className="hidden md:block absolute top-1/2 right-0 md:-right-10 z-10 transform -translate-y-1/2">
         <button
-          onClick={handleNextClick}
+          aria-label="Next image"
           className="p-2 bg-gray-200 rounded-full hover:bg-gray-300 transition-colors duration-200"
+          onClick={handleNextClick}
         >
-          <ArrowRight size={24} color="#333" />
+          <ArrowRight color="#333" size={24} />
         </button>
       </div>
 
       {/* Thumbnail Navigation */}
       <div className="mt-4 md:mt-6">
-        <ImageLine
-          currentIndex={index}
-          setIndex={setIndex}
-          urls={urls}
-        />
+        <ImageLine currentIndex={index} setIndex={setIndex} urls={urls} />
       </div>
     </div>
   );

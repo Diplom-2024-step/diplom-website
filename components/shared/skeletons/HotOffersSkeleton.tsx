@@ -3,10 +3,10 @@ import { Card, CardFooter, CardHeader, Skeleton } from "@nextui-org/react";
 const HotOffersSkeleton = () => {
   return (
     <div className="flex flex-col items-center w-full h-full mt-10 mb-10">
-       <p className="text-[43px] font-bold mb-[65px] text-customBlack">
+      <p className="text-[43px] font-bold mb-[65px] text-customBlack">
         Гарячі пропозиції
       </p>
-      
+
       <div className="flex w-4/7 h-full">
         {/* Large Card Skeleton */}
         <Card className="flex flex-col justify-between min-h-[520px] min-w-[398px] bg-gray-100">
@@ -64,7 +64,7 @@ const HotOffersSkeleton = () => {
               </CardFooter>
             </Card>
           </div>
-          
+
           {/* Bottom Long Card Skeleton */}
           <div>
             <Card className="flex flex-col justify-between min-h-[240px] w-full mt-[40px] bg-gray-100">

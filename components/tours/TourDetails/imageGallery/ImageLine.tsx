@@ -1,13 +1,12 @@
-"use client"
-import { Image } from '@nextui-org/image'
-import React, { useEffect, useState } from 'react'
-import { motion } from 'framer-motion'
+"use client";
+import React, { useEffect, useState } from "react";
+import { motion } from "framer-motion";
 
 // ImageLine Component
 const ImageLine = ({
   currentIndex,
   setIndex,
-  urls
+  urls,
 }: {
   currentIndex: number;
   setIndex: (value: number) => void;
@@ -27,41 +26,49 @@ const ImageLine = ({
     };
 
     updateItemsToShow();
-    window.addEventListener('resize', updateItemsToShow);
-    return () => window.removeEventListener('resize', updateItemsToShow);
+    window.addEventListener("resize", updateItemsToShow);
+
+    return () => window.removeEventListener("resize", updateItemsToShow);
   }, []);
 
   const startIndex = Math.max(currentIndex - Math.floor(itemsToShow / 3), 0);
   const endIndex = Math.min(startIndex + itemsToShow, urls.length);
 
   return (
-    <motion.div className='flex flex-row overflow-x-auto scrollbar-hide px-4 md:px-0' layout>
+    <motion.div
+      layout
+      className="flex flex-row overflow-x-auto scrollbar-hide px-4 md:px-0"
+    >
       {urls.slice(startIndex, endIndex).map((url, index) => (
         <motion.div
           key={startIndex + index}
-          onClick={() => setIndex(startIndex + index)}
-          initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ duration: 0.1 }}
-          exit={{ opacity: 0 }}
           className={`mr-2 last:mr-0 ${
-            itemsToShow === 4 ? 'w-1/4' : 
-            itemsToShow === 8 ? 'w-1/8' : 
-            'w-1/12'
+            itemsToShow === 4 ? "w-1/4" : itemsToShow === 8 ? "w-1/8" : "w-1/12"
           } h-[60px] md:h-[80px] cursor-pointer flex items-center justify-center`}
+          exit={{ opacity: 0 }}
+          initial={{ opacity: 0 }}
+          transition={{ duration: 0.1 }}
+          onClick={() => setIndex(startIndex + index)}
         >
           <motion.img
-            src={url}
             alt="Gallery Image"
             className={`w-full max-h-[40px] md:max-h-[60px] object-cover rounded-md ${
-              startIndex + index === currentIndex 
-                ? 'ring-2 ring-offset-2 ring-primary ring-opacity-50 transform scale-110 brightness-110 hover:brightness-110' 
-                : 'scale-95 brightness-50 contrast-125 hover:brightness-75'
+              startIndex + index === currentIndex
+                ? "ring-2 ring-offset-2 ring-primary ring-opacity-50 transform scale-110 brightness-110 hover:brightness-110"
+                : "scale-95 brightness-50 contrast-125 hover:brightness-75"
             }`}
+            src={url}
             style={{
-              transition: 'all 0.3s ease-in-out',
-              filter: startIndex + index === currentIndex ? 'brightness(110%) contrast(125%)' : 'brightness(50%) contrast(125%)',
-              transform: startIndex + index === currentIndex ? 'scale(1.1)' : 'scale(0.95)',
+              transition: "all 0.3s ease-in-out",
+              filter:
+                startIndex + index === currentIndex
+                  ? "brightness(110%) contrast(125%)"
+                  : "brightness(50%) contrast(125%)",
+              transform:
+                startIndex + index === currentIndex
+                  ? "scale(1.1)"
+                  : "scale(0.95)",
             }}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
@@ -72,4 +79,4 @@ const ImageLine = ({
   );
 };
 
-export default ImageLine
+export default ImageLine;

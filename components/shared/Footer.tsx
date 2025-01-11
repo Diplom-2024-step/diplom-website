@@ -1,6 +1,8 @@
 import React from "react";
 import Image from "next/image";
 import { Checkbox } from "@nextui-org/react";
+import Link from "next/link";
+
 import footerBackImage from "../../assets/images/footer/Rectangle_1760.png";
 import footerLocationImage from "../../assets/images/footer/Location.png";
 import footerPhoneImage from "../../assets/images/footer/Vector.png";
@@ -17,24 +19,24 @@ const Footer = () => {
           <div className="flex flex-col items-center max-w-[55%] mb-10 ">
             <Image
               alt="contacts"
-              src={footerContactsImage}
               className="mb-12 mt-5"
+              src={footerContactsImage}
             />
             <div className="flex w-[calc(100%+30px)]">
               <div>
                 <div className="flex items-center space-x-8 mb-8">
                   <Image
                     alt="location"
-                    src={footerLocationImage}
                     className="w-auto max-w-[26px] h-auto max-h-[37px]"
+                    src={footerLocationImage}
                   />
                   <p>Вулиця Велика Васильківська, 72, Київ, 03150</p>
                 </div>
                 <div className="flex items-center space-x-8">
                   <Image
                     alt="phone"
-                    src={footerPhoneImage}
                     className="w-auto max-w-[26px] h-auto max-h-[37px]"
+                    src={footerPhoneImage}
                   />
                   <div className="items-center">
                     <p className="mb-2">+38 (044) 601 23 77</p>
@@ -45,18 +47,18 @@ const Footer = () => {
               <div className="flex flex-col justify-between ml-12 md-12 space-y-2">
                 <Image
                   alt="youtube"
-                  src={footerYouTubeImage}
                   className="w-auto max-w-[50px] h-auto max-h-[50px]"
+                  src={footerYouTubeImage}
                 />
                 <Image
                   alt="instagram"
-                  src={footerInstagramImage}
                   className="w-auto max-w-[50px] h-auto max-h-[50px]"
+                  src={footerInstagramImage}
                 />
                 <Image
                   alt="facebook"
-                  src={footerFacebookImage}
                   className="w-auto max-w-[50px] h-auto max-h-[50px]"
+                  src={footerFacebookImage}
                 />
               </div>
             </div>
@@ -79,21 +81,19 @@ const Footer = () => {
               <div className="text-white w-[33%]">
                 <ul className="space-y-6">
                   <li>
-                    <a href="#" className="hover:underline">
-                      Країни
-                    </a>
+                    <p className="hover:underline">Країни</p>
                   </li>
                   <li>
-                    <a href="#" className="hover:underline">
+                    <Link className="hover:underline" href="/tours/">
                       Тури
-                    </a>
+                    </Link>
                   </li>
                 </ul>
               </div>
               <div className="text-white w-[33%]">
                 <ul className="space-y-6">
                   <li>
-                    <a href="#" className="hover:underline">
+                    <a className="hover:underline" href="/#services">
                       Туристам
                     </a>
                   </li>
@@ -117,7 +117,7 @@ const Footer = () => {
               <div className="text-white w-[33%]">
                 <ul className="space-y-6">
                   <li>
-                    <a href="#" className="hover:underline">
+                    <a className="hover:underline" href="/aboutUs">
                       Про нас
                     </a>
                   </li>
@@ -136,11 +136,7 @@ const Footer = () => {
             </div>
             <div className="text-white text-sm mt-[120px]">
               <p>2024 ООО "Expedia". Всі права захищені.</p>
-              <p>
-                <a href="#" className="hover:underline">
-                  Політика конфіденційності
-                </a>
-              </p>
+              <p>Політика конфіденційності</p>
             </div>
           </div>
         </div>
@@ -151,12 +147,10 @@ const Footer = () => {
             <div className="text-white w-full">
               <ul className="flex">
                 <li className="w-[60%]">
-                  <a href="#" className="hover:underline">
-                    Країни
-                  </a>
+                  <p className="hover:underline">Країни</p>
                 </li>
                 <li className="w-[40%]">
-                  <a href="#" className="hover:underline">
+                  <a className="hover:underline" href="/tours/">
                     Тури
                   </a>
                 </li>
@@ -166,9 +160,7 @@ const Footer = () => {
               <div className="text-white w-[60%]">
                 <ul className="space-y-6">
                   <li>
-                    <a href="#" className="hover:underline">
-                      Туристам
-                    </a>
+                    <p className="hover:underline">Туристам</p>
                   </li>
                   <li>
                     <div className="flex flex-col gap-4">
@@ -191,7 +183,7 @@ const Footer = () => {
               <div className="text-white w-[40%]">
                 <ul className="space-y-6">
                   <li>
-                    <a href="#" className="hover:underline">
+                    <a className="hover:underline" href="/aboutUs">
                       Про нас
                     </a>
                   </li>
@@ -212,16 +204,16 @@ const Footer = () => {
           <div className="flex flex-col items-center max-w-full mb-10 mt-5 ">
             <Image
               alt="contacts"
-              src={footerContactsImage}
               className="mb-12 mt-5"
+              src={footerContactsImage}
             />
             <div className="flex flex-col w-[calc(100%+30px)]">
               <div className="flex">
                 <div className="flex flex-col items-center space-x-8 mb-8 w-[50%]">
                   <Image
                     alt="location"
-                    src={footerLocationImage}
                     className="w-[30px] h-[40px]"
+                    src={footerLocationImage}
                   />
                   <p className="mt-4 text-[15px]">
                     Вулиця Велика Васильківська, 72, Київ, 03150
@@ -230,8 +222,8 @@ const Footer = () => {
                 <div className="flex flex-col items-center space-x-8 w-[50%]">
                   <Image
                     alt="phone"
-                    src={footerPhoneImage}
                     className="w-[30px] h-[40px]"
+                    src={footerPhoneImage}
                   />
                   <div className="items-center">
                     <p className="mb-2 mt-4 text-[15px]">+38 (044) 601 23 77</p>
@@ -242,25 +234,25 @@ const Footer = () => {
               <div className="flex justify-between ml-12 mt-6">
                 <Image
                   alt="youtube"
-                  src={footerYouTubeImage}
                   className="w-[70px] h-[70px]"
+                  src={footerYouTubeImage}
                 />
                 <Image
                   alt="instagram"
-                  src={footerInstagramImage}
                   className="w-[70px] h-[70px]"
+                  src={footerInstagramImage}
                 />
                 <Image
                   alt="facebook"
-                  src={footerFacebookImage}
                   className="w-[70px] h-[70px]"
+                  src={footerFacebookImage}
                 />
               </div>
             </div>
           </div>
         </div>
         <div
-          className="bg-cover bg-center flex flex-col justify-between bg-cover bg-no-repeat w-full"
+          className="bg-cover bg-center flex flex-col justify-between  bg-no-repeat w-full"
           style={{
             backgroundImage: `linear-gradient(to top, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.2)), url(${footerBackImage.src})`,
           }}
@@ -268,9 +260,7 @@ const Footer = () => {
           <div className="font-nunito_font_family text-white text-sm h-full w-full justify-center p-10 text-center">
             <p>2024 ООО "Expedia". Всі права захищені.</p>
             <p className="font-nunito_font_family mt-5">
-              <a href="#" className="hover:underline">
-                Політика конфіденційності
-              </a>
+              <p className="hover:underline">Політика конфіденційності</p>
             </p>
           </div>
         </div>
