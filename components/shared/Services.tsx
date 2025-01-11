@@ -71,7 +71,7 @@ const services = [
 const Services = () => {
   const [selectedService, setSelectedService] = useState<{
     title: string;
-    image: StaticImageData;
+    image: string;
     description: string;
   } | null>(null);
   const { isOpen, onOpen, onClose, onOpenChange } = useDisclosure();
@@ -313,7 +313,7 @@ const Services = () => {
               <>
                 <ModalBody>
                   <div className="relative rounded-tl-full rounded-bl-full rounded-br-full mx-auto bg-gradient-to-l from-[#FFFFFF] to-[#71BCC8] mr-3">
-                    <div className="flex items-start justify-center items-center ">
+                    <div className="flex items-start justify-center  ">
                       <div className="h-full w-[30%]">
                         <div className="flex flex-col w-[194px] h-[192px] bg-transparent border-2 border-customAqua rounded-full justify-center items-center text-center hover:border-gradientCustom group">
                           <div className="flex flex-col w-[170px] h-[168px] bg-white rounded-full justify-center items-center text-center">
