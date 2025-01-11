@@ -39,7 +39,6 @@ const TravelBooking = ({ hotel }: { hotel: GetHotelDto }) => {
 
   return (
     <>
-
       <div className="flex w-full justify-between mt-10 text-black booking-container">
         <div className="flex-col w-[80%] booking-filtering-container">
           <div className="w-full flex bg-white shadow-md booking-setting-container">
@@ -48,9 +47,10 @@ const TravelBooking = ({ hotel }: { hotel: GetHotelDto }) => {
                 icon="stash:people-group-duotone"
                 className="mr-3 text-4xl"
               />
-              <span>Туристи</span>
+              <span className="text-[20px] text-nunito_font_family">
+                Туристи
+              </span>
             </div>
-
 
             <div className="w-full flex items-center justify-start p-2 booking-setting-content-container">
               <div className="w-[80%] p-5 booking-setting-content">
@@ -148,7 +148,6 @@ const TravelBooking = ({ hotel }: { hotel: GetHotelDto }) => {
               </div>
             </div>
           </div>
-
 
           <div className="w-full flex bg-white shadow-md mt-5 booking-setting-container">
             <div className="w-[40%] bg-primary text-white flex items-center justify-start p-5 rounded-r-lg booking-setting-header">
