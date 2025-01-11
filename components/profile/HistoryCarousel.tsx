@@ -1,9 +1,11 @@
 "use client";
-import { HistoryItemTypes, useSearchHistory } from '@/hooks/useSearchHistory';
-import { ChevronLeft, ChevronRight } from 'lucide-react';
-import React, { useState, useEffect } from 'react';
-import HotelCard from '../hotels/hotelCard/HotelCard';
-import TourCard from '../tours/TourCard';
+import { ChevronLeft, ChevronRight } from "lucide-react";
+import React, { useState, useEffect } from "react";
+
+import { HistoryItemTypes, useSearchHistory } from "@/hooks/useSearchHistory";
+
+import HotelCard from "../hotels/hotelCard/HotelCard";
+import TourCard from "../tours/TourCard";
 
 const HistoryCarousel = () => {
   const [history, addToHistory] = useSearchHistory();
@@ -23,26 +25,29 @@ const HistoryCarousel = () => {
     };
 
     updateSlidesPerView();
-    window.addEventListener('resize', updateSlidesPerView);
-    return () => window.removeEventListener('resize', updateSlidesPerView);
+    window.addEventListener("resize", updateSlidesPerView);
+
+    return () => window.removeEventListener("resize", updateSlidesPerView);
   }, []);
 
   const maxIndex = Math.max(0, history.length - slidesPerView);
 
   const handleNext = (): void => {
-    setCurrentIndex(prev => {
+    setCurrentIndex((prev) => {
       if (prev >= maxIndex) {
         return 0;
       }
+
       return prev + 1;
     });
   };
 
   const handlePrev = (): void => {
-    setCurrentIndex(prev => {
+    setCurrentIndex((prev) => {
       if (prev <= 0) {
         return maxIndex;
       }
+
       return prev - 1;
     });
   };
@@ -81,9 +86,13 @@ const HistoryCarousel = () => {
               <div
                 key={cardItem.item.id}
                 className={`mt-6 mb-6 flex-shrink-0 px-2 transition-all duration-300
-                  ${slidesPerView === 1 ? 'w-full' :
-                    slidesPerView === 2 ? 'w-1/2' :
-                    'w-1/3'}`}
+                  ${
+                    slidesPerView === 1
+                      ? "w-full"
+                      : slidesPerView === 2
+                        ? "w-1/2"
+                        : "w-1/3"
+                  }`}
               >
                 {cardItem.type === HistoryItemTypes.Hotel ? (
                   <HotelCard
@@ -108,18 +117,18 @@ const HistoryCarousel = () => {
         {history.length > slidesPerView && (
           <>
             <button
-              onClick={handlePrev}
+              aria-label="Previous slide"
               className="absolute left-0 top-1/3 -translate-y-1/2 -translate-x-4 bg-white p-2 rounded-full shadow-lg hover:bg-gray-100 z-10"
               type="button"
-              aria-label="Previous slide"
+              onClick={handlePrev}
             >
               <ChevronLeft className="w-6 h-6" />
             </button>
             <button
-              onClick={handleNext}
+              aria-label="Next slide"
               className="absolute right-0 top-1/3 -translate-y-1/2 translate-x-4 bg-white p-2 rounded-full shadow-lg hover:bg-gray-100 z-10"
               type="button"
-              aria-label="Next slide"
+              onClick={handleNext}
             >
               <ChevronRight className="w-6 h-6" />
             </button>
@@ -127,15 +136,15 @@ const HistoryCarousel = () => {
         )}
 
         <div className="flex justify-center gap-2 mt-4">
-          {history.length > slidesPerView && 
+          {history.length > slidesPerView &&
             [...Array(maxIndex + 1)].map((_, index) => (
               <button
                 key={index}
-                type="button"
                 aria-label={`Go to slide ${index + 1}`}
                 className={`w-6 h-1 transition-colors ${
-                  index === currentIndex ? 'bg-black' : 'bg-gray-300'
+                  index === currentIndex ? "bg-black" : "bg-gray-300"
                 }`}
+                type="button"
                 onClick={() => handleDotClick(index)}
               />
             ))}

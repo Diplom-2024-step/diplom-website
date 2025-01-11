@@ -1,9 +1,13 @@
 "use client";
+import { Button, Link, SortDescriptor } from "@nextui-org/react";
+import { LoadingState } from "@react-types/shared";
+import { usePathname, useRouter } from "next/navigation";
+import React, { useEffect, useState } from "react";
+
 import { GetActivityDto } from "@/AppDtos/Dto/Models/Activities/get-activity-dto";
 import { FilterDto } from "@/AppDtos/Shared/filter-dto";
 import { ReturnPageDto } from "@/AppDtos/Shared/return-page-dto";
 import ActivityGrid from "@/components/activities/ActivityGrid";
-import ActivityCard from "@/components/activities/shared/ActivityCard";
 import { useTravelBookingContext } from "@/components/providers/TravelBookingProvider";
 import MyPagination from "@/components/shared/MyPagination";
 import ActivityGridSkeleton from "@/components/shared/skeletons/ActivityGridSkeleton";
@@ -11,13 +15,8 @@ import useDebounceState from "@/hooks/useDebounceState";
 import useGetPageOfItems from "@/hooks/useGetPageOfItems";
 import useSearchParam from "@/hooks/useSearchParam";
 import { ActivityService } from "@/service/crudServices/ActivityService";
-import { Button, Link, SortDescriptor } from "@nextui-org/react";
-import { LoadingState } from "@react-types/shared";
-import { usePathname, useRouter } from "next/navigation";
-import React, { useEffect, useRef, useState } from "react";
-import { number } from "zod";
 
-const page = ({ params }: { params: { id: string; country: string } }) => {
+const Page = ({ params }: { params: { id: string; country: string } }) => {
   const { activities, setActivities } = useTravelBookingContext();
   const [selectedActiviriesAtStart, setSelectedActiviriesAtStart] =
     useState(activities);
@@ -78,9 +77,9 @@ const page = ({ params }: { params: { id: string; country: string } }) => {
 
           <div className="flex justify-center items-center mb-10">
             <MyPagination
-              total={items?.howManyPages as number}
-              page={page ? parseInt(page) : 1}
               onchange={(page: number) => setPage(page.toString())}
+              page={page ? parseInt(page) : 1}
+              total={items?.howManyPages as number}
             />
           </div>
 
@@ -88,8 +87,8 @@ const page = ({ params }: { params: { id: string; country: string } }) => {
             <div className="flex-row flex justify-around">
               <div className="text-center text-wrap w-2/5">
                 <Button
-                  className="bg-transparent text-black text-xl rounded-full px-20  border-1 border-black"
                   as={Link}
+                  className="bg-transparent text-black text-xl rounded-full px-20  border-1 border-black"
                   href={
                     "../../.." + pathname.slice(0, pathname.lastIndexOf("/"))
                   }
@@ -103,8 +102,8 @@ const page = ({ params }: { params: { id: string; country: string } }) => {
               </div>
               <div className="text-center w-2/5 mr-5">
                 <Button
-                  className="text-white bg-primary font-nunito_font_family font-[700] text-xl rounded-full  px-20"
                   as={Link}
+                  className="text-white bg-primary font-nunito_font_family font-[700] text-xl rounded-full  px-20"
                   href={
                     "../../.." + pathname.slice(0, pathname.lastIndexOf("/"))
                   }
@@ -125,4 +124,4 @@ const page = ({ params }: { params: { id: string; country: string } }) => {
   );
 };
 
-export default page;
+export default Page;

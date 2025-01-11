@@ -7,7 +7,7 @@ const TravelCardSkeleton = () => {
         {/* Image skeleton */}
         <div className="w-full md:w-2/4 relative">
           <Skeleton className="rounded-[10px] rounded-tl-none">
-            <div className="h-48 md:h-64"></div>
+            <div className="h-48 md:h-64" />
           </Skeleton>
         </div>
 

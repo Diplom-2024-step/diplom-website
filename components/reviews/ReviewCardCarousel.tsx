@@ -1,8 +1,10 @@
 "use client";
-import { GetReviewDto } from "@/AppDtos/Dto/Models/Reviews/get-review-dto";
 import React, { useEffect, useState } from "react";
-import ReviewCard from "./ReviewCard";
 import { ChevronLeft, ChevronRight } from "lucide-react";
+
+import { GetReviewDto } from "@/AppDtos/Dto/Models/Reviews/get-review-dto";
+
+import ReviewCard from "./ReviewCard";
 
 const ReviewCardCarousel = ({ reviews }: { reviews: GetReviewDto[] }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -23,6 +25,7 @@ const ReviewCardCarousel = ({ reviews }: { reviews: GetReviewDto[] }) => {
 
     updateSlidesPerView();
     window.addEventListener("resize", updateSlidesPerView);
+
     return () => window.removeEventListener("resize", updateSlidesPerView);
   }, []);
 
@@ -77,22 +80,22 @@ const ReviewCardCarousel = ({ reviews }: { reviews: GetReviewDto[] }) => {
         {reviews.length > slidesPerView && (
           <>
             <button
-              onClick={handlePrev}
+              aria-label="Previous slide"
               className="absolute left-0 top-1/2 -translate-y-1/2 bg-transparent p-2 rounded-full border-none z-10 disabled:opacity-50
                 -translate-x-14"
-              type="button"
-              aria-label="Previous slide"
               disabled={currentIndex === 0}
+              type="button"
+              onClick={handlePrev}
             >
               <ChevronLeft className="w-12 h-12" />
             </button>
             <button
-              onClick={handleNext}
+              aria-label="Next slide"
               className="absolute right-0 top-1/2 -translate-y-1/2 bg-transparent p-2 rounded-full z-10 border-none disabled:opacity-50
                 translate-x-14"
-              type="button"
-              aria-label="Next slide"
               disabled={currentIndex === maxIndex}
+              type="button"
+              onClick={handleNext}
             >
               <ChevronRight className="w-12 h-12" />
             </button>
@@ -104,11 +107,11 @@ const ReviewCardCarousel = ({ reviews }: { reviews: GetReviewDto[] }) => {
           {[...Array(maxIndex + 1)].map((_, index) => (
             <button
               key={index}
-              type="button"
               aria-label={`Go to slide ${index + 1}`}
               className={`w-6 h-1 transition-colors ${
                 index === currentIndex ? "bg-black" : "bg-gray-300"
               }`}
+              type="button"
               onClick={() => handleDotClick(index)}
             />
           ))}

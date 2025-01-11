@@ -3,13 +3,16 @@
  * Any changes made to this file can be lost when this file is regenerated.
  */
 
-import { z } from 'zod';
+import { z } from "zod";
 
 export const userRegistrationDtoSchema = z.object({
-    userName: z.string().max(128).regex(/\S/),
-    email: z.string().email().regex(/\S/),
-    password: z.string().regex(/\S/).regex(/^.{6,}$/),
-    role: z.string().regex(/\S/)
+  userName: z.string().max(128).regex(/\S/),
+  email: z.string().email().regex(/\S/),
+  password: z
+    .string()
+    .regex(/\S/)
+    .regex(/^.{6,}$/),
+  role: z.string().regex(/\S/),
 });
 
 export type UserRegistrationDto = z.infer<typeof userRegistrationDtoSchema>;

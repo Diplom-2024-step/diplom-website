@@ -1,35 +1,34 @@
-import { GetCityDto } from "@/AppDtos/Dto/Models/Hotels/get-city-dto";
-import { CreateOrderDto } from "@/AppDtos/Dto/Models/Orders/create-order-dto";
-import { GetTransportationTypeDto } from "@/AppDtos/Dto/Models/TransportationTypes/get-transportation-type-dto";
-import { useTravelBookingContext } from "@/components/providers/TravelBookingProvider";
-import { useAuth } from "@/hooks/auth";
-import { OrderService } from "@/service/crudServices/OrderService";
 import {
   Button,
-  DateValue,
   Input,
   Modal,
   ModalBody,
   ModalContent,
   ModalFooter,
   ModalHeader,
-  RangeValue,
   useDisclosure,
 } from "@nextui-org/react";
 import { AxiosError } from "axios";
 import { differenceInDays } from "date-fns";
 import React, { useEffect, useState } from "react";
 
+import { GetCityDto } from "@/AppDtos/Dto/Models/Hotels/get-city-dto";
+import { CreateOrderDto } from "@/AppDtos/Dto/Models/Orders/create-order-dto";
+import { GetTransportationTypeDto } from "@/AppDtos/Dto/Models/TransportationTypes/get-transportation-type-dto";
+import { useTravelBookingContext } from "@/components/providers/TravelBookingProvider";
+import { useAuth } from "@/hooks/auth";
+import { OrderService } from "@/service/crudServices/OrderService";
+
 const BuyButtonActive = ({
   transporationType,
   city,
   cost,
-  tourId
+  tourId,
 }: {
   transporationType?: GetTransportationTypeDto;
   city?: GetCityDto;
   cost: number;
-  tourId?: string
+  tourId?: string;
 }) => {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
 
@@ -67,13 +66,11 @@ const BuyButtonActive = ({
   }, [phoneNumber]);
 
   const createOrdere = async () => {
+    let userId: string | null = null;
 
-    let userId:string | null = null;
-
-    if (auth.status === "authorized")
-      {
-        userId = auth.user?.user.id!;
-      }
+    if (auth.status === "authorized") {
+      userId = auth.user?.user.id!;
+    }
 
     const service = new OrderService();
 
@@ -103,7 +100,7 @@ const BuyButtonActive = ({
       activityIds: activitiesIds,
       adminId: null,
       userId: userId,
-      tourId: tourId
+      tourId: tourId,
     };
 
     console.debug(order);
@@ -111,6 +108,7 @@ const BuyButtonActive = ({
     try {
       setLoadingState("loading");
       const response = await service.create(order);
+
       setLoadingState("success");
       setIsOpenSuccessWindow(true);
     } catch (error) {
@@ -121,13 +119,11 @@ const BuyButtonActive = ({
   };
 
   useEffect(() => {
-    if (auth.status === "authorized")
-      {
-        setFullName(auth.user?.user.username!);
-        //setPhoneNumber(auth.user?.decodeToken.mobilephone!);
-      }
+    if (auth.status === "authorized") {
+      setFullName(auth.user?.user.username!);
+      //setPhoneNumber(auth.user?.decodeToken.mobilephone!);
+    }
   }, [auth.status]);
-
 
   return city !== undefined && transporationType !== undefined ? (
     <>
@@ -149,35 +145,39 @@ const BuyButtonActive = ({
               <ModalBody>
                 <Input
                   isRequired
-                  onValueChange={setPhoneNumber}
-                  value={phoneNumber}
-                  isInvalid={isInvalidPhoneNumber}
                   color={isInvalidPhoneNumber ? "danger" : "default"}
                   errorMessage="Введіть дійсний номер телефону"
+                  isInvalid={isInvalidPhoneNumber}
                   label="Телефон"
                   placeholder="+380501234567"
+                  value={phoneNumber}
+                  onValueChange={setPhoneNumber}
                 />
 
                 <Input
                   isRequired
-                  onValueChange={setFullName}
-                  value={fullName}
                   label="Повне ім'я"
+                  value={fullName}
+                  onValueChange={setFullName}
                 />
               </ModalBody>
               <ModalFooter>
-             
                 <Button
-                  variant="light"
                   className="bg-transparent text-black  rounded-full   border-1 border-black"
+                  variant="light"
                   onPress={onClose}
                 >
                   Скасувати
                 </Button>
                 <Button
-                  color="primary"
-                  isDisabled={(isInvalidPhoneNumber || phoneNumber.length === 0) || (fullName === undefined || fullName === "")}
                   className="text-white rounded-full text-[18px]"
+                  color="primary"
+                  isDisabled={
+                    isInvalidPhoneNumber ||
+                    phoneNumber.length === 0 ||
+                    fullName === undefined ||
+                    fullName === ""
+                  }
                   onPress={() => {
                     createOrdere();
                     onClose();
@@ -207,8 +207,8 @@ const BuyButtonActive = ({
               </ModalBody>
               <ModalFooter>
                 <Button
-                  color="primary"
                   className="text-white rounded-full"
+                  color="primary"
                   onPress={() => {
                     onClose();
                   }}
@@ -233,8 +233,8 @@ const BuyButtonActive = ({
               <ModalBody>{error}</ModalBody>
               <ModalFooter>
                 <Button
-                  color="primary"
                   className="text-white rounded-full"
+                  color="primary"
                   onPress={() => {
                     onClose();
                   }}
@@ -250,8 +250,8 @@ const BuyButtonActive = ({
   ) : (
     <Button
       className="mt-5 text-black w-full text-center booking-button"
-      isDisabled={true}
       color="default"
+      isDisabled={true}
       variant="bordered"
     >
       Замовити тур

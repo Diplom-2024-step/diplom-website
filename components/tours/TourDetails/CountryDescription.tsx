@@ -1,11 +1,6 @@
-import { GetTourDto } from "@/AppDtos/Dto/Models/Tours/get-tour-dto";
-import TravelBooking from "@/components/tours/TourDetails/travelBooking/TravelBooking";
-import { Card, CardBody, CardHeader } from "@nextui-org/card";
-import { Divider } from "@nextui-org/react";
-import Link from "next/link";
 import React from "react";
 import Image, { StaticImageData } from "next/image";
-import ImageGallery from "./imageGallery/ImageGallery";
+
 import spainBack from "@/components/tours/TourDetails/CountryDescriptionImages/spainBack.webp";
 import spainFood from "@/components/tours/TourDetails/CountryDescriptionImages/spainFood.webp";
 import spainTraditions from "@/components/tours/TourDetails/CountryDescriptionImages/spainTraditions.png";
@@ -169,10 +164,14 @@ const CountryDescription = ({ countryName }: { countryName: string }) => {
     "<strong>$1</strong>"
   );
 
-  const ImageCard = ({ image, name, description } : {
-    image: StaticImageData,
-    name: string,
-    description: string
+  const ImageCard = ({
+    image,
+    name,
+    description,
+  }: {
+    image: StaticImageData;
+    name: string;
+    description: string;
   }) => (
     <div className="flex flex-col items-center content-center text-center w-[33%]">
       <Image alt={name} src={image} />
@@ -188,14 +187,16 @@ const CountryDescription = ({ countryName }: { countryName: string }) => {
   return (
     <div
       className="flex flex-col items-end bg-cover bg-center h-full rounded-xl"
-      style={{ backgroundImage: `url(${(country?.backgroundImage as StaticImageData).src})` }}
+      style={{
+        backgroundImage: `url(${(country?.backgroundImage as StaticImageData).src})`,
+      }}
     >
       <div className="flex flex-col w-[55%] h-full mt-[40px] mr-[30px]">
         <div className="flex flex-col w-full h-[40%]">
           <p className="text-[35px] text-unbounded text-white ">Про країну</p>
           <p
-            className="flex flex-col space-y-3 text-[17px] text-nunito_font_family text-white"
             dangerouslySetInnerHTML={{ __html: boldFirstWordDescription! }}
+            className="flex flex-col space-y-3 text-[17px] text-nunito_font_family text-white"
           />
         </div>
         <div className="h-full mt-[10px]">
@@ -208,9 +209,9 @@ const CountryDescription = ({ countryName }: { countryName: string }) => {
               .map((image, index) => (
                 <ImageCard
                   key={index}
+                  description={image.description}
                   image={image.image as StaticImageData}
                   name={image.name}
-                  description={image.description}
                 />
               ))}
           </div>

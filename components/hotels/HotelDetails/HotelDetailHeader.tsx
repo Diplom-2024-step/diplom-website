@@ -1,8 +1,8 @@
-import { GetHotelDto } from "@/AppDtos/Dto/Models/Hotels/get-hotel-dto";
-import { Card, Tab, Tabs } from "@nextui-org/react";
-import { Image } from "@nextui-org/react";
+import { Card } from "@nextui-org/react";
 import { MapPin } from "lucide-react";
-import React, { Key } from "react";
+import React from "react";
+
+import { GetHotelDto } from "@/AppDtos/Dto/Models/Hotels/get-hotel-dto";
 
 const HotelDetailHeader = ({
   hotel,
@@ -19,37 +19,37 @@ const HotelDetailHeader = ({
       <div className="mr-auto mt-auto text-black">
         <div className="flex justify-between text-[#161616] rounded-r-2">
           <button
-            onClick={() => onSelectChage("hotel")}
             className={`flex-1 px-11 pt-2 text-sm font-medium bg-white rounded-t-[20px] border-r-2 border-gray-300 shadow-right whitespace-nowrap relative transition-all duration-300 ease-in-out 
         ${activeTab === "hotel" ? "text-[#0F171B] !bg-gray-100" : "text-[#161616]"}
         hover:bg-gray-100 hover:text-[#0F171B]`}
+            onClick={() => onSelectChage("hotel")}
           >
             Готель
           </button>
           <button
-            onClick={() => onSelectChage("description")}
             className={`flex-1 px-11 pt-2 text-sm font-medium  rounded-t-[20px] border-r-2 border-gray-300 shadow-right whitespace-nowrap 
         relative transition-all duration-300 ease-in-out 
         ${activeTab === "description" ? "text-[#0F171B] !bg-gray-100" : "text-[#161616] bg-white"}
         hover:bg-gray-100 hover:text-[#0F171B]`}
+            onClick={() => onSelectChage("description")}
           >
             Опис
           </button>
           <button
-            onClick={() => onSelectChage("photos")}
             className={`flex-1 px-11 pt-2 text-sm font-medium bg-white rounded-t-[20px] border-r-2 border-gray-300 shadow-right whitespace-nowrap 
         relative transition-all duration-300 ease-in-out 
         ${activeTab === "photos" ? "text-[#0F171B] !bg-gray-100" : "text-[#161616]"}
         hover:bg-gray-100 hover:text-[#0F171B]`}
+            onClick={() => onSelectChage("photos")}
           >
             Фото
           </button>
           <button
-            onClick={() => onSelectChage("reviews")}
             className={`flex-1 pl-7 px-11 pt-2 text-sm font-medium bg-white rounded-t-[20px] border-r-2 shadow-right whitespace-nowrap   
         relative transition-all duration-300 ease-in-out 
         ${activeTab === "reviews" ? "text-[#0F171B] !bg-gray-100" : "text-[#161616]"}
         hover:bg-gray-100 hover:text-[#0F171B]`}
+            onClick={() => onSelectChage("reviews")}
           >
             Відгуки
           </button>
@@ -73,7 +73,7 @@ const HotelDetailHeader = ({
                   backgroundPosition: "center",
                   backgroundRepeat: "no-repeat",
                 }}
-              ></div>
+              />
             </div>
 
             {/* Hotel Information */}
@@ -100,6 +100,7 @@ const HotelDetailHeader = ({
                       ))}
                       {[...Array(5 - hotel.stars)].map((i) => (
                         <svg
+                          key={i}
                           className="w-5 h-5 text-yellow-400 fill-current"
                           viewBox="0 0 24 24"
                         >

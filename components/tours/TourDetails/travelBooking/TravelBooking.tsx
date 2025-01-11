@@ -1,19 +1,11 @@
 "use client";
-import { GetTourDto } from "@/AppDtos/Dto/Models/Tours/get-tour-dto";
 import { Icon } from "@iconify/react";
-import { Button, DateValue, RangeValue, Spacer } from "@nextui-org/react";
-import React, { useEffect, useState } from "react";
-import { setConfig } from "next/config";
-import { GetDietTypeDto } from "@/AppDtos/Dto/Models/DietTypes/get-diet-type-dto";
-import { GetRoomTypeDto } from "@/AppDtos/Dto/Models/RoomTypes/get-room-type-dto";
+import React, { useEffect } from "react";
+
+import { GetTourDto } from "@/AppDtos/Dto/Models/Tours/get-tour-dto";
 import ChoosingDateButton from "@/components/tours/TourDetails/travelBooking/ChoosingDateAndCityButton/ChoosingDateButton";
-import { parseDate } from "@internationalized/date";
-import { addDays, differenceInDays, formatISO } from "date-fns";
-import { GetCityDto } from "@/AppDtos/Dto/Models/Hotels/get-city-dto";
-import { GetTransportationTypeDto } from "@/AppDtos/Dto/Models/TransportationTypes/get-transportation-type-dto";
 import { useTravelBookingContextInjectedHotel } from "@/components/providers/TravelBookingProvider";
 import ShowActivitiesForTour from "@/components/activities/ShowActivitiesForTour";
-import { Torus } from "lucide-react";
 import BuyButtonActive from "@/components/hotels/HotelDetails/travelBooking/BuyTravel/BuyButtonActive";
 
 const TravelBooking = ({ tour }: { tour: GetTourDto }) => {
@@ -36,10 +28,9 @@ const TravelBooking = ({ tour }: { tour: GetTourDto }) => {
   } = useTravelBookingContextInjectedHotel(tour.hotel);
 
   const calculateCost = () => {
-    return (
-      tour.priceUSD
-    );
+    return tour.priceUSD;
   };
+
   useEffect(() => {
     setAdults(tour.howManyAdults);
     setKids(tour.howManyKids);
@@ -48,7 +39,6 @@ const TravelBooking = ({ tour }: { tour: GetTourDto }) => {
     setCity(tour.fromCity);
     setTransportationType(tour.transportationType);
     setActivities(tour.activities);
-
   }, []);
 
   return (
@@ -58,8 +48,8 @@ const TravelBooking = ({ tour }: { tour: GetTourDto }) => {
           <div className="w-full flex bg-white shadow-md">
             <div className="w-[40%] bg-primary text-white flex items-center justify-start p-5 rounded-r-lg">
               <Icon
-                icon="stash:people-group-duotone"
                 className="mr-3 w-[40px] h-[40px]"
+                icon="stash:people-group-duotone"
               />
               <span className="text-[20px] text-nunito_font_family">
                 Туристи
@@ -84,8 +74,8 @@ const TravelBooking = ({ tour }: { tour: GetTourDto }) => {
           <div className="w-full flex bg-white shadow-md mt-5">
             <div className="w-[40%] bg-primary text-white flex items-center justify-start p-5 rounded-r-lg">
               <Icon
-                icon="lsicon:calendar-outline"
                 className="mr-3 w-[40px] h-[40px]"
+                icon="lsicon:calendar-outline"
               />
               <span className="text-[20px] text-nunito_font_family">
                 Дата віправлення і тривалість туру
@@ -125,8 +115,8 @@ const TravelBooking = ({ tour }: { tour: GetTourDto }) => {
           <div className="w-full flex bg-white shadow-md mt-5">
             <div className="w-[40%] bg-primary text-white flex items-center justify-start p-5 rounded-r-lg">
               <Icon
-                icon="fa-solid:concierge-bell"
                 className="mr-3 w-[40px] h-[40px]"
+                icon="fa-solid:concierge-bell"
               />
               <span className="text-[20px] text-nunito_font_family">
                 Тип кімнати і харчування
@@ -158,9 +148,9 @@ const TravelBooking = ({ tour }: { tour: GetTourDto }) => {
 
           <BuyButtonActive
             city={tour.fromCity!}
-            transporationType={tour.transportationType}
             cost={calculateCost()}
             tourId={tour.id}
+            transporationType={tour.transportationType}
           />
         </div>
       </div>

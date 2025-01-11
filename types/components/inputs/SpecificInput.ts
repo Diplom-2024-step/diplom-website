@@ -5,8 +5,6 @@ interface SpecificInputProps {
   currectValue: any;
   propertyName?: string;
   placeHolder?: string;
-
 }
 
 export default interface SpecificInput extends React.FC<SpecificInputProps> {}
-
