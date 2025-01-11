@@ -1,114 +1,111 @@
 "use client"
 
-import { GetHotelDto } from '@/AppDtos/Dto/Models/Hotels/get-hotel-dto';
-import { LoadingState } from "@react-types/shared";
-import { FilterDto } from '@/AppDtos/Shared/filter-dto';
-import { ReturnPageDto } from '@/AppDtos/Shared/return-page-dto';
-import useDebounceState from '@/hooks/useDebounceState';
-import { SortDescriptor } from '@nextui-org/react';
+// React and hooks
 import React, { useEffect, useState } from 'react'
-import { HotelService } from '@/service/crudServices/HotelService';
-import useGetPageOfItems from '@/hooks/useGetPageOfItems';
-import HotelGrid from '../hotels/HotelGrid';
-import HotelGridSkeleton from '../shared/skeletons/HotelGridSkeleton';
-import { isDataView } from 'util/types';
-import MyPagination from '../shared/MyPagination';
+import { SortDescriptor } from '@nextui-org/react'
+import { LoadingState } from "@react-types/shared"
 
-const FavoriteHotelsTab = ({
-  hotelsIds,
-}: {
+// Custom hooks
+import useDebounceState from '@/hooks/useDebounceState'
+import useGetPageOfItems from '@/hooks/useGetPageOfItems'
+
+// Services
+import { HotelService } from '@/service/crudServices/HotelService'
+
+// Components
+import HotelGrid from '../hotels/HotelGrid'
+import HotelGridSkeleton from '../shared/skeletons/HotelGridSkeleton'
+import MyPagination from '../shared/MyPagination'
+
+// Types
+import { GetHotelDto } from '@/AppDtos/Dto/Models/Hotels/get-hotel-dto'
+import { FilterDto } from '@/AppDtos/Shared/filter-dto'
+import { ReturnPageDto } from '@/AppDtos/Shared/return-page-dto'
+
+interface FavoriteHotelsTabProps {
   hotelsIds: string[]
-}) => {
+}
 
+const FavoriteHotelsTab: React.FC<FavoriteHotelsTabProps> = ({ hotelsIds }) => {
+  // State management
+  const [page, setPage] = useState("1")
+  const [perPage, setPerPage] = useState("9")
+  const [perPageState, setPerPageState] = useDebounceState(perPage, setPerPage, 500)
+  const [items, setItems] = useState<ReturnPageDto<GetHotelDto>>()
+  const [loadingState, setLoadingState] = useState<LoadingState>("loading")
+  const [sortDescriptor, setSortDescriptor] = useState<SortDescriptor>()
+  const [error, setError] = useState<string>()
+  const [filters, setFilters] = useState<FilterDto[][]>([[]])
+  const [isFilterSet, setIsFilterSet] = useState(false)
 
+  const service = new HotelService()
 
-  const [page, setPage] = useState("1");
-  const [perPage, setPerPage] = useState("9");
-  const [perPageState, setPerPageState] = useDebounceState(perPage, setPerPage, 500);
-  const [items, setItems] = useState<ReturnPageDto<GetHotelDto>>();
-  const [loadingState, setLoadingState] = useState<LoadingState>("loading");
-  const [sortDescriptor, setSortDescriptor] = useState<SortDescriptor>();
-  const [error, setError] = useState<string>();
-  const [perPageError, setPerPageError] = useState<string>();
-  const [isFilterSet, setIsFilterSet] = useState(false);
-  const [filters, setFilters] = useState<FilterDto[][]>([
-    []
-  ])
-
-
-  const service = new HotelService();
-
+  // Set up filters based on hotel IDs
   useEffect(() => {
-    const newFilters: FilterDto[][] = [[]]
+    if (!hotelsIds.length) return
 
-    for (let index = 0; index < hotelsIds.length; index++) {
-      newFilters[0].push({
+    const newFilters: FilterDto[][] = [[
+      ...hotelsIds.map(id => ({
         column: "Id",
-        searchTerm: hotelsIds[index],
+        searchTerm: id,
         filterType: "Strict",
         negate: false
-      });
-    }
+      } as FilterDto))
+    ]]
 
-    setFilters(newFilters);
-    setIsFilterSet(true);
-  }, []);
+    setFilters(newFilters)
+    setIsFilterSet(true)
+  }, [hotelsIds])
 
-
-  const loadItems = useGetPageOfItems<
-      GetHotelDto,
-      typeof service
-    >(
-      service,
-      "6",
-      page,
-      sortDescriptor,
-      setLoadingState,
-      setError,
-      setPerPage,
-      setItems,
-      "success",
-      filters
-      
-    );
-
-
+  // Load items when page changes or filters are set
+  const loadItems = useGetPageOfItems<GetHotelDto, typeof service>(
+    service,
+    "6",
+    page,
+    sortDescriptor,
+    setLoadingState,
+    setError,
+    setPerPage,
+    setItems,
+    "success",
+    filters
+  )
 
   useEffect(() => {
-
-  
-    if (isFilterSet && hotelsIds.length > 0){
-    loadItems().then();
+    if (isFilterSet && hotelsIds.length > 0) {
+      loadItems().catch(err => {
+        console.error('Failed to load hotels:', err)
+        setError('Failed to load hotels. Please try again later.')
+      })
     }
+  }, [page, isFilterSet, hotelsIds.length, loadItems])
 
-  },
-    [page, isFilterSet]
-  );
+  if (!hotelsIds.length) {
+    return <div className="text-center py-8">No favorite hotels found</div>
+  }
 
-
-
-
-
+  if (error) {
+    return <div className="text-center text-red-500 py-8">{error}</div>
+  }
 
   return (
-    <>
-      { hotelsIds.length > 0 ?
-      loadingState === "idle" ? <>
-        <HotelGrid hotels={items?.models!}
-        />
-        <div className='w-full flex justify-around'>
-        <MyPagination total={items?.howManyPages!} page={parseInt(page)} onchange={(e:number) => setPage(e.toString())}
-        />
-</div>
-      </>
-        : <HotelGridSkeleton howManyCards={6} /> : <></>
-        
-        
-        }
-
-
-    </>
+    <div className="space-y-6">
+      {loadingState === "idle" ? (
+        <>
+          <HotelGrid hotels={items?.models ?? []} />
+          <div className="w-full flex justify-around">
+            <MyPagination
+              total={items?.howManyPages ?? 1}
+              page={parseInt(page)}
+              onchange={(page: number) => setPage(page.toString())}
+            />
+          </div>
+        </>
+      ) : (
+        <HotelGridSkeleton howManyCards={6} />
+      )}
+    </div>
   )
 }
 
-export default FavoriteHotelsTab
+export default FavoriteHotelsTab;
