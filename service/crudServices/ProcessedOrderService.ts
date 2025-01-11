@@ -22,7 +22,8 @@ export class ProcessedOrderService extends CrudService<
     super(
       getProcessedOrderDtoSchema,
       createProcessedOrderDtoSchema,
-      updateProcessedOrderDtoSchema
+      updateProcessedOrderDtoSchema,
+      "ProcessedOrder"
     );
   }
 }

@@ -19,6 +19,6 @@ export class TourService extends CrudService<
   UpdateTourDto
 > {
   public constructor() {
-    super(getTourDtoSchema, createTourDtoSchema, updateTourDtoSchema);
+    super(getTourDtoSchema, createTourDtoSchema, updateTourDtoSchema, "Tour");
   }
 }

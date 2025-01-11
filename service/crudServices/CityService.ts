@@ -19,6 +19,6 @@ export class CityService extends CrudService<
   UpdateCityDto
 > {
   public constructor() {
-    super(getCityDtoSchema, createCityDtoSchema, updateCityDtoSchema);
+    super(getCityDtoSchema, createCityDtoSchema, updateCityDtoSchema, "City");
   }
 }

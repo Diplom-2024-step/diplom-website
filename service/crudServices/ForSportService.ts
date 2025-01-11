@@ -22,7 +22,8 @@ export class ForSportService extends CrudService<
     super(
       getForSportDtoSchema,
       createForSportDtoSchema,
-      updateForSportDtoSchema
+      updateForSportDtoSchema,
+      "ForSport"
     );
   }
 }

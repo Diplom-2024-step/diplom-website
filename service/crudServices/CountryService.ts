@@ -19,6 +19,6 @@ export class CountryService extends CrudService<
   UpdateCountryDto
 > {
   public constructor() {
-    super(getCountryDtoSchema, createCountryDtoSchema, updateCountryDtoSchema);
+    super(getCountryDtoSchema, createCountryDtoSchema, updateCountryDtoSchema, "Country");
   }
 }

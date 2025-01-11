@@ -22,7 +22,8 @@ export class BeachTypeService extends CrudService<
     super(
       getBeachTypeDtoSchema,
       createBeachTypeDtoSchema,
-      updateBeachTypeDtoSchema
+      updateBeachTypeDtoSchema,
+      "BeachType"
     );
   }
 }

@@ -22,7 +22,8 @@ export class DietTypeService extends CrudService<
     super(
       getDietTypeDtoSchema,
       createDietTypeDtoSchema,
-      updateDietTypeDtoSchema
+      updateDietTypeDtoSchema,
+      "DietType"
     );
   }
 }

@@ -19,6 +19,6 @@ export class OrderService extends CrudService<
   UpdateOrderDto
 > {
   public constructor() {
-    super(getOrderDtoSchema, createOrderDtoSchema, updateOrderDtoSchema);
+    super(getOrderDtoSchema, createOrderDtoSchema, updateOrderDtoSchema, "Order");
   }
 }

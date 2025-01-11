@@ -22,7 +22,8 @@ export class ActivityService extends CrudService<
     super(
       getActivityDtoSchema,
       createActivityDtoSchema,
-      updateActivityDtoSchema
+      updateActivityDtoSchema,
+      "Activity"
     );
   }
 }

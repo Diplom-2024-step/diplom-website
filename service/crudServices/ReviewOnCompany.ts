@@ -22,7 +22,8 @@ export class ReviewOnCompanyService extends CrudService<
     super(
       getReviewOnCompanyDtoSchema,
       createReviewOnCompanyDtoSchema,
-      updateReviewOnCompanyDtoSchema
+      updateReviewOnCompanyDtoSchema,
+      "ReviewOnCompany"
     );
   }
 }

@@ -22,7 +22,8 @@ export class RoomTypeService extends CrudService<
     super(
       getRoomTypeDtoSchema,
       createRoomTypeDtoSchema,
-      updateRoomTypeDtoSchema
+      updateRoomTypeDtoSchema,
+      "RoomType"
     );
   }
 }

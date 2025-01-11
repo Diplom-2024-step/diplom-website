@@ -19,6 +19,6 @@ export class InRoomService extends CrudService<
   UpdateInRoomDto
 > {
   public constructor() {
-    super(getInRoomDtoSchema, createInRoomDtoSchema, updateInRoomDtoSchema);
+    super(getInRoomDtoSchema, createInRoomDtoSchema, updateInRoomDtoSchema, "InRoom");
   }
 }

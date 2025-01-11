@@ -22,7 +22,8 @@ export class TransportationTypeService extends CrudService<
     super(
       getTransportationTypeDtoSchema,
       createTransportationTypeDtoSchema,
-      updateTransportationTypeDtoSchema
+      updateTransportationTypeDtoSchema,
+      "TransportationType"
     );
   }
 }

@@ -22,7 +22,8 @@ export class OrderStatusService extends CrudService<
     super(
       getOrderStatusDtoSchema,
       createOrderStatusDtoSchema,
-      updateOrderStatusDtoSchema
+      updateOrderStatusDtoSchema,
+      "OrderStatus"
     );
   }
 }
