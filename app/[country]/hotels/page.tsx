@@ -1,38 +1,27 @@
-"use client"
-import React, { useEffect, useState } from 'react'
-import useSearchParam from "@/hooks/useSearchParam";
-import useDebounceState from '@/hooks/useDebounceState';
-import { GetHotelDto } from '@/AppDtos/Dto/Models/Hotels/get-hotel-dto';
-import { ReturnPageDto } from '@/AppDtos/Shared/return-page-dto';
-import { Button, Link, SortDescriptor } from '@nextui-org/react';
+"use client";
+import React, { useEffect, useState } from "react";
+import { Button, SortDescriptor } from "@nextui-org/react";
 import { LoadingState } from "@react-types/shared";
-import useGetPageOfItems from '@/hooks/useGetPageOfItems';
-import { HotelService } from '@/service/crudServices/HotelService';
-import { HotelCarousel } from '@/components/hotels/HotelCarousel';
-import LoadingScreen from '@/components/shared/LoadingScreen';
-import HotelGrid from '@/components/hotels/HotelGrid';
-import MyPagination from '@/components/shared/MyPagination';
-import Loading from './loading';
-import HotelCarouselRecommendation from '@/components/hotels/HotelCarouselRecommendation';
-import { FilterDto } from '@/AppDtos/Shared/filter-dto';
-import { Icon } from '@iconify/react';
-import HotelSearchParamsSettingsCard from '@/components/hotels/HotelSearchParamsSettingsCard';
-import { string } from 'zod';
-import { useAuth } from '@/hooks/auth';
-import { useSession } from 'next-auth/react';
-import FindTourCard from '@/components/tours/FindTourCard';
-import FindTourCardWithBg from '@/components/shared/sharedComponents/FindTourCardWithBg';
-import DeleteAllFiltersButton from '@/components/shared/sharedComponents/DeleteAllFiltersButton';
+import { Icon } from "@iconify/react";
 
+import useSearchParam from "@/hooks/useSearchParam";
+import useDebounceState from "@/hooks/useDebounceState";
+import { GetHotelDto } from "@/AppDtos/Dto/Models/Hotels/get-hotel-dto";
+import { ReturnPageDto } from "@/AppDtos/Shared/return-page-dto";
+import useGetPageOfItems from "@/hooks/useGetPageOfItems";
+import { HotelService } from "@/service/crudServices/HotelService";
+import HotelGrid from "@/components/hotels/HotelGrid";
+import MyPagination from "@/components/shared/MyPagination";
+import HotelCarouselRecommendation from "@/components/hotels/HotelCarouselRecommendation";
+import { FilterDto } from "@/AppDtos/Shared/filter-dto";
+import HotelSearchParamsSettingsCard from "@/components/hotels/HotelSearchParamsSettingsCard";
+import FindTourCardWithBg from "@/components/shared/sharedComponents/FindTourCardWithBg";
+import DeleteAllFiltersButton from "@/components/shared/sharedComponents/DeleteAllFiltersButton";
 
+import Loading from "./loading";
 
-const Page = (
-  { params }: { params: { country: string } }
-) => {
-
-
+const Page = ({ params }: { params: { country: string } }) => {
   // const session = useSession();
-
 
   const [isSearchSettingsOpen, setIsSearchSettingsOpen] = useState(false);
 
@@ -49,7 +38,11 @@ const Page = (
   const [inHotelsIds, setInHotelsIds] = useSearchParam("inHotels");
 
   const [perPage, setPerPage] = useState("9");
-  const [perPageState, setPerPageState] = useDebounceState(perPage, setPerPage, 500);
+  const [perPageState, setPerPageState] = useDebounceState(
+    perPage,
+    setPerPage,
+    500
+  );
   const [items, setItems] = useState<ReturnPageDto<GetHotelDto>>();
   const [loadingState, setLoadingState] = useState<LoadingState>("loading");
   const [sortDescriptor, setSortDescriptor] = useState<SortDescriptor>();
@@ -62,34 +55,32 @@ const Page = (
         column: "City.Country.Id",
         searchTerm: params.country,
         filterType: "Strict",
-        negate: false
-      }
-    ]
-  ]
-  );
+        negate: false,
+      },
+    ],
+  ]);
 
   const service = new HotelService();
 
-
-
   useEffect(() => {
-    let newFilters: FilterDto[][] = [[]]
+    let newFilters: FilterDto[][] = [[]];
+
     newFilters[0].push({
       column: "City.Country.Id",
       searchTerm: params.country,
       filterType: "Strict",
-      negate: false
+      negate: false,
     });
 
     if (stars) {
-      stars.split(',').forEach(e => {
+      stars.split(",").forEach((e) => {
         newFilters[0].push({
           column: "Stars",
           searchTerm: e,
           filterType: "Strict",
-          negate: false
+          negate: false,
         });
-      })
+      });
     }
 
     if (lowestPrice) {
@@ -97,7 +88,7 @@ const Page = (
         column: "PricePerNight",
         searchTerm: lowestPrice,
         filterType: "BiggerOrEqual",
-        negate: false
+        negate: false,
       });
     }
 
@@ -106,70 +97,67 @@ const Page = (
         column: "PricePerNight",
         searchTerm: heightPrice,
         filterType: "SmallerOrEqual",
-        negate: false
+        negate: false,
       });
     }
 
     if (inHotelsIds) {
-      inHotelsIds.split(',').forEach(e => {
+      inHotelsIds.split(",").forEach((e) => {
         newFilters[0].push({
           column: "InHotels.Id",
           searchTerm: e,
           filterType: "Strict",
-          negate: false
+          negate: false,
         });
-      })
+      });
     }
 
     if (dietTypesIds) {
-      dietTypesIds.split(',').forEach(e => {
+      dietTypesIds.split(",").forEach((e) => {
         newFilters[0].push({
           column: "DietTypes.Id",
           searchTerm: e,
           filterType: "Strict",
-          negate: false
+          negate: false,
         });
-      })
+      });
     }
 
     if (roomTypesIds) {
-      roomTypesIds.split(',').forEach(e => {
+      roomTypesIds.split(",").forEach((e) => {
         newFilters[0].push({
           column: "RoomTypes.Id",
           searchTerm: e,
           filterType: "Strict",
-          negate: false
+          negate: false,
         });
-      })
+      });
     }
     if (beachTypesIds) {
-      beachTypesIds.split(',').forEach(e => {
+      beachTypesIds.split(",").forEach((e) => {
         newFilters[0].push({
           column: "BeachTypes.Id",
           searchTerm: e,
           filterType: "Strict",
-          negate: false
+          negate: false,
         });
-      })
+      });
     }
 
-
-
-
-    setPage(undefined)
+    setPage(undefined);
     setFilters(newFilters);
     setIsFilterSet(true);
-  }, [lowestPrice, heightPrice, stars, beachTypesIds, roomTypesIds, inHotelsIds, dietTypesIds])
+  }, [
+    lowestPrice,
+    heightPrice,
+    stars,
+    beachTypesIds,
+    roomTypesIds,
+    inHotelsIds,
+    dietTypesIds,
+  ]);
 
-
-
-
-
-
-  const loadItems = useGetPageOfItems<
-    GetHotelDto,
-    typeof service
-  >(
+  const loadItems = useGetPageOfItems<GetHotelDto, typeof service>(
     service,
     "9",
     page,
@@ -188,76 +176,63 @@ const Page = (
     }
   }, [loadItems, filters]);
 
-
   return (
     <>
       <FindTourCardWithBg />
-      <section className='container mx-auto mb-0 max-w-7xl px-5 flex-grow'>
+      <section className="container mx-auto mb-0 max-w-7xl px-5 flex-grow">
         <HotelCarouselRecommendation />
         <div className="w-full flex justify-between max-w-6xl mx-auto px-4 mt-20">
-          <span><h2 className="text-5xl font-bold mb-6 text-black  font-unbounded">Доступні готелі</h2></span>
+          <span>
+            <h2 className="text-5xl font-bold mb-6 text-black  font-unbounded">
+              Доступні готелі
+            </h2>
+          </span>
           <div className="flex justify-between my-5 gap-6">
-            <DeleteAllFiltersButton/>
-          <Button
-            className='bg-white rounded-full  '
-            onClick={() => setIsSearchSettingsOpen(!isSearchSettingsOpen)}
-          >
-            <Icon icon="mingcute:settings-2-line" width="24" height="24" />
-          </Button>
+            <DeleteAllFiltersButton />
+            <Button
+              className="bg-white rounded-full  "
+              onClick={() => setIsSearchSettingsOpen(!isSearchSettingsOpen)}
+            >
+              <Icon height="24" icon="mingcute:settings-2-line" width="24" />
+            </Button>
           </div>
-
         </div>
 
+        {isSearchSettingsOpen ? (
+          <HotelSearchParamsSettingsCard
+            heightPrice={heightPrice}
+            lowestPrice={lowestPrice}
+            outsideBeachTypesIds={beachTypesIds ? beachTypesIds.split(",") : []}
+            outsideDietTypesIds={dietTypesIds ? dietTypesIds.split(",") : []}
+            outsideInHotelIds={inHotelsIds ? inHotelsIds.split(",") : []}
+            outsideRoomTypesIds={roomTypesIds ? roomTypesIds.split(",") : []}
+            stars={stars}
+            onClose={() => {
+              setIsSearchSettingsOpen(false);
+            }}
+          />
+        ) : (
+          <></>
+        )}
 
-        {isSearchSettingsOpen ? <HotelSearchParamsSettingsCard
-
-          stars={stars}
-          lowestPrice={lowestPrice}
-
-          heightPrice={heightPrice}
-
-          outsideBeachTypesIds={beachTypesIds ? beachTypesIds.split(',') : []}
-
-
-          outsideDietTypesIds={dietTypesIds ? dietTypesIds.split(',') : []}
-
-
-          outsideInHotelIds={inHotelsIds ? inHotelsIds.split(',') : []}
-
-
-
-          outsideRoomTypesIds={roomTypesIds ? roomTypesIds.split(',') : []}
-
-
-          onClose={() => { setIsSearchSettingsOpen(false); }}
-
-        /> : <></>}
-
-
-        {loadingState === 'idle' ?
+        {loadingState === "idle" ? (
           <>
+            <HotelGrid hotels={items?.models as any} />
 
-            <HotelGrid hotels={items?.models as any}
-            />
-
-            <div className='flex justify-center items-center mb-10'>
+            <div className="flex justify-center items-center mb-10">
               <MyPagination
-                total={items?.howManyPages as any}
-                page={page ? parseInt(page) : 1}
                 onchange={(page: number) => setPage(page.toString())}
+                page={page ? parseInt(page) : 1}
+                total={items?.howManyPages as any}
               />
             </div>
-
-
           </>
-          :
+        ) : (
           <Loading />
-        }
+        )}
       </section>
-
     </>
-  )
-}
+  );
+};
 
-
-export default Page
+export default Page;

@@ -1,10 +1,12 @@
 "use client";
-import { GetHotelDto } from "@/AppDtos/Dto/Models/Hotels/get-hotel-dto";
 import { Icon } from "@iconify/react";
-import React, { useEffect, useState } from "react";
-import { addDays, differenceInDays, formatISO } from "date-fns";
+import React from "react";
+import { differenceInDays } from "date-fns";
+
+import { GetHotelDto } from "@/AppDtos/Dto/Models/Hotels/get-hotel-dto";
 import { useTravelBookingContextInjectedHotel } from "@/components/providers/TravelBookingProvider";
 import PickActivitiesForTour from "@/components/activities/PickActivitiesForTour";
+
 import ChoosingHowManyPeopleButton from "./choosingHowManyPeopleButton/ChoosingHowManyPeopleButton";
 import ChoosingDateAndCityButton from "./ChoosingDateAndCityButton/ChoosingDateAndCityButton";
 import ChoosingDietTypeRoomTypeButton from "./choosingDietTypeRoomTypeButton/ChoosingDietTypeRoomTypeButton";
@@ -39,18 +41,16 @@ const TravelBooking = ({ hotel }: { hotel: GetHotelDto }) => {
 
   return (
     <>
-
       <div className="flex w-full justify-between mt-10 text-black booking-container">
         <div className="flex-col w-[80%] booking-filtering-container">
           <div className="w-full flex bg-white shadow-md booking-setting-container">
             <div className="w-[40%] bg-primary text-white flex items-center justify-start p-5 rounded-r-lg booking-setting-header">
               <Icon
-                icon="stash:people-group-duotone"
                 className="mr-3 text-4xl"
+                icon="stash:people-group-duotone"
               />
               <span>Туристи</span>
             </div>
-
 
             <div className="w-full flex items-center justify-start p-2 booking-setting-content-container">
               <div className="w-[80%] p-5 booking-setting-content">
@@ -76,7 +76,7 @@ const TravelBooking = ({ hotel }: { hotel: GetHotelDto }) => {
 
           <div className="w-full flex bg-white shadow-md mt-5 booking-setting-container">
             <div className="w-[40%] bg-primary text-white flex items-center justify-start p-5 rounded-r-lg booking-setting-header">
-              <Icon icon="lsicon:calendar-outline" className="mr-3 text-5xl" />
+              <Icon className="mr-3 text-5xl" icon="lsicon:calendar-outline" />
               <span>Дата віправлення і тривалість туру</span>
             </div>
 
@@ -138,10 +138,10 @@ const TravelBooking = ({ hotel }: { hotel: GetHotelDto }) => {
               </div>
               <div className="w-[20%] h-full">
                 <ChoosingDateAndCityButton
-                  date={date}
-                  setDate={setDate}
                   city={city}
+                  date={date}
                   setCity={setCity}
+                  setDate={setDate}
                   setTransportationType={setTransportationType}
                   transportationType={transportationType}
                 />
@@ -149,10 +149,9 @@ const TravelBooking = ({ hotel }: { hotel: GetHotelDto }) => {
             </div>
           </div>
 
-
           <div className="w-full flex bg-white shadow-md mt-5 booking-setting-container">
             <div className="w-[40%] bg-primary text-white flex items-center justify-start p-5 rounded-r-lg booking-setting-header">
-              <Icon icon="fa-solid:concierge-bell" className="mr-3 text-4xl" />
+              <Icon className="mr-3 text-4xl" icon="fa-solid:concierge-bell" />
               <span>Тип кімнати і харчування</span>
             </div>
 
@@ -191,8 +190,8 @@ const TravelBooking = ({ hotel }: { hotel: GetHotelDto }) => {
           </div>
           <BuyButtonActive
             city={city!}
-            transporationType={transportationType}
             cost={calculateCost()}
+            transporationType={transportationType}
           />
         </div>
       </div>

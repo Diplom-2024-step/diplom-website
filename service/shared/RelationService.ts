@@ -1,4 +1,5 @@
 import { AxiosResponse } from "axios";
+
 import Service from "./Service";
 
 export default abstract class RelationService extends Service {
@@ -20,13 +21,12 @@ export default abstract class RelationService extends Service {
   ): Promise<AxiosResponse> {
     return await this.axiosInstance.get(
       `${this.firstModalName}/${firstModalId}/${this.secondModalName}/${secondModalId}`,
-       {
+      {
         validateStatus: function (status) {
-    return status < 500; // Resolve only if the status code is less than 500
-  }
+          return status < 500; // Resolve only if the status code is less than 500
+        },
       }
-    )
- 
+    );
   }
 
   /**

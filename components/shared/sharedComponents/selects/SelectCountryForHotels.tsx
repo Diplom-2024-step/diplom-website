@@ -1,23 +1,18 @@
 "use client";
+import { LoadingState, SortDescriptor } from "@react-types/shared";
+import { Icon } from "@iconify/react";
+import React, { useEffect, useState } from "react";
+import { Link, Select, SelectedItems, SelectItem } from "@nextui-org/react";
+import { usePathname, useRouter } from "next/navigation";
+
 import { GetCountryDto } from "@/AppDtos/Dto/Models/Countries/get-country-dto";
-import { GetCityDto } from "@/AppDtos/Dto/Models/Hotels/get-city-dto";
 import { FilterDto } from "@/AppDtos/Shared/filter-dto";
 import { ReturnPageDto } from "@/AppDtos/Shared/return-page-dto";
 import useDebounceState from "@/hooks/useDebounceState";
 import useGetPageOfItems from "@/hooks/useGetPageOfItems";
-import { LoadingState, SortDescriptor } from "@react-types/shared";
 import { CountryService } from "@/service/crudServices/CountryService";
-import { Icon } from "@iconify/react";
-import React, { useEffect, useState } from "react";
+
 import LoadingCircle from "../../skeletons/LoadingCircle";
-import {
-  Link,
-  Select,
-  SelectedItems,
-  SelectItem,
-  SharedSelection,
-} from "@nextui-org/react";
-import { usePathname, useRouter } from "next/navigation";
 
 const SelectCountryForHotels = () => {
   const router = useRouter();
@@ -96,7 +91,7 @@ const SelectCountryForHotels = () => {
       <Link href={`/${item.id}/hotels`}>
         <a href={`/${item.id}/hotels`}>
           <div className="flex items-center text-black w-full">
-            <Icon icon={item.icon} className="mr-2" />
+            <Icon className="mr-2" icon={item.icon} />
             <span>{item.name}</span>
           </div>
         </a>
@@ -113,13 +108,13 @@ const SelectCountryForHotels = () => {
           <Select
             className=" "
             items={items?.models}
-            selectedKeys={[""]}
             placeholder={"Країни"}
             renderValue={(items: SelectedItems<GetCountryDto>) => {
               return items.map((item) =>
                 renderFunction(item.data as GetCountryDto)
               );
             }}
+            selectedKeys={[""]}
           >
             {(item) => (
               <SelectItem key={item.id}>

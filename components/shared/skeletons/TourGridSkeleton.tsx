@@ -1,4 +1,5 @@
 import React from "react";
+
 import TourCardSkeleton from "./TourCardSkeleton";
 
 const TourGridSkeleton = () => {

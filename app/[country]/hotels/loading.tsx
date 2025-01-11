@@ -1,17 +1,14 @@
-"use client"
-import HotelCarouselSkeleton from '@/components/shared/skeletons/HotelCarouselSkeleton'
-import HotelGridSkeleton from '@/components/shared/skeletons/HotelGridSkeleton'
-import React from 'react'
+"use client";
+import React from "react";
+
+import HotelGridSkeleton from "@/components/shared/skeletons/HotelGridSkeleton";
 
 const Loading = () => {
   return (
-  <>
+    <>
+      <HotelGridSkeleton />
+    </>
+  );
+};
 
-  <HotelGridSkeleton/>
-
-
-  </>
-  )
-}
-
-export default Loading
+export default Loading;

@@ -1,6 +1,7 @@
-import { Card } from '@nextui-org/card';
-import React from 'react';
-import bgImage from '../../../assets/images/hotels/bg-triangle.webp';
+import { Card } from "@nextui-org/card";
+import React from "react";
+
+import bgImage from "../../../assets/images/hotels/bg-triangle.webp";
 
 const PaymentGuaranteeSection = () => {
   return (
@@ -8,15 +9,17 @@ const PaymentGuaranteeSection = () => {
       className="w-full text-black p-8 mt-10"
       style={{
         backgroundImage: `url(${bgImage.src})`,
-        backgroundPosition: 'center',
-        backgroundRepeat: 'no-repeat',
-        backgroundSize: 'cover',
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat",
+        backgroundSize: "cover",
       }}
     >
       <div className="max-w-6xl mx-auto text-xl grid md:grid-cols-2 gap-8">
         {/* Payment Methods Section */}
         <Card className="bg-white text-black p-8 rounded-lg shadow-sm">
-          <h2 className="text-3xl font-bold mb-8 text-center">Способи оплати</h2>
+          <h2 className="text-3xl font-bold mb-8 text-center">
+            Способи оплати
+          </h2>
           <div className="space-y-6">
             <div className="flex items-start gap-4">
               <div className="w-8 h-8 flex-shrink-0 mt-1 text-primary">
@@ -106,8 +109,8 @@ const PaymentGuaranteeSection = () => {
                 </svg>
               </div>
               <span className="text-lg">
-                Турагентство Expedia укладає офіційний договір, який гарантує його
-                права в рамках законодавства України
+                Турагентство Expedia укладає офіційний договір, який гарантує
+                його права в рамках законодавства України
               </span>
             </div>
 
