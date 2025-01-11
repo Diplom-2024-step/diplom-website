@@ -49,7 +49,9 @@ const TravelBooking = ({ hotel }: { hotel: GetHotelDto }) => {
                 className="mr-3 text-4xl"
                 icon="stash:people-group-duotone"
               />
-              <span>Туристи</span>
+              <span className="text-[20px] text-nunito_font_family">
+                Туристи
+              </span>
             </div>
 
             <div className="w-full flex items-center justify-start p-2 booking-setting-content-container">
