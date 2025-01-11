@@ -29,7 +29,7 @@ const RegisterPage = () => {
   const [email, setEmail] = useState("");
   const [emailError, setEmailError] = useState("");
 
-  const [userName, setUsername] = useState("test212");
+  const [userName, setUsername] = useState("");
 
   const [password, setPassword] = useState("");
   const [passwordError, setPasswordError] = useState("");
@@ -184,14 +184,13 @@ const RegisterPage = () => {
       return;
     }
 
-    setUsername(`${firstName} ${lastName}`.trim());
 
     try {
       const result = await axios.post("/api/registrate", {
         email: email,
         password: password,
         iconNumber: 1,
-        userName: userName,
+        userName: `${firstName} ${lastName}`.trim(),
         role: "User",
       });
 
