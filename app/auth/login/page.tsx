@@ -43,7 +43,7 @@ const LoginPage = () => {
   };
 
   const validatePassword = (password: string): boolean => {
-    return password.length > 0; // пароль не должен быть пустым
+    return password.length > 5; // пароль не должен быть пустым
   };
 
   const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -96,7 +96,7 @@ const LoginPage = () => {
     });
 
     if (result?.status !== 200) {
-      setErrorMessage("Неверные учетные данные. Попробуйте еще раз.");
+      setErrorMessage("Неправильні облікові дані. Спробуйте ще раз.");
     } else {
       route.push("/");
     }
@@ -202,11 +202,11 @@ const LoginPage = () => {
             <Spacer />
 
             <Checkbox
-              className="mt-1"
+              className="mt-1 text-white"
               classNames={{
                 wrapper: "border-[#303030]",
               }}
-              color="default"
+              color="primary"
               radius="sm"
             >
               <p className="text-[#303030] font-semibold text-xs">
@@ -229,7 +229,7 @@ const LoginPage = () => {
 
           <Spacer />
           <div className="flex justify-center gap-4 text-[#0F171B] text-xs font-semibold">
-            <a href="/auth/forgot-password">Забули пароль?</a>
+            <a href="/auth/login">Забули пароль?</a>
             <a href="/auth/registrate">Реєстрація</a>
           </div>
         </div>

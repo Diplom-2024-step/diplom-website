@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import { useRouter } from "next/navigation";
 import { signIn } from "next-auth/react";
-import axios from "axios";
+import axios, { AxiosError } from "axios";
 import { Checkbox, Button, Input, Spacer } from "@nextui-org/react";
 import Image from "next/image";
 
@@ -43,6 +43,8 @@ const RegisterPage = () => {
   const [firstNameTouched, setFirstNameTouched] = useState(false);
   const [lastNameTouched, setLastNameTouched] = useState(false);
 
+  const [isSelectedPolicy, setIsSelectedPolicy] = useState(false);
+
   const [isLoading, setIsLoading] = useState(false);
   const { status } = useAuth({ redirect: true });
 
@@ -72,11 +74,11 @@ const RegisterPage = () => {
   };
 
   const validatePassword = (password: string): boolean => {
-    return password.length > 0; // пароль не должен быть пустым
+    return password.length > 5; // пароль не должен быть пустым
   };
 
   const validateConfirmPassword = (confirmPassword: string): boolean => {
-    return confirmPassword.length > 0; // подтверждение пароля не должно быть пустым
+    return confirmPassword.length > 5; // подтверждение пароля не должно быть пустым
   };
 
   const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -85,9 +87,9 @@ const RegisterPage = () => {
     setEmail(value);
 
     if (!value) {
-      setEmailError("Email не может быть пустым");
+      setEmailError("Email не може бути порожнім");
     } else if (!validateEmail(value)) {
-      setEmailError("Введите корректный email");
+      setEmailError("Введіть правильний email");
     } else {
       setEmailError("");
     }
@@ -99,7 +101,7 @@ const RegisterPage = () => {
     setPassword(value);
 
     if (!validatePassword(value)) {
-      setPasswordError("Пароль не може бути пустим");
+      setPasswordError("Пароль не може бути менше 5 символів");
     } else {
       setPasswordError("");
     }
@@ -167,11 +169,18 @@ const RegisterPage = () => {
     e.preventDefault();
 
     if (!validateAllFields()) {
-      setError("Пожалуйста, заполните все поля");
+      setErrorMessage("Будь ласка, заповніть усі поля");
       setIsLoading(false);
 
       return;
     }
+
+    if (!isSelectedPolicy)
+      {
+        setErrorMessage("Політика конфіденційності має бути прочитана");
+        setIsLoading(false);
+        return;
+      }
 
     // Проверка на совпадение паролей перед отправкой
     if (
@@ -194,8 +203,8 @@ const RegisterPage = () => {
         role: "User",
       });
 
-      if (result.status !== 200) {
-        setError("Failed to register");
+       if (result.status !== 200) {
+        setErrorMessage(result.data);
       } else {
         route.push("/auth/confirm-email?email=" + email);
         // const signInResult = await signIn("credentials", {
@@ -211,9 +220,9 @@ const RegisterPage = () => {
         // }
       }
     } catch (e) {
-      const error = e as Error;
-
-      setError(error.message);
+      const error = e as AxiosError;
+      setErrorMessage(error.message);
+      
     }
     setIsLoading(false);
   };
@@ -368,7 +377,7 @@ const RegisterPage = () => {
 
           <Spacer />
 
-          <Checkbox className="mt-1 ml-1" color="default" radius="sm">
+          <Checkbox className="mt-1 ml-1 text-white" color="primary" radius="sm" onValueChange={setIsSelectedPolicy} isSelected={isSelectedPolicy}>
             <p className="text-[#303030] font-medium text-xs">
               Я прочитав(-ла) та приймаю
               <br />
@@ -389,7 +398,7 @@ const RegisterPage = () => {
               {isLoading ? "Завантаження..." : "Створити"}
             </Button>
           </div>
-          {errorMessage && <p className="text-red-500">{errorMessage}</p>}
+          {errorMessage && <p className="text-red-500 text-center">{errorMessage}</p>}
           <Spacer />
           <div className="flex justify-center gap-4 text-[#0F171B] text-xs font-semibold">
             <a href="/auth/forgot-password">Забули пароль?</a>
