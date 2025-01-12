@@ -29,7 +29,7 @@ const RegisterPage = () => {
   const [email, setEmail] = useState("");
   const [emailError, setEmailError] = useState("");
 
-  const [userName, setUsername] = useState("");
+  const [userName, setUsername] = useState("dsds");
 
   const [password, setPassword] = useState("");
   const [passwordError, setPasswordError] = useState("");

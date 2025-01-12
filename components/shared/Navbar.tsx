@@ -64,12 +64,12 @@ const AboutUsSelect = () => {
     {
       label: "Про компанію",
       id: "1",
-      href: "/aboutUs",
+      href: "/AboutUs",
     },
     {
       label: "Рейтинг та відгуки",
       id: "2",
-      href: "/aboutUs#reviews",
+      href: "/AboutUs#reviews",
     },
   ];
 
@@ -243,13 +243,13 @@ const MobileMenu = ({
               <div className="mt-2 ml-4 space-y-2">
                 <Link
                   className="block text-gray-600 hover:text-[#5AA1E3]"
-                  href="/aboutUs"
+                  href="/AboutUs"
                 >
                   Про компанію
                 </Link>
                 <Link
                   className="block text-gray-600 hover:text-[#5AA1E3]"
-                  href="/aboutUs#reviews"
+                  href="/AboutUs#reviews"
                 >
                   Рейтинг та відгуки
                 </Link>
