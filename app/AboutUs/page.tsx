@@ -1,3 +1,11 @@
+import '@/assets/images/about_as/Our-team-1.webp'
+import '@/assets/images/about_as/Our-team-2.webp'
+import '@/assets/images/about_as/main-image-about-us-2.webp'
+import '@/assets/images/about_as/main-image-about-us.webp'
+import '@/assets/images/about_as/why-are-we-here-img-1.webp'
+import '@/assets/images/about_as/why-are-we-here-img-2.webp'
+import '@/assets/images/about_as/why-are-we-here-img-3.webp'
+import '@/assets/images/about_as/why-are-we-here-img-4.webp'
 import React from "react";
 
 import "./style.css";
