@@ -84,8 +84,8 @@ const Page = ({ params }: { params: { id: string; country: string } }) => {
           </div>
 
           <div className="flex justify-center items-center my-5">
-            <div className="flex-row flex justify-around">
-              <div className="text-center text-wrap w-2/5">
+            <div className=" flex flex-col items-center  md:flex-row md:justify-around justify-center mx-auto ">
+              <div className="text-center md:mx-0 text-wrap md:w-2/5 w-3/4">
                 <Button
                   as={Link}
                   className="bg-transparent text-black text-xl rounded-full px-20  border-1 border-black"
@@ -100,7 +100,7 @@ const Page = ({ params }: { params: { id: string; country: string } }) => {
                   Відмінити всі активності, які обрали та почати спочатку
                 </p>
               </div>
-              <div className="text-center w-2/5 mr-5">
+              <div className="text-center    md:mx-0 md:w-2/5 w-3/4 mr-5">
                 <Button
                   as={Link}
                   className="text-white bg-primary font-nunito_font_family font-[700] text-xl rounded-full  px-20"
