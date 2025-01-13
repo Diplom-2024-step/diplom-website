@@ -36,13 +36,11 @@ const ChoosingDateButton = ({
 
   const handleDateChange = (newRange: DateValue | null) => {
     if (newRange === null) return;
-    //const { start } = newRange.;
-    // Если выбирается только начальная дата
-    const startDate = new Date(newRange.year, newRange.month - 1, newRange.day); // Преобразуем в стандартный Date
-    const newEnd = addDays(startDate, tour.duration); // Добавляем 9 дней к начальной дате
+    const startDate = new Date(newRange.year, newRange.month - 1, newRange.day);
+    const newEnd = addDays(startDate, tour.duration);
     const formattedEnd = parseDate(
       formatISO(newEnd, { representation: "date" })
-    ); // Форматируем конечную дату
+    );
 
     setInnerDate({
       start: newRange,
@@ -62,7 +60,7 @@ const ChoosingDateButton = ({
               "
         onClick={() => setIsOpen(true)}
       >
-        <div className="absolute w-[2px] bg-gray-400 h-full top-0 bottom-0 left-0 z-10" />
+        <div className="hidden lg:flex lg:flex-col absolute w-[2px] bg-gray-400 h-full top-0 bottom-0 left-0 z-10" />
         <Icon
           className="z-20 rotate-90 text-4xl text-black"
           icon="weui:arrow-outlined"
