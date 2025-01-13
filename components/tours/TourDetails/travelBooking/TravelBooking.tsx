@@ -50,7 +50,6 @@ const TravelBooking = ({ tour }: { tour: GetTourDto }) => {
               <Icon
                 icon="stash:people-group-duotone"
                 className="mr-3 text-4xl"
-
               />
               <span className="text-[20px] text-nunito_font_family">
                 Туристи
@@ -76,7 +75,6 @@ const TravelBooking = ({ tour }: { tour: GetTourDto }) => {
             <div className="w-[40%] bg-primary text-white flex items-center justify-start p-5 rounded-r-lg booking-setting-header">
               <Icon icon="lsicon:calendar-outline" className="mr-3 text-5xl" />
               <span className="text-nunito_font_family">
-
                 Дата віправлення і тривалість туру
               </span>
             </div>
@@ -124,12 +122,10 @@ const TravelBooking = ({ tour }: { tour: GetTourDto }) => {
             </div>
           </div>
 
-
           <div className="w-full flex bg-white shadow-md mt-5 booking-setting-container">
             <div className="w-[40%] bg-primary text-white flex items-center justify-start p-5 rounded-r-lg booking-setting-header">
               <Icon icon="fa-solid:concierge-bell" className="mr-3 text-4xl" />
               <span>Тип кімнати і харчування</span>
-
             </div>
 
             <div className="w-full flex items-center justify-start p-2 booking-setting-content-container">

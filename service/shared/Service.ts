@@ -13,7 +13,7 @@ export default abstract class Service {
       baseURL:
         process.env.NEXT_PUBLIC_BASE_URL +
         (addUrl ?? this.constructor.name.replace(/^(.*?)(Service)?$/, "$1")),
-      timeout: 5000,
+      timeout: 50000,
       httpsAgent: axiosAgent,
     });
     this.axiosInstance.interceptors.response.use(
