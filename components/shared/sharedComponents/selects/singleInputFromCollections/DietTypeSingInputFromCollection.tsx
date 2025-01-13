@@ -1,35 +1,34 @@
-import React from 'react'
-import SharedSingleInputFromCollection from '../shared/SharedSingleInputFromCollection';
-import { GetDietTypeDto } from '@/AppDtos/Dto/Models/DietTypes/get-diet-type-dto';
-import SpecificInputFromColletion from '@/types/components/inputs/SpecificInputPropsFromColletion';
+import React from "react";
 
-const DietTypeSingInputeFromCollection :SpecificInputFromColletion = (
-{
-    currectValue,
-    items,
-    onChange,
-    placeHolder,
-}
-) => {
+import { GetDietTypeDto } from "@/AppDtos/Dto/Models/DietTypes/get-diet-type-dto";
+import SpecificInputFromColletion from "@/types/components/inputs/SpecificInputPropsFromColletion";
+
+import SharedSingleInputFromCollection from "../shared/SharedSingleInputFromCollection";
+
+const DietTypeSingInputeFromCollection: SpecificInputFromColletion = ({
+  currectValue,
+  items,
+  onChange,
+  placeHolder,
+}) => {
   const renderFunction = (item: GetDietTypeDto) => {
-        return (
-                <span>{item.name} - {item.price} грн. </span>
-
-        );
-    }
-
-
+    return (
+      <span>
+        {item.name} - {item.price} грн.{" "}
+      </span>
+    );
+  };
 
   return (
-    <SharedSingleInputFromCollection<GetDietTypeDto> 
+    <SharedSingleInputFromCollection<GetDietTypeDto>
+      currectValue={currectValue}
       items={items as GetDietTypeDto[]}
-      onChange={onChange}
-    currectValue={currectValue} renderFunction={renderFunction}
-      onSelectRenderFunction={renderFunction}
       placeholder={placeHolder ? placeHolder : "select diet type"}
-
+      renderFunction={renderFunction}
+      onChange={onChange}
+      onSelectRenderFunction={renderFunction}
     />
-  )
-}
+  );
+};
 
-export default DietTypeSingInputeFromCollection
+export default DietTypeSingInputeFromCollection;

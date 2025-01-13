@@ -1,13 +1,10 @@
 interface SpecificInputPropsFromColletion {
-  onChange: (value:string) => void;
+  onChange: (value: string) => void;
   currectValue: any;
-  items: any[]
+  items: any[];
   propertyName?: string;
   placeHolder?: string;
-
-
-
 }
 
-export default interface SpecificInputFromColletion extends React.FC<SpecificInputPropsFromColletion> {}
-
+export default interface SpecificInputFromColletion
+  extends React.FC<SpecificInputPropsFromColletion> {}

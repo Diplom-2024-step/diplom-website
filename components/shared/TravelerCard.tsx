@@ -1,12 +1,6 @@
 import React from "react";
-import {
-  Button,
-  Card,
-  CardBody,
-  CardFooter,
-  CardHeader,
-  Input,
-} from "@nextui-org/react";
+import { Card, CardBody, CardHeader } from "@nextui-org/react";
+
 import "../../assets/fonts-styles/font.css";
 import NumberInput from "./sharedComponents/NumberInput";
 
@@ -29,11 +23,13 @@ const TravelerCard: React.FC<TravelerCardProps> = ({
 }) => {
   const handleAdultChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = Math.max(1, parseInt(e.target.value) || 1); // Минимум 1 взрослый
+
     setAdults(value);
   };
 
   const handleChildrenChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = Math.max(0, parseInt(e.target.value) || 0); // Минимум 0 детей
+
     setChildren(value);
   };
 
@@ -43,14 +39,14 @@ const TravelerCard: React.FC<TravelerCardProps> = ({
       style={{ minWidth: "300px", maxWidth: "500px" }}
     >
       <Card
-        shadow="md"
-        radius="lg"
         className=" w-full mx-auto bg-white text-[#171717]"
+        radius="lg"
+        shadow="md"
       >
         <CardHeader className="flex justify-left items-left">
           <h3
-            style={{ fontFamily: "Unbounded, sans-serif" }}
             className="text-md font-semibold pl-3 pt-2"
+            style={{ fontFamily: "Unbounded, sans-serif" }}
           >
             Мандрівники
           </h3>
@@ -59,19 +55,19 @@ const TravelerCard: React.FC<TravelerCardProps> = ({
         <CardBody className="flex flex-row space-y-4 shadow-lg p-5">
           <div className="flex justify-between space-x-3">
             <NumberInput
-              value={adults}
-              setValue={setAdults}
-              min={1}
-              max={6}
               label="Дорослих"
+              max={6}
+              min={1}
+              setValue={setAdults}
+              value={adults}
             />
 
             <NumberInput
-              value={children}
-              setValue={setChildren}
-              min={0}
-              max={6}
               label="Дітей"
+              max={6}
+              min={0}
+              setValue={setChildren}
+              value={children}
             />
           </div>
         </CardBody>

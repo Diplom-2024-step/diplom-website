@@ -1,15 +1,17 @@
 "use client";
-import { ReturnPageDto } from "@/AppDtos/Shared/return-page-dto";
-import useDebounceState from "@/hooks/useDebounceState";
-import useGetPageOfItems from "@/hooks/useGetPageOfItems";
-import useSearchParam from "@/hooks/useSearchParam";
-import { TourService } from "@/service/crudServices/TourService";
 import { SortDescriptor } from "@nextui-org/react";
 import React, { useEffect, useState } from "react";
 import { LoadingState } from "@react-types/shared";
-import { TourCarousel } from "./TourCarousel";
-import TourCarouselSkeleton from "../shared/skeletons/TourCarouselSkeleton";
+
+import { ReturnPageDto } from "@/AppDtos/Shared/return-page-dto";
+import useDebounceState from "@/hooks/useDebounceState";
+import useGetPageOfItems from "@/hooks/useGetPageOfItems";
+import { TourService } from "@/service/crudServices/TourService";
 import { GetTourDto } from "@/AppDtos/Dto/Models/Tours/get-tour-dto";
+
+import TourCarouselSkeleton from "../shared/skeletons/TourCarouselSkeleton";
+
+import { TourCarousel } from "./TourCarousel";
 
 const TourCarouselRecommendation = () => {
   const [perPage, setPerPage] = useState("9");
@@ -43,7 +45,10 @@ const TourCarouselRecommendation = () => {
   }, [loadItems]);
 
   return loadingState === "idle" ? (
-    <TourCarousel tours={items?.models as GetTourDto[]} title="Гарячі пропозиції" />
+    <TourCarousel
+      title="Гарячі пропозиції"
+      tours={items?.models as GetTourDto[]}
+    />
   ) : (
     <TourCarouselSkeleton />
   );

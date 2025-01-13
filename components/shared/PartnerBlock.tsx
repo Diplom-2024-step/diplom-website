@@ -1,5 +1,6 @@
 import React from "react";
 import Image from "next/image";
+
 import UIAlogo from "../../assets/images/partners/Ukraine_International_Airlines_logo.png";
 import skyuplogo from "../../assets/images/partners/skyup.png";
 import windrise from "../../assets/images/partners/windrise.png";
@@ -38,68 +39,68 @@ const PartnerBlock = () => {
         <div className="flex flex-col items-center grid grid-cols-3 sm:grid-cols-3 gap-6 text-black w-full h-full">
           <div className="mr-3 ">
             <Image
-              src={UIAlogo}
               alt="Fly UIA"
               className="h-[100px] object-contain"
+              src={UIAlogo}
             />
             <Image
-              src={flix}
               alt="SkyUp Airlines"
               className="h-[100px] object-contain"
+              src={flix}
             />
             <Image
-              src={flyone}
               alt="Windrose"
               className="h-[100px] object-contain"
+              src={flyone}
             />
             <Image
-              src={eurolines}
               alt="Flixbus"
               className="h-[100px] object-contain"
+              src={eurolines}
             />
           </div>
           <div className="mr-3 space-y-[50px]">
             <Image
-              src={skyuplogo}
               alt="Infobus"
               className="h-[50px]  object-contain"
+              src={skyuplogo}
             />
             <Image
-              src={info}
               alt="Автолюкс"
               className="h-[50px] object-contain"
+              src={info}
             />
             <Image
-              src={hisky}
               alt="FlyOne"
               className="h-[50px] object-contain"
+              src={hisky}
             />
             <Image
-              src={pngwing}
               alt="HiSky"
               className="h-[50px] object-contain"
+              src={pngwing}
             />
           </div>
           <div className="mr-3 space-y-[50px]">
             <Image
-              src={windrise}
               alt="Corendon"
               className="h-[50px] object-contain"
+              src={windrise}
             />
             <Image
-              src={auto}
               alt="Eurolines"
               className="h-[50px] object-contain"
+              src={auto}
             />
             <Image
-              src={coredon}
               alt="Wizz Air"
               className="h-[50px] object-contain"
+              src={coredon}
             />
             <Image
-              src={regiojet}
               alt="RegioJet"
               className="h-[50px] object-contain"
+              src={regiojet}
             />
           </div>
         </div>

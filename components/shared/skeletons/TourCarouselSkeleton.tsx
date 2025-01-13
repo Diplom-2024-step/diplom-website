@@ -69,15 +69,15 @@ const TourCarouselSkeleton = () => {
 
         {/* Navigation buttons */}
         <button
-          className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 bg-white p-2 rounded-full shadow-lg z-10"
           disabled
+          className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 bg-white p-2 rounded-full shadow-lg z-10"
         >
           <ChevronLeft className="w-6 h-6 text-gray-300" />
         </button>
 
         <button
-          className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 bg-white p-2 rounded-full shadow-lg z-10"
           disabled
+          className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 bg-white p-2 rounded-full shadow-lg z-10"
         >
           <ChevronRight className="w-6 h-6 text-gray-300" />
         </button>

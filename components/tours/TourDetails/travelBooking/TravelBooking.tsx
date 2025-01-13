@@ -1,22 +1,12 @@
 "use client";
-import { GetTourDto } from "@/AppDtos/Dto/Models/Tours/get-tour-dto";
 import { Icon } from "@iconify/react";
-import { Button, DateValue, RangeValue, Spacer } from "@nextui-org/react";
-import React, { useEffect, useState } from "react";
-import ChoosingHowManyPeopleButton from "@/components/hotels/hotelDetails/travelBooking/choosingHowManyPeopleButton/ChoosingHowManyPeopleButton";
-import { setConfig } from "next/config";
-import ChoosingDietTypeRoomTypeButton from "@/components/hotels/hotelDetails/travelBooking/choosingDietTypeRoomTypeButton/ChoosingDietTypeRoomTypeButton";
-import { GetDietTypeDto } from "@/AppDtos/Dto/Models/DietTypes/get-diet-type-dto";
-import { GetRoomTypeDto } from "@/AppDtos/Dto/Models/RoomTypes/get-room-type-dto";
+import React, { useEffect } from "react";
+
+import { GetTourDto } from "@/AppDtos/Dto/Models/Tours/get-tour-dto";
 import ChoosingDateButton from "@/components/tours/TourDetails/travelBooking/ChoosingDateAndCityButton/ChoosingDateButton";
-import { parseDate } from "@internationalized/date";
-import { addDays, differenceInDays, formatISO } from "date-fns";
-import { GetCityDto } from "@/AppDtos/Dto/Models/Hotels/get-city-dto";
-import { GetTransportationTypeDto } from "@/AppDtos/Dto/Models/TransportationTypes/get-transportation-type-dto";
-import BuyButtonActive from "@/components/hotels/hotelDetails/travelBooking/BuyTravel/BuyButtonActive";
 import { useTravelBookingContextInjectedHotel } from "@/components/providers/TravelBookingProvider";
 import ShowActivitiesForTour from "@/components/activities/ShowActivitiesForTour";
-import { Torus } from "lucide-react";
+import BuyButtonActive from "@/components/hotels/HotelDetails/travelBooking/BuyTravel/BuyButtonActive";
 
 const TravelBooking = ({ tour }: { tour: GetTourDto }) => {
   const {
@@ -38,10 +28,9 @@ const TravelBooking = ({ tour }: { tour: GetTourDto }) => {
   } = useTravelBookingContextInjectedHotel(tour.hotel);
 
   const calculateCost = () => {
-    return (
-      tour.priceUSD
-    );
+    return tour.priceUSD;
   };
+
   useEffect(() => {
     setAdults(tour.howManyAdults);
     setKids(tour.howManyKids);
@@ -50,27 +39,26 @@ const TravelBooking = ({ tour }: { tour: GetTourDto }) => {
     setCity(tour.fromCity);
     setTransportationType(tour.transportationType);
     setActivities(tour.activities);
-
   }, []);
 
   return (
     <>
-      <div className="flex w-full justify-between mt-10 text-black">
-        <div className="flex-col w-[80%]">
-          <div className="w-full flex bg-white shadow-md">
-            <div className="w-[40%] bg-primary text-white flex items-center justify-start p-5 rounded-r-lg">
+      <div className="flex w-full justify-between mt-10 text-black booking-container">
+        <div className="flex-col w-[80%] booking-filtering-container">
+          <div className="w-full flex bg-white shadow-md booking-setting-container">
+            <div className="w-[40%] bg-primary text-white flex items-center justify-start p-5 rounded-r-lg booking-setting-header">
               <Icon
                 icon="stash:people-group-duotone"
-                className="mr-3 w-[40px] h-[40px]"
+                className="mr-3 text-4xl"
               />
               <span className="text-[20px] text-nunito_font_family">
                 Туристи
               </span>
             </div>
 
-            <div className="w-full flex items-center justify-start p-2">
-              <div className="w-full p-5">
-                <span className="text-[18px] font-bold text-nunito_font_family">
+            <div className="w-full flex items-center justify-start p-2 booking-setting-content-container">
+              <div className="w-[80%] p-5 booking-setting-content">
+                <span className="font-bold text-nunito_font_family">
                   {adults === 1 ? "1 дорослий " : `${adults} дорослих `}
 
                   {kids === 0
@@ -83,34 +71,33 @@ const TravelBooking = ({ tour }: { tour: GetTourDto }) => {
             </div>
           </div>
 
-          <div className="w-full flex bg-white shadow-md mt-5">
-            <div className="w-[40%] bg-primary text-white flex items-center justify-start p-5 rounded-r-lg">
-              <Icon
-                icon="lsicon:calendar-outline"
-                className="mr-3 w-[40px] h-[40px]"
-              />
-              <span className="text-[20px] text-nunito_font_family">
+          <div className="w-full flex bg-white shadow-md mt-5 booking-setting-container">
+            <div className="w-[40%] bg-primary text-white flex items-center justify-start p-5 rounded-r-lg booking-setting-header">
+              <Icon icon="lsicon:calendar-outline" className="mr-3 text-5xl" />
+              <span className="text-nunito_font_family">
                 Дата віправлення і тривалість туру
               </span>
             </div>
 
-            <div className="w-full flex items-center justify-start p-2">
-              <div className="w-[80%] p-5 justify-between flex">
+            <div className="w-full flex items-center justify-start p-2 booking-setting-content-container">
+              <div className="w-[80%] p-5 justify-between flex booking-setting-content">
                 <div className="flex flex-col">
                   <div>{date.start.toString()}</div>
                   <div>
                     {tour.fromCity.name} - {tour.toCity.name}
                   </div>
                 </div>
-                <div className="flex-col text-center">
+
+                <div className="flex-col text-center booking-mobile-none">
                   <div>
                     {tour.duration - 1} ночей / {tour.duration} днів
                   </div>
-                  <div className="flex text-base">
-                    {tour.transportationType.name}{" "}
+                  <div className="text-base">
+                    {transportationType?.name}{" "}
                     <p className="text-primary">( включено ) </p>
                   </div>
                 </div>
+
                 <div className="flex flex-col">
                   <div>{date.end.toString()}</div>
                   <div>
@@ -118,30 +105,36 @@ const TravelBooking = ({ tour }: { tour: GetTourDto }) => {
                   </div>
                 </div>
               </div>
-              <div className="w-[20%] h-full">
+              <div className="booking-mobile-block">
+                <div className="flex-col text-center">
+                  <div>
+                    {tour.duration - 1} ночей / {tour.duration} днів
+                  </div>
+                  <div className="text-base">
+                    {tour.transportationType.name}{" "}
+                    <p className="text-primary">( включено ) </p>
+                  </div>
+                </div>
+              </div>
+              <div className="w-full md:w-[20%] h-full">
                 <ChoosingDateButton date={date} setDate={setDate} tour={tour} />
               </div>
             </div>
           </div>
 
-          <div className="w-full flex bg-white shadow-md mt-5">
-            <div className="w-[40%] bg-primary text-white flex items-center justify-start p-5 rounded-r-lg">
-              <Icon
-                icon="fa-solid:concierge-bell"
-                className="mr-3 w-[40px] h-[40px]"
-              />
-              <span className="text-[20px] text-nunito_font_family">
-                Тип кімнати і харчування
-              </span>
+          <div className="w-full flex bg-white shadow-md mt-5 booking-setting-container">
+            <div className="w-[40%] bg-primary text-white flex items-center justify-start p-5 rounded-r-lg booking-setting-header">
+              <Icon icon="fa-solid:concierge-bell" className="mr-3 text-4xl" />
+              <span>Тип кімнати і харчування</span>
             </div>
 
-            <div className="w-full flex items-center justify-start p-2">
-              <div className="w-full p-5 grid grid-cols-1 gap-2">
-                <span className="text-[18px]">
+            <div className="w-full flex items-center justify-start p-2 booking-setting-content-container">
+              <div className="w-[80%] p-5 grid grid-cols-1 gap-2 booking-setting-content">
+                <span>
                   <strong>Кімната: </strong> {roomType?.name} -{" "}
                   {(roomType?.price ? roomType.price : 0) + " грн."}
                 </span>
-                <span className="text-[18px]">
+                <span>
                   <strong>Харчування: </strong>
                   {dietType?.name} -{" "}
                   {(dietType?.price ? dietType.price : 0) + " грн."}
@@ -150,8 +143,8 @@ const TravelBooking = ({ tour }: { tour: GetTourDto }) => {
             </div>
           </div>
         </div>
-        <div className="flex-col w-[15%] ">
-          <div className=" shadow-lg rounded-md bg-white ">
+        <div className="flex-col w-[15%] booking-totalprice-button-container">
+          <div className=" shadow-lg rounded-md bg-white booking-totalprice-container">
             <div className="bg-gradient-to-b text-end  from-[#ECB003] to-[#AF3F2B] p-2  text-transparent bg-clip-text">
               <p className="text-lg">Разом:</p>
               <p className="text-2xl">{calculateCost()} грн.</p>
@@ -160,9 +153,9 @@ const TravelBooking = ({ tour }: { tour: GetTourDto }) => {
 
           <BuyButtonActive
             city={tour.fromCity!}
-            transporationType={tour.transportationType}
             cost={calculateCost()}
             tourId={tour.id}
+            transporationType={tour.transportationType}
           />
         </div>
       </div>

@@ -1,20 +1,18 @@
 "use client";
-import TourDescription from "@/components/tours/TourDetails/TourDescription";
-import TourDetailHeader from "@/components/tours/TourDetails/TourDetailHeader";
-import ImageGallery from "@/components/hotels/hotelDetails/imageGallery/ImageGallery";
-import TravelBooking from "@/components/tours/TourDetails/travelBooking/TravelBooking";
-import TravelDescription from "@/components/tours/TourDetails/travelBooking/TravelDescription";
-import PaymentGuaranteeSection from "@/components/hotels/layout/PaymentGuaranteeSection";
-import SelectCountryForHotels from "@/components/shared/sharedComponents/selects/SelectCountryForHotels";
-import LoadingCircle from "@/components/shared/skeletons/LoadingCircle";
-import ReviewCardCarouselWithService from "@/components/reviews/ReviewCardCarouselWithService";
-import RecomendedToursCarouselForHotel from "@/components/tours/Carsousels/RecomendedToursCarouselForHotel";
-import { TourService } from "@/service/crudServices/TourService";
 import React, { Key, useEffect, useState } from "react";
 import { Icon } from "@iconify/react";
 import { Link } from "@nextui-org/react";
 
-const page = async ({ params }: { params: { id: string } }) => {
+import TourDescription from "@/components/tours/TourDetails/TourDescription";
+import TourDetailHeader from "@/components/tours/TourDetails/TourDetailHeader";
+import TravelDescription from "@/components/tours/TourDetails/travelBooking/TravelDescription";
+import PaymentGuaranteeSection from "@/components/hotels/layout/PaymentGuaranteeSection";
+import LoadingCircle from "@/components/shared/skeletons/LoadingCircle";
+import ReviewCardCarouselWithService from "@/components/reviews/ReviewCardCarouselWithService";
+import RecomendedToursCarouselForHotel from "@/components/tours/Carsousels/RecomendedToursCarouselForHotel";
+import { TourService } from "@/service/crudServices/TourService";
+
+const Page = async ({ params }: { params: { id: string } }) => {
   const service = new TourService();
 
   const [option, setOption] = useState("tour");
@@ -38,6 +36,7 @@ const page = async ({ params }: { params: { id: string } }) => {
     const fetchTourData = async () => {
       try {
         const fetchedTour = await service.getById(params.id);
+
         setTour(fetchedTour);
       } catch (error) {
         console.error("Error fetching tour data:", error);
@@ -56,16 +55,16 @@ const page = async ({ params }: { params: { id: string } }) => {
               <Link href={`/tours`}>
                 <h1 className="text-black">Повернутись до турів</h1>
                 <Icon
-                  icon="ei:arrow-up"
                   className={`w-10 h-10 transition-transform rotate-[315deg] text-black
                 }`}
+                  icon="ei:arrow-up"
                 />
               </Link>
             </div>
             <TourDetailHeader
+              activeTab={option}
               tour={tour}
               onSelectChage={onSelectChage}
-              activeTab={option}
             />
             {retunrOptionPage(option)}
           </div>
@@ -81,4 +80,4 @@ const page = async ({ params }: { params: { id: string } }) => {
   );
 };
 
-export default page;
+export default Page;

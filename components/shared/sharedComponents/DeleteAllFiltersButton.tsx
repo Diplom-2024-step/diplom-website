@@ -1,32 +1,30 @@
-"use client"
-import { Icon } from '@iconify/react';
-import { Tooltip } from '@nextui-org/react';
-import { usePathname, useRouter } from 'next/navigation';
-import React from 'react'
+"use client";
+import { Icon } from "@iconify/react";
+import { Tooltip } from "@nextui-org/react";
+import { usePathname, useRouter } from "next/navigation";
+import React from "react";
 
 const DeleteAllFiltersButton = () => {
-    const pathname = usePathname();
-    const router = useRouter();
+  const pathname = usePathname();
+  const router = useRouter();
 
-    const handleClearParams = () => {
+  const handleClearParams = () => {
     router.push(pathname);
   };
 
   return (
-  <Tooltip content="Відмінити всі фільтри" delay={0} closeDelay={0}>
-  <div 
-    className='group hover:scale-110 transition-all duration-300 ease-in-out cursor-pointer'
-    onClick={handleClearParams}
-  >
-    <Icon 
-      icon="mdi:flame" 
-      className='text-primary text-4xl group-hover:text-[#ff8c00] transition-colors duration-300 ease-in-out'
-    />
-  </div>
-</Tooltip>
+    <Tooltip closeDelay={0} content="Відмінити всі фільтри" delay={0}>
+      <button
+        className="group hover:scale-110 transition-all mb-auto duration-300 ease-in-out cursor-pointer"
+        onClick={handleClearParams}
+      >
+        <Icon
+          className="text-primary text-4xl group-hover:text-[#ff8c00] transition-colors duration-300 ease-in-out"
+          icon="mdi:flame"
+        />
+      </button>
+    </Tooltip>
+  );
+};
 
-  )
-
-}
-
-export default DeleteAllFiltersButton
+export default DeleteAllFiltersButton;

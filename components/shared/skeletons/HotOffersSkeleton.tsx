@@ -3,11 +3,12 @@ import { Card, CardFooter, CardHeader, Skeleton } from "@nextui-org/react";
 const HotOffersSkeleton = () => {
   return (
     <div className="flex flex-col items-center w-full h-full mt-10 mb-10">
-       <p className="text-[43px] font-bold mb-[65px] text-customBlack">
+      <p className="text-[43px] font-bold mb-[65px] text-customBlack">
         Гарячі пропозиції
       </p>
-      
-      <div className="flex w-4/7 h-full">
+
+      {/* Desktop Layout */}
+      <div className="hidden lg:flex w-4/7 h-full">
         {/* Large Card Skeleton */}
         <Card className="flex flex-col justify-between min-h-[520px] min-w-[398px] bg-gray-100">
           <CardHeader className="absolute z-10 top-1 flex-col !items-end">
@@ -64,7 +65,7 @@ const HotOffersSkeleton = () => {
               </CardFooter>
             </Card>
           </div>
-          
+
           {/* Bottom Long Card Skeleton */}
           <div>
             <Card className="flex flex-col justify-between min-h-[240px] w-full mt-[40px] bg-gray-100">
@@ -84,6 +85,28 @@ const HotOffersSkeleton = () => {
             </Card>
           </div>
         </div>
+      </div>
+
+      {/* Mobile Layout */}
+      <div className="lg:hidden flex flex-col w-3/4 h-full">
+        {/* Mobile Card Skeletons */}
+        {[1, 2, 3].map((index) => (
+          <Card key={index} className="flex flex-col justify-between min-h-[240px] w-full mt-[40px] bg-gray-100">
+            <CardHeader className="flex absolute z-10 top-1 justify-between !items-end">
+              <Skeleton className="h-8 w-8 rounded-full ml-4" />
+              <Skeleton className="h-8 w-40 rounded-xl" />
+            </CardHeader>
+            <CardFooter className="absolute bottom-3 z-10 w-full">
+              <div className="flex flex-grow gap-2 items-center">
+                <div className="flex flex-col">
+                  <Skeleton className="h-8 w-24" />
+                  <Skeleton className="h-4 w-20 mt-2" />
+                </div>
+              </div>
+              <Skeleton className="absolute top-4 right-4 w-12 h-12 rounded-full" />
+            </CardFooter>
+          </Card>
+        ))}
       </div>
 
       {/* More Button Skeleton */}

@@ -4,14 +4,15 @@ import Image from "next/image";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Icon } from "@iconify/react";
 import { useState } from "react";
+import { Link } from "@nextui-org/link";
+import { Pagination, Navigation } from "swiper/modules";
+
 import photo1 from "../../assets/images/reviews/character3.png";
 import photo2 from "../../assets/images/reviews/character5.png";
 import photo3 from "../../assets/images/reviews/character2.png";
 import photo4 from "../../assets/images/reviews/character4.png";
-import { Link } from "@nextui-org/link";
 import "swiper/css";
 import "swiper/css/pagination";
-import { Pagination, Navigation } from "swiper/modules";
 
 const reviews = [
   {
@@ -94,7 +95,7 @@ const RatingAndReviews = () => {
                 <p className="text-black">86%</p>
               </div>
               <div className="h-4 w-full bg-customAqua rounded-full mt-1">
-                <div className="h-full w-[86%] bg-yellow-500 rounded-full"></div>
+                <div className="h-full w-[86%] bg-yellow-500 rounded-full" />
               </div>
 
               <div className="flex justify-between items-center mt-4">
@@ -102,7 +103,7 @@ const RatingAndReviews = () => {
                 <p className="text-black">91%</p>
               </div>
               <div className="h-4 w-full bg-customAqua rounded-full mt-1">
-                <div className="h-full w-[91%] bg-yellow-500 rounded-full"></div>
+                <div className="h-full w-[91%] bg-yellow-500 rounded-full" />
               </div>
             </div>
 
@@ -112,7 +113,7 @@ const RatingAndReviews = () => {
                 <p className="text-black">80%</p>
               </div>
               <div className="h-4 w-full bg-customAqua rounded-full mt-1">
-                <div className="h-full w-[80%] bg-yellow-500 rounded-full"></div>
+                <div className="h-full w-[80%] bg-yellow-500 rounded-full" />
               </div>
 
               <div className="flex justify-between items-center mt-4">
@@ -120,7 +121,7 @@ const RatingAndReviews = () => {
                 <p className="text-black">86%</p>
               </div>
               <div className="h-4 w-full bg-customAqua rounded-full mt-1">
-                <div className="h-full w-[86%] bg-yellow-500 rounded-full"></div>
+                <div className="h-full w-[86%] bg-yellow-500 rounded-full" />
               </div>
             </div>
           </div>
@@ -137,9 +138,9 @@ const RatingAndReviews = () => {
               {/* Фото пользователя */}
               <div className="flex items-center h-[15%]">
                 <Image
-                  src={review.photo}
                   alt={`User ${index + 1}`}
                   className="w-12 h-12 bg-yellow-100 rounded-full object-cover"
+                  src={review.photo}
                 />
                 <div className="ml-4">
                   <p className="font-semibold text-black">{review.name}</p>
@@ -164,14 +165,14 @@ const RatingAndReviews = () => {
           ))}
         </div>
         <Link
-          href={"/aboutUs#reviews"}
           className="flex items-center m-[45px] p-2 group backdrop-blur-sm rounded-full 
               transition-all duration-300 "
+          href={"/aboutUs#reviews"}
         >
           <p className="text-black text-[20px]">Переглянути більше</p>
           <Icon
-            icon="ei:arrow-up"
             className={`w-10 h-10 transition-transform group-hover:-translate-y-3 group-hover:text-primary rotate-45 text-black ml-[12px]`}
+            icon="ei:arrow-up"
           />
         </Link>
       </div>
@@ -204,7 +205,7 @@ const RatingAndReviews = () => {
                 <p className="text-black">86%</p>
               </div>
               <div className="h-4 w-full bg-customAqua rounded-full mt-1">
-                <div className="h-full w-[86%] bg-yellow-500 rounded-full"></div>
+                <div className="h-full w-[86%] bg-yellow-500 rounded-full" />
               </div>
 
               <div className="flex justify-between items-center mt-4">
@@ -212,7 +213,7 @@ const RatingAndReviews = () => {
                 <p className="text-black">91%</p>
               </div>
               <div className="h-4 w-full bg-customAqua rounded-full mt-1">
-                <div className="h-full w-[91%] bg-yellow-500 rounded-full"></div>
+                <div className="h-full w-[91%] bg-yellow-500 rounded-full" />
               </div>
             </div>
 
@@ -222,7 +223,7 @@ const RatingAndReviews = () => {
                 <p className="text-black">80%</p>
               </div>
               <div className="h-4 w-full bg-customAqua rounded-full mt-1">
-                <div className="h-full w-[80%] bg-yellow-500 rounded-full"></div>
+                <div className="h-full w-[80%] bg-yellow-500 rounded-full" />
               </div>
 
               <div className="flex justify-between items-center mt-4">
@@ -230,37 +231,37 @@ const RatingAndReviews = () => {
                 <p className="text-black">86%</p>
               </div>
               <div className="h-4 w-full bg-customAqua rounded-full mt-1">
-                <div className="h-full w-[86%] bg-yellow-500 rounded-full"></div>
+                <div className="h-full w-[86%] bg-yellow-500 rounded-full" />
               </div>
             </div>
           </div>
-          <div className="col-span-1 flex flex-col items-center mt-[20px] space-y-2"></div>
+          <div className="col-span-1 flex flex-col items-center mt-[20px] space-y-2" />
         </div>
         {/* Блок отзывов */}
         <div className="m-[45px] mt-8 h-[350px]">
           <div className="w-full mx-auto px-4 text-black">
             <div className="w-full">
               <Swiper
-                modules={[Pagination, Navigation]}
-                spaceBetween={30}
-                slidesPerView={1}
                 navigation
-                pagination={{ clickable: true }}
                 breakpoints={{
                   640: { slidesPerView: 1 },
                   768: { slidesPerView: 2 },
                   1024: { slidesPerView: 3 },
                 }}
                 className="swiper-container"
+                modules={[Pagination, Navigation]}
+                pagination={{ clickable: true }}
+                slidesPerView={1}
+                spaceBetween={30}
               >
                 {reviews.map((review, index) => (
                   <SwiperSlide key={index} className="flex mb-[30px]">
                     <div className="p-4 bg-customAqua rounded-lg">
                       <div className="flex items-center h-[15%]">
                         <Image
-                          src={review.photo}
                           alt={`User ${index + 1}`}
                           className="w-12 h-12 bg-yellow-100 rounded-full object-cover"
+                          src={review.photo}
                         />
                         <div className="ml-4">
                           <p className="font-semibold text-black">
@@ -286,14 +287,14 @@ const RatingAndReviews = () => {
           </div>
         </div>
         <Link
-          href={"/aboutUs#reviews"}
           className="flex items-center m-[45px] p-2 group backdrop-blur-sm rounded-full 
               transition-all duration-300 "
+          href={"/AboutUs#reviews"}
         >
           <p className="text-black text-[20px]">Переглянути більше</p>
           <Icon
-            icon="ei:arrow-up"
             className={`w-10 h-10 transition-transform group-hover:-translate-y-3 group-hover:text-primary rotate-45 text-black ml-[12px]`}
+            icon="ei:arrow-up"
           />
         </Link>
       </div>

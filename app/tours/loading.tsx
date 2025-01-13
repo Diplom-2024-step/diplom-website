@@ -1,7 +1,7 @@
 "use client";
-import HotelCarouselSkeleton from "@/components/shared/skeletons/HotelCarouselSkeleton";
-import TourGridSkeleton from "@/components/shared/skeletons/TourGridSkeleton";
 import React from "react";
+
+import TourGridSkeleton from "@/components/shared/skeletons/TourGridSkeleton";
 
 const loading = () => {
   return (

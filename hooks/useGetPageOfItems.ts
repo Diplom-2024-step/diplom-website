@@ -1,29 +1,29 @@
-import { ModelDto } from "@/AppDtos/Shared/model-dto";
 import { LoadingState } from "@react-types/shared";
-import { SortOrder } from "@/AppDtos/Shared/sort-order";
-import { CrudService } from "@/service/shared/CrudService";
-import { toPascalCase, toTitleCase } from "@/utils/TextUtils";
 import { SortDescriptor } from "@nextui-org/table";
 import { useCallback } from "react";
 import { ZodError } from "zod";
+
+import { ModelDto } from "@/AppDtos/Shared/model-dto";
+import { SortOrder } from "@/AppDtos/Shared/sort-order";
+import { CrudService } from "@/service/shared/CrudService";
+import { toPascalCase, toTitleCase } from "@/utils/TextUtils";
 import { ReturnPageDto } from "@/AppDtos/Shared/return-page-dto";
 import { FilterDto } from "@/AppDtos/Shared/filter-dto";
 
 export default function useGetPageOfItems<
-TGetModelDto extends ModelDto,
-TService extends CrudService<TGetModelDto, object, ModelDto>
+  TGetModelDto extends ModelDto,
+  TService extends CrudService<TGetModelDto, object, ModelDto>,
 >(
-        service: TService,
-        perPage: string | undefined,
-        page: string | undefined,
-        sortDescriptor: SortDescriptor | undefined,
-        setLoadingState: (value : LoadingState  ) => void,
-        setError: (value : string | undefined ) => void,
-        setPerPageError: (value : any ) => void,
-        setItems: (value : ReturnPageDto<TGetModelDto> | undefined) => void,
-        status: string,
-        filtersDto?: FilterDto[][] 
-
+  service: TService,
+  perPage: string | undefined,
+  page: string | undefined,
+  sortDescriptor: SortDescriptor | undefined,
+  setLoadingState: (value: LoadingState) => void,
+  setError: (value: string | undefined) => void,
+  setPerPageError: (value: any) => void,
+  setItems: (value: ReturnPageDto<TGetModelDto> | undefined) => void,
+  status: string,
+  filtersDto?: FilterDto[][]
 ) {
   return useCallback(async () => {
     setLoadingState("loading");
@@ -31,6 +31,7 @@ TService extends CrudService<TGetModelDto, object, ModelDto>
     setPerPageError(undefined);
     if (status !== "success") {
       setLoadingState(status as LoadingState);
+
       return;
     }
     try {
