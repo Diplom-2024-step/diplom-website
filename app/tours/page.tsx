@@ -1,27 +1,26 @@
 "use client";
 import React, { useEffect, useState } from "react";
+import { Button, SortDescriptor } from "@nextui-org/react";
+import { LoadingState } from "@react-types/shared";
+import { Icon } from "@iconify/react";
+
 import useSearchParam from "@/hooks/useSearchParam";
 import useDebounceState from "@/hooks/useDebounceState";
 import { ReturnPageDto } from "@/AppDtos/Shared/return-page-dto";
-import { Button, Link, SortDescriptor } from "@nextui-org/react";
-import { LoadingState } from "@react-types/shared";
 import useGetPageOfItems from "@/hooks/useGetPageOfItems";
 import { TourService } from "@/service/crudServices/TourService";
-import { TourCarousel } from "@/components/tours/TourCarousel";
-import LoadingScreen from "@/components/shared/LoadingScreen";
 import TourGrid from "@/components/tours/TourGrid";
 import MyPagination from "@/components/shared/MyPagination";
-import Loading from "./loading";
 import TourCarouselRecommendation from "@/components/tours/TourCarouselRecommendation";
 import { FilterDto } from "@/AppDtos/Shared/filter-dto";
-import { Icon } from "@iconify/react";
-import HotelSearchParamsSettingsCard from "@/components/hotels/HotelSearchParamsSettingsCard";
 import { GetTourDto } from "@/AppDtos/Dto/Models/Tours/get-tour-dto";
 import TourSearchParamsSettingsCard from "@/components/tours/TourSearchParamsSettingsCard";
 import FindTourCardWithBg from "@/components/shared/sharedComponents/FindTourCardWithBg";
 import DeleteAllFiltersButton from "@/components/shared/sharedComponents/DeleteAllFiltersButton";
 
-const page = ({ params }: { params: { country: string } }) => {
+import Loading from "./loading";
+
+const Page = ({ params }: { params: { country: string } }) => {
   const [isSearchSettingsOpen, setIsSearchSettingsOpen] = useState(false);
   const [page, setPage] = useSearchParam("page");
   const [toCity, setToCity] = useSearchParam("toCity");
@@ -242,29 +241,29 @@ const page = ({ params }: { params: { country: string } }) => {
               className="bg-white rounded-full  "
               onClick={() => setIsSearchSettingsOpen(!isSearchSettingsOpen)}
             >
-              <Icon icon="mingcute:settings-2-line" width="24" height="24" />
+              <Icon height="24" icon="mingcute:settings-2-line" width="24" />
             </Button>
           </div>
         </div>
 
         {isSearchSettingsOpen ? (
           <TourSearchParamsSettingsCard
-            lowestPrice={lowestPrice}
+            duration={duration}
+            fromCity={fromCity}
             heightPrice={heightPrice}
+            lowestPrice={lowestPrice}
             outsideBeachTypesIds={beachTypesIds ? beachTypesIds.split(",") : []}
-            outsideDietTypesIds={dietTypesIds ? dietTypesIds.split(",") : []}
-            outsideRoomTypesIds={roomTypesIds ? roomTypesIds.split(",") : []}
             outsideCountriesIds={countriesIds ? countriesIds.split(",") : []}
+            outsideDietTypesIds={dietTypesIds ? dietTypesIds.split(",") : []}
+            outsideHowManyAdults={adults ? adults : "1"}
+            outsideHowManyKids={kids ? kids : "0"}
             outsideInHotelIds={inHotelsIds ? inHotelsIds.split(",") : []}
+            outsideRoomTypesIds={roomTypesIds ? roomTypesIds.split(",") : []}
+            stars={stars}
+            toCity={toCity}
             onClose={() => {
               setIsSearchSettingsOpen(false);
             }}
-            outsideHowManyAdults={adults ? adults : "1"}
-            outsideHowManyKids={kids ? kids : "0"}
-            duration={duration}
-            stars={stars}
-            fromCity={fromCity}
-            toCity={toCity}
           />
         ) : (
           <></>
@@ -276,9 +275,9 @@ const page = ({ params }: { params: { country: string } }) => {
 
             <div className="flex justify-center items-center mb-10">
               <MyPagination
-                total={items?.howManyPages as any}
-                page={page ? parseInt(page) : 1}
                 onchange={(page: number) => setPage(page.toString())}
+                page={page ? parseInt(page) : 1}
+                total={items?.howManyPages as any}
               />
             </div>
           </>
@@ -290,4 +289,4 @@ const page = ({ params }: { params: { country: string } }) => {
   );
 };
 
-export default page;
+export default Page;

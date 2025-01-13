@@ -1,12 +1,12 @@
-"use client"
-import { GetHotelDto } from '@/AppDtos/Dto/Models/Hotels/get-hotel-dto'
-import React, { useState } from 'react'
-import HotelCard from './hotelCard/HotelCard'
-import { AuthResponse } from '@/hooks/auth'
+"use client";
+import React, { useState } from "react";
 
-const HotelGrid = ({ hotels } : {hotels:GetHotelDto[]}) => {
+import { GetHotelDto } from "@/AppDtos/Dto/Models/Hotels/get-hotel-dto";
 
-      const [hoveredId, setHoveredId] = useState<number | null>(null);
+import HotelCard from "./hotelCard/HotelCard";
+
+const HotelGrid = ({ hotels }: { hotels: GetHotelDto[] }) => {
+  const [hoveredId, setHoveredId] = useState<number | null>(null);
 
   return (
     <div className="w-full max-w-6xl mx-auto px-4 mb-10">
@@ -22,7 +22,7 @@ const HotelGrid = ({ hotels } : {hotels:GetHotelDto[]}) => {
         ))}
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default HotelGrid
+export default HotelGrid;

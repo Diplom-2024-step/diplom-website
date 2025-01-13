@@ -1,9 +1,9 @@
-import { GetTourDto } from "@/AppDtos/Dto/Models/Tours/get-tour-dto";
-import TravelBooking from "@/components/tours/TourDetails/travelBooking/TravelBooking";
-import { Card, CardBody, CardHeader } from "@nextui-org/card";
-import { Divider } from "@nextui-org/react";
 import Link from "next/link";
 import React from "react";
+
+import TravelBooking from "@/components/tours/TourDetails/travelBooking/TravelBooking";
+import { GetTourDto } from "@/AppDtos/Dto/Models/Tours/get-tour-dto";
+
 import ImageGallery from "./imageGallery/ImageGallery";
 
 const TourDescription = ({ tour }: { tour: GetTourDto }) => {

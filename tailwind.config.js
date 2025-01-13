@@ -43,6 +43,7 @@ module.exports = {
       },
       backgroundImage: {
         'gradientCustomGreen': 'linear-gradient(to bottom, #F2BA00, #AB362E)',
+        'gradientCustom': 'linear-gradient(to bottom, #F2BA00, #AB362E)',
       },
 
     },

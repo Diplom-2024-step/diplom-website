@@ -1,17 +1,18 @@
 {
   "$schema": "https://json.schemastore.org/eslintrc.json",
   "env": {
-    "browser": false,
+    "browser": true,  // Changed to true since this is a Next.js app
     "es2021": true,
     "node": true
   },
   "extends": [
+    "next/core-web-vitals",  // Added for Next.js
     "plugin:react/recommended",
     "plugin:prettier/recommended",
     "plugin:react-hooks/recommended",
     "plugin:jsx-a11y/recommended"
   ],
-  "plugins": ["react", "unused-imports", "import", "@typescript-eslint", "jsx-a11y", "prettier"],
+  "plugins": ["react", "unused-imports", "import", "@typescript-eslint", "jsx-a11y"],
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
     "ecmaFeatures": {
@@ -26,14 +27,23 @@
     }
   },
   "rules": {
+    // Modified rules for better Next.js compatibility
+    "react/no-unescaped-entities": "off",
     "no-console": "warn",
     "react/prop-types": "off",
     "react/jsx-uses-react": "off",
     "react/react-in-jsx-scope": "off",
-    "react-hooks/exhaustive-deps": "off",
+    "react-hooks/exhaustive-deps": "warn",  // Changed to warn instead of off
+    "prettier/prettier": ["warn", {
+      "singleQuote": false,
+      "semi": true,
+      "tabWidth": 2,
+      "trailingComma": "es5",
+      "endOfLine": "auto"
+    }],
+    // Rest of your rules remain the same
     "jsx-a11y/click-events-have-key-events": "warn",
     "jsx-a11y/interactive-supports-focus": "warn",
-    "prettier/prettier": "warn",
     "no-unused-vars": "off",
     "unused-imports/no-unused-vars": "off",
     "unused-imports/no-unused-imports": "warn",
@@ -48,16 +58,7 @@
     "import/order": [
       "warn",
       {
-        "groups": [
-          "type",
-          "builtin",
-          "object",
-          "external",
-          "internal",
-          "parent",
-          "sibling",
-          "index"
-        ],
+        "groups": ["type", "builtin", "object", "external", "internal", "parent", "sibling", "index"],
         "pathGroups": [
           {
             "pattern": "~/**",
@@ -82,11 +83,7 @@
       "warn",
       {"blankLine": "always", "prev": "*", "next": "return"},
       {"blankLine": "always", "prev": ["const", "let", "var"], "next": "*"},
-      {
-        "blankLine": "any",
-        "prev": ["const", "let", "var"],
-        "next": ["const", "let", "var"]
-      }
+      {"blankLine": "any", "prev": ["const", "let", "var"], "next": ["const", "let", "var"]}
     ]
   }
 }

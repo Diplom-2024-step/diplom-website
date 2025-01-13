@@ -1,7 +1,6 @@
 import { z } from "zod";
 
 export const getPhotoDtoSchema = z.object({
-
   id: z.string().uuid(),
   url: z.string(),
   width: z.number(),

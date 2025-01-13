@@ -1,20 +1,26 @@
-"use client"
-import { GetHotelDto } from '@/AppDtos/Dto/Models/Hotels/get-hotel-dto';
-import { ReturnPageDto } from '@/AppDtos/Shared/return-page-dto';
-import useDebounceState from '@/hooks/useDebounceState';
-import useGetPageOfItems from '@/hooks/useGetPageOfItems';
-import useSearchParam from '@/hooks/useSearchParam';
-import { HotelService } from '@/service/crudServices/HotelService';
-import { SortDescriptor } from '@nextui-org/react';
-import React, { useEffect, useState } from 'react'
+"use client";
+import { SortDescriptor } from "@nextui-org/react";
+import React, { useEffect, useState } from "react";
 import { LoadingState } from "@react-types/shared";
-import { HotelCarousel } from './HotelCarousel';
-import HotelCarouselSkeleton from '../shared/skeletons/HotelCarouselSkeleton';
-import { FilterDto } from '@/AppDtos/Shared/filter-dto';
+
+import { GetHotelDto } from "@/AppDtos/Dto/Models/Hotels/get-hotel-dto";
+import { ReturnPageDto } from "@/AppDtos/Shared/return-page-dto";
+import useDebounceState from "@/hooks/useDebounceState";
+import useGetPageOfItems from "@/hooks/useGetPageOfItems";
+import { HotelService } from "@/service/crudServices/HotelService";
+import { FilterDto } from "@/AppDtos/Shared/filter-dto";
+
+import HotelCarouselSkeleton from "../shared/skeletons/HotelCarouselSkeleton";
+
+import { HotelCarousel } from "./HotelCarousel";
 
 const HotelCarouselRecommendation = () => {
   const [perPage, setPerPage] = useState("9");
-  const [perPageState, setPerPageState] = useDebounceState(perPage, setPerPage, 500);
+  const [perPageState, setPerPageState] = useDebounceState(
+    perPage,
+    setPerPage,
+    500
+  );
   const [items, setItems] = useState<ReturnPageDto<GetHotelDto>>();
   const [loadingState, setLoadingState] = useState<LoadingState>("loading");
   const [sortDescriptor, setSortDescriptor] = useState<SortDescriptor>();
@@ -24,10 +30,7 @@ const HotelCarouselRecommendation = () => {
 
   const service = new HotelService();
 
-  const loadItems = useGetPageOfItems<
-    GetHotelDto,
-    typeof service
-  >(
+  const loadItems = useGetPageOfItems<GetHotelDto, typeof service>(
     service,
     "9",
     "1",
@@ -38,20 +41,17 @@ const HotelCarouselRecommendation = () => {
     setItems,
     "success",
     filters
-
   );
 
   useEffect(() => {
     loadItems().then();
   }, [loadItems]);
 
-  return (
-    loadingState === "idle" ?    
-    <HotelCarousel hotels={items?.models as GetHotelDto[]}    
-    />
-    :<HotelCarouselSkeleton/>
-    
-  )
-}
+  return loadingState === "idle" ? (
+    <HotelCarousel hotels={items?.models as GetHotelDto[]} />
+  ) : (
+    <HotelCarouselSkeleton />
+  );
+};
 
-export default HotelCarouselRecommendation
+export default HotelCarouselRecommendation;

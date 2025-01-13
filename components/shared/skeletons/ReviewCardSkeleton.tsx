@@ -1,14 +1,11 @@
-import { Card, Image, Skeleton } from "@nextui-org/react";
-import { GetReviewDto } from '@/AppDtos/Dto/Models/Reviews/get-review-dto';
+import { Card, Skeleton } from "@nextui-org/react";
 
 const ReviewCardSkeleton = () => {
   return (
     <Card className="p-4 rounded-lg h-80">
       {/* Фото пользователя */}
       <div className="flex items-center h-[15%]">
-        <Skeleton
-          className="w-12 h-12 bg-gray-300 rounded-full object-cover"
-        />
+        <Skeleton className="w-12 h-12 bg-gray-300 rounded-full object-cover" />
         <div className="ml-4">
           <Skeleton className="h-5 w-20 rounded-lg mb-2" />
           <div className="flex mt-1">
@@ -16,7 +13,6 @@ const ReviewCardSkeleton = () => {
               <Skeleton
                 key={index}
                 className="w-5 h-5 text-yellow-400 fill-current"
-                
               />
             ))}
           </div>

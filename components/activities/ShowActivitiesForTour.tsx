@@ -1,21 +1,18 @@
 "use client";
-import React, { Key, useEffect, useState } from "react";
-import InnerActivityCard from "./shared/InnerActivityCard";
+import React from "react";
 import { usePathname, useRouter } from "next/navigation";
-import { useTravelBookingContext } from "../providers/TravelBookingProvider";
-import activityPlaceholder from "../../assets/images/activities/activity-placeholder.webp";
-import { Image } from "@nextui-org/image";
-import { Activity } from "lucide-react";
-import { Card } from "@nextui-org/card";
-import { TourService } from "@/service/crudServices/TourService";
+
 import { GetTourDto } from "@/AppDtos/Dto/Models/Tours/get-tour-dto";
+
+import { useTravelBookingContext } from "../providers/TravelBookingProvider";
+
+import InnerActivityCard from "./shared/InnerActivityCard";
 
 const ShowActivitiesForTour = ({ tour }: { tour: GetTourDto }) => {
   const pathname = usePathname();
   const router = useRouter();
 
   const { activities } = useTravelBookingContext();
-
 
   return (
     <div className="text-center w-full mt-10 mb-10">
@@ -26,7 +23,7 @@ const ShowActivitiesForTour = ({ tour }: { tour: GetTourDto }) => {
         <div className="flex  justify-between items-center w-full h-full">
           <div className="w-full flex justify-start overflow-x-clip">
             {tour.activities.map((activity, index) => (
-              <div className="w-[20%] p-4" key={index}>
+              <div key={index} className="w-[20%] p-4">
                 <InnerActivityCard activity={activity} />
               </div>
             ))}

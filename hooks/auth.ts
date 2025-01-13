@@ -1,10 +1,10 @@
 ﻿"use client";
 import { signOut, useSession } from "next-auth/react";
-import { DecodedToken } from "@/types/DecodedToken";
 import { usePathname, useRouter } from "next/navigation";
 import { useEffect } from "react";
-import Service from "@/service/shared/Service";
 import { Session } from "next-auth";
+
+import Service from "@/service/shared/Service";
 
 export interface AuthProps {
   requiredRoles?: string[];
@@ -34,9 +34,17 @@ export const useAuth = ({
   const user = data?.user;
   const roles = user?.role.split(",").map((role) => role.trim().toLowerCase());
   let isAuthorized = status == "authenticated";
-  isAuthorized &&= requiredRoles?.every(role => roles?.includes(role.trim().toLowerCase())) ?? true;
-  isAuthorized &&= lockedRoles?.every(role => !roles?.includes(role.trim().toLowerCase())) ?? true;
-  const isSiteSessionExpired = data?.expires ? new Date(data?.expires) < new Date() : false;
+
+  isAuthorized &&=
+    requiredRoles?.every((role) =>
+      roles?.includes(role.trim().toLowerCase())
+    ) ?? true;
+  isAuthorized &&=
+    lockedRoles?.every((role) => !roles?.includes(role.trim().toLowerCase())) ??
+    true;
+  const isSiteSessionExpired = data?.expires
+    ? new Date(data?.expires) < new Date()
+    : false;
 
   useEffect(() => {
     if (status == "loading") return;
@@ -47,6 +55,7 @@ export const useAuth = ({
     if (status == "unauthenticated") {
       if (redirect && path != pages.signIn && path != pages.newUser)
         router.push(pages.signIn);
+
       return;
     }
 
@@ -58,6 +67,7 @@ export const useAuth = ({
 
   if (status == "loading") return { status };
   if (status == "unauthenticated") return { status: "unauthorized" };
+
   return {
     status: isAuthorized ? "authorized" : "unauthorized",
     user: data ? data : undefined,
@@ -68,8 +78,10 @@ export const useAuthService = (
   service: Service
 ): "success" | "loading" | "error" => {
   const { status, user } = useAuth();
+
   if (status == "loading") return status;
   if (status == "unauthorized") return "error";
   service.addJWTtoken(user?.user.accessToken!);
+
   return "success";
 };

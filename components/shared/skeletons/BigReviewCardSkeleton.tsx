@@ -1,5 +1,5 @@
-import React from 'react';
-import { Skeleton } from '@nextui-org/react';
+import React from "react";
+import { Skeleton } from "@nextui-org/react";
 
 const BigReviewCardSkeleton = () => {
   return (
@@ -7,9 +7,7 @@ const BigReviewCardSkeleton = () => {
       <div className="flex gap-4">
         {/* Avatar Skeleton */}
         <div className="flex-shrink-0">
-          <Skeleton 
-            className="w-16 h-16 rounded-full" 
-          />
+          <Skeleton className="w-16 h-16 rounded-full" />
         </div>
 
         {/* Content Skeleton */}

@@ -1,16 +1,17 @@
 "use client";
-import TourCarousel from "../TourCarousel";
+import { SortDescriptor } from "@nextui-org/react";
+import { LoadingState } from "@react-types/shared";
+import React, { useEffect, useState } from "react";
+
 import { GetTourDto } from "@/AppDtos/Dto/Models/Tours/get-tour-dto";
 import { ReturnPageDto } from "@/AppDtos/Shared/return-page-dto";
 import useDebounceState from "@/hooks/useDebounceState";
 import useGetPageOfItems from "@/hooks/useGetPageOfItems";
 import { TourService } from "@/service/crudServices/TourService";
-import { SortDescriptor } from "@nextui-org/react";
-import { LoadingState } from "@react-types/shared";
-import React, { useEffect, useState } from "react";
-
 import CarouselSkeleton from "@/components/shared/skeletons/CarouselSkeleton";
 import { FilterDto } from "@/AppDtos/Shared/filter-dto";
+
+import TourCarousel from "../TourCarousel";
 
 const RecomendedToursCarouselForHotel = ({ hotelId }: { hotelId: string }) => {
   const [perPage, setPerPage] = useState("6");
@@ -61,8 +62,8 @@ const RecomendedToursCarouselForHotel = ({ hotelId }: { hotelId: string }) => {
   ) : (
     <>
       <TourCarousel
-        tours={items?.models as any}
         title={"Тури, що входять до готелю"}
+        tours={items?.models as any}
       />
     </>
   );

@@ -1,10 +1,16 @@
-import React, { useState } from 'react';
-import { Card, Image, Skeleton } from "@nextui-org/react";
-import { ChevronLeft, ChevronRight } from 'lucide-react';
-import { GetReviewDto } from '@/AppDtos/Dto/Models/Reviews/get-review-dto';
-import ReviewCardSkeleton from './ReviewCardSkeleton';
+import React, { useState } from "react";
+import { Card, Skeleton } from "@nextui-org/react";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 
-const ReviewCardCarouselSkeleton = ({ reviews }: { reviews: GetReviewDto[] }) => {
+import { GetReviewDto } from "@/AppDtos/Dto/Models/Reviews/get-review-dto";
+
+import ReviewCardSkeleton from "./ReviewCardSkeleton";
+
+const ReviewCardCarouselSkeleton = ({
+  reviews,
+}: {
+  reviews: GetReviewDto[];
+}) => {
   const [currentIndex, setCurrentIndex] = useState<number>(0);
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
@@ -57,19 +63,19 @@ const ReviewCardCarouselSkeleton = ({ reviews }: { reviews: GetReviewDto[] }) =>
         </div>
 
         <button
-          onClick={handlePrev}
+          aria-label="Previous slide"
           className="absolute left-0 top-1/3 -translate-y-1/2 -translate-x-4 bg-white p-2 rounded-full shadow-lg hover:bg-gray-100 z-10"
           type="button"
-          aria-label="Previous slide"
+          onClick={handlePrev}
         >
           <ChevronLeft className="w-6 h-6" />
         </button>
 
         <button
-          onClick={handleNext}
+          aria-label="Next slide"
           className="absolute right-0 top-1/3 -translate-y-1/2 translate-x-4 bg-white p-2 rounded-full shadow-lg hover:bg-gray-100 z-10"
           type="button"
-          aria-label="Next slide"
+          onClick={handleNext}
         >
           <ChevronRight className="w-6 h-6" />
         </button>

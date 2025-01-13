@@ -1,10 +1,8 @@
-import NextAuth from "next-auth";
 import { DecodedToken } from "./DecodedToken";
-
 
 declare module "next-auth" {
   interface Session {
-    decodeToken: DecodedToken,
+    decodeToken: DecodedToken;
     user: {
       id: string;
       username: string;
@@ -15,6 +13,5 @@ declare module "next-auth" {
       role: string;
       iconNumber: string;
     };
-
   }
 }

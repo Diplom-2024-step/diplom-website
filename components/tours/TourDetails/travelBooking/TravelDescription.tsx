@@ -1,11 +1,12 @@
 "use client";
+import React from "react";
+
 import { GetTourDto } from "@/AppDtos/Dto/Models/Tours/get-tour-dto";
 import TravelBooking from "@/components/tours/TourDetails/travelBooking/TravelBooking";
 import CountryDescription from "@/components/tours/TourDetails/CountryDescription";
-import React, { useEffect, useState } from "react";
 import { useTravelBookingContextInjectedHotel } from "@/components/providers/TravelBookingProvider";
+
 import BookingDescription from "./BookingDescription";
-import SpainBack from "@/components/tours/TourDetails/CountryDescriptionImages/spainBack.webp";
 
 const TravelDescription = ({ tour }: { tour: GetTourDto }) => {
   const {
