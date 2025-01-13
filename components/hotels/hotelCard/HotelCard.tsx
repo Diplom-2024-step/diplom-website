@@ -173,7 +173,7 @@ const HotelCard = ({
               <span className="text-lg"> / Ніч</span>
             </div>
             <Icon
-              className={`w-10 h-10 transition-transform rotate-45 text-black ${isHovered ? "-translate-y-6 text-primary" : ""}`}
+              className={` hidden md:block w-10 h-10 transition-transform rotate-45 text-black ${isHovered ? "-translate-y-6 text-primary" : ""}`}
               icon="ei:arrow-up"
             />
           </div>

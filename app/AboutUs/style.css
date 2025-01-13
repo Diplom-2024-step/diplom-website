@@ -11,7 +11,7 @@ body {
 }
 @media (max-width: 430px) {
   body {
-    min-width: 429px;
+    /* min-width: 429px; */
   }
 }
 
@@ -704,6 +704,10 @@ body {
     rotate: 3deg;
   }
 }
+
+
+
+
 @media (min-width: 1100px) {
   .about-us__about-our-team-image-info-container {
     display: grid;
@@ -733,6 +737,11 @@ body {
   .about-us__about-our-team-image-container {
     grid-column: 1/2;
     padding-bottom: 491px;
+  }
+}
+@media (max-width: 433px) {
+  .about-us__about-our-team-info-container{
+    padding: 400px 0 60px;
   }
 }
 .about-us__about-our-team-info-container {

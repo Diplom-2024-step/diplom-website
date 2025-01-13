@@ -13,7 +13,7 @@ import ReviewsOnAboutUsPage from "@/components/reviews/ReviewsOnAboutUsPage";
 
 const Page = () => {
   return (
-    <section className="about-us">
+    <section className="about-us overflow-x-hidden">
       <div className="container mx-auto">
         <div className="about-us__content">
           <div className="about-us__main-container about-us__main-block">
@@ -208,7 +208,7 @@ const Page = () => {
                   </div>
 
                   <div className="about-us__info-by-year-container">
-                    <p className="about-us__info-by-year">
+                    <p className="about-us__info-by-year ">
                       "Наша подорож розпочалася з невеликої команди ентузіастів,
                       які прагнули змінити підхід до організації подорожей,
                       зробивши їх комфортними та доступними для кожного."
@@ -298,8 +298,8 @@ const Page = () => {
                 
                 />
 
-                <div className="about-us__about-our-team-info-container">
-                  <p className="about-us__about-our-team-info">
+                <div className="about-us__about-our-team-info-container ">
+                  <p className="about-us__about-our-team-info ">
                     <span className="about-us__about-our-team-info--bold">
                       Наша команда
                     </span>{" "}
