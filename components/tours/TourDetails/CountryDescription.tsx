@@ -60,7 +60,7 @@ const CountryDescription = ({ countryName }: { countryName: string }) => {
           },
         ],
       };
-    } else if (countryName === "Єгипт") {
+    } else if (countryName === "Єгипeт") {
       return {
         name: countryName,
         description:
@@ -173,12 +173,12 @@ const CountryDescription = ({ countryName }: { countryName: string }) => {
     name: string;
     description: string;
   }) => (
-    <div className="flex flex-col items-center content-center text-center w-[33%]">
+    <div className="flex flex-col items-center content-center text-center lg:w-[33%] w-[50%]">
       <Image alt={name} src={image} />
-      <p className="text-[18px] font-bold text-unbounded text-white mt-[10px] mb-[10px]">
+      <p className="text-[18px] font-bold font-unbounded text-white mt-[10px] mb-[10px]">
         {name}
       </p>
-      <p className="text-[15px] text-nunito_font_family text-white w-[150px]">
+      <p className="text-[15px] font-nunito_font_family text-white w-[150px]">
         {description}
       </p>
     </div>
@@ -186,24 +186,25 @@ const CountryDescription = ({ countryName }: { countryName: string }) => {
 
   return (
     <div
-      className="flex flex-col items-end bg-cover bg-center h-full rounded-xl"
+      className="flex flex-col items-end bg-cover bg-center h-full w-full rounded-xl p-5"
       style={{
         backgroundImage: `url(${(country?.backgroundImage as StaticImageData).src})`,
+        backgroundRepeat: "no-repeat",
       }}
     >
-      <div className="flex flex-col w-[55%] h-full mt-[40px] mr-[30px]">
-        <div className="flex flex-col w-full h-[40%]">
-          <p className="text-[35px] text-unbounded text-white ">Про країну</p>
+      <div className="flex flex-col lg:w-[55%] w-full h-full lg:mt-[40px] mt-[20px] lg:mr-[30px]">
+        <div className="flex flex-col w-full lg:h-[40%] h-[50%]">
+          <p className="text-[35px] font-unbounded text-white ">Про країну</p>
           <p
             dangerouslySetInnerHTML={{ __html: boldFirstWordDescription! }}
             className="flex flex-col space-y-3 text-[17px] text-nunito_font_family text-white"
           />
         </div>
         <div className="h-full mt-[10px]">
-          <p className="text-[17px] text-nunito_font_family text-white mb-[20px] font-bold">
+          <p className="text-[17px] font-nunito_font_family text-white mb-[20px] font-bold">
             Чим славиться:
           </p>
-          <div className="flex">
+          <div className="flex flex-row-reverse flex-wrap">
             {country?.images
               .slice(0, 3)
               .map((image, index) => (
