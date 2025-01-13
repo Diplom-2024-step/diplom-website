@@ -9,7 +9,9 @@ const DeleteAllFiltersButton = () => {
   const router = useRouter();
 
   const handleClearParams = () => {
-    router.push(pathname);
+    router.push(pathname, {
+      scroll: false
+    });
   };
 
   return (
