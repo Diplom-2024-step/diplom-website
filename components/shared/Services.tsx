@@ -99,7 +99,7 @@ const Services = () => {
 
   return (
     <div
-      className="flex flex-col w-full h-full justify-center items-center text-center bg-cover bg-center bg-no-repeat"
+      className="flex flex-col w-full h-full justify-center overflow-x-hidden items-center text-center bg-cover bg-center bg-no-repeat"
       id="services"
       style={{
         backgroundImage: `url(${servicesBackgroundImage.src})`,
