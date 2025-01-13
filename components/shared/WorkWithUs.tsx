@@ -1,5 +1,5 @@
 // WorkWithUs.tsx
-import React from "react";
+import React, { useMemo, useState } from "react";
 import { Button } from "@nextui-org/react";
 import { Input } from "@nextui-org/react";
 import Image from "next/image";
@@ -63,14 +63,53 @@ export const messages = [
 ];
 
 const WorkWithUs: React.FC = () => {
+  const validatePhoneNumber = (value: string) =>
+    value.match(/^\+380\d{2}\d{3}\d{2}\d{2}$/);
+
+  const validateEmail = (value: string) =>
+    value.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/);
+
   const { isOpen, onOpen, onClose, onOpenChange } = useDisclosure();
+
+  const [phoneNumber, setPhoneNumber] = useState("");
+  const [fullName, setFullName] = useState("");
+  const [email, setEmail] = useState("");
+  const [selectedTopic, setSelectedTopic] = useState("");
 
   const handleOpenModal = () => {
     onOpen();
   };
   const handleCloseModal = () => {
+    setPhoneNumber("")
+    setSelectedTopic("");
+    setFullName("");
+    setEmail("");
+
     onClose();
   };
+
+
+  const isInvalidPhoneNumber = useMemo(() => {
+    if (phoneNumber === "") return false;
+    return !validatePhoneNumber(phoneNumber);
+  }, [phoneNumber]);
+
+  const isInvalidEmail = useMemo(() => {
+    if (email === "") return false;
+    return !validateEmail(email);
+  }, [email]);
+
+  const isFormValid = useMemo(() => {
+    return (
+      phoneNumber !== "" &&
+      !isInvalidPhoneNumber &&
+      fullName !== "" &&
+      email !== "" &&
+      !isInvalidEmail &&
+      selectedTopic !== ""
+    );
+  }, [phoneNumber, isInvalidPhoneNumber, fullName, email, isInvalidEmail, selectedTopic]);
+
 
   return (
     <div>
@@ -293,7 +332,7 @@ const WorkWithUs: React.FC = () => {
       </div>
       <Modal
         classNames={{
-          base: "bg-transparent", // Прозрачный фон модального окна
+          base: "bg-transparent",
         }}
         isOpen={isOpen}
         motionProps={{
@@ -335,6 +374,7 @@ const WorkWithUs: React.FC = () => {
                 radius="full"
                 size="lg"
                 variant="bordered"
+                onSelectionChange={(key) => setSelectedTopic(String(key))}
               >
                 {(item) => (
                   <AutocompleteItem
@@ -351,25 +391,36 @@ const WorkWithUs: React.FC = () => {
                   label="Телефон"
                   radius="full"
                   size="lg"
-                  type="telephone"
+                  type="tel"
                   variant="bordered"
+                  isInvalid={isInvalidPhoneNumber}
+                  value={phoneNumber}
+                  onChange={(e) => setPhoneNumber(e.target.value)}
+                  placeholder="+380000000000"
+                  errorMessage={isInvalidPhoneNumber ? "Введіть дійсний номер телефону" : ""}
                 />
                 <Input
                   className="font-nunito_font_family"
                   label="Ім'я"
                   radius="full"
                   size="lg"
-                  type="name"
+                  type="text"
+                  value={fullName}
+                  onChange={(e) => setFullName(e.target.value)}
                   variant="bordered"
                 />
               </div>
               <Input
                 className="font-nunito_font_family mt-5"
-                label="Елктронна адреса"
+                label="Електронна адреса"
                 radius="full"
                 size="lg"
                 type="email"
                 variant="bordered"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                isInvalid={isInvalidEmail}
+                errorMessage={isInvalidEmail ? "Введіть дійсну електронну адресу" : ""}
               />
               <p className="text-[18px] font-nunito_font_family mt-1">
                 Для надсилання додаткової інформації
@@ -378,7 +429,8 @@ const WorkWithUs: React.FC = () => {
                 className="mt-3 bg-[#5DB3C1] text-white text-[18px] px-10 transition-colors duration-200 w-[140px]"
                 radius="full"
                 size="md"
-                onPress={() => handleCloseModal()}
+                onPress={handleCloseModal}
+                isDisabled={!isFormValid}
               >
                 Замовити
               </Button>

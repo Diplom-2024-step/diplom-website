@@ -71,7 +71,7 @@ const Footer = () => {
         </div>
 
         <div
-          className="bg-cover bg-center p-10 w-5/6 flex flex-col justify-between bg-cover bg-no-repeat "
+          className="bg-cover bg-center p-10 w-5/6 flex flex-col justify-between  bg-no-repeat "
           style={{
             backgroundImage: `linear-gradient(to top, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.2)), url(${footerBackImage.src})`,
           }}
@@ -117,7 +117,7 @@ const Footer = () => {
               <div className="text-white w-[33%]">
                 <ul className="space-y-6">
                   <li>
-                    <a className="hover:underline" href="/aboutUs">
+                    <a className="hover:underline" href="/AboutUs">
                       Про нас
                     </a>
                   </li>
@@ -183,7 +183,7 @@ const Footer = () => {
               <div className="text-white w-[40%]">
                 <ul className="space-y-6">
                   <li>
-                    <a className="hover:underline" href="/aboutUs">
+                    <a className="hover:underline" href="/AboutUs">
                       Про нас
                     </a>
                   </li>

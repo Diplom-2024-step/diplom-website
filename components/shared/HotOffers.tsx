@@ -72,7 +72,11 @@ const HotDestinations = () => {
             router.push(`/tours/${items?.models[0].id}`);
           }}
         >
-          <CardHeader className="absolute z-10 top-1 flex-col !items-end">
+          <CardHeader className="absolute z-10 top-1 flex justify-between">
+             <Icon
+                  className="w-[35px] h-[35px] mr-[15px] text-white"
+                  icon="mdi:flame"
+                />
             <div className="flex flex-col justify-center bg-customBlack bg-opacity-50 h-[30px] p-3 rounded-xl mt-[10px]">
               <p className="text-[15px] text-white uppercase font-bold">
                 {items?.models[0].priceUSD!} ₴ / Цена
@@ -107,7 +111,7 @@ const HotDestinations = () => {
             <Card
               isHoverable
               isPressable
-              className="flex flex-col justify-between col-span-12 sm:col-span-4 min-h-[240px] min-w-[280px] mr-[35px] bg-cover bg-center cursor-pointer"
+              className="flex flex-col justify-between col-span-12 sm:col-span-4 min-h-[240px] min-w-[280px] mr-[35px] bg-cover bg-center cursor-pointer group"
               style={{
                 backgroundImage: `linear-gradient(to top, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0)), url(${testicon1.src})`,
               }}
@@ -141,18 +145,18 @@ const HotDestinations = () => {
                   </div>
                 </div>
                 <button className="absolute bottom-4 right-4 rounded-full">
-                  <Icon
-                    className={`w-10 h-10 transition-transform rotate-45 text-white
+                   <Icon
+                className={`w-10 h-10 transition-transform rotate-45 text-white group-hover:-translate-y-5 group-hover:text-primary
                 }`}
-                    icon="ei:arrow-up"
-                  />
+                icon="ei:arrow-up"
+              />
                 </button>
               </CardFooter>
             </Card>
             <Card
               isHoverable
               isPressable
-              className="flex flex-col justify-between col-span-12 sm:col-span-4 min-h-[240px] min-w-[280px] bg-cover bg-center cursor-pointer"
+              className="flex flex-col justify-between col-span-12 sm:col-span-4 min-h-[240px] min-w-[280px] bg-cover bg-center cursor-pointer group"
               style={{
                 backgroundImage: `linear-gradient(to top, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0)), url(${testicon2.src})`,
               }}
@@ -186,11 +190,11 @@ const HotDestinations = () => {
                   </div>
                 </div>
                 <button className="absolute bottom-4 right-4 rounded-full ">
-                  <Icon
-                    className={`w-10 h-10 transition-transform rotate-45 text-white
+                   <Icon
+                className={`w-10 h-10 transition-transform rotate-45 text-white group-hover:-translate-y-5 group-hover:text-primary
                 }`}
-                    icon="ei:arrow-up"
-                  />
+                icon="ei:arrow-up"
+              />
                 </button>
               </CardFooter>
             </Card>
@@ -199,7 +203,7 @@ const HotDestinations = () => {
             <Card
               isHoverable
               isPressable
-              className="flex flex-col justify-between col-span-12 sm:col-span-4 min-h-[240px] w-full mt-[40px] bg-cover bg-center cursor-pointer"
+              className="flex flex-col justify-between col-span-12 sm:col-span-4 min-h-[240px] w-full mt-[40px] bg-cover bg-center cursor-pointer group"
               style={{
                 backgroundImage: `linear-gradient(to top, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0)), url(${testicon3.src})`,
               }}
@@ -233,11 +237,11 @@ const HotDestinations = () => {
                   </div>
                 </div>
                 <button className="absolute bottom-4 right-4 rounded-full ">
-                  <Icon
-                    className={`w-10 h-10 transition-transform rotate-45 text-white
+                   <Icon
+                className={`w-10 h-10 transition-transform rotate-45 text-white group-hover:-translate-y-5 group-hover:text-primary
                 }`}
-                    icon="ei:arrow-up"
-                  />
+                icon="ei:arrow-up"
+              />
                 </button>
               </CardFooter>
             </Card>
