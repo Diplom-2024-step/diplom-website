@@ -31,23 +31,23 @@ const TravelDescription = ({ tour }: { tour: GetTourDto }) => {
       <TravelBooking tour={tour} />
 
       <div className="bg-white rounded-xl">
-        <div className="h-[740px]">
+        <div className="lg:h-[760px] h-[1300px]">
           <CountryDescription countryName={tour.hotel.city.country.name} />
         </div>
         <div className="p-10">
           <div>
-            <p className="text-black font-bold mb-5 text-[50px] text-unbounded">
+            <p className="text-black font-bold mb-5 text-[50px] font-unbounded">
               Опис туру
             </p>
           </div>
           <div>
-            <p className="text-[23px] text-nunito_font_family">
+            <p className="text-[23px] font-nunito_font_family">
               Головна ідея наших турів полягає у тому, що до кожного туру ви
               можете обрати будь-який інший готель, що вам запропоновано. Тобто
               є тур з вже включеним готелем, але ви можете змінити його на інший
               в рамках цієї країни, яку ви обрали.
             </p>
-            <p className="mt-10 text-[23px] text-nunito_font_family">
+            <p className="mt-10 text-[23px] font-nunito_font_family">
               Також ще одна наша фішка - це активні відпочинки, які ви зможете
               додати в готелі. Ця послуга виключно від турагентства. Ми
               пропонуємо вам більший вибір готелів та будь-які види активного
