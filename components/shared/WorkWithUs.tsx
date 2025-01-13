@@ -113,7 +113,7 @@ const WorkWithUs: React.FC = () => {
 
   return (
     <div>
-      <div className="hidden lg:flex flex-col bg-[#e1ebf1] my-8 py-10 text-center overflow-hidden">
+      <div id="workWithUs" className="hidden lg:flex flex-col bg-[#e1ebf1] my-8 py-10 text-center overflow-hidden">
         <h2
           className="text-[26px] font-bold text-gray-800 mb-12"
           style={{ fontFamily: "Unbounded, sans-serif" }}

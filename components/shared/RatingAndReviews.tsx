@@ -167,7 +167,7 @@ const RatingAndReviews = () => {
         <Link
           className="flex items-center m-[45px] p-2 group backdrop-blur-sm rounded-full 
               transition-all duration-300 "
-          href={"/aboutUs#reviews"}
+          href={"/AboutUs#reviews"}
         >
           <p className="text-black text-[20px]">Переглянути більше</p>
           <Icon
