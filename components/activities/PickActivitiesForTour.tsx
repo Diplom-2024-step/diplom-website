@@ -25,7 +25,7 @@ const PickActivitiesForTour = () => {
 
       {activities.length !== 0 ? (
         <div className="flex-row w-full rounded-md shadow-lg mt-5 bg-white h-[330px]">
-          <div className="flex  justify-between items-center    w-full h-full">
+          <div className="flex  justify-between items-center w-full h-full">
             <div
               className="w-[80%] flex justify-start overflow-hidden "
               style={{

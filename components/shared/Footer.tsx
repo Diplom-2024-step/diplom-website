@@ -180,7 +180,9 @@ const Footer = () => {
             <div className="text-white w-full">
               <ul className="flex">
                 <li className="w-[60%]">
+                <Link href={'/'}>
                   <p className="hover:underline">Країни</p>
+</Link>
                 </li>
                 <li className="w-[40%]">
                   <a className="hover:underline" href="/tours/">
@@ -192,9 +194,11 @@ const Footer = () => {
             <div className="flex w-full mt-5">
               <div className="text-white w-[60%]">
                 <ul className="space-y-6">
+                  <Link href={'/#services'}>
                   <li>
                     <p className="hover:underline">Туристам</p>
                   </li>
+</Link>
                   <li>
                     <div className="flex flex-col gap-4">
                       <Link href={'/#workWithUs'}>
@@ -228,11 +232,13 @@ const Footer = () => {
 
               <div className="text-white w-[40%]">
                 <ul className="space-y-6">
-                  <li>
+
                     <Link className="hover:underline" href="/AboutUs">
+                  <li>
                       Про нас
-                    </Link>
                   </li>
+
+                    </Link>
                   <li>
                     <div className="flex flex-col gap-4">
                       <Link href={'/AboutUs'}>
