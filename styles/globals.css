@@ -53,9 +53,9 @@
 
 /*Карусель туров*/
 
-@media (max-width: 767px) {
+@media (max-width: 430px) {
   .carousel-block {
-    max-width: 500px;
+    max-width: 430px;
   }
 
   .carousel-title {
