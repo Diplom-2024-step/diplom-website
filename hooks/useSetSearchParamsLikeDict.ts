@@ -14,7 +14,9 @@ export function useSetSearchPropsLikeDict() {
         if (value) params.set(key, value);
         else params.delete(key);
       });
-      router.push(pathname + "?" + params.toString());
+      router.push(pathname + "?" + params.toString(), {
+        scroll: false
+      });
     },
     [search]
   );

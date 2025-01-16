@@ -52,7 +52,7 @@ const PickActivitiesForTour = () => {
         <Card
           isHoverable
           isPressable
-          className="flex flex-col w-full rounded-md shadow-lg mt-5 bg-white h-[330px]"
+          className="flex flex-col w-full rounded-md shadow-lg mt-5 bg-white h-[220px] md:h-[330px]"
           onClick={() => router.push(`${pathname}/activities`)}
         >
           <Image

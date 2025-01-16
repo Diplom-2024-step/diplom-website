@@ -9,13 +9,15 @@ const DeleteAllFiltersButton = () => {
   const router = useRouter();
 
   const handleClearParams = () => {
-    router.push(pathname);
+    router.push(pathname, {
+      scroll: false
+    });
   };
 
   return (
     <Tooltip closeDelay={0} content="Відмінити всі фільтри" delay={0}>
       <button
-        className="group hover:scale-110 transition-all duration-300 ease-in-out cursor-pointer"
+        className="group hover:scale-110 transition-all mb-auto duration-300 ease-in-out cursor-pointer"
         onClick={handleClearParams}
       >
         <Icon

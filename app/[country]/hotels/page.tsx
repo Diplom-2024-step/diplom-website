@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Button, SortDescriptor } from "@nextui-org/react";
 import { LoadingState } from "@react-types/shared";
 import { Icon } from "@iconify/react";
@@ -36,6 +36,8 @@ const Page = ({ params }: { params: { country: string } }) => {
   const [roomTypesIds, setRoomTypesIds] = useSearchParam("roomTypes");
 
   const [inHotelsIds, setInHotelsIds] = useSearchParam("inHotels");
+
+  const [deletePage, setDeletePage] =  useState(false);
 
   const [perPage, setPerPage] = useState("9");
   const [perPageState, setPerPageState] = useDebounceState(
@@ -144,7 +146,10 @@ const Page = ({ params }: { params: { country: string } }) => {
       });
     }
 
-    setPage(undefined);
+    if (deletePage){
+      setPage(undefined);
+      setDeletePage(false);
+    }
     setFilters(newFilters);
     setIsFilterSet(true);
   }, [
@@ -183,7 +188,7 @@ const Page = ({ params }: { params: { country: string } }) => {
         <HotelCarouselRecommendation />
         <div className="w-full flex justify-between max-w-6xl mx-auto px-4 mt-20">
           <span>
-            <h2 className="text-5xl font-bold mb-6 text-black  font-unbounded">
+            <h2 className="text-4xl md:text-5xl font-bold mb-6 text-black  font-unbounded">
               Доступні готелі
             </h2>
           </span>
@@ -208,6 +213,7 @@ const Page = ({ params }: { params: { country: string } }) => {
             outsideRoomTypesIds={roomTypesIds ? roomTypesIds.split(",") : []}
             stars={stars}
             onClose={() => {
+              setDeletePage(true);
               setIsSearchSettingsOpen(false);
             }}
           />

@@ -134,7 +134,10 @@ const Services = () => {
                     onTouchEnd={(e) => handleTouchEnd(e, service)}
                     onTouchStart={handleTouchStart}
                   >
-                    <div className="flex flex-col w-[170px] h-[168px] bg-white rounded-full justify-center items-center text-center">
+                    <div className="flex flex-col w-[170px] h-[168px] bg-white rounded-full justify-center items-center text-center cursor-pointer"
+                    role="button"
+                    onClick={() => handleOpenModal(service)}
+                    >
                       <Icon
                         className="absolute top-8 w-[50px] h-[100px] text-customAqua"
                         icon={service.image}
@@ -203,8 +206,10 @@ const Services = () => {
       <div>
         <Modal
           className="lg:hidden"
+          backdrop="transparent"
           classNames={{
-            base: "bg-transparent",
+            
+            base: "bg-transparent border-none shadow-none",
           }}
           isOpen={isOpen}
           motionProps={{
@@ -250,7 +255,7 @@ const Services = () => {
                     </div>
                     <div className="rounded-bl-[50px] rounded-tl-[100px] rounded-br-[50px] mx-auto bg-gradient-to-t from-[#FFFFFF] to-[#71BCC8] shadow-lg p-6 max-w-[400px] h-[350px] ">
                       <div className="flex flex-col items-center justify-center h-full pt-[70px]">
-                        <p className="text-[16px] text-center text-cyan-900 italic">
+                        <p className="text-[16px] text-center text-cyan-900 italic mt-5">
                           {selectedService.description}
                         </p>
                       </div>
@@ -274,8 +279,10 @@ const Services = () => {
 
         <Modal
           className="hidden lg:flex"
+
+          backdrop="transparent"
           classNames={{
-            base: "bg-transparent",
+            base: "bg-transparent border-none shadow-none",
           }}
           isOpen={isOpen}
           motionProps={{

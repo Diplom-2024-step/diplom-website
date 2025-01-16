@@ -126,7 +126,6 @@ body {
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
-  background-image: url(../../assets/images/about_as/main-image-about-us.jpg);
   width: 100%;
   padding-bottom: 100%;
 }
@@ -207,7 +206,6 @@ body {
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
-    background-image: url(../../assets/images/about_as/main-image-about-us.jpg);
     width: 100%;
     padding-bottom: 200px;
     border-radius: 55px 0;
@@ -342,7 +340,6 @@ body {
     background-position: center;
     background-size: contain;
     background-repeat: no-repeat;
-    background-image: url(../../assets/images/about_as/main-image-about-us-2.jpg);
     width: 200px;
   }
 }
@@ -536,16 +533,16 @@ body {
   padding-bottom: 100%;
 }
 .about-us__why-are-we-here-image-container--1 {
-  background-image: url(../../assets/images/about_as/why-are-we-here-img-1.jpg);
+  /* background-image: url(../../assets/images/about_as/why-are-we-here-img-1.webp); */
 }
 .about-us__why-are-we-here-image-container--2 {
-  background-image: url(../../assets/images/about_as/why-are-we-here-img-2.jpg);
+  /* background-image: url(../../assets/images/about_as/why-are-we-here-img-2.webp); */
 }
 .about-us__why-are-we-here-image-container--3 {
-  background-image: url(../../assets/images/about_as/why-are-we-here-img-3.jpg);
+  /* background-image: url(../../assets/images/about_as/why-are-we-here-img-3.webp); */
 }
 .about-us__why-are-we-here-image-container--4 {
-  background-image: url(../../assets/images/about_as/why-are-we-here-img-4.jpg);
+  /* background-image: url(../../assets/images/about_as/why-are-we-here-img-4.webp); */
 }
 .about-us__why-are-we-here-block-info {
   margin: 0;
@@ -686,7 +683,6 @@ body {
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
-  background-image: url(../../assets/images/about_as/Our-team-2.jpg);
   width: 80%;
   padding-bottom: 345px;
 }
@@ -724,7 +720,6 @@ body {
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
-  background-image: url(../../assets/images/about_as/Our-team-1.jpg);
   width: 100%;
   padding-bottom: 100%;
 }
