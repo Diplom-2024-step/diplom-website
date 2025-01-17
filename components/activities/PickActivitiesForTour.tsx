@@ -3,8 +3,10 @@ import React, { useEffect, useRef, useState } from "react";
 import { usePathname, useRouter } from "next/navigation";
 import { Image } from "@nextui-org/image";
 import { Card } from "@nextui-org/card";
+
 import activityPlaceholder from "../../assets/images/activities/activity-placeholder.webp";
 import { useTravelBookingContext } from "../providers/TravelBookingProvider";
+
 import InnerActivityCard from "./shared/InnerActivityCard";
 
 const PickActivitiesForTour = () => {
@@ -18,11 +20,13 @@ const PickActivitiesForTour = () => {
 
   // Determine number of visible items based on screen size
   const getVisibleItems = () => {
-    if (typeof window !== 'undefined') {
+    if (typeof window !== "undefined") {
       if (window.innerWidth < 640) return 1; // Mobile
       if (window.innerWidth < 1024) return 3; // Tablet
+
       return 5; // Desktop
     }
+
     return 5;
   };
 
@@ -32,54 +36,55 @@ const PickActivitiesForTour = () => {
     const handleResize = () => {
       setVisibleItems(getVisibleItems());
       // Reset current index if it would cause empty space
-      setCurrentIndex(prev => 
+      setCurrentIndex((prev) =>
         Math.min(prev, Math.max(0, activities.length - getVisibleItems()))
       );
     };
 
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
+    window.addEventListener("resize", handleResize);
+
+    return () => window.removeEventListener("resize", handleResize);
   }, [activities.length]);
 
-  const handleTouchStart = (e:any) => {
+  const handleTouchStart = (e: any) => {
     setStartX(e.touches[0].clientX);
     setIsDragging(true);
   };
 
-  const handleMouseStart = (e:any) => {
+  const handleMouseStart = (e: any) => {
     e.preventDefault();
     setStartX(e.clientX);
     setIsDragging(true);
   };
 
-  const handleTouchMove = (e:any) => {
+  const handleTouchMove = (e: any) => {
     if (!isDragging || !startX) return;
-    
+
     const currentX = e.touches[0].clientX;
     const diff = startX - currentX;
-    
+
     if (Math.abs(diff) > 50) {
       if (diff > 0 && currentIndex < activities.length / visibleItems) {
-        setCurrentIndex(prev => prev + 1);
+        setCurrentIndex((prev) => prev + 1);
       } else if (diff < 0 && currentIndex > 0) {
-        setCurrentIndex(prev => prev - 1);
+        setCurrentIndex((prev) => prev - 1);
       }
       setStartX(null);
       setIsDragging(false);
     }
   };
 
-  const handleMouseMove = (e:any) => {
+  const handleMouseMove = (e: any) => {
     if (!isDragging || !startX) return;
-    
+
     const currentX = e.clientX;
     const diff = startX - currentX;
-    
+
     if (Math.abs(diff) > 50) {
       if (diff > 0 && currentIndex < activities.length / visibleItems) {
-        setCurrentIndex(prev => prev + 1);
+        setCurrentIndex((prev) => prev + 1);
       } else if (diff < 0 && currentIndex > 0) {
-        setCurrentIndex(prev => prev - 1);
+        setCurrentIndex((prev) => prev - 1);
       }
       setStartX(null);
       setIsDragging(false);
@@ -93,16 +98,17 @@ const PickActivitiesForTour = () => {
 
   useEffect(() => {
     const container = containerRef.current as any;
+
     if (!container) return;
 
-    container.addEventListener('mousemove', handleMouseMove);
-    container.addEventListener('mouseup', handleDragEnd);
-    container.addEventListener('mouseleave', handleDragEnd);
+    container.addEventListener("mousemove", handleMouseMove);
+    container.addEventListener("mouseup", handleDragEnd);
+    container.addEventListener("mouseleave", handleDragEnd);
 
     return () => {
-      container.removeEventListener('mousemove', handleMouseMove);
-      container.removeEventListener('mouseup', handleDragEnd);
-      container.removeEventListener('mouseleave', handleDragEnd);
+      container.removeEventListener("mousemove", handleMouseMove);
+      container.removeEventListener("mouseup", handleDragEnd);
+      container.removeEventListener("mouseleave", handleDragEnd);
     };
   }, [isDragging, startX]);
 
@@ -120,34 +126,39 @@ const PickActivitiesForTour = () => {
             <div className="relative w-full overflow-hidden">
               {isSwipeable && currentIndex > 0 && (
                 <button
-                  onClick={() => setCurrentIndex(prev => Math.max(0, prev - 1))}
                   className="absolute left-0 top-1/2 z-10 -translate-y-1/2 bg-white/80 p-2 rounded-full shadow-lg"
+                  onClick={() =>
+                    setCurrentIndex((prev) => Math.max(0, prev - 1))
+                  }
                 >
                   ←
                 </button>
               )}
-              
+
               <div
                 ref={containerRef}
                 className="flex justify-start overflow-hidden"
-                onTouchStart={isSwipeable ? handleTouchStart : undefined}
-                onTouchMove={isSwipeable ? handleTouchMove : undefined}
-                onTouchEnd={isSwipeable ? handleDragEnd : undefined}
-                onMouseDown={isSwipeable ? handleMouseStart : undefined}
+                role="button"
                 style={{
                   transform: `translateX(-${currentIndex * (visibleItems === 1 ? 12.5 : 25)}%)`,
-                  transition: isDragging ? 'none' : 'transform 0.3s ease-out',
-                  width: `${(100 + (activities.length > visibleItems ? (activities.length / visibleItems) * (100 / visibleItems) : 0))}%`,
-                  cursor: isSwipeable ? 'grab' : 'default',
+                  transition: isDragging ? "none" : "transform 0.3s ease-out",
+                  width: `${100 + (activities.length > visibleItems ? (activities.length / visibleItems) * (100 / visibleItems) : 0)}%`,
+                  cursor: isSwipeable ? "grab" : "default",
                 }}
+                onMouseDown={isSwipeable ? handleMouseStart : undefined}
+                onTouchEnd={isSwipeable ? handleDragEnd : undefined}
+                onTouchMove={isSwipeable ? handleTouchMove : undefined}
+                onTouchStart={isSwipeable ? handleTouchStart : undefined}
               >
                 {activities.map((activity, index) => (
-                  <div 
-                    key={index} 
+                  <div
+                    key={index}
                     className={`${
-                      visibleItems === 1 ? 'w-full' : 
-                      visibleItems === 3 ? 'w-1/3' : 
-                      'w-1/4'
+                      visibleItems === 1
+                        ? "w-full"
+                        : visibleItems === 3
+                          ? "w-1/3"
+                          : "w-1/4"
                     } p-2 md:p-4`}
                   >
                     <InnerActivityCard activity={activity} />
@@ -155,16 +166,21 @@ const PickActivitiesForTour = () => {
                 ))}
               </div>
 
-              {isSwipeable && currentIndex < Math.trunc(activities.length / visibleItems ) && (
-                <button
-                  onClick={() => setCurrentIndex(prev => Math.min(activities.length / visibleItems, prev + 1))}
-                  className="absolute right-0 top-1/2 z-10 -translate-y-1/2 bg-white/80 p-2 rounded-full shadow-lg"
-                >
-                  →
-                </button>
-              )}
+              {isSwipeable &&
+                currentIndex < Math.trunc(activities.length / visibleItems) && (
+                  <button
+                    className="absolute right-0 top-1/2 z-10 -translate-y-1/2 bg-white/80 p-2 rounded-full shadow-lg"
+                    onClick={() =>
+                      setCurrentIndex((prev) =>
+                        Math.min(activities.length / visibleItems, prev + 1)
+                      )
+                    }
+                  >
+                    →
+                  </button>
+                )}
             </div>
-            
+
             <button
               aria-label="Toggle pickActivity"
               className="bg-primary w-[15%] md:w-[10%] rounded-l-2xl h-full flex text-center cursor-pointer hover:scale-105 duration-500 ease-in-out"

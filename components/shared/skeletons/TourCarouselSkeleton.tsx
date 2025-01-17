@@ -18,8 +18,8 @@ const TourCarouselSkeleton = () => {
           {/* Responsive container */}
           <div className="flex flex-col sm:flex-row gap-6 sm:gap-4">
             {skeletonItems.map((_, index) => (
-              <div 
-                key={index} 
+              <div
+                key={index}
                 className={`
                   w-full 
                   sm:w-1/2 
@@ -27,8 +27,8 @@ const TourCarouselSkeleton = () => {
                   flex-shrink-0 
                   px-0 
                   sm:px-2
-                  ${index > 0 ? 'hidden sm:block' : ''}
-                  ${index > 1 ? 'sm:hidden md:block' : ''}
+                  ${index > 0 ? "hidden sm:block" : ""}
+                  ${index > 1 ? "sm:hidden md:block" : ""}
                 `}
               >
                 <Card className="relative overflow-hidden" shadow="none">
@@ -99,12 +99,12 @@ const TourCarouselSkeleton = () => {
         {/* Dots skeleton - Adjusted for responsive design */}
         <div className="flex justify-center gap-2 mt-4">
           {skeletonItems.map((_, index) => (
-            <div 
-              key={index} 
+            <div
+              key={index}
               className={`
                 w-2 h-2 rounded-full bg-gray-300
-                ${index > 0 ? 'hidden sm:block' : ''}
-                ${index > 1 ? 'sm:hidden md:block' : ''}
+                ${index > 0 ? "hidden sm:block" : ""}
+                ${index > 1 ? "sm:hidden md:block" : ""}
               `}
             />
           ))}

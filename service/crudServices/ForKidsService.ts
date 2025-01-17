@@ -19,6 +19,11 @@ export class ForKidsService extends CrudService<
   UpdateForKidsDto
 > {
   public constructor() {
-    super(getForKidsDtoSchema, createForKidsDtoSchema, updateForKidsDtoSchema, "ForKids");
+    super(
+      getForKidsDtoSchema,
+      createForKidsDtoSchema,
+      updateForKidsDtoSchema,
+      "ForKids"
+    );
   }
 }

@@ -39,44 +39,47 @@ const Footer = () => {
                     src={footerPhoneImage}
                   />
                   <div className="items-center">
+                    <Link href="tel:+380687789000">
+                      <p className="mb-2">+38 (044) 601 23 77</p>
+                    </Link>
 
                     <Link href="tel:+380687789000">
-                    <p className="mb-2">+38 (044) 601 23 77</p>
-</Link>
-
-                    <Link href="tel:+380687789000">
-                    <p>+38 (068) 778 90 00</p>
-</Link>
+                      <p>+38 (068) 778 90 00</p>
+                    </Link>
                   </div>
                 </div>
               </div>
               <div className="flex flex-col justify-between ml-12 md-12 space-y-2">
-                <Link href={'https://www.youtube.com/'}>
-                <Image
-                  alt="youtube"
-                  className="w-auto max-w-[50px] h-auto max-h-[50px]"
-                  src={footerYouTubeImage}
-                />
-</Link>
-                <Link href={'https://www.instagram.com/'}>
-                <Image
-                  alt="instagram"
-                  className="w-auto max-w-[50px] h-auto max-h-[50px]"
-                  src={footerInstagramImage}
-                />
-</Link>
+                <Link href={"https://www.youtube.com/"}>
+                  <Image
+                    alt="youtube"
+                    className="w-auto max-w-[50px] h-auto max-h-[50px]"
+                    src={footerYouTubeImage}
+                  />
+                </Link>
+                <Link href={"https://www.instagram.com/"}>
+                  <Image
+                    alt="instagram"
+                    className="w-auto max-w-[50px] h-auto max-h-[50px]"
+                    src={footerInstagramImage}
+                  />
+                </Link>
 
-                <Link href={'https://www.facebook.com/'}>
-                <Image
-                  alt="facebook"
-                  className="w-auto max-w-[50px] h-auto max-h-[50px]"
-                  src={footerFacebookImage}
-                />
-</Link>
+                <Link href={"https://www.facebook.com/"}>
+                  <Image
+                    alt="facebook"
+                    className="w-auto max-w-[50px] h-auto max-h-[50px]"
+                    src={footerFacebookImage}
+                  />
+                </Link>
               </div>
             </div>
             <div className="mt-8">
-              <Button as={Link} href="/tours/" className="bg-[#5DB3C1] text-white py-2 px-4 rounded-full hover:bg-[#4da0b1]">
+              <Button
+                as={Link}
+                className="bg-[#5DB3C1] text-white py-2 px-4 rounded-full hover:bg-[#4da0b1]"
+                href="/tours/"
+              >
                 Замовити тур
               </Button>
             </div>
@@ -112,28 +115,32 @@ const Footer = () => {
                   </li>
                   <li>
                     <div className="flex flex-col gap-4">
-                      <Link href={'/#workWithUs'}>
+                      <Link href={"/#workWithUs"}>
                         <div className="flex">
-                          <Checkbox defaultSelected isReadOnly color="primary">
-                          </Checkbox>
+                          <Checkbox
+                            defaultSelected
+                            isReadOnly
+                            color="primary"
+                          />
                           <span className="text-white">Зворотній звязок</span>
                         </div>
                       </Link>
-                      <Link href={'/#services'}>
+                      <Link href={"/#services"}>
                         <div className="flex">
-
-                          <Checkbox defaultSelected isReadOnly color="primary">
-                          </Checkbox>
+                          <Checkbox
+                            defaultSelected
+                            isReadOnly
+                            color="primary"
+                          />
                           <span className="text-white">Наші послуги</span>
                         </div>
                       </Link>
-                      <Link href={'/'}>
-                      <Checkbox defaultSelected isReadOnly color="primary">
-                      </Checkbox>
+                      <Link href={"/"}>
+                        <Checkbox defaultSelected isReadOnly color="primary" />
                         <span className="text-white">
                           Перевірити статус заявки
                         </span>
-</Link>
+                      </Link>
                     </div>
                   </li>
                 </ul>
@@ -147,18 +154,24 @@ const Footer = () => {
                   </li>
                   <li>
                     <div className="flex flex-col gap-4">
-                      <Link href={'/AboutUs'}>
+                      <Link href={"/AboutUs"}>
                         <div className="flex">
-                          <Checkbox defaultSelected isReadOnly color="primary">
-                          </Checkbox>
+                          <Checkbox
+                            defaultSelected
+                            isReadOnly
+                            color="primary"
+                          />
                           <span className="text-white">Про компанію</span>
                         </div>
                       </Link>
 
-                      <Link href={'/AboutUs#reviews'}>
+                      <Link href={"/AboutUs#reviews"}>
                         <div className="flex">
-                          <Checkbox defaultSelected isReadOnly color="primary">
-                          </Checkbox>
+                          <Checkbox
+                            defaultSelected
+                            isReadOnly
+                            color="primary"
+                          />
                           <span className="text-white">Рейтинг та відгуки</span>
                         </div>
                       </Link>
@@ -180,9 +193,9 @@ const Footer = () => {
             <div className="text-white w-full">
               <ul className="flex">
                 <li className="w-[60%]">
-                <Link href={'/'}>
-                  <p className="hover:underline">Країни</p>
-</Link>
+                  <Link href={"/"}>
+                    <p className="hover:underline">Країни</p>
+                  </Link>
                 </li>
                 <li className="w-[40%]">
                   <a className="hover:underline" href="/tours/">
@@ -194,31 +207,40 @@ const Footer = () => {
             <div className="flex w-full mt-5">
               <div className="text-white w-[60%]">
                 <ul className="space-y-6">
-                  <Link href={'/#services'}>
-                  <li>
-                    <p className="hover:underline">Туристам</p>
-                  </li>
-</Link>
+                  <Link href={"/#services"}>
+                    <li>
+                      <p className="hover:underline">Туристам</p>
+                    </li>
+                  </Link>
                   <li>
                     <div className="flex flex-col gap-4">
-                      <Link href={'/#workWithUs'}>
+                      <Link href={"/#workWithUs"}>
                         <div className="flex">
-                          <Checkbox defaultSelected isReadOnly color="primary">
-                          </Checkbox>
+                          <Checkbox
+                            defaultSelected
+                            isReadOnly
+                            color="primary"
+                          />
                           <span className="text-white">Зворотній звязок</span>
                         </div>
                       </Link>
-                      <Link href={'/#services'}>
+                      <Link href={"/#services"}>
                         <div className="flex">
-                          <Checkbox defaultSelected isReadOnly color="primary">
-                          </Checkbox>
+                          <Checkbox
+                            defaultSelected
+                            isReadOnly
+                            color="primary"
+                          />
                           <span className="text-white">Наші послуги</span>
                         </div>
                       </Link>
-                      <Link href={'/'}>
+                      <Link href={"/"}>
                         <div className="flex">
-                          <Checkbox defaultSelected isReadOnly color="primary">
-                          </Checkbox>
+                          <Checkbox
+                            defaultSelected
+                            isReadOnly
+                            color="primary"
+                          />
 
                           <span className="text-white">
                             Перевірити статус заявки
@@ -232,26 +254,28 @@ const Footer = () => {
 
               <div className="text-white w-[40%]">
                 <ul className="space-y-6">
-
-                    <Link className="hover:underline" href="/AboutUs">
-                  <li>
-                      Про нас
-                  </li>
-
-                    </Link>
+                  <Link className="hover:underline" href="/AboutUs">
+                    <li>Про нас</li>
+                  </Link>
                   <li>
                     <div className="flex flex-col gap-4">
-                      <Link href={'/AboutUs'}>
+                      <Link href={"/AboutUs"}>
                         <div className="flex">
-                          <Checkbox defaultSelected isReadOnly color="primary">
-                          </Checkbox>
+                          <Checkbox
+                            defaultSelected
+                            isReadOnly
+                            color="primary"
+                          />
                           <span className="text-white">Про компанію</span>
                         </div>
                       </Link>
-                      <Link href={'/AboutUs#reviews'}>
+                      <Link href={"/AboutUs#reviews"}>
                         <div className="flex">
-                          <Checkbox defaultSelected isReadOnly color="primary">
-                          </Checkbox>
+                          <Checkbox
+                            defaultSelected
+                            isReadOnly
+                            color="primary"
+                          />
                           <span className="text-white">Рейтинг та відгуки</span>
                         </div>
                       </Link>
@@ -287,7 +311,9 @@ const Footer = () => {
                   />
                   <div className="items-center">
                     <Link href="tel:+380446012377">
-                      <p className="mb-2 mt-4 text-[15px]">+38 (044) 601 23 77</p>
+                      <p className="mb-2 mt-4 text-[15px]">
+                        +38 (044) 601 23 77
+                      </p>
                     </Link>
                     <Link href="tel:+380687789000">
                       <p className="text-[15px]">+38 (068) 778 90 00</p>
@@ -296,14 +322,14 @@ const Footer = () => {
                 </div>
               </div>
               <div className="flex justify-between  mt-6">
-                <Link href={'https://www.youtube.com/'}>
+                <Link href={"https://www.youtube.com/"}>
                   <Image
                     alt="youtube"
                     className="w-[70px] h-[70px]"
                     src={footerYouTubeImage}
                   />
                 </Link>
-                <Link href={'https://www.instagram.com/'}>
+                <Link href={"https://www.instagram.com/"}>
                   <Image
                     alt="instagram"
                     className="w-[70px] h-[70px]"
@@ -311,7 +337,7 @@ const Footer = () => {
                   />
                 </Link>
 
-                <Link href={'https://www.facebook.com/'}>
+                <Link href={"https://www.facebook.com/"}>
                   <Image
                     alt="facebook"
                     className="w-[70px] h-[70px]"

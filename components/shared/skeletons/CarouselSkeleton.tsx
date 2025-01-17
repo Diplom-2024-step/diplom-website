@@ -2,6 +2,7 @@
 
 import { Skeleton } from "@nextui-org/react";
 import React from "react";
+
 import HotelCardSkeleton from "./HotelCardSkeleton";
 
 const CarouselSkeleton = ({ title }: { title: string }) => {
@@ -45,10 +46,7 @@ const CarouselSkeleton = ({ title }: { title: string }) => {
         {/* Pagination Dots - Adjusted for mobile */}
         <div className="flex justify-center gap-2 mt-6">
           {[...Array(6)].map((_, index) => (
-            <Skeleton 
-              key={index} 
-              className="rounded-full transition-colors"
-            >
+            <Skeleton key={index} className="rounded-full transition-colors">
               <div className="w-6 h-1" />
             </Skeleton>
           ))}

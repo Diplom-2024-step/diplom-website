@@ -39,8 +39,8 @@ const Page = ({ params }: { params: { country: string } }) => {
   const [inHotelsIds, setInHotelsIds] = useSearchParam("inHotelsIds");
   const [filters, setFilters] = useState<FilterDto[][]>();
   const [isFilterSet, setIsFilterSet] = useState(false);
-  
-  const [deletePage, setDeletePage] =  useState(false);
+
+  const [deletePage, setDeletePage] = useState(false);
 
   const [perPage, setPerPage] = useState("9");
   const [perPageState, setPerPageState] = useDebounceState(
@@ -187,9 +187,9 @@ const Page = ({ params }: { params: { country: string } }) => {
     }
 
     setFilters(newFilters);
-    if (deletePage){
-              setPage(undefined);
-              setDeletePage(false);
+    if (deletePage) {
+      setPage(undefined);
+      setDeletePage(false);
     }
     setIsFilterSet(true);
   }, [
@@ -267,7 +267,7 @@ const Page = ({ params }: { params: { country: string } }) => {
             stars={stars}
             toCity={toCity}
             onClose={() => {
-              setDeletePage(true)
+              setDeletePage(true);
               setIsSearchSettingsOpen(false);
             }}
           />

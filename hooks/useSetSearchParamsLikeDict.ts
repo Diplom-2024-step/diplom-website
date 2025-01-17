@@ -15,7 +15,7 @@ export function useSetSearchPropsLikeDict() {
         else params.delete(key);
       });
       router.push(pathname + "?" + params.toString(), {
-        scroll: false
+        scroll: false,
       });
     },
     [search]

@@ -1,7 +1,7 @@
 "use client";
 import React, { Key, useEffect, useState } from "react";
 import { Icon } from "@iconify/react";
-import { Link } from "@nextui-org/react";
+import { useRouter } from "next/navigation";
 
 import TourDescription from "@/components/tours/TourDetails/TourDescription";
 import TourDetailHeader from "@/components/tours/TourDetails/TourDetailHeader";
@@ -11,7 +11,6 @@ import LoadingCircle from "@/components/shared/skeletons/LoadingCircle";
 import ReviewCardCarouselWithService from "@/components/reviews/ReviewCardCarouselWithService";
 import RecomendedToursCarouselForHotel from "@/components/tours/Carsousels/RecomendedToursCarouselForHotel";
 import { TourService } from "@/service/crudServices/TourService";
-import { useRouter } from "next/navigation";
 
 const Page = async ({ params }: { params: { id: string } }) => {
   const service = new TourService();
@@ -55,15 +54,16 @@ const Page = async ({ params }: { params: { id: string } }) => {
         <>
           <div className="container mx-auto mb-0 max-w-7xl px-5 flex-grow">
             <div
-            role="button"
-            onClick={() => router.back()}
-            className="flex items-center h-full mt-5 group">
-                <h2 className="text-black">Повернутись до турів</h2>
-                <Icon
-                  className={`w-10 h-10 transition-transform rotate-[315deg] text-black group-hover:text-primary group-hover:-translate-y-5
+              className="flex items-center h-full mt-5 group"
+              role="button"
+              onClick={() => router.back()}
+            >
+              <h2 className="text-black">Повернутись до турів</h2>
+              <Icon
+                className={`w-10 h-10 transition-transform rotate-[315deg] text-black group-hover:text-primary group-hover:-translate-y-5
                 }`}
-                  icon="ei:arrow-up"
-                />
+                icon="ei:arrow-up"
+              />
             </div>
             <TourDetailHeader
               activeTab={option}

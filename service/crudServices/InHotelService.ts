@@ -19,6 +19,11 @@ export class InHotelService extends CrudService<
   UpdateInHotelDto
 > {
   public constructor() {
-    super(getInHotelDtoSchema, createInHotelDtoSchema, updateInHotelDtoSchema, "InHotel");
+    super(
+      getInHotelDtoSchema,
+      createInHotelDtoSchema,
+      updateInHotelDtoSchema,
+      "InHotel"
+    );
   }
 }

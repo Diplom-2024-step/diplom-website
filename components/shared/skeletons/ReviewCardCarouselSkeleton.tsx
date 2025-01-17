@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import { Card, Skeleton } from "@nextui-org/react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
+
 import { GetReviewDto } from "@/AppDtos/Dto/Models/Reviews/get-review-dto";
+
 import ReviewCardSkeleton from "./ReviewCardSkeleton";
 
 const ReviewCardCarouselSkeleton = ({
@@ -41,23 +43,25 @@ const ReviewCardCarouselSkeleton = ({
   // Calculate items to show based on screen size
   const getItemsToShow = () => {
     // Default to 1 for mobile
-    if (typeof window !== 'undefined') {
+    if (typeof window !== "undefined") {
       if (window.innerWidth >= 1280) return 3; // xl
       if (window.innerWidth >= 768) return 2; // md
+
       return 1; // mobile
     }
+
     return 1;
   };
 
   const itemsToShow = getItemsToShow();
-  const translatePercentage = (100 / itemsToShow);
+  const translatePercentage = 100 / itemsToShow;
 
   return (
     <div className="w-full max-w-6xl mx-auto px-4 text-black">
       <h2 className="text-xl sm:text-2xl md:text-3xl font-bold font-unbounded mt-4 sm:mt-6">
         Враження відвідувачів
       </h2>
-      
+
       <div className="relative mt-4 sm:mt-6">
         <div className="overflow-hidden">
           <div
@@ -67,8 +71,8 @@ const ReviewCardCarouselSkeleton = ({
             }}
           >
             {[...Array(reviews.length - 2)].map((_, index) => (
-              <Card 
-                key={index} 
+              <Card
+                key={index}
                 className={`
                   w-full 
                   md:w-1/2 
@@ -111,8 +115,8 @@ const ReviewCardCarouselSkeleton = ({
           {[...Array(reviews.length - 2)].map((_, index) => (
             <button
               key={index}
-              onClick={() => handleDotClick(index)}
               className="focus:outline-none"
+              onClick={() => handleDotClick(index)}
             >
               <Skeleton
                 className={`
