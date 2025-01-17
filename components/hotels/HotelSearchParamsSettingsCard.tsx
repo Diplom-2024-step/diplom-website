@@ -161,8 +161,8 @@ const HotelSearchParamsSettingsCard = ({
               <div className="flex-row mt-2">
                 <span className="mr-2">Від</span>
                 <input
-                  className="w-20 mr-2 border-black border-small border-opacity-30 text-center "
                   disabled
+                  className="w-20 mr-2 border-black border-small border-opacity-30 text-center "
                   type="text"
                   value={(budget as any as number[])[0]}
                   onChange={(e: React.FormEvent<HTMLInputElement>) =>
@@ -171,8 +171,8 @@ const HotelSearchParamsSettingsCard = ({
                 />
                 <span className="mr-2">до</span>
                 <input
-                  className="w-20 border-black border-small border-opacity-30 text-center "
                   disabled
+                  className="w-20 border-black border-small border-opacity-30 text-center "
                   type="text"
                   value={(budget as any as number[])[1]}
                   onChange={(e: React.FormEvent<HTMLInputElement>) =>

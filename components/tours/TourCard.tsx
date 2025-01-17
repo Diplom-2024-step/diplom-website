@@ -175,7 +175,7 @@ const TourCard = ({
               />
             </div>
           </button>
-          <div className="absolute flex text-center items-center top-4 right-[250px] z-10">
+          <div className="absolute flex text-center items-center top-4 left-4 z-10">
             <Icon
               className="text-white h-8 w-8 mr-2 mt-1"
               icon="lsicon:calendar-outline"
@@ -249,7 +249,7 @@ const TourCard = ({
               </span>
             </div>
             <Icon
-              className={`w-10 h-10 transition-transform rotate-45 text-black ${
+              className={`hidden md:block w-10 h-10 transition-transform rotate-45 text-black ${
                 isHovered ? "-translate-y-6 text-primary" : ""
               }`}
               icon="ei:arrow-up"

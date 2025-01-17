@@ -21,6 +21,7 @@ const TravelBooking = ({ hotel }: { hotel: GetHotelDto }) => {
     city,
     transportationType,
     date,
+    activities,
     setAdults,
     setKids,
     setDietType,
@@ -31,11 +32,18 @@ const TravelBooking = ({ hotel }: { hotel: GetHotelDto }) => {
   } = useTravelBookingContextInjectedHotel(hotel);
 
   const calculateCost = () => {
+    let activitiesCost = 0;
+
+    for (let index = 0; index < activities.length; index++) {
+      activitiesCost += activities[index].price;
+    }
+
     return (
       (hotel.additionCostPerPerson * (adults + kids) + hotel.pricePerNight) *
         (differenceInDays(date.end.toString(), date.start.toString()) - 1) +
       (dietType?.price ? dietType.price : 1) +
-      (roomType?.price ? roomType.price : 1)
+      (roomType?.price ? roomType.price : 1) +
+      activitiesCost
     );
   };
 

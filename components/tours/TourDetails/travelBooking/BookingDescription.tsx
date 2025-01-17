@@ -4,7 +4,7 @@ const BookingDescription = () => {
   return (
     <>
       <div className=" rounded-lg mt-[60px] mb-[60px] lg:m-[50px]">
-        <h2 className="font-unbounded text-[50px] font-bold text-gray-800 mb-6 text-center">
+        <h2 className="font-unbounded text-3xl md:text-5xl font-bold text-gray-800 mb-6 text-center">
           Бронювання туру
         </h2>
 

@@ -20,7 +20,7 @@ const TourDetailHeader = ({
       <div className="mr-auto mt-auto text-black">
         <div className="flex justify-between text-[#161616] rounded-r-2">
           <button
-            className={`flex-1 px-11 pt-2 text-sm font-medium bg-white rounded-t-[20px] border-r-2 border-gray-300 shadow-right whitespace-nowrap relative transition-all duration-300 ease-in-out 
+            className={`flex-1 px-6 md:px-11 pt-2 text-sm font-medium bg-white rounded-t-[20px] border-r-2 border-gray-300 shadow-right whitespace-nowrap relative transition-all duration-300 ease-in-out 
         ${activeTab === "tour" ? "text-[#0F171B] !bg-gray-100" : "text-[#161616]"}
         hover:bg-gray-100 hover:text-[#0F171B]`}
             onClick={() => onSelectChage("tour")}
@@ -28,7 +28,7 @@ const TourDetailHeader = ({
             Тур
           </button>
           <button
-            className={`flex-1 px-11 pt-2 text-sm font-medium  rounded-t-[20px] border-r-2 border-gray-300 shadow-right whitespace-nowrap 
+            className={`flex-1 px-6 md:px-11 pt-2 text-sm font-medium  rounded-t-[20px] border-r-2 border-gray-300 shadow-right whitespace-nowrap 
         relative transition-all duration-300 ease-in-out 
         ${activeTab === "description" ? "text-[#0F171B] !bg-gray-100" : "text-[#161616] bg-white"}
         hover:bg-gray-100 hover:text-[#0F171B]`}
@@ -38,7 +38,7 @@ const TourDetailHeader = ({
           </button>
 
           <button
-            className={`flex-1 pl-7 px-11 pt-2 text-sm font-medium bg-white rounded-t-[20px] border-r-2 shadow-right whitespace-nowrap   
+            className={`flex-1  px-6 md:px-11 pt-2 text-sm font-medium bg-white rounded-t-[20px] border-r-2 shadow-right whitespace-nowrap   
         relative transition-all duration-300 ease-in-out 
         ${activeTab === "reviews" ? "text-[#0F171B] bg-gray-100" : "text-[#161616]"}
         hover:bg-gray-100 hover:text-[#0F171B]`}

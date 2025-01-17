@@ -80,7 +80,7 @@ const WorkWithUs: React.FC = () => {
     onOpen();
   };
   const handleCloseModal = () => {
-    setPhoneNumber("")
+    setPhoneNumber("");
     setSelectedTopic("");
     setFullName("");
     setEmail("");
@@ -88,14 +88,15 @@ const WorkWithUs: React.FC = () => {
     onClose();
   };
 
-
   const isInvalidPhoneNumber = useMemo(() => {
     if (phoneNumber === "") return false;
+
     return !validatePhoneNumber(phoneNumber);
   }, [phoneNumber]);
 
   const isInvalidEmail = useMemo(() => {
     if (email === "") return false;
+
     return !validateEmail(email);
   }, [email]);
 
@@ -108,12 +109,21 @@ const WorkWithUs: React.FC = () => {
       !isInvalidEmail &&
       selectedTopic !== ""
     );
-  }, [phoneNumber, isInvalidPhoneNumber, fullName, email, isInvalidEmail, selectedTopic]);
-
+  }, [
+    phoneNumber,
+    isInvalidPhoneNumber,
+    fullName,
+    email,
+    isInvalidEmail,
+    selectedTopic,
+  ]);
 
   return (
     <div>
-      <div id="workWithUs" className="hidden lg:flex flex-col bg-[#e1ebf1] my-8 py-10 text-center overflow-hidden">
+      <div
+        className="hidden lg:flex flex-col bg-[#e1ebf1] my-8 py-10 text-center overflow-hidden"
+        id="workWithUs"
+      >
         <h2
           className="text-[26px] font-bold text-gray-800 mb-12"
           style={{ fontFamily: "Unbounded, sans-serif" }}
@@ -322,6 +332,7 @@ const WorkWithUs: React.FC = () => {
             className="font-nunito_font_family text-white text-[18px] mt-8 bg-[#5DB3C1] px-10 transition-colors duration-200 w-[240px]"
             radius="full"
             size="md"
+            onPress={() => handleOpenModal()}
           >
             Зв’яжіться з нами
           </Button>
@@ -388,16 +399,18 @@ const WorkWithUs: React.FC = () => {
               <div className="flex w-full gap-4 mt-5">
                 <Input
                   className="font-nunito_font_family rounded-full"
+                  errorMessage={
+                    isInvalidPhoneNumber ? "Введіть дійсний номер телефону" : ""
+                  }
+                  isInvalid={isInvalidPhoneNumber}
                   label="Телефон"
+                  placeholder="+380000000000"
                   radius="full"
                   size="lg"
                   type="tel"
-                  variant="bordered"
-                  isInvalid={isInvalidPhoneNumber}
                   value={phoneNumber}
+                  variant="bordered"
                   onChange={(e) => setPhoneNumber(e.target.value)}
-                  placeholder="+380000000000"
-                  errorMessage={isInvalidPhoneNumber ? "Введіть дійсний номер телефону" : ""}
                 />
                 <Input
                   className="font-nunito_font_family"
@@ -406,31 +419,33 @@ const WorkWithUs: React.FC = () => {
                   size="lg"
                   type="text"
                   value={fullName}
-                  onChange={(e) => setFullName(e.target.value)}
                   variant="bordered"
+                  onChange={(e) => setFullName(e.target.value)}
                 />
               </div>
               <Input
                 className="font-nunito_font_family mt-5"
+                errorMessage={
+                  isInvalidEmail ? "Введіть дійсну електронну адресу" : ""
+                }
+                isInvalid={isInvalidEmail}
                 label="Електронна адреса"
                 radius="full"
                 size="lg"
                 type="email"
-                variant="bordered"
                 value={email}
+                variant="bordered"
                 onChange={(e) => setEmail(e.target.value)}
-                isInvalid={isInvalidEmail}
-                errorMessage={isInvalidEmail ? "Введіть дійсну електронну адресу" : ""}
               />
               <p className="text-[18px] font-nunito_font_family mt-1">
                 Для надсилання додаткової інформації
               </p>
               <Button
                 className="mt-3 bg-[#5DB3C1] text-white text-[18px] px-10 transition-colors duration-200 w-[140px]"
+                isDisabled={!isFormValid}
                 radius="full"
                 size="md"
                 onPress={handleCloseModal}
-                isDisabled={!isFormValid}
               >
                 Замовити
               </Button>

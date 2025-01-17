@@ -48,8 +48,8 @@ const TravelBooking = ({ tour }: { tour: GetTourDto }) => {
           <div className="w-full flex bg-white shadow-md booking-setting-container">
             <div className="w-[40%] bg-primary text-white flex items-center justify-start p-5 rounded-r-lg booking-setting-header">
               <Icon
-                icon="stash:people-group-duotone"
                 className="mr-3 text-4xl"
+                icon="stash:people-group-duotone"
               />
               <span className="text-[20px] text-nunito_font_family">
                 Туристи
@@ -73,7 +73,7 @@ const TravelBooking = ({ tour }: { tour: GetTourDto }) => {
 
           <div className="w-full flex bg-white shadow-md mt-5 booking-setting-container">
             <div className="w-[40%] bg-primary text-white flex items-center justify-start p-5 rounded-r-lg booking-setting-header">
-              <Icon icon="lsicon:calendar-outline" className="mr-3 text-5xl" />
+              <Icon className="mr-3 text-5xl" icon="lsicon:calendar-outline" />
               <span className="text-nunito_font_family">
                 Дата віправлення і тривалість туру
               </span>
@@ -124,7 +124,7 @@ const TravelBooking = ({ tour }: { tour: GetTourDto }) => {
 
           <div className="w-full flex bg-white shadow-md mt-5 booking-setting-container">
             <div className="w-[40%] bg-primary text-white flex items-center justify-start p-5 rounded-r-lg booking-setting-header">
-              <Icon icon="fa-solid:concierge-bell" className="mr-3 text-4xl" />
+              <Icon className="mr-3 text-4xl" icon="fa-solid:concierge-bell" />
               <span>Тип кімнати і харчування</span>
             </div>
 

@@ -99,7 +99,7 @@ const Services = () => {
 
   return (
     <div
-      className="flex flex-col w-full h-full justify-center items-center text-center bg-cover bg-center bg-no-repeat"
+      className="flex flex-col w-full h-full justify-center overflow-x-hidden items-center text-center bg-cover bg-center bg-no-repeat"
       id="services"
       style={{
         backgroundImage: `url(${servicesBackgroundImage.src})`,
@@ -134,9 +134,10 @@ const Services = () => {
                     onTouchEnd={(e) => handleTouchEnd(e, service)}
                     onTouchStart={handleTouchStart}
                   >
-                    <div className="flex flex-col w-[170px] h-[168px] bg-white rounded-full justify-center items-center text-center cursor-pointer"
-                    role="button"
-                    onClick={() => handleOpenModal(service)}
+                    <div
+                      className="flex flex-col w-[170px] h-[168px] bg-white rounded-full justify-center items-center text-center cursor-pointer"
+                      role="button"
+                      onClick={() => handleOpenModal(service)}
                     >
                       <Icon
                         className="absolute top-8 w-[50px] h-[100px] text-customAqua"
@@ -205,10 +206,9 @@ const Services = () => {
 
       <div>
         <Modal
-          className="lg:hidden"
           backdrop="transparent"
+          className="lg:hidden"
           classNames={{
-            
             base: "bg-transparent border-none shadow-none",
           }}
           isOpen={isOpen}
@@ -278,9 +278,8 @@ const Services = () => {
         </Modal>
 
         <Modal
-          className="hidden lg:flex"
-
           backdrop="transparent"
+          className="hidden lg:flex"
           classNames={{
             base: "bg-transparent border-none shadow-none",
           }}

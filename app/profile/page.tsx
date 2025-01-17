@@ -379,7 +379,7 @@ const Profile = () => {
                 Заброньовані тури
               </button>
               <button
-                className={` flex-1  px-6 pt-2 text-sm font-medium rounded-tr-[20px] shadow-right whitespace-nowrap 
+                className={` hidden md:block flex-1  px-6 pt-2 text-sm font-medium rounded-tr-[20px] shadow-right whitespace-nowrap 
               relative card-header-tab-button
               ${activeTab === "completed" ? "text-[#0F171B] scale-110 rounded-tl-[20px] shadow-left rounded-tr-[20px] shadow-right border-l-2 border-gray-300" : "text-[#161616]"} 
               ${activeTab === "favorites" ? "border-r-0" : "border-r-2 border-gray-300"}`}
@@ -388,7 +388,7 @@ const Profile = () => {
                 Завершені тури
               </button>
               <button
-                className={` flex-1  px-11 pt-2 text-sm font-medium rounded-tr-[20px] shadow-right whitespace-nowrap 
+                className={` flex-1  px-6 pt-2 text-sm font-medium rounded-tr-[20px] shadow-right whitespace-nowrap 
               relative card-header-tab-button
               ${activeTab === "favorites" ? "text-[#0F171B] scale-110 rounded-tl-[20px] shadow-left rounded-tr-[20px] shadow-right border-l-2 border-gray-300" : "text-[#161616]"} 
               ${activeTab === "comments" ? "border-r-0" : "border-r-2 border-gray-300"} `}
@@ -397,7 +397,7 @@ const Profile = () => {
                 Обране
               </button>
               <button
-                className={` flex-1  pl-7 pt-2 text-sm font-medium  shadow-right   whitespace-nowrap
+                className={` hidden md:block flex-1  pl-7 pt-2 text-sm font-medium  shadow-right   whitespace-nowrap
               relative card-header-tab-button
               ${activeTab === "comments" ? "text-[#0F171B] scale-110 rounded-tl-[20px] shadow-left border-l-2 border-gray-300" : "text-[#161616]"}`}
                 onClick={() => setActiveTab("comments")}

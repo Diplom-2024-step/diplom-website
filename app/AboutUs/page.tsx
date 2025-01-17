@@ -1,19 +1,20 @@
-import ourTeamImage1 from '@/assets/images/about_as/Our-team-1.webp'
-import ourTeamImage2 from '@/assets/images/about_as/Our-team-2.webp'
-import mainImageAboutUs2 from '@/assets/images/about_as/main-image-about-us-2.webp'
-import mainImageAboutUs from '@/assets/images/about_as/main-image-about-us.webp'
-import whyAreWeHereImage1 from '@/assets/images/about_as/why-are-we-here-img-1.webp'
-import whyAreWeHereImage2 from '@/assets/images/about_as/why-are-we-here-img-2.webp'
-import whyAreWeHereImage3 from '@/assets/images/about_as/why-are-we-here-img-3.webp'
-import whyAreWeHereImage4 from '@/assets/images/about_as/why-are-we-here-img-4.webp'
 import React from "react";
+
+import ourTeamImage1 from "@/assets/images/about_as/Our-team-1.webp";
+import ourTeamImage2 from "@/assets/images/about_as/Our-team-2.webp";
+import mainImageAboutUs2 from "@/assets/images/about_as/main-image-about-us-2.webp";
+import mainImageAboutUs from "@/assets/images/about_as/main-image-about-us.webp";
+import whyAreWeHereImage1 from "@/assets/images/about_as/why-are-we-here-img-1.webp";
+import whyAreWeHereImage2 from "@/assets/images/about_as/why-are-we-here-img-2.webp";
+import whyAreWeHereImage3 from "@/assets/images/about_as/why-are-we-here-img-3.webp";
+import whyAreWeHereImage4 from "@/assets/images/about_as/why-are-we-here-img-4.webp";
 
 import "./style.css";
 import ReviewsOnAboutUsPage from "@/components/reviews/ReviewsOnAboutUsPage";
 
 const Page = () => {
   return (
-    <section className="about-us">
+    <section className="about-us overflow-x-hidden">
       <div className="container mx-auto">
         <div className="about-us__content">
           <div className="about-us__main-container about-us__main-block">
@@ -25,10 +26,12 @@ const Page = () => {
                 створює незабутні подорожі для наших клієнтів.
               </p>
 
-              <div className="about-us__mobile-main-image-container" style={{
-                backgroundImage: `${mainImageAboutUs.src}`,
-              }
-              } />
+              <div
+                className="about-us__mobile-main-image-container"
+                style={{
+                  backgroundImage: `${mainImageAboutUs.src}`,
+                }}
+              />
 
               <div className="about-us__mobile-colors">
                 <div className="color-block-darkcyan about-us__mobile-color-block">
@@ -73,11 +76,11 @@ const Page = () => {
             </div>
 
             <div className="about-us__main-grid about-us__main-grid--second">
-              <div className="about-us__main-grid-left about-us__main-grid-left--second"
-              
-              style={{
-                backgroundImage: `url(${mainImageAboutUs.src})`
-              }}
+              <div
+                className="about-us__main-grid-left about-us__main-grid-left--second"
+                style={{
+                  backgroundImage: `url(${mainImageAboutUs.src})`,
+                }}
               />
 
               <div className="about-us__main-grid-right about-us__main-grid-right--second">
@@ -89,12 +92,11 @@ const Page = () => {
 
                   <p className="about-us__counts">250,000+</p>
                 </div>
-                <div className="about-us__color-block about-us__color-block--6" 
-                
-                style={{
-                  backgroundImage: `url(${mainImageAboutUs2.src})`
-                }}
-
+                <div
+                  className="about-us__color-block about-us__color-block--6"
+                  style={{
+                    backgroundImage: `url(${mainImageAboutUs2.src})`,
+                  }}
                 />
                 <div className="color-block-darkcyan about-us__color-block about-us__color-block--7" />
               </div>
@@ -128,11 +130,11 @@ const Page = () => {
 
             <div className="about-us__why-are-we-here-main-blocks-image-info-container">
               <div className="about-us__why-are-we-here-block about-us__why-are-we-here-block--1">
-                <div className="about-us__why-are-we-here-image-container about-us__why-are-we-here-image-container--1"
-                
-                style={{
-                  backgroundImage: `url(${whyAreWeHereImage1.src})`
-                }}
+                <div
+                  className="about-us__why-are-we-here-image-container about-us__why-are-we-here-image-container--1"
+                  style={{
+                    backgroundImage: `url(${whyAreWeHereImage1.src})`,
+                  }}
                 />
 
                 <p className="about-us__why-are-we-here-block-info">
@@ -140,13 +142,12 @@ const Page = () => {
                 </p>
               </div>
 
-              <div className="about-us__why-are-we-here-block about-us__why-are-we-here-block--2"
-               
-              >
-                <div className="about-us__why-are-we-here-image-container about-us__why-are-we-here-image-container--2"
-                 style={{
-                  backgroundImage: `url(${whyAreWeHereImage2.src})`
-                }}
+              <div className="about-us__why-are-we-here-block about-us__why-are-we-here-block--2">
+                <div
+                  className="about-us__why-are-we-here-image-container about-us__why-are-we-here-image-container--2"
+                  style={{
+                    backgroundImage: `url(${whyAreWeHereImage2.src})`,
+                  }}
                 />
 
                 <p className="about-us__why-are-we-here-block-info">
@@ -155,11 +156,11 @@ const Page = () => {
               </div>
 
               <div className="about-us__why-are-we-here-block about-us__why-are-we-here-block--3">
-                <div className="about-us__why-are-we-here-image-container about-us__why-are-we-here-image-container--3" 
-                
-                 style={{
-                  backgroundImage: `url(${whyAreWeHereImage3.src})`
-                }}
+                <div
+                  className="about-us__why-are-we-here-image-container about-us__why-are-we-here-image-container--3"
+                  style={{
+                    backgroundImage: `url(${whyAreWeHereImage3.src})`,
+                  }}
                 />
 
                 <p className="about-us__why-are-we-here-block-info">
@@ -168,12 +169,11 @@ const Page = () => {
               </div>
 
               <div className="about-us__why-are-we-here-block about-us__why-are-we-here-block--4">
-                <div className="about-us__why-are-we-here-image-container about-us__why-are-we-here-image-container--4"
-                
-                 style={{
-                  backgroundImage: `url(${whyAreWeHereImage4.src})`
-                }}
-                
+                <div
+                  className="about-us__why-are-we-here-image-container about-us__why-are-we-here-image-container--4"
+                  style={{
+                    backgroundImage: `url(${whyAreWeHereImage4.src})`,
+                  }}
                 />
 
                 <p className="about-us__why-are-we-here-block-info">
@@ -208,7 +208,7 @@ const Page = () => {
                   </div>
 
                   <div className="about-us__info-by-year-container">
-                    <p className="about-us__info-by-year">
+                    <p className="about-us__info-by-year ">
                       "Наша подорож розпочалася з невеликої команди ентузіастів,
                       які прагнули змінити підхід до організації подорожей,
                       зробивши їх комфортними та доступними для кожного."
@@ -280,26 +280,23 @@ const Page = () => {
             </div>
 
             <div className="about-us__about-our-team-container">
-              <div className="about-us__about-our-team-absolute-image-container"
-              
-              style={
-                {
-                  backgroundImage: `url(${ourTeamImage2.src})`
-                }
-              }
-
+              <div
+                className="about-us__about-our-team-absolute-image-container"
+                style={{
+                  backgroundImage: `url(${ourTeamImage2.src})`,
+                }}
               />
 
               <div className="about-us__about-our-team-image-info-container">
-                <div className="about-us__about-our-team-image-container"
-                style={{
-                  backgroundImage: `url(${ourTeamImage1.src})`
-                }}
-                
+                <div
+                  className="about-us__about-our-team-image-container"
+                  style={{
+                    backgroundImage: `url(${ourTeamImage1.src})`,
+                  }}
                 />
 
-                <div className="about-us__about-our-team-info-container">
-                  <p className="about-us__about-our-team-info">
+                <div className="about-us__about-our-team-info-container ">
+                  <p className="about-us__about-our-team-info ">
                     <span className="about-us__about-our-team-info--bold">
                       Наша команда
                     </span>{" "}
