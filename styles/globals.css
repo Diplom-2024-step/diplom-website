@@ -53,9 +53,9 @@
 
 /*Карусель туров*/
 
-@media (max-width: 767px) {
+@media (max-width: 430px) {
   .carousel-block {
-    max-width: 500px;
+    max-width: 430px;
   }
 
   .carousel-title {
@@ -311,7 +311,6 @@
 @media (min-width: 100px) and (max-width: 767px) {
   .card-header-tab-button {
     font-size: 11px;
-    padding: 3px 6px 3px;
   }
 }
 

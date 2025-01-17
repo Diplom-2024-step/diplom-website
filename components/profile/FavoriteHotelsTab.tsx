@@ -91,7 +91,7 @@ const FavoriteHotelsTab: React.FC<FavoriteHotelsTabProps> = ({ hotelsIds }) => {
   }, [page, isFilterSet, hotelsIds.length, loadItems]);
 
   if (!hotelsIds.length) {
-    return <div className="text-center py-8">No favorite hotels found</div>;
+    return <div className="text-center py-8">Улюблені готелі не знайдено</div>;
   }
 
   if (error) {

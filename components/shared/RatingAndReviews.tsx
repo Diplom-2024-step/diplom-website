@@ -238,7 +238,7 @@ const RatingAndReviews = () => {
           <div className="col-span-1 flex flex-col items-center mt-[20px] space-y-2" />
         </div>
         {/* Блок отзывов */}
-        <div className="m-[45px] mt-8 h-[350px]">
+        <div className=" mt-10 ">
           <div className="w-full mx-auto px-4 text-black">
             <div className="w-full">
               <Swiper
@@ -273,7 +273,7 @@ const RatingAndReviews = () => {
                         </div>
                       </div>
                       <div className="h-[65%]">
-                        <p className="text-gray-700 mt-4">{review.text}</p>
+                        <p className="text-gray-700 mt-4 text-pretty">{review.text}</p>
                       </div>
                       <div className="flex flex-col mt-4 text-gray-600 text-sm">
                         <p>{review.time}</p>

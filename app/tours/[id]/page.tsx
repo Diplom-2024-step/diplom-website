@@ -11,9 +11,12 @@ import LoadingCircle from "@/components/shared/skeletons/LoadingCircle";
 import ReviewCardCarouselWithService from "@/components/reviews/ReviewCardCarouselWithService";
 import RecomendedToursCarouselForHotel from "@/components/tours/Carsousels/RecomendedToursCarouselForHotel";
 import { TourService } from "@/service/crudServices/TourService";
+import { useRouter } from "next/navigation";
 
 const Page = async ({ params }: { params: { id: string } }) => {
   const service = new TourService();
+
+  const router = useRouter();
 
   const [option, setOption] = useState("tour");
   const [tour, setTour] = useState<any>(null);
@@ -51,15 +54,16 @@ const Page = async ({ params }: { params: { id: string } }) => {
       {tour !== null ? (
         <>
           <div className="container mx-auto mb-0 max-w-7xl px-5 flex-grow">
-            <div className="flex items-center h-full">
-              <Link href={`/tours`}>
-                <h1 className="text-black">Повернутись до турів</h1>
+            <div
+            role="button"
+            onClick={() => router.back()}
+            className="flex items-center h-full mt-5 group">
+                <h2 className="text-black">Повернутись до турів</h2>
                 <Icon
-                  className={`w-10 h-10 transition-transform rotate-[315deg] text-black
+                  className={`w-10 h-10 transition-transform rotate-[315deg] text-black group-hover:text-primary group-hover:-translate-y-5
                 }`}
                   icon="ei:arrow-up"
                 />
-              </Link>
             </div>
             <TourDetailHeader
               activeTab={option}

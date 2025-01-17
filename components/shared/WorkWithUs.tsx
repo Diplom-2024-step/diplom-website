@@ -322,6 +322,7 @@ const WorkWithUs: React.FC = () => {
             className="font-nunito_font_family text-white text-[18px] mt-8 bg-[#5DB3C1] px-10 transition-colors duration-200 w-[240px]"
             radius="full"
             size="md"
+            onPress={() => handleOpenModal()}
           >
             Зв’яжіться з нами
           </Button>
