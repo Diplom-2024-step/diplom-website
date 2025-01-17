@@ -46,21 +46,21 @@ const ContactInfo = () => {
       </div>
       <div className="flex gap-4">
         <Link href="https://www.youtube.com/">
-         <div className="bg-primary p-2 rounded-full">
+          <div className="bg-primary p-2 rounded-full">
             <Icon className="text-white text-2xl" icon="mdi:youtube" />
           </div>
         </Link>
         <Link href="https://www.instagram.com/">
-        <div className="bg-primary p-2 rounded-full">
-          <Icon className="text-white text-2xl" icon="mdi:instagram" />
-        </div>
-</Link>
+          <div className="bg-primary p-2 rounded-full">
+            <Icon className="text-white text-2xl" icon="mdi:instagram" />
+          </div>
+        </Link>
 
         <Link href="https://www.facebook.com/">
-        <div className="bg-primary p-2 rounded-full">
-          <Icon className="text-white text-2xl" icon="mdi:facebook" />
-        </div>
-</Link>
+          <div className="bg-primary p-2 rounded-full">
+            <Icon className="text-white text-2xl" icon="mdi:facebook" />
+          </div>
+        </Link>
       </div>
     </div>
   );

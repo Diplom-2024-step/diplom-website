@@ -273,7 +273,9 @@ const RatingAndReviews = () => {
                         </div>
                       </div>
                       <div className="h-[65%]">
-                        <p className="text-gray-700 mt-4 text-pretty">{review.text}</p>
+                        <p className="text-gray-700 mt-4 text-pretty">
+                          {review.text}
+                        </p>
                       </div>
                       <div className="flex flex-col mt-4 text-gray-600 text-sm">
                         <p>{review.time}</p>

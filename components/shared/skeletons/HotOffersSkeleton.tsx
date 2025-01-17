@@ -91,7 +91,10 @@ const HotOffersSkeleton = () => {
       <div className="lg:hidden flex flex-col w-3/4 h-full">
         {/* Mobile Card Skeletons */}
         {[1, 2, 3].map((index) => (
-          <Card key={index} className="flex flex-col justify-between min-h-[240px] w-full mt-[40px] bg-gray-100">
+          <Card
+            key={index}
+            className="flex flex-col justify-between min-h-[240px] w-full mt-[40px] bg-gray-100"
+          >
             <CardHeader className="flex absolute z-10 top-1 justify-between !items-end">
               <Skeleton className="h-8 w-8 rounded-full ml-4" />
               <Skeleton className="h-8 w-40 rounded-xl" />

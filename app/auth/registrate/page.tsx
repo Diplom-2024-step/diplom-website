@@ -175,12 +175,12 @@ const RegisterPage = () => {
       return;
     }
 
-    if (!isSelectedPolicy)
-      {
-        setErrorMessage("Політика конфіденційності має бути прочитана");
-        setIsLoading(false);
-        return;
-      }
+    if (!isSelectedPolicy) {
+      setErrorMessage("Політика конфіденційності має бути прочитана");
+      setIsLoading(false);
+
+      return;
+    }
 
     // Проверка на совпадение паролей перед отправкой
     if (
@@ -193,7 +193,6 @@ const RegisterPage = () => {
       return;
     }
 
-
     try {
       const result = await axios.post("/api/registrate", {
         email: email,
@@ -203,7 +202,7 @@ const RegisterPage = () => {
         role: "User",
       });
 
-       if (result.status !== 200) {
+      if (result.status !== 200) {
         setErrorMessage(result.data);
       } else {
         route.push("/auth/confirm-email?email=" + email);
@@ -221,8 +220,8 @@ const RegisterPage = () => {
       }
     } catch (e) {
       const error = e as AxiosError;
+
       setErrorMessage(error.message);
-      
     }
     setIsLoading(false);
   };
@@ -377,7 +376,13 @@ const RegisterPage = () => {
 
           <Spacer />
 
-          <Checkbox className="mt-1 ml-1 text-white" color="primary" radius="sm" onValueChange={setIsSelectedPolicy} isSelected={isSelectedPolicy}>
+          <Checkbox
+            className="mt-1 ml-1 text-white"
+            color="primary"
+            isSelected={isSelectedPolicy}
+            radius="sm"
+            onValueChange={setIsSelectedPolicy}
+          >
             <p className="text-[#303030] font-medium text-xs">
               Я прочитав(-ла) та приймаю
               <br />
@@ -398,7 +403,9 @@ const RegisterPage = () => {
               {isLoading ? "Завантаження..." : "Створити"}
             </Button>
           </div>
-          {errorMessage && <p className="text-red-500 text-center">{errorMessage}</p>}
+          {errorMessage && (
+            <p className="text-red-500 text-center">{errorMessage}</p>
+          )}
           <Spacer />
           <div className="flex justify-center gap-4 text-[#0F171B] text-xs font-semibold">
             <a href="/auth/forgot-password">Забули пароль?</a>

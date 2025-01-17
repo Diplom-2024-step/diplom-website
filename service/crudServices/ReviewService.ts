@@ -19,6 +19,11 @@ export class ReviewService extends CrudService<
   UpdateReviewDto
 > {
   public constructor() {
-    super(getReviewDtoSchema, createReviewDtoSchema, updateReviewDtoSchema, "Review");
+    super(
+      getReviewDtoSchema,
+      createReviewDtoSchema,
+      updateReviewDtoSchema,
+      "Review"
+    );
   }
 }

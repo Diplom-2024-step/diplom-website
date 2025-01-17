@@ -1,4 +1,5 @@
 import React from "react";
+
 import BigReviewCardSkeleton from "./BigReviewCardSkeleton";
 import ReviewCardCarouselSkeleton from "./ReviewCardCarouselSkeleton";
 
@@ -14,9 +15,7 @@ const GridBigReviewCardsSkeleton = () => {
 
       {/* Carousel Skeleton - Mobile only */}
       <div className="block sm:hidden px-4">
-        <ReviewCardCarouselSkeleton 
-          reviews={[...Array(10)]} 
-        />
+        <ReviewCardCarouselSkeleton reviews={[...Array(10)]} />
       </div>
 
       {/* Pagination Skeleton - Responsive sizing */}

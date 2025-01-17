@@ -68,6 +68,7 @@ const FavoriteToursTab = ({ toursIds }: { toursIds: string[] }) => {
   if (!toursIds.length) {
     return <div className="text-center py-8">Улюблені тури не знайдено</div>;
   }
+
   return (
     <div className="my-10 min-h-64">
       {toursIds.length > 0 ? (
