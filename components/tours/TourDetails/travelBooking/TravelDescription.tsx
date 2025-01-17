@@ -31,7 +31,7 @@ const TravelDescription = ({ tour }: { tour: GetTourDto }) => {
       <TravelBooking tour={tour} />
 
       <div className="bg-white rounded-xl">
-        <div className="lg:h-[760px] h-[1300px]">
+        <div className="lg:h-[760px] h-[1200px]">
           <CountryDescription countryName={tour.hotel.city.country.name} />
         </div>
         <div className="p-10">
