@@ -229,7 +229,7 @@ const LoginPage = () => {
 
           <Spacer />
           <div className="flex justify-center gap-4 text-[#0F171B] text-xs font-semibold">
-            <a href="/auth/login">Забули пароль?</a>
+            {/* <a href="/auth/login">Забули пароль?</a> */}
             <a href="/auth/registrate">Реєстрація</a>
           </div>
         </div>

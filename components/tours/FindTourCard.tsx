@@ -121,7 +121,7 @@ const FindTourCard = () => {
           <p className="mb-2">Звідки прямуєш</p>
           <SelectCityToTravelFrom
             city={fromCity}
-            placeholder="Звитки"
+            placeholder="Звідки"
             setCity={setFromCity}
           />
         </div>
