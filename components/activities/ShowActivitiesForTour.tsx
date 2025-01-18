@@ -132,7 +132,7 @@ const ShowActivitiesForTour = ({ tour }: { tour: GetTourDto }) => {
     //     </div>
     //   </div>
     // </div>
-    <div className="text-center w-full lg:mt-4 mt-10 lg:px-4 px-0">
+    <div className="text-center w-full mt-12 mb-12 lg:px-4 px-0">
       <h2 className="font-bold lg:text-[40px] text-2xl font-unbounded px-2">
         Види активного відпочинку, які ви обрали
       </h2>
