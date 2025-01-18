@@ -7,7 +7,7 @@ import { GetActivityDto } from "@/AppDtos/Dto/Models/Activities/get-activity-dto
 
 const InnerActivityCard = ({ activity }: { activity: GetActivityDto }) => {
   return (
-    <Card className=" h-[300px]   ">
+    <Card className=" lg:h-[230px] lg:w-max-[228px] lg:w-auto h-[270px] w-[270px]">
       <div className="absolute font-unbounded font-unbounded-medium   w-full  text-2xl bottom-5 text-center text-white z-10">
         <p className="font-unbounded text-wrap font-unbounded-medium sm:text-lg md:text-xl lg:text-2xl">
           {activity.name}

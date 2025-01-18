@@ -115,13 +115,13 @@ const PickActivitiesForTour = () => {
   const isSwipeable = activities.length > visibleItems;
 
   return (
-    <div className="text-center w-full mt-4 md:mt-10 px-4 md:px-0">
-      <h2 className="font-bold text-xl md:text-2xl font-unbounded px-2">
+    <div className="text-center w-full lg:mt-4 mt-10 lg:px-4 px-0">
+      <h2 className="font-bold lg:text-[40px] text-2xl font-unbounded px-2">
         Види активного відпочинку, які ви обрали
       </h2>
 
       {activities.length !== 0 ? (
-        <div className="flex-row w-full rounded-md shadow-lg mt-3 md:mt-5 bg-white h-[250px] md:h-[330px]">
+        <div className="flex-row w-full rounded-md shadow-lg lg:mt-3 mt-5 bg-white lg:h-[250px] h-[330px]">
           <div className="flex justify-between items-center w-full h-full">
             <div className="relative w-full overflow-hidden">
               {isSwipeable && currentIndex > 0 && (
@@ -155,7 +155,7 @@ const PickActivitiesForTour = () => {
                     key={index}
                     className={`${
                       visibleItems === 1
-                        ? "w-full"
+                        ? "w-auto"
                         : visibleItems === 3
                           ? "w-1/3"
                           : "w-1/4"
