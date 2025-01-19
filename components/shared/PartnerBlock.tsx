@@ -19,7 +19,7 @@ const PartnerBlock = () => {
     <div className="flex flex-col items-center lg:bg-white py-10 px-6 lg:px-20">
       <div className="grid lg:grid-cols-2 gap-8 items-center lg:w-[73%] w-full">
         {/* Левая часть: заголовок и текст */}
-        <div className="flex flex-col w-[90%] lg:text-left text-center">
+        <div className="flex flex-col lg:w-[90%] lg:text-left items-center text-center">
           <h1 className="font-unbounded lg:text-[43px] text-[26px] text-black font-bold mb-4">
             Нам довіряють
           </h1>

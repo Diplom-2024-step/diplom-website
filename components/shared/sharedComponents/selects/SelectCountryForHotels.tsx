@@ -92,7 +92,7 @@ const SelectCountryForHotels = () => {
         <a href={`/${item.id}/hotels`}>
           <div className="flex items-center text-black w-full">
             <Icon className="mr-2" icon={item.icon} />
-            <span>{item.name}</span>
+            <span className="text-[15px]">{item.name}</span>
           </div>
         </a>
       </Link>
@@ -106,7 +106,6 @@ const SelectCountryForHotels = () => {
           <LoadingCircle />
         ) : (
           <Select
-            className=" "
             items={items?.models}
             placeholder={"Країни"}
             renderValue={(items: SelectedItems<GetCountryDto>) => {

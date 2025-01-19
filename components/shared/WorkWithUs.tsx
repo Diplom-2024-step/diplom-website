@@ -265,7 +265,7 @@ const WorkWithUs: React.FC = () => {
           Працювати з нами - просто
         </h2>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-4xl mx-auto">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 max-w-4xl mx-auto">
           <div className="flex items-center h-[200px]">
             <div className="relative flex flex-col items-center w-[50%] h-full">
               <div className="absolute bg-customGreen font-unbounded text-white text-4xl font-bold rounded-full w-full h-full flex justify-center">

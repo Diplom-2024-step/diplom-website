@@ -104,8 +104,169 @@ const FindTourCard = () => {
   }, [childrenFromRouter]);
 
   return (
+    // <Card
+    //   className="rounded-tl-none rounded-tr-[20px] rounded-br-[20px] rounded-bl-[30px]  mt-[30px] lg:w-auto w-full"
+    //   classNames={{
+    //     base: "bg-transparent shadow-none",
+    //   }}
+    //   isBlurred={false}
+    //   isFooterBlurred={false}
+    //   radius="none"
+    // >
+    //   <div className="flex items-center justify-center bg-white text-[#161616] w-44 md:w-60 pt-2 md:pt-3 pr-10 pl-10 font-bold rounded-tl-[15px] md:rounded-tl-[20px] rounded-tr-[15px] md:rounded-tr-[20px] shadow-lg">
+    //     Тури
+    //   </div>
+    //   <CardHeader className="flex flex-wrap md:flex-nowrap flex-col md:flex-row justify-between  rounded-tl-none rounded-tr-[30px] md:rounded-tr-[50px] rounded-br-[30px] md:rounded-br-[50px] rounded-bl-[30px] md:rounded-bl-[50px] p-7 gap-5 bg-white text-[#161616]  overflow-visible">
+    //     <div className="flex-1 w-full">
+    //       <p className="mb-2">Звідки прямуєш</p>
+    //       <SelectCityToTravelFrom
+    //         city={fromCity}
+    //         placeholder="Звідки"
+    //         setCity={setFromCity}
+    //       />
+    //     </div>
+
+    //     <div className="flex-1 w-full">
+    //       <p className="mb-2">Куди прямуєш</p>
+    //       <SelectCityToTravelTo
+    //         city={toCity}
+    //         placeholder="Куди"
+    //         setCity={setToCity}
+    //       />
+    //     </div>
+
+    //     <div className="md:flex md:flex-row w-full gap-4">
+    //       <div className="flex-1">
+    //         <p className="mb-2">Тривалість</p>
+    //         <div className="flex w-full flex-wrap md:flex-nowrap  mb-6 md:mb-0 gap-4">
+    //           <DateRangePicker
+    //             className="text-[#171717]"
+    //             classNames={{
+    //               input: "text-[#171717]",
+    //               popoverContent: "bg-blue-100 dark:bg-blue-900",
+    //               calendar: "bg-white dark:bg-gray-800",
+    //             }}
+    //             radius="full"
+    //             value={date}
+    //             onChange={(e) => setDate(e!)}
+    //           />
+    //         </div>
+    //       </div>
+
+    //       <div className="relative flex-1">
+    //         <p className="mb-2">Мандрівники</p>
+    //         <Popover placement="bottom" showArrow={true}>
+    //           <PopoverTrigger>
+    //             <Button
+    //               className="text-[#171717] w-full bg-gray-100"
+    //               radius="full"
+    //             >
+    //               {`${adults} мандрівників, ${children} дітей`}
+    //             </Button>
+    //           </PopoverTrigger>
+    //           <PopoverContent>
+    //             <h3
+    //               className="text-md font-semibold pl-3 pt-2"
+    //               style={{ fontFamily: "Unbounded, sans-serif" }}
+    //             >
+    //               Мандрівники
+    //             </h3>
+
+    //             <div className="flex justify-between space-x-3">
+    //               <NumberInput
+    //                 label="Дорослих"
+    //                 max={6}
+    //                 min={1}
+    //                 setValue={setAdults}
+    //                 value={adults}
+    //               />
+
+    //               <NumberInput
+    //                 label="Дітей"
+    //                 max={6}
+    //                 min={0}
+    //                 setValue={setChildren}
+    //                 value={children}
+    //               />
+    //             </div>
+    //           </PopoverContent>
+    //         </Popover>
+    //       </div>
+    //     </div>
+    //     <div className="flex items-center justify-center lg:mt-4 md:mt-0 md:ml-2 md:mr-3">
+    //       <Button
+    //         className="rounded-full text-white bg-[#5DB3C1] font-medium py-6 px-4"
+    //         onClick={() => {
+    //           let duration: string | undefined = differenceInDays(
+    //             date.end.toString(),
+    //             date.start.toString()
+    //           ).toString();
+
+    //           const queryParameters = [];
+
+    //           if (adults) {
+    //             queryParameters.push(`adults=${adults}`);
+    //           }
+
+    //           if (children) {
+    //             queryParameters.push(`kids=${children}`);
+    //           }
+
+    //           if (toCityId) {
+    //             queryParameters.push(`toCity=${toCityId}`);
+    //           }
+
+    //           if (fromCityId) {
+    //             queryParameters.push(`fromCity=${fromCityId}`);
+    //           }
+
+    //           // Add new parameters using the same pattern
+    //           if (lowestPrice !== undefined && lowestPrice !== null) {
+    //             queryParameters.push(`lowestPrice=${lowestPrice}`);
+    //           }
+
+    //           if (heightPrice !== undefined && heightPrice !== null) {
+    //             queryParameters.push(`heightPrice=${heightPrice}`);
+    //           }
+
+    //           if (stars !== undefined && stars !== null) {
+    //             queryParameters.push(`st=${stars}`);
+    //           }
+
+    //           if (beachTypesIds !== undefined && beachTypesIds !== null) {
+    //             queryParameters.push(`beachTypes=${beachTypesIds}`);
+    //           }
+
+    //           if (dietTypesIds !== undefined && dietTypesIds !== null) {
+    //             queryParameters.push(`dietTypes=${dietTypesIds}`);
+    //           }
+
+    //           if (roomTypesIds !== undefined && roomTypesIds !== null) {
+    //             queryParameters.push(`roomTypes=${roomTypesIds}`);
+    //           }
+
+    //           if (countriesIds !== undefined && countriesIds !== null) {
+    //             queryParameters.push(`countriesIds=${countriesIds}`);
+    //           }
+
+    //           if (inHotelsIds !== undefined && inHotelsIds !== null) {
+    //             queryParameters.push(`inHotelsIds=${inHotelsIds}`);
+    //           }
+
+    //           queryParameters.push(`duration=${duration}`);
+
+    //           const queryString = queryParameters.join("&");
+
+    //           router.push(`/tours?${queryString}`);
+    //         }}
+    //       >
+    //         Шукати
+    //       </Button>
+    //     </div>
+    //   </CardHeader>
+    // </Card>
     <Card
-      className="rounded-tl-none rounded-tr-[20px] rounded-br-[20px] rounded-bl-[30px]  mt-[30px] lg:w-auto w-full"
+      className="rounded-tl-none rounded-tr-[20px] rounded-br-[20px] rounded-bl-[30px] mt-[30px] lg:w-auto md:w-[50%] w-full"
       classNames={{
         base: "bg-transparent shadow-none",
       }}
@@ -113,11 +274,23 @@ const FindTourCard = () => {
       isFooterBlurred={false}
       radius="none"
     >
-      <div className="flex items-center justify-center bg-white text-[#161616] w-44 md:w-60 pt-2 md:pt-3 pr-10 pl-10 font-bold rounded-tl-[15px] md:rounded-tl-[20px] rounded-tr-[15px] md:rounded-tr-[20px] shadow-lg">
+      <div
+        className="flex items-center justify-center bg-white text-[#161616] 
+  w-44 md:w-60 pt-2 md:pt-3 pr-10 pl-10 font-bold 
+  rounded-tl-[15px] md:rounded-tl-[20px] 
+  rounded-tr-[15px] md:rounded-tr-[20px] shadow-lg"
+      >
         Тури
       </div>
-      <CardHeader className="flex flex-wrap md:flex-nowrap flex-col md:flex-row justify-between  rounded-tl-none rounded-tr-[30px] md:rounded-tr-[50px] rounded-br-[30px] md:rounded-br-[50px] rounded-bl-[30px] md:rounded-bl-[50px] p-7 gap-5 bg-white text-[#161616]  overflow-visible">
-        <div className="flex-1 w-full">
+
+      <CardHeader
+        className="flex flex-col lg:flex-row justify-between items-start lg:items-center 
+  gap-5 p-7 bg-white text-[#161616] 
+  rounded-tl-none rounded-tr-[30px] lg:rounded-tr-[50px] 
+  rounded-br-[30px] lg:rounded-br-[50px] 
+  rounded-bl-[30px] lg:rounded-bl-[50px]"
+      >
+        <div className="flex-1 w-full md:flex md:flex-col md:items-center">
           <p className="mb-2">Звідки прямуєш</p>
           <SelectCityToTravelFrom
             city={fromCity}
@@ -126,7 +299,7 @@ const FindTourCard = () => {
           />
         </div>
 
-        <div className="flex-1 w-full">
+        <div className="flex-1 w-full md:flex md:flex-col md:items-center">
           <p className="mb-2">Куди прямуєш</p>
           <SelectCityToTravelTo
             city={toCity}
@@ -135,30 +308,28 @@ const FindTourCard = () => {
           />
         </div>
 
-        <div className="md:flex md:flex-row w-full gap-4">
-          <div className="flex-1">
+        <div className="w-full flex flex-col gap-4 md:flex-col md:gap-4 lg:flex-row lg:gap-0">
+          <div className="flex-1 md:flex md:flex-col md:items-center">
             <p className="mb-2">Тривалість</p>
-            <div className="flex w-full flex-wrap md:flex-nowrap  mb-6 md:mb-0 gap-4">
-              <DateRangePicker
-                className="text-[#171717]"
-                classNames={{
-                  input: "text-[#171717]",
-                  popoverContent: "bg-blue-100 dark:bg-blue-900",
-                  calendar: "bg-white dark:bg-gray-800",
-                }}
-                radius="full"
-                value={date}
-                onChange={(e) => setDate(e!)}
-              />
-            </div>
+            <DateRangePicker
+              className="text-[#171717] md:w-[90%] lg:w-auto sm:w-auto"
+              classNames={{
+                input: "text-[#171717]",
+                popoverContent: "bg-blue-100 dark:bg-blue-900",
+                calendar: "bg-white dark:bg-gray-800",
+              }}
+              radius="full"
+              value={date}
+              onChange={(e) => setDate(e!)}
+            />
           </div>
 
-          <div className="relative flex-1">
+          <div className="relative flex-1 md:flex md:flex-col lg:w-auto md:items-center">
             <p className="mb-2">Мандрівники</p>
             <Popover placement="bottom" showArrow={true}>
               <PopoverTrigger>
                 <Button
-                  className="text-[#171717] w-full bg-gray-100"
+                  className="text-[#171717] w-full bg-gray-100 lg:w-auto  md:w-[90%] sm:w-[full]"
                   radius="full"
                 >
                   {`${adults} мандрівників, ${children} дітей`}
@@ -171,7 +342,6 @@ const FindTourCard = () => {
                 >
                   Мандрівники
                 </h3>
-
                 <div className="flex justify-between space-x-3">
                   <NumberInput
                     label="Дорослих"
@@ -180,7 +350,6 @@ const FindTourCard = () => {
                     setValue={setAdults}
                     value={adults}
                   />
-
                   <NumberInput
                     label="Дітей"
                     max={6}
@@ -193,9 +362,10 @@ const FindTourCard = () => {
             </Popover>
           </div>
         </div>
-        <div className="flex items-center justify-center lg:mt-4 md:mt-0 md:ml-2 md:mr-3">
+
+        <div className="flex items-center justify-center lg:mt-4 md:mt-0 w-full items-center">
           <Button
-            className="rounded-full text-white bg-[#5DB3C1] font-medium py-6 px-4"
+            className="rounded-full text-white bg-[#5DB3C1] font-medium py-6 px-4 md:w-[115px] sm:w-[115px]"
             onClick={() => {
               let duration: string | undefined = differenceInDays(
                 date.end.toString(),
