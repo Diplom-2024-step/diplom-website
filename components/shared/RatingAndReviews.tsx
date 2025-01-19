@@ -132,18 +132,20 @@ const RatingAndReviews = () => {
           </div>
         </div>
         {/* Блок отзывов */}
-        <div className="grid grid-cols-4 m-[45px] gap-4 mt-8 h-[350px]">
+        <div className="grid grid-cols-4 m-[45px] gap-4 mt-8 h-[30%]">
           {reviews.map((review, index) => (
             <div key={index} className="p-4 bg-customAqua rounded-lg">
               {/* Фото пользователя */}
-              <div className="flex items-center h-[15%]">
+              <div className="flex items-center md:flex-col md:mb-3 mb-[25px]">
                 <Image
                   alt={`User ${index + 1}`}
                   className="w-12 h-12 bg-yellow-100 rounded-full object-cover"
                   src={review.photo}
                 />
-                <div className="ml-4">
-                  <p className="font-semibold text-black">{review.name}</p>
+                <div className="flex flex-col items-center">
+                  <p className="font-semibold text-black text-center">
+                    {review.name}
+                  </p>
                   <div className="flex mt-1">
                     {/* Звёзды рейтинга */}
                     <span className="text-yellow-500">★★★★★</span>
@@ -152,12 +154,14 @@ const RatingAndReviews = () => {
               </div>
 
               {/* Текст отзыва */}
-              <div className="h-[65%]">
-                <p className="text-gray-700 mt-4">{review.text}</p>
+              <div className="">
+                <p className="text-gray-700 mt-4 text-pretty h-full md:text-center">
+                  {review.text}
+                </p>
               </div>
 
               {/* Дата и иконки */}
-              <div className="flex flex-col mt-4 text-gray-600 text-sm">
+              <div className="flex flex-col text-gray-600 text-sm mt-2">
                 <p>{review.time}</p>
                 <p>{review.date}</p>
               </div>
@@ -165,7 +169,7 @@ const RatingAndReviews = () => {
           ))}
         </div>
         <Link
-          className="flex items-center m-[45px] p-2 group backdrop-blur-sm rounded-full 
+          className="flex items-center m-[25px] ml-[45px] p-2 group backdrop-blur-sm rounded-full 
               transition-all duration-300 "
           href={"/AboutUs#reviews"}
         >
@@ -255,7 +259,7 @@ const RatingAndReviews = () => {
                 spaceBetween={30}
               >
                 {reviews.map((review, index) => (
-                  <SwiperSlide key={index} className="flex mb-[30px]">
+                  <SwiperSlide key={index} className="flex mb-[50px]">
                     <div className="p-4 bg-customAqua rounded-lg">
                       <div className="flex items-center h-[15%]">
                         <Image
@@ -289,7 +293,7 @@ const RatingAndReviews = () => {
           </div>
         </div>
         <Link
-          className="flex items-center m-[45px] p-2 group backdrop-blur-sm rounded-full 
+          className="flex items-center m-[25px] mt-[0px] p-2 group backdrop-blur-sm rounded-full 
               transition-all duration-300 "
           href={"/AboutUs#reviews"}
         >
