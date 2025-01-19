@@ -56,7 +56,7 @@ const Page = async ({ params }: { params: { id: string } }) => {
             <div
               className="flex items-center h-full mt-5 group"
               role="button"
-              onClick={() => router.back()}
+              onClick={() => router.replace("/tours")}
             >
               <h2 className="text-black">Повернутись до турів</h2>
               <Icon
