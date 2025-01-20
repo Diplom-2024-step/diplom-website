@@ -13,7 +13,7 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
       <div
         className="container mx-auto mb-0 mt-5 max-w-7xl px-5 flex justify-start items-center group"
         role="button"
-        onClick={() => router.replace("./")}
+        onClick={() => router.back()}
       >
         <span>
           <h2 className="text-black">Повернутись до готелів</h2>
