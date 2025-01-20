@@ -118,7 +118,7 @@ const Header = () => {
         />
       ))}
 
-      <div className="relative flex flex-col items-center justify-center h-full w-full px-4 md:px-8 lg:px-12">
+      <div className="relative flex flex-col items-center justify-center  h-full w-full px-4 md:px-8 lg:px-12">
         <FindTourCard />
       </div>
     </div>

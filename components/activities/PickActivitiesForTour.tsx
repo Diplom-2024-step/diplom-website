@@ -137,7 +137,7 @@ const PickActivitiesForTour = () => {
 
               <div
                 ref={containerRef}
-                className="flex justify-start overflow-hidden"
+                className="flex justify-start"
                 role="button"
                 style={{
                   transform: `translateX(-${currentIndex * (visibleItems === 1 ? 12.5 : 25)}%)`,
