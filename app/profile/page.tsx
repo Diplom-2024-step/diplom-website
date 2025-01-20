@@ -397,7 +397,7 @@ const Profile = () => {
                 Обране
               </button>
               <button
-                className={` hidden md:block flex-1  pl-7 pt-2 text-sm font-medium  shadow-right   whitespace-nowrap
+                className={`w-3/4 hidden md:block flex-1  pl-7 pt-2 text-sm font-medium  shadow-right   whitespace-nowrap
               relative card-header-tab-button
               ${activeTab === "comments" ? "text-[#0F171B] scale-110 rounded-tl-[20px] shadow-left border-l-2 border-gray-300" : "text-[#161616]"}`}
                 onClick={() => setActiveTab("comments")}
